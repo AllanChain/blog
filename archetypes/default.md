@@ -1,6 +1,10 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-draft: true
+Title: "{{ replace .Name "-" " " | title }}"
+Date: {{ .Date }}
+Author: Allan Chain
+Category:
+    - Daily
+Tags: 
+    - Dustbin
 ---
 
