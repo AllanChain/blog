@@ -15,7 +15,10 @@ body {
   .page .container { padding: 0; }
 }
 main { margin-bottom: 15px; }
-
+a {
+  text-decoration: none;
+  color: #268bd2;
+}
 /* header and footer areas */
 .header {
   border-top: 5px solid #6c71c4;
@@ -86,8 +89,11 @@ article { padding: 1em; }
 .article-list h1, .title { line-height: 1.2em; }
 .article-list a, .header a, footer a, .categories a, .active a, .comments a { text-decoration: none; }
 .pagination { text-align: center; }
-.pagination li, .terms li { display: inline; }
-.pagination a { padding: 0 .2em; }
+.pagination li { display: inline; }
+.pagination a {
+  padding: 0 .2em;
+  font-weight: bold;
+}
 .pagination {
   padding-inline-start: 0px;
 }
@@ -109,7 +115,7 @@ article { padding: 1em; }
 }
 .footer {
   background: #073642;
-  box-shadow: 0 0 8px #2aa198;
+  box-shadow: 0 -3px 8px #2aa198;
   padding: 1em 0;
 }
 .footer, .footer a { color: #fff; }
@@ -124,8 +130,8 @@ article { padding: 1em; }
 }
 .menu a { padding: .5em; }
 .menu a:hover {
-  color: #000;
-  background: #fff;
+  color: #2aa198;
+  background: #002b36;
 }
 
 hr {
@@ -191,7 +197,9 @@ tr:nth-child(even) { background: #eee }
   text-align: center;
   font-size: 1.2em;
 }
-.terms { padding-left: 0; }
+.terms {
+  font-size: 1.3em;
+}
 .post-nav {
   margin: .5em 0;
   display: flex;
