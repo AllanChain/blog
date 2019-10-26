@@ -19,6 +19,21 @@ a {
   text-decoration: none;
   color: #268bd2;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #586e75; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #859900; 
+}
 /* header and footer areas */
 .header {
   border-top: 5px solid #6c71c4;
