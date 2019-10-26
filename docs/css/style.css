@@ -88,6 +88,9 @@ article { padding: 1em; }
 .pagination { text-align: center; }
 .pagination li, .terms li { display: inline; }
 .pagination a { padding: 0 .2em; }
+.pagination {
+  padding-inline-start: 0px;
+}
 .page-item a {
   text-decoration: none;
   color: #268bd2;
