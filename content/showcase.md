@@ -6,6 +6,7 @@ Tags:
     - Showcase
 ---
 
+# Header 1
 ## Header 2
 
 `$ \sum^{n}_{i-1}\frac{i}{2} $`
@@ -41,7 +42,6 @@ pre {
   }
 }
 ```
-
 ```js
 // JS code
 
@@ -84,5 +84,7 @@ Curabitur scelerisque felis viverra varius scelerisque. Ut enim libero, molestie
 - Etiam vitae enim quis velit lobortis placerat a ut sem.
   - Curabitur lobortis ante sit amet orci pulvinar, sollicitudin viverra nunc accumsan.
   - Praesent fermentum orci quis leo facilisis posuere.
+
+## Header 3
 
 Aliquam erat volutpat. In hac habitasse platea dictumst. Nunc ut tincidunt mauris. Sed at gravida risus, id semper magna. Nullam vitae enim mattis, sodales neque non, pharetra elit. Cras sit amet sagittis augue, et finibus turpis. Ut tempus tincidunt diam vel pharetra. Nulla porttitor odio sit amet nulla scelerisque, quis aliquam mi imperdiet. Sed tincidunt dui vel tellus vestibulum rhoncus. Donec tempus ultrices velit.
