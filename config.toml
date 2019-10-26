@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://allanchain.github.io/blog/"
 languageCode = "en-us"
 title = "AC's Blog"
 theme = "hugo-xmag-solarized"
@@ -38,7 +38,7 @@ paginate = 6
 [params]
     description = "A website built through Hugo and blogdown."
     summary_length = 300
-    # github_edit = "https://github.com/yihui/hugo-xmag/edit/master/exampleSite/content/"
+    github_edit = "https://github.com/AllanChain/blog/edit/master/content/"
     footer = "Powered by hugo and hugo-xmag theme"
 
 [params.text]
