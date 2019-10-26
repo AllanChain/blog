@@ -2,7 +2,7 @@
 Title: "谜之 Hugo"
 Date: 2019-10-26T19:19:16+08:00
 Author: Allan Chain
-Category:
+Categories:
     - Hugo
 Tags: 
     - Complaints
