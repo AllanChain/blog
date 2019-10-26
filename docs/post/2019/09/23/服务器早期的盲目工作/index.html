@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>服务器早期的盲目工作 | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="https://allanchain.github.io/blog/css/style.css" />
+    <link rel="stylesheet" href="https://allanchain.github.io/blog/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="https://allanchain.github.io/blog/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="https://allanchain.github.io/blog/">&larr; Home</a></span>
+        <span class="date">2019-09-23</span>
+        
+        
+        
+          
+        
+        
+        
+        <span><a href="https://github.com/AllanChain/blog/edit/master/content/post/early-blind-work.md">Edit &rarr;</a></span>
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">服务器早期的盲目工作</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  <p>Tags: <a href="https://allanchain.github.io/blog/tags/server">Server</a>
+  </p>
+  
+  
+
+</div>
+
+
+
+
+<main>
+
+
+<h3 id="打日志-测试与持续集成">打日志、测试与持续集成</h3>
+
+<p>我在接了写操作<code>MySQL</code>的四个函数的任务后，发现有错误需要记录，就设计了日志部分，也就是初始化<code>logging</code>。</p>
+
+<p>在写完数据库部分后，把用作测试的代码放在了<code>test.py</code>。我甚至在一波操作获得发起Git仓库的主动权后：</p>
+
+<blockquote>
+<p>要不试一下 GitHub 的 CI/CD 吧！</p>
+
+<p>发现服务器很多功能都无法在 GitHub 的 CI/CD 上完成 test&hellip;就先这样，其实本来用 GitHub 的 CI/CD 就是玩玩的😂</p>
+
+<p>WTH? 才发现 GitHub Actions 到 2019.11.13 就要收费了？福利到头。。算了，那就去掉吧</p>
+
+<p>经过坚苦卓绝的探索，终于搞定了<code>CircleCI</code>的集成，完成了数据库自动化测试和代码风格检查。Yeah~ 😄</p>
+</blockquote>
+
+<p>千万不要学我！！你会看到我在另一波操作获得定下<code>flask</code>框架的主动权后，发现这一切在<code>flask</code>正确打开方式不是这样的😭</p>
+
+<h3 id="历史的必然">历史的必然</h3>
+
+<p>我们真的不知道往哪个方向走，搭建服务器应该都是第一次。不知道用什么框架就开始搞，显然会陷入左倾盲动主义泥潭，必将导致代码实现不够优雅。也只有摸爬滚打过来才知道这番风景。</p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="https://allanchain.github.io/blog/post/2019/10/03/%E6%88%91%E8%B8%8F%E9%A9%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%89-flask/">&larr; 我踏马为什么要选 Flask？</a></span>
+  <span class="nav-next"><a href="https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/">Damning GPG Key &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src=https://allanchain.github.io/blog/js/center-img.js></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="https://allanchain.github.io/blog/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="https://allanchain.github.io/blog/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="https://allanchain.github.io/blog/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="https://allanchain.github.io/blog/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
+

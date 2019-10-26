@@ -46,6 +46,76 @@
   
   
   </div>
+  <h1><a href="https://allanchain.github.io/blog/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/">在ftp文件夹视图下实现双击打开文件</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-04-08</span>
+  </div>
+  <div class="summary">
+    <a href="https://allanchain.github.io/blog/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/">
+    
+    
+    
+    
+    
+      
+    
+    在日常学习生活中，ftp文件的操作需要拖放来实现，于是产生以下问题：
+[&hellip;] 缺点：
+[&hellip;] 结论：放弃此方案
+[&hellip;] 优点：
+[&hellip;] 不足：
+[&hellip;] 补充：
+[&hellip;] 解救方案：
+[&hellip;] Shell Extension有属性栏、悬停等，但不适合
+[&hellip;] 暂时找不到
+[&hellip;] 你去协商呀！
+
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="https://allanchain.github.io/blog/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/">Requests初探</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-02-13</span>
+  </div>
+  <div class="summary">
+    <a href="https://allanchain.github.io/blog/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/">
+    
+    
+    
+    
+    
+      
+    
+    requests 模块获取http回复十分方便，一句requests.get(url)即可搞定。 下面贴上从mliucixin.zuopinj.com/抓取刘慈欣小说全集的代码：
+Download lcx_spider.py
+几点说明：
+[&hellip;] 该网站url十分简单，只需一个for循环改改变最后.html前的数字即可抓取全集。
+end, start = 202227+1, 201980 num = end-start for i in range(num): r = requests.get(&#39;http://mliucixin.zuopinj.com/5561/%d.html&#39;&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
+  
+  
+  </div>
   <h1><a href="https://allanchain.github.io/blog/post/2019/02/10/package-notes/">Package Notes</a></h1>
   <div class="date-author">
     <span class="author">Allan Chain
@@ -154,64 +224,6 @@ set autoindent set smartindent set tabstop=4 &quot; 统一缩进为4 set&hellip;
     
     Here is my simple script on readline.
 import readline import os def completer(text,state): ds=os.listdir() rs=list(filter(lambda s:s.startswith(text),ds)) if state&lt;len(rs): return rs[state] return None readline.parse_and_bind(&quot;tab: complete&quot;) readline.set_completer(completer) input()   &hellip;
-    </a>
-  </div>
-</section>
-
-<section class="article-list">
-  <div class="categories">
-  
-  
-    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
-  
-  
-  </div>
-  <h1><a href="https://allanchain.github.io/blog/post/2019/02/08/read-the-character-straight/">Read the Character Straight</a></h1>
-  <div class="date-author">
-    <span class="author">Allan Chain
-</span> / 
-    <span class="date">2019-02-08</span>
-  </div>
-  <div class="summary">
-    <a href="https://allanchain.github.io/blog/post/2019/02/08/read-the-character-straight/">
-    
-    
-    
-    
-    
-      
-    
-    
-    </a>
-  </div>
-</section>
-
-<section class="article-list">
-  <div class="categories">
-  
-  
-    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
-  
-  
-  </div>
-  <h1><a href="https://allanchain.github.io/blog/post/2018/11/04/python-the-language/">Python the Language</a></h1>
-  <div class="date-author">
-    <span class="author">Allan Chain
-</span> / 
-    <span class="date">2018-11-04</span>
-  </div>
-  <div class="summary">
-    <a href="https://allanchain.github.io/blog/post/2018/11/04/python-the-language/">
-    
-    
-    
-    
-    
-      
-    
-    Notes for python language itself.
-[&hellip;] Let&rsquo;s have a look at the following code first:
-class A: def printf(*args): print(args) def printff(*args): print(args) a=A() a.printf() print (&#39;-&#39;*5,a.printf) A.printf=printff a.printf() print (&#39;-&#39;*5,a.printf) A.printf=print a.printf() print&hellip;
     </a>
   </div>
 </section>

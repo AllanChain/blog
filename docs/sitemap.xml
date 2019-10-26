@@ -53,6 +53,21 @@
   </url>
   
   <url>
+    <loc>https://allanchain.github.io/blog/categories/python/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanchain.github.io/blog/post/2019/10/03/%E6%88%91%E8%B8%8F%E9%A9%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%80%89-flask/</loc>
+    <lastmod>2019-10-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanchain.github.io/blog/post/2019/09/23/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A9%E6%9C%9F%E7%9A%84%E7%9B%B2%E7%9B%AE%E5%B7%A5%E4%BD%9C/</loc>
+    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/</loc>
     <lastmod>2019-09-22T00:00:00+00:00</lastmod>
   </url>
@@ -70,11 +85,6 @@
   <url>
     <loc>https://allanchain.github.io/blog/about/</loc>
     <lastmod>2019-08-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://allanchain.github.io/blog/categories/python/</loc>
-    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
