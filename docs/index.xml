@@ -45,6 +45,15 @@ echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git co
     </item>
     
     <item>
+      <title>About</title>
+      <link>https://allanchain.github.io/blog/about/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanchain.github.io/blog/about/</guid>
+      <description>Should I introduce myself a little bit? [TOC] Getting started with python Actually, I started learning python during the Qingming Festival in 2016, when I have been admitted into TG&amp;rsquo;s Innovation Class (创新班). At that time, we students from Modern Experimental School do not have much freedom to do what we want and that&amp;rsquo;s why Qingming Festival is a good time for making the decision</description>
+    </item>
+    
+    <item>
       <title>无法运行一些老旧程序</title>
       <link>https://allanchain.github.io/blog/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/</link>
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
