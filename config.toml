@@ -40,6 +40,6 @@ paginate = 6
     footer = "Powered by hugo and hugo-xmag theme"
 
 [params.text]
-    back = "&larr; Back to Home"
-    edit = "Edit this page &rarr;"
+    back = "&larr; Home"
+    edit = "Edit &rarr;"
     truncated = "&hellip;"
