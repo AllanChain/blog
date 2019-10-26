@@ -19,6 +19,9 @@ a {
   text-decoration: none;
   color: #268bd2;
 }
+main a {
+  word-break: break-all;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
