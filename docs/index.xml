@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AC&#39;s Blog</title>
-    <link>/</link>
+    <link>https://allanchain.github.io/blog/</link>
     <description>Recent content on AC&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://allanchain.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>总结一下权限问题</title>
-      <link>/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</link>
+      <link>https://allanchain.github.io/blog/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</link>
       <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</guid>
       <description>Nginx Nginx 必须使用 root 权限才能开启，因为它铁定需要 root 权限来绑定 80 端口，另外还要使用一些系统目录下的文件。 但是可以通过一波操作使只有 master 进程以 root 运行，其</description>
     </item>
     
     <item>
       <title>Damning GPG Key</title>
-      <link>/post/2019/09/22/damning-gpg-key/</link>
+      <link>https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/</link>
       <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/09/22/damning-gpg-key/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/</guid>
       <description>I tried to use GPG key months ago, and after a desperate search, I finally knew that I didn&amp;rsquo;t read the doc carefully and forgot to tell git what gpg key to use.
 And I happily reproduce the same on my Ubuntu virtual machine.
 That&amp;rsquo;s when interesting mystery took place.
@@ -35,10 +35,10 @@ WTH? That&amp;rsquo;s IMPOSSIBLE!</description>
     
     <item>
       <title>Push without Password</title>
-      <link>/post/2019/09/22/push-without-password/</link>
+      <link>https://allanchain.github.io/blog/post/2019/09/22/push-without-password/</link>
       <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/09/22/push-without-password/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/09/22/push-without-password/</guid>
       <description>on Linux  Just
 echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git config --global credential.helper store  And you will see [credential]helper = store in .gitconfig
   on Windows Just install Git-Credential-Manager-for-Windows or GCMW for short</description>
@@ -46,19 +46,19 @@ echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git co
     
     <item>
       <title>无法运行一些老旧程序</title>
-      <link>/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/</link>
+      <link>https://allanchain.github.io/blog/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/</link>
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/</guid>
       <description>方案：右键&amp;gt;属性&amp;gt;以兼容模式运行 优酷.kux转.mp4 优酷安装文件夹内有ffmpeg.exe，按照ffmpeg用法重新封装成mp</description>
     </item>
     
     <item>
       <title>Using Kivy and Buildozer to Build Android APK</title>
-      <link>/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/</link>
+      <link>https://allanchain.github.io/blog/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/</link>
       <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/</guid>
       <description>Environment:  Ubuntu 19.04 Disco Dingo Python 3.7.3 kivy 1.10.1 buildozer 0.39   My First Android Application Ever Built Buildozer Install pip3 install buildozer  Get Kivy program Using https://github.com/kivy/kivy/tree/master/examples/demo/pictures
 Configure Buildozer buildozer init vim buildozer.spec  Prepare to build As advised on Buildozer Doc, Android on Ubuntu 18.04 (64bit) should install:
 sudo pip install --upgrade cython==0.28.6 sudo dpkg --add-architecture i386 sudo apt update sudo apt install build-essential ccache git libncurses5:i386 libstdc++6:i386 libgtk2.</description>
@@ -66,19 +66,19 @@ sudo pip install --upgrade cython==0.28.6 sudo dpkg --add-architecture i386 sudo
     
     <item>
       <title>让Termux对浏览器更友好</title>
-      <link>/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/</link>
+      <link>https://allanchain.github.io/blog/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/</guid>
       <description>Download xb.py 难点： 获取jupyter等应用的实时输出 import subprocess backup = subprocess.Popen( cmd.split(), shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) for line in iter(backup.stdout.readline, b&#39;&#39;): line = line.rstrip().decode(&#39;utf8&#39;) 使Ctrl+C能使让应用结束 只有以shell=False启动的</description>
     </item>
     
     <item>
       <title>Add SSH Key</title>
-      <link>/post/2019/06/10/add-ssh-key/</link>
+      <link>https://allanchain.github.io/blog/post/2019/06/10/add-ssh-key/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/06/10/add-ssh-key/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/06/10/add-ssh-key/</guid>
       <description>Visit GitHub Help Page for detial.
 Add SSH Keys  Open Terminal. Paste the text below, substituting in your GitHub email address.
 ssh-keygen -t rsa -b 4096 -C &amp;quot;your_email@example.com&amp;quot;  This creates a new ssh key, using the provided email as a label.
@@ -87,10 +87,10 @@ Generating public/private rsa key pair.  When you&amp;rsquo;re prompted to &amp;
     
     <item>
       <title>Split a Repo</title>
-      <link>/post/2019/06/10/split-a-repo/</link>
+      <link>https://allanchain.github.io/blog/post/2019/06/10/split-a-repo/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/06/10/split-a-repo/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/06/10/split-a-repo/</guid>
       <description> Single File From https://stackoverflow.com/questions/39479154/how-can-i-split-a-single-file-from-a-git-repo-into-a-new-repo Use git fast-export.
 First you export the history of the file to a fast-import stream. Make sure you do this on the master branch.
 cd oldrepo git fast-export HEAD -- MyFile.ext &amp;gt;../myfile.fi  Then you create a new repo and import.
@@ -99,10 +99,10 @@ cd .. mkdir newrepo cd newrepo git init git fast-import &amp;lt;../myfile.fi git
     
     <item>
       <title>Pip&amp;Pypi</title>
-      <link>/post/2019/04/30/pippypi/</link>
+      <link>https://allanchain.github.io/blog/post/2019/04/30/pippypi/</link>
       <pubDate>Tue, 30 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/04/30/pippypi/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/04/30/pippypi/</guid>
       <description>Downloading Binary Package on Windows  From StackOverflow
 As the other responses pointed out, one solution is to install Visual Studio 2015. However, it takes a few GBs of disk space. One way around is to install precompiled binaries.
 The webpage http://www.lfd.uci.edu/~gohlke/pythonlibs contains precompiled binaries for many Python packages.
@@ -111,28 +111,28 @@ The webpage http://www.lfd.uci.edu/~gohlke/pythonlibs contains precompiled binar
     
     <item>
       <title>在ftp文件夹视图下实现双击打开文件</title>
-      <link>/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/</link>
+      <link>https://allanchain.github.io/blog/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/</link>
       <pubDate>Mon, 08 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/</guid>
       <description>背景 在日常学习生活中，ftp文件的操作需要拖放来实现，于是产生以下问题： 拖曳操作对触摸屏并不友好，常需要通过长按后达到右键的效果再拖放。 几天</description>
     </item>
     
     <item>
       <title>Requests初探</title>
-      <link>/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/</guid>
       <description>requests 模块获取http回复十分方便，一句requests.get(url)即可搞定。 下面贴上从mliucixin.zuopinj.com/抓取刘</description>
     </item>
     
     <item>
       <title>Package Notes</title>
-      <link>/post/2019/02/10/package-notes/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/10/package-notes/</link>
       <pubDate>Sun, 10 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/10/package-notes/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/10/package-notes/</guid>
       <description>QtDisigner Install QtDisigner is convenient, but it doesn&amp;rsquo;t come along with the none GPL version. Then it is for you.
 pip install pyqt5_tools  Previewing Markdown grip is an excellent Flask app and python module to view markdown and easy to use. Just run:
 pip install grip  Note that grip need Internet access because it depends on github markdown api to render.
@@ -141,10 +141,10 @@ Pip dependency tree view pip offers a freeze command to view installed packages,
     
     <item>
       <title>Airline Setup</title>
-      <link>/post/2019/02/09/airline-setup/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/09/airline-setup/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/09/airline-setup/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/09/airline-setup/</guid>
       <description>vim airline is a tool to enhance the looking of vim. And it is a little tricky to setup especially in termux.
 As I did not install any package manager for vim (in fact, I failed to install and setup Vundle), I need to clone the repo to ~/.vim/pack/dist/start/ to let vim automatically load the package. And I see the airline when I opened vim.
  By the way, all packages I tested (NERDTree, indentLine, gitgutter) all support this kind of operation.</description>
@@ -152,37 +152,37 @@ As I did not install any package manager for vim (in fact, I failed to install a
     
     <item>
       <title>Annoying Tab width</title>
-      <link>/post/2019/02/08/annoying-tab-width/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/08/annoying-tab-width/</link>
       <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/08/annoying-tab-width/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/08/annoying-tab-width/</guid>
       <description>When using vim on termux, only in python file did vim use 4-space-width tab. And in other files(e.g. .html), a tab, a &amp;gt;&amp;gt; and a backspace are all 8 spaces. And I tried to set the following in ~/.vimrc file. But it does not work. set autoindent set smartindent set tabstop=4 &amp;quot; 统一缩进为4 set shiftwidth=4 &amp;quot;自动缩进</description>
     </item>
     
     <item>
       <title>Module readline</title>
-      <link>/post/2019/02/08/module-readline/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/08/module-readline/</link>
       <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/08/module-readline/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/08/module-readline/</guid>
       <description>Here is my simple script on readline. import readline import os def completer(text,state): ds=os.listdir() rs=list(filter(lambda s:s.startswith(text),ds)) if state&amp;lt;len(rs): return rs[state] return None readline.parse_and_bind(&amp;quot;tab: complete&amp;quot;) readline.set_completer(completer) input() 必须注意如果在函数中有错误的话，在你按下tab键后什么都不会发生（新手会在这里卡壳）。要</description>
     </item>
     
     <item>
       <title>Read the Character Straight</title>
-      <link>/post/2019/02/08/read-the-character-straight/</link>
+      <link>https://allanchain.github.io/blog/post/2019/02/08/read-the-character-straight/</link>
       <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/02/08/read-the-character-straight/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/02/08/read-the-character-straight/</guid>
       <description> On Linux import os import sys import tty, termios fd = sys.stdin.fileno() old_settings = termios.tcgetattr(fd) try : tty.setraw( fd ) ch = sys.stdin.read( 1 ) finally : termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)  On Windows import msvcrt ch = msvcrt.getch()  </description>
     </item>
     
     <item>
       <title>Python the Language</title>
-      <link>/post/2018/11/04/python-the-language/</link>
+      <link>https://allanchain.github.io/blog/post/2018/11/04/python-the-language/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/11/04/python-the-language/</guid>
+      <guid>https://allanchain.github.io/blog/post/2018/11/04/python-the-language/</guid>
       <description>Notes for python language itself.
 Interesting Things About Class Let&amp;rsquo;s have a look at the following code first:
 class A: def printf(*args): print(args) def printff(*args): print(args) a=A() a.printf() print (&#39;-&#39;*5,a.printf) A.printf=printff a.printf() print (&#39;-&#39;*5,a.printf) A.printf=print a.printf() print (&#39;-&#39;*5,a.printf) a.printf=printff a.printf() print (&#39;-&#39;*5,a.printf) A.printf=printff a.printf() print (&#39;-&#39;*5,a.printf) print (&#39;-&#39;*5,A.printf) ##Output ##(&amp;lt;__main__.A object at 0x01371070&amp;gt;,) ##----- &amp;lt;bound method A.printf of &amp;lt;__main__.A object at 0x01371070&amp;gt;&amp;gt; ##(&amp;lt;__main__.A object at 0x01371070&amp;gt;,) ##----- &amp;lt;bound method A.</description>
@@ -190,19 +190,19 @@ class A: def printf(*args): print(args) def printff(*args): print(args) a=A() a.
     
     <item>
       <title>Termux Error Handling</title>
-      <link>/post/2018/11/04/termux-error-handling/</link>
+      <link>https://allanchain.github.io/blog/post/2018/11/04/termux-error-handling/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/11/04/termux-error-handling/</guid>
+      <guid>https://allanchain.github.io/blog/post/2018/11/04/termux-error-handling/</guid>
       <description>Table of Contents  ImportError dlopen failed  ImportError dlopen failed I haven&amp;rsquo;t clearly figure out what&amp;rsquo;s happening, but uninstall and reinstall the packege absolutely helps.</description>
     </item>
     
     <item>
       <title>Termux Initialize</title>
-      <link>/post/2018/11/04/termux-initialize/</link>
+      <link>https://allanchain.github.io/blog/post/2018/11/04/termux-initialize/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/11/04/termux-initialize/</guid>
+      <guid>https://allanchain.github.io/blog/post/2018/11/04/termux-initialize/</guid>
       <description>Initial Setup  First,run:
 termux-setup-storage ln -s ~/storage/shared/123/pythonPro  Then, in directory pythonPro,run sh setup.sh.
  And the content of setup.sh is as followed:
@@ -211,10 +211,10 @@ apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev
     
     <item>
       <title>Showcase</title>
-      <link>/showcase/</link>
+      <link>https://allanchain.github.io/blog/showcase/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/showcase/</guid>
+      <guid>https://allanchain.github.io/blog/showcase/</guid>
       <description>Header 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.</description>
     </item>
     

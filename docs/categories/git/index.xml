@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on AC&#39;s Blog</title>
-    <link>/categories/git/</link>
+    <link>https://allanchain.github.io/blog/categories/git/</link>
     <description>Recent content in Git on AC&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://allanchain.github.io/blog/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Damning GPG Key</title>
-      <link>/post/2019/09/22/damning-gpg-key/</link>
+      <link>https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/</link>
       <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/09/22/damning-gpg-key/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/09/22/damning-gpg-key/</guid>
       <description>I tried to use GPG key months ago, and after a desperate search, I finally knew that I didn&amp;rsquo;t read the doc carefully and forgot to tell git what gpg key to use.
 And I happily reproduce the same on my Ubuntu virtual machine.
 That&amp;rsquo;s when interesting mystery took place.
@@ -26,10 +26,10 @@ WTH? That&amp;rsquo;s IMPOSSIBLE!</description>
     
     <item>
       <title>Push without Password</title>
-      <link>/post/2019/09/22/push-without-password/</link>
+      <link>https://allanchain.github.io/blog/post/2019/09/22/push-without-password/</link>
       <pubDate>Sun, 22 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/09/22/push-without-password/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/09/22/push-without-password/</guid>
       <description>on Linux  Just
 echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git config --global credential.helper store  And you will see [credential]helper = store in .gitconfig
   on Windows Just install Git-Credential-Manager-for-Windows or GCMW for short</description>
@@ -37,10 +37,10 @@ echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git co
     
     <item>
       <title>Add SSH Key</title>
-      <link>/post/2019/06/10/add-ssh-key/</link>
+      <link>https://allanchain.github.io/blog/post/2019/06/10/add-ssh-key/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/06/10/add-ssh-key/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/06/10/add-ssh-key/</guid>
       <description>Visit GitHub Help Page for detial.
 Add SSH Keys  Open Terminal. Paste the text below, substituting in your GitHub email address.
 ssh-keygen -t rsa -b 4096 -C &amp;quot;your_email@example.com&amp;quot;  This creates a new ssh key, using the provided email as a label.
@@ -49,10 +49,10 @@ Generating public/private rsa key pair.  When you&amp;rsquo;re prompted to &amp;
     
     <item>
       <title>Split a Repo</title>
-      <link>/post/2019/06/10/split-a-repo/</link>
+      <link>https://allanchain.github.io/blog/post/2019/06/10/split-a-repo/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019/06/10/split-a-repo/</guid>
+      <guid>https://allanchain.github.io/blog/post/2019/06/10/split-a-repo/</guid>
       <description> Single File From https://stackoverflow.com/questions/39479154/how-can-i-split-a-single-file-from-a-git-repo-into-a-new-repo Use git fast-export.
 First you export the history of the file to a fast-import stream. Make sure you do this on the master branch.
 cd oldrepo git fast-export HEAD -- MyFile.ext &amp;gt;../myfile.fi  Then you create a new repo and import.
