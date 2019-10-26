@@ -5,8 +5,6 @@ Author: Allan Chain
 ---
 Should I introduce myself a little bit?
 
-[TOC]
-
 ### Getting started with python
 
 Actually, I started learning python during the Qingming Festival in 2016, when I have been admitted into TG's `Innovation Class` (创新班). At that time, we students from Modern Experimental School do not have much freedom to do what we want and that's why Qingming Festival is a good time for making the decision to learn a new programing language.
