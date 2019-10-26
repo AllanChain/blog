@@ -10,6 +10,7 @@ preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 hasCJKLanguage = true
 enableEmoji = true
+canonifyURLs = true
 paginate = 6
 
 [permalinks]

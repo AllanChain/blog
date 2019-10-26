@@ -50,7 +50,7 @@ echo https://{username}:{password}@github.com &amp;gt; ~/.git-credentials git co
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://allanchain.github.io/blog/about/</guid>
-      <description>Should I introduce myself a little bit? [TOC] Getting started with python Actually, I started learning python during the Qingming Festival in 2016, when I have been admitted into TG&amp;rsquo;s Innovation Class (创新班). At that time, we students from Modern Experimental School do not have much freedom to do what we want and that&amp;rsquo;s why Qingming Festival is a good time for making the decision</description>
+      <description>Should I introduce myself a little bit? Getting started with python Actually, I started learning python during the Qingming Festival in 2016, when I have been admitted into TG&amp;rsquo;s Innovation Class (创新班). At that time, we students from Modern Experimental School do not have much freedom to do what we want and that&amp;rsquo;s why Qingming Festival is a good time for making the decision to</description>
     </item>
     
     <item>
@@ -224,7 +224,8 @@ apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://allanchain.github.io/blog/showcase/</guid>
-      <description>Header 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.</description>
+      <description>Header 2 $ \sum^{n}_{i-1}\frac{i}{2} $
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare.</description>
     </item>
     
   </channel>

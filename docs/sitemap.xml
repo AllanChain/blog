@@ -23,7 +23,12 @@
   </url>
   
   <url>
-    <loc>https://allanchain.github.io/blog/categories/server/</loc>
+    <loc>https://allanchain.github.io/blog/tags/server/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanchain.github.io/blog/tags/</loc>
     <lastmod>2019-10-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -158,12 +163,13 @@
   </url>
   
   <url>
-    <loc>https://allanchain.github.io/blog/showcase/</loc>
+    <loc>https://allanchain.github.io/blog/tags/showcase/</loc>
     <lastmod>2018-07-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://allanchain.github.io/blog/tags/</loc>
+    <loc>https://allanchain.github.io/blog/showcase/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
