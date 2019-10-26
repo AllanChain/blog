@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>在ftp文件夹视图下实现双击打开文件 | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-04-08</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">在ftp文件夹视图下实现双击打开文件</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h2 id="背景">背景</h2>
+
+<p>在日常学习生活中，ftp文件的操作需要拖放来实现，于是产生以下问题：</p>
+
+<ul>
+<li>拖曳操作对触摸屏并不友好，常需要通过长按后达到右键的效果再拖放。</li>
+<li>几天以后，会出现满桌面的文件，整理工作量大。</li>
+</ul>
+
+<h2 id="解决方案探索">解决方案探索</h2>
+
+<h3 id="评析浏览器下载插件的可行性">评析浏览器下载插件的可行性</h3>
+
+<p>缺点：</p>
+
+<ol>
+<li>难以自定义下载位置，也是一股脑放在一个地方</li>
+<li>肯定会弹出浏览器窗口，就算不管弹出窗口的美观性，如果浏览器打开了什么。。。</li>
+</ol>
+
+<blockquote>
+<p>结论：放弃此方案</p>
+</blockquote>
+
+<h3 id="评析将自定义程序注册为ftp打开方式的可行性">评析将自定义程序注册为ftp打开方式的可行性</h3>
+
+<p>优点：</p>
+
+<ol>
+<li>有专门负责ftp双击打开后打开程序的注册表项，此处原来注册的是Chrome</li>
+<li>的确可以注册，调用python无窗口程序顺利</li>
+</ol>
+
+<p>不足：</p>
+
+<ol>
+<li>传给程序的是临时文件地址，不知道ftp用户</li>
+<li>必须系统下载好临时文件才会调用注册的程序</li>
+<li>系统已经下载过的文件再次双击又会下载一遍，费时费力</li>
+<li>临时文件目录不会自动清空</li>
+</ol>
+
+<p>补充：</p>
+
+<ul>
+<li>存在两个地方注册ftp浏览器：
+
+<ol>
+<li><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\ftp\UserChoice</code></li>
+<li><code>HKEY_CLASS_ROOT\ftp</code>
+&gt; 在某些电脑上（如Win7 64bit）使用方法一注册时，会下载临时文件；使用方法二时，只会创建临时文件
+&gt;
+&gt; 但在另一些电脑（如Win7 32bit），不论使用那种方法，均会下载</li>
+</ol></li>
+</ul>
+
+<p>解救方案：</p>
+
+<ul>
+<li>使用windows api获取最上层文件浏览器的地址栏
+&gt; 注：有的（Win7 Professional）地址栏中包含用户名和密码，有的（Win7 Ultimate）只有用户名</li>
+<li>再启用python ftplib实现文件对比和下载</li>
+</ul>
+
+<h3 id="思考shell-extension">思考Shell Extension</h3>
+
+<p>Shell Extension有属性栏、悬停等，但不适合</p>
+
+<h3 id="其他应用-放弃explorer">其他应用，放弃Explorer</h3>
+
+<p>暂时找不到</p>
+
+<h3 id="smb-not-ftp">SMB, Not FTP</h3>
+
+<p>你去协商呀！</p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/04/30/pippypi/">&larr; Pip&amp;Pypi</a></span>
+  <span class="nav-next"><a href="/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/">Requests初探 &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+
+
+
+</body>
+</html>
+

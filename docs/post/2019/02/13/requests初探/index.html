@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Requests初探 | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-02-13</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">Requests初探</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+<p><code>requests</code> 模块获取http回复十分方便，一句<code>requests.get(url)</code>即可搞定。
+下面贴上从<code>mliucixin.zuopinj.com/</code>抓取刘慈欣小说全集的代码：</p>
+
+<p>Download <a href="lcx_spider.py">lcx_spider.py</a></p>
+
+<p>几点说明：</p>
+
+<ul>
+<li><p>该网站url十分简单，只需一个for循环改改变最后.html前的数字即可抓取全集。</p>
+
+<pre><code class="language-python">end, start = 202227+1, 201980
+num = end-start
+for i in range(num):
+r = requests.get('http://mliucixin.zuopinj.com/5561/%d.html' % (start+i))
+</code></pre>
+
+<p>抓到的网页大概是这样的：</p>
+
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+&lt;title&gt;全频段阻塞干扰 第2章 “万年炎帝”号_手机小说在线阅读_刘慈欣作品集&lt;/title&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;全频段阻塞干扰,第2章 “万年炎帝”号&quot; /&gt;
+&lt;meta name=&quot;description&quot; content=&quot;刘慈欣作品集整理全频段阻塞干扰全集无弹窗手机小说在线阅读,当前章节：第2章 “万年炎帝”号&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;translucent&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;http://zuopinj.com/images/logo_64.png&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;http://zuopinj.com/images/logo_64.png&quot;&gt;
+&lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;作品集&quot;&gt;
+&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;telphone=no, email=no&quot;&gt;
+&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-transform&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;http://zuopinj.com/css/ydread.css&quot;/&gt;
+&lt;script src=&quot;http://zuopinj.com/js/wap.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;readerWarp&quot;&gt;
+&lt;h1 id=&quot;title&quot;&gt;第2章 “万年炎帝”号&lt;/h1&gt;
+&lt;div class=&quot;ad-mb01&quot;&gt;&lt;script&gt;ad_zpjhf_wap();&lt;/script&gt;&lt;/div&gt;
+&lt;div id=&quot;conWp&quot;&gt;
+&lt;p&gt;　　1月5日，近日轨道，&amp;ldquo;万年炎帝&amp;rdquo;号&lt;br /&gt;
+&lt;br /&gt;
+庄宇感到了一个人独居一座城市的孤独。&lt;br /&gt;
+&lt;br /&gt;
+&amp;ldquo;万年炎帝&amp;rdquo;号太空
+......
+&amp;tp://mliucixin.zuopinj.com/5558/202095.html&quot;  class=&quot;section section-next&quot;&gt;下一章&lt;/span&gt;
+&lt;script&gt;ad_zpjhf2_wap();&lt;/script&gt;
+&lt;div class=&quot;chapter&quot; id=&quot;chapter&quot;&gt;
+&lt;span id=&quot;chapterPre&quot; data-url=&quot;http://mliucixin.zuopinj.com/5558/202093.html&quot; class=&quot;chapter-pre&quot;&gt;上一章&lt;/span&gt;
+&lt;a class=&quot;chapter-bt&quot; href=&quot;http://mliucixin.zuopinj.com/5558/&quot;&gt;目录&lt;/a&gt;
+&lt;span id=&quot;chapterNext&quot; data-url=&quot;http://mliucixin.zuopinj.com/5558/202095.html&quot;  class=&quot;chapter-next&quot;&gt;下一章&lt;/span&gt;
+&lt;/div&gt;
+&lt;div style=&quot;margin-top:1px;&quot;&gt;&lt;script&gt;ad_zpjhf3_wap();&lt;/script&gt;&lt;/div&gt;
+&lt;div id=&quot;tipBg&quot; class=&quot;tip-bg&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var CONFIG = {catalog: 1,tj: &quot;&quot;,pos: '[&quot;&quot;,&quot;load&quot;]',basehis : '{}',error : &quot;&quot;};CONFIG.pos = JSON.parse(CONFIG.pos);
+&lt;/script&gt;
+&lt;script&gt;ad_zpjxf_wap();&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://zuopinj.com/js/zepto.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://zuopinj.com/js/read.js&quot;&gt;&lt;/script&gt;
+&lt;div style=&quot;display: none;&quot;&gt;&lt;script&gt;waptj();&lt;/script&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></li>
+
+<li><p>在re.findall时，如果html中含有换行符，将导致匹配不成功。</p>
+
+<pre><code class="language-python">text = r.text.replace('\r\n', '')
+</code></pre></li>
+
+<li><p>当然re是必须的</p>
+
+<pre><code class="language-python">novel, chapter = findall(pattern='&lt;meta name=&quot;keywords&quot; content=&quot;(.*?)&quot; /&gt;', string=text)[0].split(',')
+p = findall(pattern='&lt;p&gt;(.*?)&lt;/p&gt;', string=text)[0]
+</code></pre></li>
+
+<li><p>生成html后，使用Calibre转换为AZW3直接用USB发至Kindle中，二级目录才有效。</p></li>
+</ul>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/">&larr; 在ftp文件夹视图下实现双击打开文件</a></span>
+  <span class="nav-next"><a href="/post/2019/02/10/package-notes/">Package Notes &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>总结一下权限问题 | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-10-25</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/linux">Linux</a>
+  
+     &hercon; <a href="/categories/server">Server</a>
+  
+  </div>
+
+  <h1><span class="title">总结一下权限问题</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h3 id="nginx">Nginx</h3>
+
+<p><code>Nginx</code> 必须使用 root 权限才能开启，因为它铁定需要 root 权限来绑定 80 端口，另外还要使用一些系统目录下的文件。</p>
+
+<p>但是可以通过一波操作使只有 master 进程以 root 运行，其他操作则使用低级用户。</p>
+
+<h3 id="uwsgi">uWSGI</h3>
+
+<p>本质上是低权限用户使用 Python 操作、访问本目录的问题。</p>
+
+<ul>
+<li>首先，目录必须对其他用户有 x 权限，比如 <code>drwxrwxr-x</code></li>
+<li>还要保证日志输出文件夹要有权限</li>
+</ul>
+
+<h3 id="sudo-u-www-data">sudo -u www-data</h3>
+
+<p>可以以 www-data 的身份运行命令，不必知道其密码</p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"></span>
+  <span class="nav-next"><a href="/post/2019/09/22/damning-gpg-key/">Damning GPG Key &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
+

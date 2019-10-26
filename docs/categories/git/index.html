@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Git | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span>Git</span>
+        <span>2019-10-26</span>
+        
+        
+        
+        <span>1 / 1</span>
+      
+      </div>
+    </nav>
+
+
+<div class="container">
+<main class="list">
+
+
+
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/09/22/damning-gpg-key/">Damning GPG Key</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-09-22</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/09/22/damning-gpg-key/">
+    
+    
+    
+    
+    
+      
+    
+    I tried to use GPG key months ago, and after a desperate search, I finally knew that I didn&rsquo;t read the doc carefully and forgot to tell git what gpg key to use.
+And I happily reproduce the same on my Ubuntu virtual machine.
+That&rsquo;s when interesting mystery took place.
+GitHub said that the&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/09/22/push-without-password/">Push without Password</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-09-22</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/09/22/push-without-password/">
+    
+    
+    
+    
+    
+      
+    
+    Just
+echo https://{username}:{password}@github.com &gt; ~/.git-credentials git config --global credential.helper store  And you will see [credential]helper = store in .gitconfig
+[&hellip;] Just install Git-Credential-Manager-for-Windows or GCMW for short
+
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/06/10/add-ssh-key/">Add SSH Key</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-06-10</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/06/10/add-ssh-key/">
+    
+    
+    
+    
+    
+      
+    
+    Visit GitHub Help Page for detial.
+[&hellip;] Paste the text below, substituting in your GitHub email address.
+ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;  This creates a new ssh key, using the provided email as a label.
+Generating public/private rsa key pair.  When you&rsquo;re&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/06/10/split-a-repo/">Split a Repo</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-06-10</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/06/10/split-a-repo/">
+    
+    
+    
+    
+    
+      
+    
+    From https://stackoverflow.com/questions/39479154/how-can-i-split-a-single-file-from-a-git-repo-into-a-new-repo Use git fast-export.
+First you export the history of the file to a fast-import stream. Make sure you do this on the master branch.
+cd oldrepo git fast-export HEAD -- MyFile.ext&hellip;
+    </a>
+  </div>
+</section>
+
+</main>
+<nav>
+
+</nav>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
+

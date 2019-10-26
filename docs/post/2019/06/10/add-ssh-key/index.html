@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Add SSH Key | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-06-10</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/git">Git</a>
+  
+  </div>
+
+  <h1><span class="title">Add SSH Key</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<p>Visit <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">GitHub Help Page</a> for detial.</p>
+
+<h3 id="add-ssh-keys">Add SSH Keys</h3>
+
+<ul>
+<li>Open Terminal.</li>
+
+<li><p>Paste the text below, substituting in your GitHub email address.</p>
+
+<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;
+</code></pre></li>
+
+<li><p>This creates a new ssh key, using the provided email as a label.</p>
+
+<pre><code>Generating public/private rsa key pair.
+</code></pre></li>
+
+<li><p>When you&rsquo;re prompted to &ldquo;Enter a file in which to save the key,&rdquo; press Enter. This accepts the default file location.</p>
+
+<pre><code>Enter a file in which to save the key (/home/you/.ssh/id_rsa): [Press enter]
+</code></pre></li>
+
+<li><p>At the prompt, type a secure passphrase. For more information, see &ldquo;Working with SSH key passphrases&rdquo;.</p>
+
+<pre><code>Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+</code></pre></li>
+</ul>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">&larr; 让Termux对浏览器更友好</a></span>
+  <span class="nav-next"><a href="/post/2019/06/10/split-a-repo/">Split a Repo &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Showcase | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2018-07-18</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+  </div>
+
+  <h1><span class="title">Showcase</span></h1>
+
+  
+  <h3 class="author">Hello Robot
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h2 id="header-2">Header 2</h2>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. <strong>Donec quis dolor nec nunc mollis interdum vel in purus</strong>. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.</p>
+
+<blockquote>
+<p>Fusce pharetra suscipit orci nec tempor. Quisque vitae sem sit amet sem mollis consequat. Sed at imperdiet lorem. Vestibulum pharetra faucibus odio, ac feugiat tellus sollicitudin at. Pellentesque varius tristique mi imperdiet dapibus. Duis orci odio, sodales lacinia venenatis sit amet, feugiat et diam.</p>
+</blockquote>
+
+<h3 id="header-3">Header 3</h3>
+
+<p>Nulla libero turpis, lacinia vitae cursus ut, auctor dictum nisl. Fusce varius felis nec sem ullamcorper, at convallis nisi vestibulum. Duis risus odio, porta sit amet placerat mollis, tincidunt non mauris. Suspendisse fringilla, <code>odio a dignissim pharetra</code>, est urna sollicitudin urna, eu scelerisque magna ex vitae tellus.</p>
+
+<pre><code class="language-css">/* PostCSS code */
+
+pre {
+  background: #1a1a1d;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  overflow: auto;
+
+  @media (--phone) {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  code {
+    background: none !important;
+    color: #ccc;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+</code></pre>
+
+<pre><code class="language-js">// JS code
+
+const menuTrigger = document.querySelector('.menu-trigger')
+const menu = document.querySelector('.menu')
+const mobileQuery = getComputedStyle(document.body).getPropertyValue('--phoneWidth')
+const isMobile = () =&gt; window.matchMedia(mobileQuery).matches
+const isMobileMenu = () =&gt; {
+  menuTrigger.classList.toggle('hidden', !isMobile())
+  menu.classList.toggle('hidden', isMobile())
+}
+
+isMobileMenu()
+
+menuTrigger.addEventListener('click', () =&gt; menu.classList.toggle('hidden'))
+
+window.addEventListener('resize', isMobileMenu)
+</code></pre>
+
+<pre><code class="language-html">&lt;!-- HTML code --&gt;
+
+&lt;section id=&quot;main&quot;&gt;
+  &lt;div&gt;
+   &lt;h1 id=&quot;title&quot;&gt;{{ .Title }}&lt;/h1&gt;
+    {{ range .Pages }}
+      {{ .Render &quot;summary&quot;}}
+    {{ end }}
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+<h4 id="header-4">Header 4</h4>
+
+<p>Curabitur scelerisque felis viverra varius scelerisque. Ut enim libero, molestie gravida blandit at, mollis ornare tellus. Cras arcu mi, ultrices vel pulvinar vel, volutpat eu tortor. Nullam nec eros quis massa ultrices iaculis sed in metus. Praesent sollicitudin sem sit amet orci tempor gravida.</p>
+
+<ul>
+<li>Maecenas elementum vitae nibh vitae porttitor.</li>
+<li>Aenean consequat, risus ut cursus placerat, arcu nulla sodales risus, ut molestie tellus tellus et dui.</li>
+<li>Integer imperdiet turpis vitae lacus imperdiet, ut ornare ligula auctor. Integer in mi eu velit vehicula suscipit eget vulputate nulla.</li>
+<li>Etiam vitae enim quis velit lobortis placerat a ut sem.
+
+<ul>
+<li>Curabitur lobortis ante sit amet orci pulvinar, sollicitudin viverra nunc accumsan.</li>
+<li>Praesent fermentum orci quis leo facilisis posuere.</li>
+</ul></li>
+</ul>
+
+<p>Aliquam erat volutpat. In hac habitasse platea dictumst. Nunc ut tincidunt mauris. Sed at gravida risus, id semper magna. Nullam vitae enim mattis, sodales neque non, pharetra elit. Cras sit amet sagittis augue, et finibus turpis. Ut tempus tincidunt diam vel pharetra. Nulla porttitor odio sit amet nulla scelerisque, quis aliquam mi imperdiet. Sed tincidunt dui vel tellus vestibulum rhoncus. Donec tempus ultrices velit.</p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

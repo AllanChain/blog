@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Termux Initialize | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2018-11-04</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/termux">Termux</a>
+  
+  </div>
+
+  <h1><span class="title">Termux Initialize</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h3 id="initial-setup">Initial Setup</h3>
+
+<ul>
+<li><p>First,run:</p>
+
+<pre><code class="language-shell">termux-setup-storage
+ln -s ~/storage/shared/123/pythonPro
+</code></pre></li>
+
+<li><p>Then, in directory <code>pythonPro</code>,run <code>sh setup.sh</code>.</p></li>
+
+<li><p>And the content of <code>setup.sh</code> is as followed:</p>
+
+<pre><code class="language-shell">apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev libpng libpng-dev pkg-config curl vim-python zsh
+curl -L https://its-pointless.github.io/setup-pointless-repo.sh | sh
+pkg install numpy
+pip install matplotlib
+pip install jupyter
+sh -c &quot;$(curl -fsSL https://github.com/Cabbagec/termux-ohmyzsh/raw/master/install.sh)&quot;
+ln -s /data/data/com.termux/files/usr/lib/python3.6/site-packages
+ln -s ~/storage/shared/qpython
+ln -s ~/storage/shared/123/cppPro
+cp ~/pythonPro/jupyter_notebook_config.py ~/.jupyter/
+</code></pre></li>
+</ul>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2018/11/04/termux-error-handling/">&larr; Termux Error Handling</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

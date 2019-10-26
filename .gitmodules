@@ -1,0 +1,3 @@
+[submodule "themes/hugo-xmag-solarized"]
+	path = themes/hugo-xmag-solarized
+	url = https://github.com/AllanChain/hugo-xmag-solarized

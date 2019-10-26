@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on AC&#39;s Blog</title>
+    <link>/categories/vim/</link>
+    <description>Recent content in Vim on AC&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Airline Setup</title>
+      <link>/post/2019/02/09/airline-setup/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/02/09/airline-setup/</guid>
+      <description>vim airline is a tool to enhance the looking of vim. And it is a little tricky to setup especially in termux.
+As I did not install any package manager for vim (in fact, I failed to install and setup Vundle), I need to clone the repo to ~/.vim/pack/dist/start/ to let vim automatically load the package. And I see the airline when I opened vim.
+ By the way, all packages I tested (NERDTree, indentLine, gitgutter) all support this kind of operation.</description>
+    </item>
+    
+    <item>
+      <title>Annoying Tab width</title>
+      <link>/post/2019/02/08/annoying-tab-width/</link>
+      <pubDate>Fri, 08 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/02/08/annoying-tab-width/</guid>
+      <description>When using vim on termux, only in python file did vim use 4-space-width tab. And in other files(e.g. .html), a tab, a &amp;gt;&amp;gt; and a backspace are all 8 spaces. And I tried to set the following in ~/.vimrc file. But it does not work. set autoindent set smartindent set tabstop=4 &amp;quot; 统一缩进为4 set shiftwidth=4 &amp;quot;自动缩进</description>
+    </item>
+    
+  </channel>
+</rss>

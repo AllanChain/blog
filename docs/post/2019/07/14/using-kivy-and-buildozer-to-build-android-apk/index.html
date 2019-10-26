@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Using Kivy and Buildozer to Build Android APK | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-07-14</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/kivy">Kivy</a>
+  
+     &hercon; <a href="/categories/python">Python</a>
+  
+     &hercon; <a href="/categories/android">Android</a>
+  
+  </div>
+
+  <h1><span class="title">Using Kivy and Buildozer to Build Android APK</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<ul>
+<li>Environment:
+
+<ul>
+<li>Ubuntu 19.04 Disco Dingo</li>
+<li>Python 3.7.3</li>
+<li>kivy 1.10.1</li>
+<li>buildozer 0.39</li>
+</ul></li>
+</ul>
+
+<h2 id="my-first-android-application-ever-built">My First Android Application Ever Built</h2>
+
+<h3 id="buildozer-install">Buildozer Install</h3>
+
+<pre><code class="language-shell">pip3 install buildozer
+</code></pre>
+
+<h3 id="get-kivy-program">Get Kivy program</h3>
+
+<p>Using <a href="https://github.com/kivy/kivy/tree/master/examples/demo/pictures">https://github.com/kivy/kivy/tree/master/examples/demo/pictures</a></p>
+
+<h3 id="configure-buildozer">Configure Buildozer</h3>
+
+<pre><code class="language-shell">buildozer init
+vim buildozer.spec
+</code></pre>
+
+<h3 id="prepare-to-build">Prepare to build</h3>
+
+<p>As advised on <a href="https://buildozer.readthedocs.io/en/latest/installation.html">Buildozer Doc</a>, Android on Ubuntu 18.04 (64bit) should install:</p>
+
+<pre><code>sudo pip install --upgrade cython==0.28.6
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install build-essential ccache git libncurses5:i386 libstdc++6:i386 libgtk2.0-0:i386 libpangox-1.0-0:i386 libpangoxft-1.0-0:i386
+</code></pre>
+
+<pre><code class="language-shell">buildozer -v android debug
+</code></pre>
+
+<p>This will download Android SDK, NDK, and others tools, taking your ~/.buildozer about 3.9GB space and ./.buildozer about 1.3 GB, if you have only python3 and pip3 installed.</p>
+
+<p>It may crash though, please <strong>make sure there is no [WARNING] telling you to install packages</strong>, and Google often.</p>
+
+<p>If it says that there is no file called xyz.so, you can try:</p>
+
+<pre><code class="language-shell">locate xyz.so
+ln -s path/to/exist/so /usr/lib/xyz.so
+</code></pre>
+
+<p>If you are inside some kind of great firewall, try in morning will speed the downloading process up.</p>
+
+<h3 id="install-and-test">Install and Test</h3>
+
+<p>Finally, you will find a apk file inside ./bin directory.</p>
+
+<p>You sure can upload it to a cloud and download it to your android device as I previously did, but I strongly recommend you to enable USB debug mode on your android phone and connect to your PC / laptop. And run:</p>
+
+<pre><code class="language-shell">buildozer android deploy
+</code></pre>
+
+<p>Then the android apk will be transmitted to your android device and install. Then run:</p>
+
+<pre><code class="language-shell">buildozer android run logcat 2&gt;&amp;1 &gt;/dev/null | grep 'python' &gt; filter.out
+</code></pre>
+
+<blockquote>
+<p>Note:</p>
+
+<ul>
+<li><p>an android device can only connect to a virtual machine or the PC at one time, configure it carefully</p></li>
+
+<li><p>buildozer writes adb logcat info to STDERR, so use <code>2&gt;&amp;1</code> to redirect it to STDOUT</p></li>
+
+<li><p>use grep to get all info related to python, since logcat has too much info to read</p></li>
+
+<li><p>logcat won&rsquo;t stop automatically, so kill it when your app fiinishes</p></li>
+
+<li><p>finally, write all to a file to be easily read.</p></li>
+</ul>
+</blockquote>
+
+<h3 id="about-kivy-version">About Kivy Version</h3>
+
+<p>I ran buildozer to build an example apk before installing kivy via pip, so my next app crashed because of requirement error. So I have to install the specific version of kivy.</p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/">&larr; 无法运行一些老旧程序</a></span>
+  <span class="nav-next"><a href="/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">让Termux对浏览器更友好 &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

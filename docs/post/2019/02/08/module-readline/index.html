@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Module readline | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-02-08</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">Module readline</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+<p>Here is my simple script on readline.</p>
+
+<pre><code class="language-python">import readline
+import os
+
+def completer(text,state):
+    ds=os.listdir()
+    rs=list(filter(lambda s:s.startswith(text),ds))
+    if state&lt;len(rs):
+        return rs[state]
+    return None
+readline.parse_and_bind(&quot;tab: complete&quot;)
+readline.set_completer(completer)
+input()
+</code></pre>
+
+<ul>
+<li>必须注意如果在函数中有错误的话，在你按下tab键后什么都不会发生（新手会在这里卡壳）。要知道，<code>readline</code>非常高级地封装了你的函数，这样才能在<code>input</code>中补全。但这对debug来说不见得是一件好事。较好的方法是先调用一下你的函数<code>completer('c',0)</code>并检查输出，这样函数中的Exception会正常raise。</li>
+
+<li><p>形象理解的话，<code>state</code>其实就是第几选项的序号。</p></li>
+
+<li><p>Expecially notice that if there&rsquo;s any exception raised in your script, nothing would happen when you pressed <tab>.The best way I thought of is to call <code>completer('c',0)</code> first and check the return value when debugging.</p></li>
+
+<li><p>As for the parameter <code>state</code> , it&rsquo;s just a index of the options.</p></li>
+</ul>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/02/08/annoying-tab-width/">&larr; Annoying Tab width</a></span>
+  <span class="nav-next"><a href="/post/2019/02/08/read-the-character-straight/">Read the Character Straight &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

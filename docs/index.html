@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+	<meta name="generator" content="Hugo 0.59.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span>AC&#39;s Blog</span>
+        <span>2019-10-26</span>
+        
+        
+        
+        <span>1 / 4</span>
+      
+      </div>
+    </nav>
+
+
+<div class="container">
+<main class="list">
+
+
+
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/linux">Linux</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/">总结一下权限问题</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-10-25</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/10/25/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/">
+    
+    
+    
+    
+    
+      
+    
+    Nginx 必须使用 root 权限才能开启，因为它铁定需要 root 权限来绑定 80 端口，另外还要使用一些系统目录下的文件。
+但是可以通过一波操作使只有 master 进程以 root 运行，其他操作则使用低级用户。
+[&hellip;] 本质上是低权限用户使用 Python 操作、访问本目录的问题。
+[&hellip;] 可以以 www-data 的身份运行命令，不必知道其密码
+
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/09/22/damning-gpg-key/">Damning GPG Key</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-09-22</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/09/22/damning-gpg-key/">
+    
+    
+    
+    
+    
+      
+    
+    I tried to use GPG key months ago, and after a desperate search, I finally knew that I didn&rsquo;t read the doc carefully and forgot to tell git what gpg key to use.
+And I happily reproduce the same on my Ubuntu virtual machine.
+That&rsquo;s when interesting mystery took place.
+GitHub said that the&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/git">Git</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/09/22/push-without-password/">Push without Password</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-09-22</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/09/22/push-without-password/">
+    
+    
+    
+    
+    
+      
+    
+    Just
+echo https://{username}:{password}@github.com &gt; ~/.git-credentials git config --global credential.helper store  And you will see [credential]helper = store in .gitconfig
+[&hellip;] Just install Git-Credential-Manager-for-Windows or GCMW for short
+
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/">无法运行一些老旧程序</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-07-15</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/07/15/%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E4%B8%80%E4%BA%9B%E8%80%81%E6%97%A7%E7%A8%8B%E5%BA%8F/">
+    
+    
+    
+    
+    
+      
+    
+    方案：右键&gt;属性&gt;以兼容模式运行
+[&hellip;] 优酷安装文件夹内有ffmpeg.exe，按照ffmpeg用法重新封装成mp4即可。
+附：优酷不给力的探索过程
+[&hellip;] 方便快捷，一行到位！
+
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/kivy">Kivy</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/">Using Kivy and Buildozer to Build Android APK</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-07-14</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/07/14/using-kivy-and-buildozer-to-build-android-apk/">
+    
+    
+    
+    
+    
+      
+    
+    pip3 install buildozer  Get Kivy program Using https://github.com/kivy/kivy/tree/master/examples/demo/pictures
+[&hellip;] buildozer init vim buildozer.spec  Prepare to build As advised on Buildozer Doc, Android on Ubuntu 18.04 (64bit) should install:
+sudo pip install --upgrade cython==0.28.6 sudo&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">让Termux对浏览器更友好</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-07-03</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">
+    
+    
+    
+    
+    
+      
+    
+    Download xb.py
+难点：
+[&hellip;] 获取jupyter等应用的实时输出
+import subprocess backup = subprocess.Popen( cmd.split(), shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) for line in iter(backup.stdout.readline, b&#39;&#39;): line = line.rstrip().decode(&#39;utf8&#39;)  使Ctrl+C能使让应用结束
+[&hellip;] 只有以shell=False启动&hellip;
+    </a>
+  </div>
+</section>
+
+</main>
+<nav>
+
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item disabled">
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+</nav>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
+

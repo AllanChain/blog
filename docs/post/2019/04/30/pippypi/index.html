@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Pip&amp;Pypi | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-04-30</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">Pip&amp;Pypi</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h2 id="downloading-binary-package-on-windows">Downloading Binary Package on Windows</h2>
+
+<blockquote>
+<p><em>From StackOverflow</em></p>
+
+<p>As the other responses pointed out, one solution is to install Visual Studio 2015. However, it takes a few GBs of disk space. One way around is to install precompiled binaries.</p>
+
+<p>The webpage <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs">http://www.lfd.uci.edu/~gohlke/pythonlibs</a> contains precompiled binaries for many Python packages.</p>
+</blockquote>
+
+<h2 id="the-pip-command-i-actually-want">The pip command I actually want</h2>
+
+<pre><code class="language-shell">alias pup=&quot;pip install --upgrade --no-cache -i https://pypi.tuna.tsinghua.edu.cn/simple/&quot;
+</code></pre>
+
+<h2 id="to-install-locally">To install locally</h2>
+
+<pre><code class="language-shell">pip install --no-index --find-links=dest/ -r requirements.txt
+</code></pre>
+
+<h2 id="to-download-using-download-command">To download using <code>download</code> command</h2>
+
+<pre><code class="language-shell">pip download --dest &quot;Pypis&quot; -r requirements.txt
+</code></pre>
+
+<h2 id="downloading-specific-python-version-and-platform-windows-batch-version">Downloading specific python version and platform (Windows batch version)</h2>
+
+<pre><code class="language-shell">pip download ^
+	--only-binary=:all:^
+	--platform win32^
+	--python-version 36^
+	--implementation cp^
+	--dest &quot;Pypis&quot;^
+	-i https://pypi.tuna.tsinghua.edu.cn/simple/^
+	-r requirements.txt
+</code></pre>
+
+<h2 id="using-tuna-mirror-by-default">Using TUNA Mirror by Default</h2>
+
+<h4 id="on-linux">On Linux</h4>
+
+<p>Write below in <code>~/.pip/pip.conf</code></p>
+
+<pre><code>[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
+</code></pre>
+
+<h4 id="on-windows">On Windows</h4>
+
+<p>Write above in <code>~/pip/pip.ini</code></p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/06/10/split-a-repo/">&larr; Split a Repo</a></span>
+  <span class="nav-next"><a href="/post/2019/04/08/%E5%9C%A8ftp%E6%96%87%E4%BB%B6%E5%A4%B9%E8%A7%86%E5%9B%BE%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/">在ftp文件夹视图下实现双击打开文件 &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+

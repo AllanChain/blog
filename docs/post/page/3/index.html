@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Posts | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span>Posts</span>
+        <span>2019-10-26</span>
+        
+        
+        
+        <span>3 / 4</span>
+      
+      </div>
+    </nav>
+
+
+<div class="container">
+<main class="list">
+
+
+
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/vim">Vim</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/02/09/airline-setup/">Airline Setup</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-02-09</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/02/09/airline-setup/">
+    
+    
+    
+    <div class="thumbnail"><img src="/AirlineImg/0.jpg" alt="Thumbnail" /></div>
+    
+    
+    
+      
+    
+    vim airline is a tool to enhance the looking of vim. And it is a little tricky to setup especially in termux.
+As I did not install any package manager for vim (in fact, I failed to install and setup Vundle), I need to clone the repo to ~/.vim/pack/dist/start/ to let vim automatically load the&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/vim">Vim</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/02/08/annoying-tab-width/">Annoying Tab width</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-02-08</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/02/08/annoying-tab-width/">
+    
+    
+    
+    
+    
+      
+    
+    When using vim on termux, only in python file did vim use 4-space-width tab. And in other files(e.g. .html), a tab, a &gt;&gt; and a backspace are all 8 spaces.
+And I tried to set the following in ~/.vimrc file. But it does not work.
+set autoindent set smartindent set tabstop=4 &quot; 统一缩进为4 set&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/02/08/module-readline/">Module readline</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-02-08</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/02/08/module-readline/">
+    
+    
+    
+    
+    
+      
+    
+    Here is my simple script on readline.
+import readline import os def completer(text,state): ds=os.listdir() rs=list(filter(lambda s:s.startswith(text),ds)) if state&lt;len(rs): return rs[state] return None readline.parse_and_bind(&quot;tab: complete&quot;) readline.set_completer(completer) input()   &hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="/post/2019/02/08/read-the-character-straight/">Read the Character Straight</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-02-08</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2019/02/08/read-the-character-straight/">
+    
+    
+    
+    
+    
+      
+    
+    
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="/post/2018/11/04/python-the-language/">Python the Language</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2018-11-04</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2018/11/04/python-the-language/">
+    
+    
+    
+    
+    
+      
+    
+    Notes for python language itself.
+[&hellip;] Let&rsquo;s have a look at the following code first:
+class A: def printf(*args): print(args) def printff(*args): print(args) a=A() a.printf() print (&#39;-&#39;*5,a.printf) A.printf=printff a.printf() print (&#39;-&#39;*5,a.printf) A.printf=print a.printf() print&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
+    <a href="/categories/termux">Termux</a>
+  
+  
+  </div>
+  <h1><a href="/post/2018/11/04/termux-error-handling/">Termux Error Handling</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2018-11-04</span>
+  </div>
+  <div class="summary">
+    <a href="/post/2018/11/04/termux-error-handling/">
+    
+    
+    
+    
+    
+      
+    
+    I haven&rsquo;t clearly figure out what&rsquo;s happening, but uninstall and reinstall the packege absolutely helps.
+
+    </a>
+  </div>
+</section>
+
+</main>
+<nav>
+
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/post/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/post/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/post/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/4/">4</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/post/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/post/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+</nav>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>
+

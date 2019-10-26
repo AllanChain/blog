@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Package Notes | AC&#39;s Blog</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/solarized-dark.min.css" rel="stylesheet">
+
+  </head>
+
+  <body class="page">
+    <nav class="header">
+      <div class="banner">
+<a href="/" class="text">
+&Afr;&Cfr;'&Sfr; &Bfr;&Lfr;&Ofr;&Gfr;
+</a>
+</div>
+
+      <div class="head-meta">
+      
+        <span><a href="/">&larr; Back to Home</a></span>
+        <span class="date">2019-02-10</span>
+        
+        
+        
+          
+        
+        
+        
+        
+      
+      </div>
+    </nav>
+
+<div class="container">
+<article>
+<div class="article-meta">
+
+  <div class="categories">
+  
+    <a href="/categories/python">Python</a>
+  
+  </div>
+
+  <h1><span class="title">Package Notes</span></h1>
+
+  
+  <h3 class="author">Allan Chain
+</h3>
+  
+
+  
+  
+
+</div>
+
+
+
+<main>
+
+
+<h2 id="qtdisigner-install">QtDisigner Install</h2>
+
+<p>QtDisigner is convenient, but it doesn&rsquo;t come along with the none GPL version. Then it is for you.</p>
+
+<pre><code class="language-shell">pip install pyqt5_tools
+</code></pre>
+
+<h2 id="previewing-markdown">Previewing Markdown</h2>
+
+<p><code>grip</code> is an excellent Flask app and python module to view markdown and easy to use. Just run:</p>
+
+<pre><code class="language-shell">pip install grip
+</code></pre>
+
+<p>Note that grip need Internet access because it depends on github markdown api to render.</p>
+
+<h2 id="pip-dependency-tree-view">Pip dependency tree view</h2>
+
+<p><code>pip</code> offers a <code>freeze</code> command to view installed packages, but not so good to see the dependencies.</p>
+
+<pre><code>pipdeptree         &quot; to see the whole tree
+pipdeptree -p pack &quot; to see the tree of pack
+pipdeptree -r -p pack &quot; to see packages which are dependent on pack
+</code></pre>
+
+<h2 id="images-to-pdf">Images to PDF</h2>
+
+<p>package img2pdf offers a lossless and fast conversion from images to pdf file which depends on <code>Pillow</code></p>
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="post-nav">
+  <span class="nav-prev"><a href="/post/2019/02/13/requests%E5%88%9D%E6%8E%A2/">&larr; Requests初探</a></span>
+  <span class="nav-next"><a href="/post/2019/02/09/airline-setup/">Airline Setup &rarr;</a></span>
+</nav>
+
+
+
+</article>
+</div>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+<footer>
+
+<div class="footer">
+  <ul class="menu">
+    
+    <li><a href="/"><span data-hover="Home">Home</span></a></li>
+    
+    <li><a href="/about/"><span data-hover="About">About</span></a></li>
+    
+    <li><a href="/categories/"><span data-hover="Categories">Categories</span></a></li>
+    
+    <li><a href="/tags/"><span data-hover="Tags">Tags</span></a></li>
+    
+    <li><a href="/index.xml"><span data-hover="Subscribe">Subscribe</span></a></li>
+    
+  </ul>
+  
+  <div class="copyright">Powered by hugo and hugo-xmag theme</div>
+  
+</div>
+</footer>
+
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</body>
+</html>
+
