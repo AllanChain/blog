@@ -43,6 +43,38 @@
   <div class="categories">
   
   
+    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
+  
+  
+  </div>
+  <h1><a href="https://allanchain.github.io/blog/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">让Termux对浏览器更友好</a></h1>
+  <div class="date-author">
+    <span class="author">Allan Chain
+</span> / 
+    <span class="date">2019-07-03</span>
+  </div>
+  <div class="summary">
+    <a href="https://allanchain.github.io/blog/post/2019/07/03/%E8%AE%A9termux%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9B%B4%E5%8F%8B%E5%A5%BD/">
+    
+    
+    
+    
+    
+      
+    
+    Download xb.py
+难点：
+[&hellip;] 获取jupyter等应用的实时输出
+import subprocess backup = subprocess.Popen( cmd.split(), shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) for line in iter(backup.stdout.readline, b&#39;&#39;): line = line.rstrip().decode(&#39;utf8&#39;)  使Ctrl+C能使让应用结束
+[&hellip;] 只有以shell=False启动&hellip;
+    </a>
+  </div>
+</section>
+
+<section class="article-list">
+  <div class="categories">
+  
+  
     <a href="https://allanchain.github.io/blog/categories/git">Git</a>
   
   
@@ -196,36 +228,6 @@ Download lcx_spider.py
 几点说明：
 [&hellip;] 该网站url十分简单，只需一个for循环改改变最后.html前的数字即可抓取全集。
 end, start = 202227+1, 201980 num = end-start for i in range(num): r = requests.get(&#39;http://mliucixin.zuopinj.com/5561/%d.html&#39;&hellip;
-    </a>
-  </div>
-</section>
-
-<section class="article-list">
-  <div class="categories">
-  
-  
-    <a href="https://allanchain.github.io/blog/categories/python">Python</a>
-  
-  
-  </div>
-  <h1><a href="https://allanchain.github.io/blog/post/2019/02/10/package-notes/">Package Notes</a></h1>
-  <div class="date-author">
-    <span class="author">Allan Chain
-</span> / 
-    <span class="date">2019-02-10</span>
-  </div>
-  <div class="summary">
-    <a href="https://allanchain.github.io/blog/post/2019/02/10/package-notes/">
-    
-    
-    
-    
-    
-      
-    
-    QtDisigner is convenient, but it doesn&rsquo;t come along with the none GPL version. Then it is for you.
-pip install pyqt5_tools  Previewing Markdown grip is an excellent Flask app and python module to view markdown and easy to use. Just run:
-pip install grip  Note that grip need Internet access&hellip;
     </a>
   </div>
 </section>
