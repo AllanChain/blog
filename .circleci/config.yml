@@ -1,6 +1,6 @@
 jobs:
   deploy:
-    working_directory: ~/blog
+    working_directory: ~/repo/blog
     docker:
       - image: cibuilds/base
     steps:
@@ -8,14 +8,19 @@ jobs:
           name: Prepare Hugo
           command: |
             ls -lah
+            cd ..
+            ls -lah
             curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.59.0/hugo_0.59.0_Linux-64bit.tar.gz
             tar -xzvf hugo.tar.gz
+            ls -lah
+            cd blog
+            ls -lah
       - checkout
       - run:
           name: Deploy to gh-pages
           command: |
             ls -lah
-            hugo
+            ../hugo
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
             git checkout --orphan gh-pages
