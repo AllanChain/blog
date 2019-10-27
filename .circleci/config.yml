@@ -4,21 +4,20 @@ jobs:
       - image: cibuilds/base
     steps:
       - attach_workspace:
-        at: my-site
-      # - checkout
+          at: my-site
       - run:
-        name: Deploy to gh-pages
-        command: |
-          HUGO_TMP=$(mktmp -d)
-          cp -R public/* "$HUGO_TMP"
-          git checkout --orphan gh-pages
-          rm .git/index
-          git clean -fdx
-          cp -R "$HUGO_TMP"/* .
-          git add .
-          git commit -m "Site build at $(date)"
-          git push -u origin gh-pages
-          [[ -d $HUGO_TMP ]] && rm
+          name: Deploy to gh-pages
+          command: |
+            HUGO_TMP=$(mktmp -d)
+            cp -R public/* "$HUGO_TMP"
+            git checkout --orphan gh-pages
+            rm .git/index
+            git clean -fdx
+            cp -R "$HUGO_TMP"/* .
+            git add .
+            git commit -m "Site build at $(date)"
+            git push -u origin gh-pages
+            [[ -d $HUGO_TMP ]] && rm
 orbs:
   hugo: circleci/hugo@0.4.1
 version: 2.1
