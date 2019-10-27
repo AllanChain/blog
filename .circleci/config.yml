@@ -7,31 +7,26 @@ jobs:
       - run:
           name: Prepare Hugo
           command: |
-            ls -lah
             cd ..
-            ls -lah
             curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.59.0/hugo_0.59.0_Linux-64bit.tar.gz
             tar -xzvf hugo.tar.gz
-            ls -lah
             cd blog
-            ls -lah
       - checkout
       - run:
           name: Deploy to gh-pages
           command: |
-            ls -lah themes/hugo-xmag-solarized
             git submodule init
             git submodule update
-            ls -lah themes/hugo-xmag-solarized
             ../hugo
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
             git checkout --orphan gh-pages
+            git rm --cached themes/hugo-xmag-solarized
             rm .git/index
             git clean -fdx
             cp -R "$HUGO_TMP"/* .
             git add .
-            git user.email "ci-build@pkuphysu.top"
+            git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
