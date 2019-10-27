@@ -26,6 +26,7 @@ jobs:
       - run:
           name: Deploy to gh-pages
           command: |
+            cd ../public
             git add --all
             git commit -m "Site build at $(TZ=Asia/Shanghai date '+%F %T')"
             git push
