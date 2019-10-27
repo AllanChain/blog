@@ -7,7 +7,7 @@ Tags:
 ---
 
 # Header 1
-## Header 2 <haha>
+## Header 2 **haha**
 
 `$ \sum^{n}_{i-1}\frac{i}{2} $`
 
