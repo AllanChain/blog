@@ -25,4 +25,9 @@ To be honest, only myself was involved in all my git repos at first. It's not un
 
 During the summer vacation in 2019, Jimmy Jiale and I worked on <https://tg2019303.github.io/> project, asynchonously. That's what git should do, I think, and we also sufferred from the conflicts and endless manual merge. This may be a project with the most strong influence, partly because it's presented in a form which everyone could understand and appreciate.
 
+### Arriving at PKU
+Well, that's difficult to say. Though I am not in the EESC of PKU, I coded a lot :joy:.
+
+One thing is worth mentioning: discovering the security hole of PKU campus card system! That excited me a lot, and I made use of the BDWM BBS to "imporve my social fame a bit". For more information, You can have a look at [That Repo](https://github.com/AllanChain/PKUCard)
+
 ...To be continued... 
