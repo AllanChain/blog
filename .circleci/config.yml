@@ -19,7 +19,10 @@ jobs:
       - run:
           name: Deploy to gh-pages
           command: |
-            ls -lah
+            ls -lah themes/hugo-xmag-solarized
+            git submodule init
+            git submodule update
+            ls -lah themes/hugo-xmag-solarized
             ../hugo
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
@@ -28,6 +31,8 @@ jobs:
             git clean -fdx
             cp -R "$HUGO_TMP"/* .
             git add .
+            git user.email "ci-build@pkuphysu.top"
+            git config user.name "ci-build"
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
