@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Deploy to gh-pages
           command: |
+            cd blog
             ls -lah
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
