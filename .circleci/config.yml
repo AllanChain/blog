@@ -28,11 +28,11 @@ jobs:
       - run:
           name: Set up Repo
           command: |
+            ls -lah public/
+            rm -rf public/.git/
             cp -r public/* "$HUGO_TMP"
             git checkout gh-pages
             git rm --cached themes/hugo-xmag-solarized
-            #rm .git/index
-            #git clean -fdx
             git pull
             git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
