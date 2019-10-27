@@ -1,12 +1,13 @@
 jobs:
   deploy:
-    working_directory: ~/repo
+    working_directory: ~/blog
     docker:
       - image: cibuilds/base
     steps:
       - run:
           name: Prepare Hugo
           command: |
+            ls -lah
             curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.59.0/hugo_0.59.0_Linux-64bit.tar.gz
             tar -xzvf hugo.tar.gz
       - checkout
