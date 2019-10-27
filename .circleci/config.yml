@@ -3,9 +3,12 @@ jobs:
     docker:
       - image: cibuilds/base
     steps:
+      - attach_workspace:
+          at: blog
       - run:
           name: Deploy to gh-pages
           command: |
+            ls -lah
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
             git checkout --orphan gh-pages
@@ -16,8 +19,6 @@ jobs:
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
-      - attach_workspace:
-          at: blog
 orbs:
   hugo: circleci/hugo@0.4.1
 version: 2.1
