@@ -3,8 +3,6 @@ jobs:
     docker:
       - image: cibuilds/base
     steps:
-      - attach_workspace:
-          at: my-site
       - run:
           name: Deploy to gh-pages
           command: |
@@ -18,6 +16,8 @@ jobs:
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
+      - attach_workspace:
+          at: blog
 orbs:
   hugo: circleci/hugo@0.4.1
 version: 2.1
@@ -26,7 +26,7 @@ workflows:
     jobs:
       - hugo/build:
           html-proofer: false
-          source: public/
+          source: .
           version: latest
       - deploy:
           filters:
