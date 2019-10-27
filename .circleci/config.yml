@@ -14,15 +14,15 @@ jobs:
           command: |
             git submodule sync && git submodule update --init
       - run:
-          name: Build with Hugo
-          command: |
-            HUGO_ENV=production hugo -v -d ../public
-      - run:
           name: Set up Repo
           command: |
             git worktree add -B gh-pages ../public origin/gh-pages
             git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
+      - run:
+          name: Build with Hugo
+          command: |
+            HUGO_ENV=production hugo -v -d ../public
       - run:
           name: Deploy to gh-pages
           command: |
