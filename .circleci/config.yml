@@ -1,9 +1,6 @@
 version: 2.1
 jobs:
   deploy:
-    branches:
-      ignore:
-        gh-pages
     working_directory: ~/repo/blog
     docker:
         - image: cibuilds/hugo:latest
@@ -32,3 +29,10 @@ jobs:
             git add --all
             git commit -m "Site build at $(TZ=Asia/Shanghai date '+%F %T')"
             git push
+workflows:
+  main:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
