@@ -25,7 +25,7 @@ jobs:
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
-version: 2
+version: 2.1
 workflows:
   main:
     jobs:
