@@ -1,6 +1,6 @@
 jobs:
-  working_directory: ~/repo
   deploy:
+  working_directory: ~/repo
     docker:
       - image: cibuilds/base
     steps:
