@@ -12,7 +12,8 @@ jobs:
       - run:
           name: Update Submodules
           command: |
-            git submodule sync && git submodule update --init
+            git submodule sync
+            git submodule update --init
       - run:
           name: Set up Repo
           command: |
