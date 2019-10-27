@@ -1,15 +1,20 @@
 jobs:
+  working_directory: ~/repo
   deploy:
     docker:
       - image: cibuilds/base
     steps:
-      - attach_workspace:
-          at: blog
+      - run:
+          name: Prepare Hugo
+          command: |
+            curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.59.0/hugo_0.59.0_Linux-64bit.tar.gz
+            tar -xzvf hugo.tar.gz
+      - checkout
       - run:
           name: Deploy to gh-pages
           command: |
-            cd blog
             ls -lah
+            hugo
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
             git checkout --orphan gh-pages
@@ -20,19 +25,11 @@ jobs:
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
-orbs:
-  hugo: circleci/hugo@0.4.1
-version: 2.1
+version: 2
 workflows:
   main:
     jobs:
-      - hugo/build:
-          html-proofer: false
-          source: .
-          version: latest
       - deploy:
           filters:
             branches:
               only: master
-          requires:
-            - hugo/build
