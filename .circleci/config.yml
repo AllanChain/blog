@@ -33,13 +33,12 @@ jobs:
             git pull
             git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
-            export TZ='Asia/Shanghai'
       - run:
           name: Deploy to gh-pages
           command: |
             cp -r ../public/* .
             git add .
-            git commit -m "Site build at $(date)"
+            git commit -m "Site build at $(env TZ=Asia/Shanghai date '+%F %T')"
             git push -u origin gh-pages
 version: 2.1
 workflows:
