@@ -1,16 +1,13 @@
+version: 2.1
 jobs:
   deploy:
+    branches:
+      ignore:
+        gh-pages
     working_directory: ~/repo/blog
     docker:
-      - image: cibuilds/base
+        - image: cibuilds/hugo:latest
     steps:
-      - run:
-          name: Prepare Hugo
-          command: |
-            cd ..
-            curl -L -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.59.0/hugo_0.59.0_Linux-64bit.tar.gz
-            tar -xzvf hugo.tar.gz
-            cd blog
       - checkout
       - add_ssh_keys:
           fingerprints:
@@ -18,33 +15,20 @@ jobs:
       - run:
           name: Update Submodules
           command: |
-            git submodule init
-            git submodule update
+            git submodule sync && git submodule update --init
       - run:
           name: Build with Hugo
           command: |
-            ../hugo
-            cp -r public/ ..
+            HUGO_ENV=production hugo -v -d ../public
       - run:
           name: Set up Repo
           command: |
-            git checkout gh-pages
-            git rm --cached themes/hugo-xmag-solarized
-            git pull
+            git worktree add -B gh-pages ../public origin/gh-pages
             git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
       - run:
           name: Deploy to gh-pages
           command: |
-            cp -r ../public/* .
-            git add .
-            git commit -m "Site build at $(env TZ=Asia/Shanghai date '+%F %T')"
-            git push -u origin gh-pages
-version: 2.1
-workflows:
-  main:
-    jobs:
-      - deploy:
-          filters:
-            branches:
-              only: master
+            git add --all
+            git commit -m "Site build at $(TZ=Asia/Shanghai date '+%F %T')"
+            git push
