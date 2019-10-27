@@ -25,7 +25,7 @@ workflows:
   main:
     jobs:
       - hugo/build:
-          html-proofer: true
+          html-proofer: false
           source: public/
           version: latest
       - deploy:
