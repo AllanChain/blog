@@ -12,6 +12,9 @@ jobs:
             tar -xzvf hugo.tar.gz
             cd blog
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - '8f:11:02:f3:3e:35:37:d7:17:4d:e4:1e:6b:e8:f6:db'
       - run:
           name: Deploy to gh-pages
           command: |
