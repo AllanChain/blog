@@ -16,21 +16,25 @@ jobs:
           fingerprints:
             - '8f:11:02:f3:3e:35:37:d7:17:4d:e4:1e:6b:e8:f6:db'
       - run:
-          name: Deploy to gh-pages
+          name: Update Submodules
           command: |
             git submodule init
             git submodule update
+      - run:
+          name: Deploy Hugo to gh-pages
+          command: |
             ../hugo
             HUGO_TMP=$(mktemp -d)
             cp -R public/* "$HUGO_TMP"
             git checkout --orphan gh-pages
             git rm --cached themes/hugo-xmag-solarized
-            rm .git/index
-            git clean -fdx
+            #rm .git/index
+            #git clean -fdx
             cp -R "$HUGO_TMP"/* .
             git add .
             git config user.email "ci-build@pkuphysu.top"
             git config user.name "ci-build"
+            export TZ='Asia/Shanghai'
             git commit -m "Site build at $(date)"
             git push -u origin gh-pages
             [[ -d $HUGO_TMP ]] && rm
