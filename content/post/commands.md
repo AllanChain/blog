@@ -38,12 +38,34 @@ sudo nginx -s stop
 ```
 
 ### FFMpeg
-
+#### 去除和取出声音
 ```shell
-ffmpeg -i example.mkv -c copy -an example-nosound.mkv
-ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
-ffmpeg -i 20191019_160158.m4a -ss 0 -t 18 a1.m4a
+ffmpeg -i example.mkv -c copy -an nosound.mkv
+ffmpeg -i input.avi -vn -acodec copy output.aac
+```
+#### 裁剪
+```shell
+ffmpeg -i input.m4a -ss 0 -t 18 cut.m4a
+```
+
+- -ss 表开始，`HH:MM:SS.xxx`
+- -t 表时长
+
+#### 拼接
+```shell
 ffmpeg -safe 0 -f concat -i list.txt -c copy output.mp4
+```
+list.txt 内容为：
+```
+file 1.mp4
+file 2.mp4
+```
+
+#### 生成静音的音频
+```shell
 ffmpeg -f lavfi -i anullsrc -t 5 -c:a libvorbis output.ogg
+```
+#### 把视频和音频合起来
+```shell
 ffmpeg -i all.mp4 -i all.m4a -c:v copy -c:a aac -strict experimental output.mp4
 ```
