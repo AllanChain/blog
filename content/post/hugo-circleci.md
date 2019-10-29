@@ -49,6 +49,7 @@ Something like this:
 Just follow the official documentation
 
 ## Other things to know
+### Tell CircleCI to do nothing on `gh-pages`
 
 You probably needs to first manually checkout an orphan branch gh-pages and add the `.circleci/config.yml` in to let CircleCI know that this branch shall not be deployed.
 
@@ -60,7 +61,14 @@ git checkout --orphan gh-pages
 git add .circleci/config.yml
 git push -u origin gh-pages
 ```
-
+### Set up timezone
+If you want to include time information in the commit, you well probably find that `TZ=xx/xx` does not work. That's because the image does not contain the necessary package. Just install it:
+```yaml
+      - run:
+          name: Install tzdata
+          command: |
+            apt-get install tzdata
+```
 ## Finally my config file
 
 ```yaml
@@ -69,7 +77,7 @@ jobs:
   deploy:
     working_directory: ~/repo/blog
     environment:
-      TZ: /usr/share/zoneinfo/Asia/Shanghai
+      TZ: Asia/Shanghai
     docker:
         - image: cibuilds/hugo:latest
     steps:

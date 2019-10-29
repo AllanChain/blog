@@ -5,7 +5,7 @@ jobs:
       - image: cibuilds/hugo:latest
     working_directory: ~/repo/blog
     environment:
-      TZ: /usr/share/zoneinfo/Asia/Shanghai
+      TZ: Asia/Shanghai
     steps:
       - checkout
       - add_ssh_keys:
