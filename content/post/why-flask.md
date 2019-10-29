@@ -7,6 +7,7 @@ Categories:
     - Python
 Tags: 
     - Server
+Thumbnail: https://flask.palletsprojects.com/en/1.1.x/_images/flask-logo.png
 ---
 
 注意，这里不是说 Flask 有多好，而是。。用 Flask 用到怀疑人生！
