@@ -4,6 +4,7 @@ Date: 2019-02-09
 Author: Allan Chain
 Categories: 
     - Vim
+Thumbnail: https://avatars1.githubusercontent.com/u/16690788?s=110&v=4
 ---
 vim airline is a tool to enhance the looking of vim. And it is a little tricky to setup especially in termux.
 
