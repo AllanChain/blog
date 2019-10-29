@@ -1,6 +1,8 @@
 jobs:
   deploy:
     working_directory: ~/repo/blog
+    environment:
+      TZ: "Asia/Shanghai"
     docker:
       - image: cibuilds/base
     steps:
@@ -38,7 +40,7 @@ jobs:
           command: |
             cp -r ../public/* .
             git add .
-            git commit -m "Site build at $(env TZ=Asia/Shanghai date '+%F %T')"
+            git commit -m "Site build at $(date '+%F %T')"
             git push -u origin gh-pages
 version: 2.1
 workflows:
