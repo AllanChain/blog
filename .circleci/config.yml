@@ -31,6 +31,7 @@ jobs:
           command: |
             cd ../public
             git add --all
+            sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
             date
             git commit -m "Site build at $(date '+%F %T')"
             git push
