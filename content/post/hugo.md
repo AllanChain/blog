@@ -1,6 +1,6 @@
 ---
 Title: "谜之 Hugo"
-Date: 2019-10-26T19:19:16+08:00
+Date: 2019-10-28T19:19:16+08:00
 Author: Allan Chain
 Categories:
     - Hugo
@@ -32,13 +32,15 @@ Description: >
 > -   item 1
 > -   item 2
 > 
-> ```
-> This block should be out of <ul>...</ul>
-> ```
+```
+This block should be out of <ul>...</ul>
+And also out of blockquote
+```
+> 
 > Ref: https://discourse.gohugo.io/t/possible-regression-in-v0-55-5-regarding-lists-containing-code-blocks/18502/4?u=kaushalmodi
 > 
 > /cc @aignas as you seem to be the last person to work on this Blackfriday plain-list/code block issue :)
-> 
+
 
 来，你瞅瞅，现在还是这个样子的:sob:
 
@@ -53,6 +55,21 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 自带的功能，老兄！这种事情都做得出来！NOT PYTHONIC AT ALL!
 
 最后我找到了<https://gist.github.com/skyzyx/a796d66f6a124f057f3374eff0b3f99a> @Iooeee 的代码，基本可以满足需求。
+
+### 修改找到的 TOC 代码
+
+如果你要更改标题级别的范围，可以把`[2-4]`替换成你想要的。
+
+而且这位老兄的代码就是会把标题里的一些诸如`don't`的标点干掉，也不会保留加粗的格式。
+
+解决办法就是去掉`planify | htmlEscape`, 并在
+```
+{{ $cleanedID := replace (replace $id "id=\"" "") "\"" "" }}
+```
+后加入
+```
+{{- $header := replaceRE "<h[2-4].*?>((.|\n])+?)</h[2-4]>" "$1" $header -}}
+```
 
 ## 谜之 Template 语法
 
