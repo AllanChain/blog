@@ -27,14 +27,14 @@ jobs:
           command: |
             HUGO_ENV=production hugo -v -d ../public
       - run:
+          name: Install tzdata
+          command: |
+            apt-get install tzdata
+      - run:
           name: Deploy to gh-pages
           command: |
             cd ../public
             git add --all
-            date
-            # cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-            apt-get install tzdata
-            date
             git commit -m "Site build at $(date '+%F %T')"
             git push
 workflows:
