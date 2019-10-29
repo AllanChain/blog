@@ -68,6 +68,8 @@ version: 2.1
 jobs:
   deploy:
     working_directory: ~/repo/blog
+    environment:
+      TZ: /usr/share/zoneinfo/Asia/Shanghai
     docker:
         - image: cibuilds/hugo:latest
     steps:
@@ -90,6 +92,10 @@ jobs:
           name: Build with Hugo
           command: |
             HUGO_ENV=production hugo -v -d ../public
+      - run:
+          name: Install tzdata
+          command: |
+            apt-get install tzdata
       - run:
           name: Deploy to gh-pages
           command: |
