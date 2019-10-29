@@ -31,7 +31,9 @@ jobs:
           command: |
             cd ../public
             git add --all
-            cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+            date
+            # cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+            apt-get install tzdata
             date
             git commit -m "Site build at $(date '+%F %T')"
             git push
