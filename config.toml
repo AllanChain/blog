@@ -2,7 +2,6 @@ baseurl = "https://allanchain.github.io/blog/"
 languageCode = "en-us"
 title = "AC's Blog"
 theme = "hugo-xmag-solarized"
-# publishDir = "docs"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
@@ -14,7 +13,8 @@ canonifyURLs = true
 paginate = 6
 
 [permalinks]
-    post = "/post/:year/:month/:day/:slug/"
+    post = "/post/:year/:slug/"
+    life = "/life/:year/:slug/"
 
 [[menu.main]]
     name = "Home"
