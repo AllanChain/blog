@@ -13,8 +13,8 @@ canonifyURLs = true
 paginate = 6
 
 [permalinks]
-    post = "/post/:year/:slug/"
-    life = "/life/:year/:slug/"
+    programing = "/programing/:year/:slug/"
+    academy = "/academy/:year/:slug/"
 
 [[menu.main]]
     name = "Home"
