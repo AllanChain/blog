@@ -35,7 +35,7 @@ paginate = 6
 
 [params]
     description = "A website built through Hugo and blogdown."
-    summary_length = 300
+    summary_length = 200
     github_edit = "https://github.com/AllanChain/blog/edit/master/content/"
     footer = "&copy; Allan Chain 2019<br/>Powered by hugo and hugo-xmag theme"
     favicon = "//allanchain.github.io/img/favicon.ico"
