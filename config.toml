@@ -11,6 +11,7 @@ hasCJKLanguage = true
 enableEmoji = true
 canonifyURLs = true
 paginate = 6
+disablePathToLower = true
 
 [permalinks]
     programing = "/programing/:year/:slug/"
