@@ -1,5 +1,5 @@
 ---
-Title: "CUPT （不存在的）战略"
+Title: "CUPT（不存在的）战略"
 Date: 2019-11-04T14:53:30+08:00
 Author: Allan Chain
 Categories:
@@ -33,3 +33,13 @@ Categories:
 - 官网往年试题解答范例<https://archive.iypt.org/solutions/>
 - 南开的<http://pt.nankai.edu.cn/cupt/list.htm>
 - 文献检索<http://webofknowledge.com>
+
+## 关于组会
+
+地点？
+
+> 二教预定空教室
+>
+> 也可以从物院学生会公众号里预约学院地下B116
+
+时间？是个问题。。
