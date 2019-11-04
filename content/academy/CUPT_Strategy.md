@@ -29,10 +29,10 @@ Categories:
 
 - 谷歌学术
 - IYPT青年物理学家
-- 非官方的题目资料参考集<http://kit.ilyam.org/>
-- 官网往年试题解答范例<https://archive.iypt.org/solutions/>
-- 南开的<http://pt.nankai.edu.cn/cupt/list.htm>
-- 文献检索<http://webofknowledge.com>
+- 非官方的题目资料参考集 <http://kit.ilyam.org/>
+- 官网往年试题解答范例 <https://archive.iypt.org/solutions/>
+- 南开的 <http://pt.nankai.edu.cn/cupt/list.htm>
+- 文献检索 <http://webofknowledge.com>
 
 ## 关于组会
 
