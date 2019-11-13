@@ -13,8 +13,8 @@ I found this repo [neilpa/cmd-colors-solarized](https://github.com/neilpa/cmd-co
 ## Parameters in Powershell are too dark to be seen
 Actually there are many issues about it. Just refer to <https://github.com/neilpa/cmd-colors-solarized#update-your-powershell-profile> and setup carefully.
 
-### LIKELY `~\Documents\WindowsPowerShell\` ?
-Yes, if you doubt the location, check `echo $profile` in your Powershell.
+### Where on earth to place profile?
+LIKELY `~\Documents\WindowsPowerShell\`? Yes, if you doubt the location, check `echo $profile` in your Powershell.
 
 ### UnauthorizedAccess?
 Just open Powershell as Administrator and `Set-ExecutionPolicy RemoteSigned`
