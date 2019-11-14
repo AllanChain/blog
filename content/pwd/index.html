@@ -1,0 +1,21 @@
+---
+Title: Password
+---
+<br />
+<br />
+<label for="num">Password Length:</label>
+<input id="num" type="number" min="3" max="20" step="1" value ="10"/>
+<br />
+<input id="key" placeholder="Key" autofocus onkeydown="enterdecode(event)"/>
+<button onclick="show_pwd()">Show</button>
+<script src="sha1.js"></script>
+<script src="pwd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<style>
+input, button, label{
+  font-size: 20px;
+}
+body{
+    text-align: center;
+}
+</style>
