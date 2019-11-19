@@ -4,7 +4,7 @@ Title: Index of the Dustbin
 
 - Blogs
     - [My Programing Blog](programing)
-    - [My Academic Blog](acdemy)
+    - [My Academic Blog](academy)
 - Crafts
     - [Foolish Password Generator](craft/pwd)
     - [Solarized Dark for Mixplorer](craft/mix)
