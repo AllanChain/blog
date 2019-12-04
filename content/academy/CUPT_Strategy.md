@@ -33,6 +33,8 @@ Categories:
 - 官网往年试题解答范例 <https://archive.iypt.org/solutions/>
 - 南开的 <http://pt.nankai.edu.cn/cupt/list.htm>
 - 文献检索 <http://webofknowledge.com>
+- <https://cupt.readthedocs.io/zh_CN/latest/>
+- <http://stemfellowship.org/iypt-2020-references-2/>
 
 ## 关于组会
 
