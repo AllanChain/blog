@@ -1,6 +1,6 @@
 ---
 Title: "Commands"
-Date: 2019-10-27T21:26:57+08:00
+Date: 2019-12-18T07:56:57+08:00
 Author: Allan Chain
 Categories:
     - Daily
@@ -69,3 +69,16 @@ ffmpeg -f lavfi -i anullsrc -t 5 -c:a libvorbis output.ogg
 ```shell
 ffmpeg -i all.mp4 -i all.m4a -c:v copy -c:a aac -strict experimental output.mp4
 ```
+
+### 递归chmod
+
+一个文件夹里既有子文件夹又有文件，但是由于之前操作不当，想要重新设置权限，但一个`-R`会把文件夹和文件同等对待。
+
+<https://stackoverflow.com/a/11512211/8810271>
+
+```shell
+find /opt/lampp/htdocs -type d -exec chmod 755 {} \;
+find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
+```
+
+> `chmod 644 {} \;` specifies the command that will be executed by `find` for each file. `{}` is replaced by the file path, and the semicolon denotes the end of the command (escaped, otherwise it would be interpreted by the shell instead of `find`). 
