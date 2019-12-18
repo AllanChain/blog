@@ -94,6 +94,14 @@ FontSmoothing=default
 
 ### 继续接近 MSYS2 的使用
 
+> **EDIT:**
+>
+> wsltty 自带了注册表项 :joy:
+>
+> add default to context menu` adds context menu entries for the default WSL distribution
+
+---
+
 修改注册表添加右键菜单:
 
 > `command`一栏直接使用`LOCALAPPDATA`的环境变量貌似会找不到文件
@@ -108,6 +116,34 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\Directory\Background\shell\wsl_shell\command]
 @="C:\\Users\\AC\\AppData\\Local\\wsltty\\bin\\mintty.exe --WSL=\"Ubuntu-18.04\" --configdir=\"C:\\Users\\AC\\AppData\\Roaming\\wsltty\"  -"
 ```
+
+### 像使用 GVim 一样使用 WSL 的 Vim
+
+可以使用如下快捷方式：
+
+```shell
+%LOCALAPPDATA%\wsltty\bin\mintty.exe --WSL= --configdir="%APPDATA%\wsltty" wsl-vim
+```
+
+其中 wsl-vim 位于某环境变量中，其内容为
+
+```bash
+#!/bin/bash
+file_to_edit=""
+for i do
+    file_to_edit="$file_to_edit $(wslpath $i)"
+done
+echo $file_to_edit
+vim $file_to_edit
+```
+
+### 用 Windows 默认打开方式打开文件
+
+```shell
+explorer.exe 123.txt
+```
+
+即可
 
 ### To Be Continued
 
