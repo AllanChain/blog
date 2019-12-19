@@ -129,12 +129,13 @@ Windows Registry Editor Version 5.00
 
 ```bash
 #!/bin/bash
-file_to_edit=""
+file_to_edit=( "$@" )
+index=0
 for i do
-    file_to_edit="$file_to_edit $(wslpath $i)"
+    file_to_edit[index]="$(wslpath "$i")"
+    index=$index+1
 done
-echo $file_to_edit
-vim $file_to_edit
+vim "${file_to_edit[@]}"
 ```
 
 ### 用 Windows 默认打开方式打开文件
