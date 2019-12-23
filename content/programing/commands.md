@@ -82,3 +82,21 @@ find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
 ```
 
 > `chmod 644 {} \;` specifies the command that will be executed by `find` for each file. `{}` is replaced by the file path, and the semicolon denotes the end of the command (escaped, otherwise it would be interpreted by the shell instead of `find`). 
+
+### 关于 submodule
+
+#### 删除
+
+```shell
+git submodule deinit path/to/submodule
+git rm path/to/submodule
+rm -rf .git/path/to/submodule
+```
+
+#### 添加已有
+
+```
+git submodule add https://github/....
+```
+
+即可
