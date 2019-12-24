@@ -13,5 +13,3 @@ set /p blog_name="______.md: "
 hugo new %blog_folder%/%blog_name%.md
 
 explorer content\%blog_folder%\%blog_name%.md
-
-pause
