@@ -57,3 +57,31 @@ main()
 而`float (*p)[4]`是 a pointer to array of 4 float，
 `score`本身一维数组就等同于指针，指向第一个数组元素。
 故这两个是相符的。
+### 指针与字符串
+#### 常量区？
+有家可归的字符串常量呆在“家”里，无家可归的字符串常量呆在常量区。
+
+有无static相同
+```c
+char *day_name(int n)
+{
+    static char *name[] = {
+        "Illegal day", "Monday",
+        "Tuesday", "Wednesday",
+        "Thursday", "Friday",
+        "Saturday", "Sunday"};
+    return((n<1||n>7) ? name[0] : name[n]);
+}
+```
+有无static不相同,有：可正确打印；无：打印值有时不对
+```c
+char *day_name(int n)
+{
+    static char name[][20] = {
+        "Illegal day", "Monday",
+        "Tuesday", "Wednesday",
+        "Thursday", "Friday",
+        "Saturday", "Sunday"};
+    return ((n < 1 || n > 7) ? name[0] : name[n]);
+}
+```
