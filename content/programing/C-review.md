@@ -59,7 +59,7 @@ main()
 故这两个是相符的。
 ### 指针与字符串
 #### 常量区？
-有家可归的字符串常量呆在“家”里，无家可归的字符串常量呆在常量区。
+有家可归的字符串视为一般变量，直接呆在“家”里（栈 stack），无家可归的字符串常量呆在常量区（全局、静态区 data）。
 
 有无static相同
 ```c
@@ -84,4 +84,17 @@ char *day_name(int n)
         "Saturday", "Sunday"};
     return ((n < 1 || n > 7) ? name[0] : name[n]);
 }
+```
+#### 对字符指针及字符数组赋初值
+```c
+char *a="I love China!";
+/* == */
+char *a;
+a="I love China";
+
+char str[14]="I love China!";
+/* != */
+char str[14];
+str = "I love China!"; 
+/* 错误：将‘const char [1]’赋值给‘char [14]’时类型不兼容 */
 ```
