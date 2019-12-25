@@ -48,3 +48,12 @@ main()
 }
 ```
 　
+`score` 看成一维数组，
+则`*score`就是获得该数组的第一个元素。
+由于二维数组，第一个元素还是数组。
+`average(*score,12)`就相当于传一个数组进去。
+与`float *p`相符。
+
+而`float (*p)[4]`是 a pointer to array of 4 float，
+`score`本身一维数组就等同于指针，指向第一个数组元素。
+故这两个是相符的。
