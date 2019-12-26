@@ -60,6 +60,8 @@ main()
 ### 指针与字符串
 #### 常量区？
 有家可归的字符串视为一般变量，直接呆在“家”里（栈 stack），无家可归的字符串常量呆在常量区（全局、静态区 data）。
+![](https://media.geeksforgeeks.org/wp-content/uploads/memoryLayoutC.jpg)
+<https://www.geeksforgeeks.org/memory-layout-of-c-program/>
 
 有无static相同
 ```c
