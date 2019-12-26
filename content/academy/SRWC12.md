@@ -6,8 +6,23 @@ Categories:
     - SRWC
 ---
 
+
+## 预习提示
+Below are questions for everybody to think over after reading the text, and reporters of this week may use any one or more of them as their presentation topics.
+1. Mark all the difficult/confusing sentences and be ready to discuss them in class.
+2. What does the word Utopia mean? And where did the idea of utopia come from? 
+3. Do you know any other utopian societies in philosophical or literary works? What do you think of them?
+4. Have you ever tried to construct an ideal world? What is your principal guideline when doing this?
+5. What values do you see in More's Utopia? 
+6. Among all the arrangements by More for Utopia, which one(s) do you like best or dislike most? And why? 
+7. What are your underlying values when judging More's ideas? 
+8. In what way has the idea of Utopia affected the world?
+9. What is dystopia? What is its relationship with utopia?
+10. Do you see utopia in Zootopia (movie)?
+
 > Utopia: good but can be found nowhere
 
+## Pre
 ### Pre1: Ridiculous or Realizable?
 
 socialism
@@ -64,6 +79,8 @@ Justify Tomas More's imagination
 Your solution?
 
 ---
+
+## Text
 
 Criteria
 
