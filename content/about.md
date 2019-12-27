@@ -30,4 +30,14 @@ Well, that's difficult to say. Though I am not in the EESC of PKU, I coded a lot
 
 One thing is worth mentioning: discovering the security hole of PKU campus card system! That excited me a lot, and I made use of the BDWM BBS to "imporve my social fame a bit". For more information, You can have a look at [That Repo](https://github.com/AllanChain/PKUCard)
 
+### PKUPHYNOC
+
+Emmm, I don't know how to translate *北大物院学生会网络运营中心* to English...
+
+Alright, that's a really big projesct and have taken most of my spare time (though I also played around many stuffs).
+
+It was the first year of [PKUPHYNOC](https://github.com/pkuphysu) (previously *办公室*), and we want to make use of the wechat official account and a cloud server to bring new experience to the students.
+
+I have kept a development log in that repo (for future reference), but due to security reasons, that repo is private. There were indeed many exciting things when building a whole new world.
+
 ...To be continued... 
