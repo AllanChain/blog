@@ -45,3 +45,56 @@ disablePathToLower = true
     back = "&larr; Home"
     edit = "Edit &rarr;"
     truncated = "&hellip;"
+
+[[params.indexSections]]
+    name = "Blogs"
+
+    [[params.indexSections.links]]
+        text = "My Programing Blog"
+        url = "programing"
+        thumbnail = "https://carwad.net/sites/default/files/styles/225x120/public/python-logo-png-transparent-images-149925-553893.png?itok=2JmNWmno"
+        summary = "Every damning stuffs encountered when programing"
+
+    [[params.indexSections.links]]
+        text = "My Acedemy Blog"
+        url = "academy"
+        thumbnail = "https://iaaa.pku.edu.cn/iaaa/resources/images/pku_logo_red.png"
+        summary = "Or some kind of notes"
+
+[[params.indexSections]]
+    name = "Crafts"
+
+    [[params.indexSections.links]]
+        text = "Foolish Password Generator"
+        url = "craft/pwd"
+    
+    [[params.indexSections.links]]
+        text = "Solarized Dark for Mixplorer"
+        url = "craft/mix"
+    
+    [[params.indexSections.links]]
+        text = "Solarized Again for PPT!"
+        url = "craft/ppt"
+    
+    [[params.indexSections.links]]
+        text = "Solarized Fixed for CMD!"
+        url = "craft/cmd"
+
+[[params.indexSections]]
+    name = "Web Crafts"
+
+    [[params.indexSections.links]]
+        text = "Lucky Draw Time!"
+        url = "//allanchain.gitee.io/choujiang/iamnotindex.html"
+        
+    [[params.indexSections.links]]
+        text = "Website Navigation"
+        url = "//allanchain.gitee.io/webnav/"
+
+[[params.indexSections]]
+    name = "Slide Shows"
+
+    [[params.indexSections.links]]
+        text = "About Monasticism"
+        url = "//allanchain.gitee.io/revealjs_slide/ChristianLife.html"
+        summary = "SRWC: Christian Way of Life"
