@@ -119,7 +119,7 @@ conflict between salvation and corruption
 
 the temporal power is lower than the spiritual power
 
-> Even when **they **(church) have been compelled to hold a council they have weakened its (council) power in advance by putting the princes under oath to let them (Romanists) remain as they were.
+> Even when **they** (church) have been compelled to hold a council they have weakened **its** (council) power in advance by putting the princes under oath to let **them** (Romanists) remain as they were.
 
 发誓不动利益
 
