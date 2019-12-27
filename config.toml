@@ -58,7 +58,7 @@ disablePathToLower = true
     [[params.indexSections.links]]
         text = "My Acedemy Blog"
         url = "academy"
-        thumbnail = "https://www.pku.edu.cn/img/pkulogo_red.png"
+        thumbnail = "img/PKU_RED.png"
         summary = "Or some kind of notes"
 
 [[params.indexSections]]
