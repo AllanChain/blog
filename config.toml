@@ -52,13 +52,13 @@ disablePathToLower = true
     [[params.indexSections.links]]
         text = "My Programing Blog"
         url = "programing"
-        thumbnail = "https://carwad.net/sites/default/files/styles/225x120/public/python-logo-png-transparent-images-149925-553893.png?itok=2JmNWmno"
+        thumbnail = "https://www.python.org/static/img/python-logo-large.c36dccadd999.png"
         summary = "Every damning stuffs encountered when programing"
 
     [[params.indexSections.links]]
         text = "My Acedemy Blog"
         url = "academy"
-        thumbnail = "https://iaaa.pku.edu.cn/iaaa/resources/images/pku_logo_red.png"
+        thumbnail = "https://www.pku.edu.cn/img/pkulogo_red.png"
         summary = "Or some kind of notes"
 
 [[params.indexSections]]
