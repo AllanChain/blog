@@ -3,11 +3,11 @@ Title: "MySQL 存储 emoji"
 Date: 2019-12-23T22:21:24+08:00
 Author: Allan Chain
 Categories:
-    - Server
     - Database
 Tags: 
     - MySQL
-    - emoji
+    - Server
+    - Emoji
 ---
 
 最近需要使用 SQLAlchemy 存弹幕的内容，但是遇到了存 emoji 的问题。
