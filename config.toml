@@ -5,13 +5,14 @@ theme = "hugo-xmag-solarized"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
-hasCJKLanguage = true
-enableEmoji = true
-canonifyURLs = true
 paginate = 6
+preserveTaxonomyNames = true
+hasCJKLanguage = true
+canonifyURLs = true
+enableEmoji = true
 disablePathToLower = true
+enableGitInfo = true
 
 [permalinks]
     programing = "/programing/:year/:slug/"
