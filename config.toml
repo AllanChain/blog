@@ -49,6 +49,14 @@ disablePathToLower = true
     edit = "Edit &rarr;"
     truncated = "&hellip;"
 
+[params.gitalk]
+  enabled = true
+  clientID = "ec59190f01750575678c"
+  clientSecret = "878d20cc97cca9a90ac67fb51dcd0dcbfb27699b"
+  repo = "blog"
+  owner = "AllanChain"
+  admin = ["AllanChain"]
+
 [[params.indexSections]]
     name = "Blogs"
 
