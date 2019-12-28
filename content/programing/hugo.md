@@ -1,6 +1,6 @@
 ---
 Title: "谜之 Hugo"
-Date: 2019-10-28T19:19:16+08:00
+Date: 2019-12-28T15:19:16+08:00
 Author: Allan Chain
 Categories:
     - Hugo
@@ -43,8 +43,9 @@ And also out of blockquote
 > 
 > /cc @aignas as you seem to be the last person to work on this Blackfriday plain-list/code block issue :)
 
-
 来，你瞅瞅，现在还是这个样子的:sob:
+
+**v0.60.0 UPDATE:** 见“新的引擎”一节
 
 这么不稳定的 Markdown 引擎，没法和 Python 比 :smirk:
 
@@ -82,3 +83,24 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 ## 奇奇怪怪的 Toml
 
 放着好好的 YAML 和 JSON 不用，突然冒出来一个 TOML。好像 Markdown 前面加 YAML 已经很常用了，然后跟我说用 TOML，不觉得等于号 有点 丑？不觉得 引号 有点 丑？虽然在做配置文件方面可能有独到之处，对不起，Vim 原生不支持，一键秒杀颜值。
+
+## 新的引擎
+
+突然，Hugo 给我换了一个引擎 <https://github.com/gohugoio/hugo/releases/tag/v0.60.0>
+
+使用了新的引擎之后之前的问题消失了，但是变成了默认忽略 HTML，需要在`config.toml`里做修改
+
+```toml
+[markup.goldmark.renderer]
+    unsafe = true
+```
+
+或者`config.yml`
+
+```yaml
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+```
+
