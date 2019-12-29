@@ -59,7 +59,7 @@ main()
     search(score, 2);
 }
 ```
-　
+
 `score` 看成一维数组，
 则`*score`就是获得该数组的第一个元素。
 由于二维数组，第一个元素还是数组。
@@ -72,7 +72,9 @@ main()
 ### 指针与字符串
 #### 常量区？
 有家可归的字符串视为一般变量，直接呆在“家”里（栈 stack），无家可归的字符串常量呆在常量区（全局、静态区 data）。
-![](https://media.geeksforgeeks.org/wp-content/uploads/memoryLayoutC.jpg)
+
+![img](https://media.geeksforgeeks.org/wp-content/uploads/memoryLayoutC.jpg)
+
 <https://www.geeksforgeeks.org/memory-layout-of-c-program/>
 
 有无static相同

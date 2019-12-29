@@ -9,11 +9,13 @@ Tags:
 # Header 1
 ## Header 2 **haha**
 
+**fluent MathJax**
+
 $ \sum^{n}_{i-1}\frac{i}{2} $
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. **Donec quis dolor nec nunc mollis interdum vel in purus**. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. **Donec quis dolor nec nunc mollis interdum vel in purus**. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet ***iaculis*** ornare. Nullam ut neque quam.
 
-> Fusce pharetra suscipit orci nec tempor. Quisque vitae sem sit amet sem mollis consequat. Sed at imperdiet lorem. Vestibulum pharetra faucibus odio, ac feugiat tellus sollicitudin at. Pellentesque varius tristique mi imperdiet dapibus. Duis orci odio, sodales lacinia venenatis sit amet, feugiat et diam.
+> Fusce pharetra suscipit orci nec tempor. Quisque vitae sem sit amet sem mollis consequat. Sed at imperdiet lorem. **Vestibulum** pharetra faucibus odio, ac feugiat tellus sollicitudin at. Pellentesque varius tristique mi imperdiet *dapibus*. Duis orci odio, sodales lacinia venenatis sit amet, feugiat et diam.
 
 ### Header 3 `<LA la>`
 
@@ -31,15 +33,15 @@ pre {
 }
 
 @media (--phone) {
-white-space: pre-wrap;
-word-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 code {
-background: none !important;
-color: #ccc;
-padding: 0;
-font-size: inherit;
+  background: none !important;
+  color: #ccc;
+  padding: 0;
+  font-size: inherit;
 }
 ```
 ```js
@@ -78,12 +80,14 @@ window.addEventListener('resize', isMobileMenu)
 
 Curabitur scelerisque felis viverra varius scelerisque. Ut enim libero, molestie gravida blandit at, mollis ornare tellus. Cras arcu mi, ultrices vel pulvinar vel, volutpat eu tortor. Nullam nec eros quis massa ultrices iaculis sed in metus. Praesent sollicitudin sem sit amet orci tempor gravida.
 
+![hugo](https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true)
+
 - Maecenas elementum vitae nibh vitae porttitor.
 - Aenean consequat, risus ut cursus placerat, arcu nulla sodales risus, ut molestie tellus tellus et dui.
-- Integer imperdiet turpis vitae lacus imperdiet, ut ornare ligula auctor. Integer in mi eu velit vehicula suscipit eget vulputate nulla.
-- Etiam vitae enim quis velit lobortis placerat a ut sem.
-  - Curabitur lobortis ante sit amet orci pulvinar, sollicitudin viverra nunc accumsan.
-  - Praesent fermentum orci quis leo facilisis posuere.
+  1. Integer imperdiet turpis vitae lacus imperdiet, ut ornare ligula auctor. Integer in mi eu velit vehicula suscipit eget vulputate nulla.
+  1. Etiam vitae enim quis velit lobortis placerat a ut sem.
+     1. Curabitur lobortis ante sit amet orci pulvinar, sollicitudin viverra nunc accumsan.
+     1. Praesent fermentum orci quis leo facilisis posuere.
 
 ## Header 3
 
