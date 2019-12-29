@@ -57,3 +57,6 @@ enableGitInfo = true
   repo = "blog"
   owner = "AllanChain"
   admin = ["AllanChain"]
+
+[params.termThumbnails]
+  python = "https://www.python.org/static/img/python-logo-large.c36dccadd999.png"
