@@ -1,19 +1,55 @@
----
-Title: Index of the Dustbin
----
++++
+Title = "Index of the Dustbin"
+[[indexSections]]
+    name = "Blogs"
 
-- Blogs
-    - [My Programing Blog](programing)
-    - [My Academic Blog](academy)
-- Crafts
-    - [Foolish Password Generator](craft/pwd)
-    - [Solarized Dark for Mixplorer](craft/mix)
-    - [Solarized Again for PPT!](craft/ppt)
-    - [Solarized Fixed for CMD!](craft/cmd)
-- Web Crafts
-    - [Lucky Draw Time!](//allanchain.gitee.io/choujiang/iamnotindex.html)
-    - [Website Navigation](//allanchain.gitee.io/webnav/)
-- Slide Shows
-    - [About Monasticism](//allanchain.gitee.io/revealjs_slide/ChristianLife.html)
-- [Greeting From Nowhere](ghost)
-- [About Me](about)
+    [[indexSections.links]]
+        text = "My Programing Blog"
+        url = "programing"
+        thumbnail = "https://www.python.org/static/img/python-logo-large.c36dccadd999.png"
+        summary = "Every damning stuffs encountered when programing"
+
+    [[indexSections.links]]
+        text = "My Acedemy Blog"
+        url = "academy"
+        thumbnail = "img/PKU_RED.png"
+        summary = "Or some kind of notes"
+
+[[indexSections]]
+    name = "Crafts"
+
+    [[indexSections.links]]
+        text = "Foolish Password Generator"
+        url = "craft/pwd"
+
+    [[indexSections.links]]
+        text = "Solarized Dark for Mixplorer"
+        url = "craft/mix"
+
+    [[indexSections.links]]
+        text = "Solarized Again for PPT!"
+        url = "craft/ppt"
+
+    [[indexSections.links]]
+        text = "Solarized Fixed for CMD!"
+        url = "craft/cmd"
+
+[[indexSections]]
+    name = "Web Crafts"
+
+    [[indexSections.links]]
+        text = "Lucky Draw Time!"
+        url = "//allanchain.gitee.io/choujiang/iamnotindex.html"
+
+    [[indexSections.links]]
+        text = "Website Navigation"
+        url = "//allanchain.gitee.io/webnav/"
+
+[[indexSections]]
+    name = "Slide Shows"
+
+    [[indexSections.links]]
+        text = "About Monasticism"
+        url = "//allanchain.gitee.io/revealjs_slide/ChristianLife.html"
+        summary = "SRWC: Christian Way of Life"
++++
