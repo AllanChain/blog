@@ -80,6 +80,13 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 
 就问你`and (ConditionA) (ConditionB)` 是人话吗？没有`not`是什么？没有括号也叫 Function？怕是 Shell 用多了？
 
+`not`的正确打开方式：
+```
+{{ if eq (reflect.IsMap site.Params.address) false }}
+```
+
+的确。。反人类
+
 ## 奇奇怪怪的 Toml
 
 放着好好的 YAML 和 JSON 不用，突然冒出来一个 TOML。好像 Markdown 前面加 YAML 已经很常用了，然后跟我说用 TOML，不觉得等于号 有点 丑？不觉得 引号 有点 丑？虽然在做配置文件方面可能有独到之处，对不起，Vim 原生不支持，一键秒杀颜值。
