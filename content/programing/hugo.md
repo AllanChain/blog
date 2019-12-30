@@ -14,7 +14,7 @@ Thumbnail: https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/stati
 
 ## 对新手不友好的 Hugo
 
-在之前 PKUCard 操作之后加了几个 Github 好友，发现很多（显然是主管感受）都在用 Hugo，也感觉之前用的Mkdocs 不是像样的博客，早有换掉的意思。于是近期就开始上手试了一下。
+在之前 PKUCard 操作之后加了几个 Github 好友，发现很多（显然是主观感受）都在用 Hugo，也感觉之前用的 Mkdocs 不是像样的博客，早有换掉的意思。于是近期就开始上手试了一下。
 
 说 Hugo 之前先说一下 Python 的 Pelican。Pelican 也是一个博客写作应用，但是因为**用户量不够，主题样式太少**，并且主题的功能也不健全，（说白了就是不合胃口，）于是就很难受。
 
