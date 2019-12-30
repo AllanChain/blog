@@ -1,0 +1,39 @@
+description = "A website built through Hugo and blogdown."
+summary_length = 200
+github_edit = "https://github.com/AllanChain/blog/edit/master/content/"
+footer = """
+<a rel="license" 
+href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+target="_blank">
+<img alt="Create Common License"
+     style="border-width:0"
+     src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+</a>
+<br />
+&copy; 2019 Allan Chain"""
+favicon = "//allanchain.github.io/img/favicon.ico"
+
+[text]
+    back = "&larr; Home"
+    edit = "Edit &rarr;"
+    truncated = "&hellip;"
+
+[gitalk]
+  enabled = true
+  clientID = "ec59190f01750575678c"
+  clientSecret = "878d20cc97cca9a90ac67fb51dcd0dcbfb27699b"
+  repo = "blog"
+  owner = "AllanChain"
+  admin = ["AllanChain"]
+
+[termThumbnails]
+  python = "https://www.python.org/static/img/python-logo-large.c36dccadd999.png"
+  hugo = "https://github.com/gohugoio/gohugoioTheme/raw/master/static/images/gopher-hero.svg?sanitize=true"
+  git = "https://gitforwindows.org/favicon.ico"
+  cupt = "https://pt.nankai.edu.cn/_upload/article/images/cf/fd/261a812247bcb2639d2fe223a277/440cce43-fba1-4edb-bdd8-cfde7d13c2fc_s.jpg"
+  linux = "https://www.linux.org/favicon.ico"
+  termux = "https://termux.com/favicon.ico"
+  vim = "https://github.com/vim/vim/raw/master/runtime/vimlogo.gif"
+  srwc = "/img/icons/SRWC.jpg"
+  flask = "https://flask.palletsprojects.com/en/1.1.x/_images/flask-logo.png"
+  database = "https://www.mysql.com/common/logos/powered-by-mysql-125x64-wob.png"

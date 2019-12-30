@@ -75,3 +75,4 @@ Name: Oedipus
 
 man and god?
 
+Sophocles believes god
