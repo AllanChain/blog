@@ -9,7 +9,6 @@ Tags:
 Description: >
     吐槽 Hugo，从 Markdown, TOC 的 Bug
     到奇怪的 Template，记录被坑历程
-Thumbnail: https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true
 ---
 
 ## 对新手不友好的 Hugo

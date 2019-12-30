@@ -3,10 +3,11 @@ Title: "服务器上的 Logging"
 Date: 2019-10-27T19:10:02+08:00
 Author: Allan Chain
 Categories:
-    - Python
     - Flask
+    - Python
 Tags: 
     - Server
+    - Logging
 Description: |
     Flask, uWSGI, Nginx 日志的分分合合
     如何设置一个优雅的日志？

@@ -4,6 +4,7 @@ Date: 2019-10-03
 Author: Allan Chain
 TOC: false
 Categories:
+    - Flask
     - Python
 Tags: 
     - Server

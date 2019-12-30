@@ -12,7 +12,7 @@ Title = "Index of the Dustbin"
     [[indexSections.links]]
         text = "My Acedemy Blog"
         url = "academy"
-        thumbnail = "img/PKU_RED.png"
+        thumbnail = "img/icons/PKU_RED.gif"
         summary = "Or some kind of notes"
 
 [[indexSections]]
@@ -52,4 +52,19 @@ Title = "Index of the Dustbin"
         text = "About Monasticism"
         url = "//allanchain.gitee.io/revealjs_slide/ChristianLife.html"
         summary = "SRWC: Christian Way of Life"
+
+[[indexSections]]
+    name = "general"
+
+    [[indexSections.links]]
+        text = "About"
+        url = "about"
+
+    [[indexSections.links]]
+        text = "Showcase"
+        url = "showcase"
+
+    [[indexSections.links]]
+        text = "Terms & License"
+        url = "terms"
 +++

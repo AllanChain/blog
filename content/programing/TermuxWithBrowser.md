@@ -3,6 +3,7 @@ Title: 让Termux对浏览器更友好
 Date: 2019-07-03
 Author: Allan Chain
 Categories: 
+    - Termux
     - Python
 ---
 
