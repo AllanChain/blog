@@ -7,6 +7,35 @@ Categories:
 ToC: false
 ---
 
+## 预习提示
+旧约中最重要故事之一。
+文本较长，考虑到大家时间有限，只要求读完前20节，其中十场瘟疫部分重复很多，可以跳读，也可以参阅中文译本。
+阅读时请注意我在文本中做的各种标注。本文件夹中有两个视频是Exodus Overview，做得很好，不仅简明展示了Exodus的重要内容，也点明了几个重要意义。
+预习时请把疑难处做记号，预备课上讨论。
+
+
+请思考下列问题：（也是课堂报告的建议话题，也欢迎大家课前在教学网讨论版就这些问题发表见解展开讨论。）
+
+1.  Who, do you think after reading the text itself, might be the narrator of the story? And why?
+
+2. After reading the Exodus, reflect on your reading and try to tell: 
+
+    What kind of reading have you done? Have you read the Exodus as a historical account, a literary story, or a religious text? or what else? 
+    
+    And what  can we get from each type of reading?
+
+3. After reading this story, what sort of man do you feel Moses was? Do you like him? What sort of image was God, and do you like Him? And what do you think of the Egyptians and the Israelites in this story?
+
+4. Why do you think God has chosen Moses to lead the Israelites out of Egypt? Do you think he is the proper candidate?
+
+5. What do you think of the style of this piece of writing?
+
+6. What do you think the nature of this story is?
+
+7. Why is this story important to the Israelites and to Christianity?
+
+8. What do you know about the Bible?
+
 > Now there arose up a new king over Egypt, which knew not Joseph
 
 Equals

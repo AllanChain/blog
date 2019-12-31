@@ -40,6 +40,14 @@ Think about the following questions: (Also suggested topics for presenters of th
 
 ---
 
+1. the argument from modtion;
+2. the argument from efficient cause;
+3. the argument from possibility and necessity;
+4. the argument from gradation / degree;
+5. the argument from governance of the world / final cause or ends.
+
+---
+
 Faith <---> Reason
 
 St. Au      Aristotle
@@ -92,13 +100,11 @@ Counter Arguements
 > If **that** by which it is put in motion be itself put in motion, then this also must needs be put in motion by another, and that by another again.
 
 
-```
-A<--B
-
-^   V
-
-D<--C
-```
+> A &larr; B
+>
+> &uarr;&emsp;&darr;
+>
+> D &larr; C
 
 What if a circle? a net?
 
