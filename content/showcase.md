@@ -2,7 +2,7 @@
 title: "Showcase"
 ---
 
-# Header 1
+#### Header 1
 ## Header 2 **haha**
 
 **fluent MathJax**
