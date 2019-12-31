@@ -67,7 +67,7 @@ By looking into it carefully, you would find that when dealing with the end tags
 ## Second Attempt
 I use a variable to record how many blank level previous indent made, and render corresponding number of `</ul>` when dedenting, and rest will be `</ul></li>`
 
-But this is still not enough, what if your dedent is less than the blank level, such as:
+But this is still not enough, what if your dedent is less than the blank level, or in other words, you don't actually need to close all these blank levels, such as:
 
 <blockquote>
 <ul>
