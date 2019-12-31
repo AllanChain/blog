@@ -76,3 +76,9 @@ Name: Oedipus
 man and god?
 
 Sophocles believes god
+
+#### Contrast
+
+- knowing &lrarr; not knowing
+- seeing &lrarr; blind
+- light &lrarr; darkness

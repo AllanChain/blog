@@ -80,10 +80,10 @@ Dido 从 Iarbas 牛皮剪绳圈地
 
 ---
 
-- h**ap**py
-- h**ap**pen
-- h**ap**less
-- perh**ap**s
+- h<u>ap</u>py
+- h<u>ap</u>pen
+- h<u>ap</u>less
+- perh<u>ap</u>s
 
 **winged** steel: typical Homers language
 
