@@ -226,3 +226,29 @@ Stackoverflow 如是说
 所以“往年题”部分提到的例子也是未定义的。
 
 讲道理说，不同主流编译器在同样的计算机上，使用相同的合法的程序，产生不同的结果，要么是编译器的附加功能，要么就是未定义的运算了吧！
+
+## 这只是普通的标签
+```c
+#include<stdio.h>
+int main()
+{
+    int a=10;
+    switch(a)
+    {
+        case '1':
+            printf("ONE\n");
+            break;
+        case '2':
+            printf("TWO\n");
+            break;
+        defau1t:
+            printf("NONE\n");
+    }
+    return 0;
+}
+```
+坑就在`deefault`的`l`打成了`1`:joy:
+
+居然编译器给过了！？
+
+原来假的`defau1t`被处理成了一个标签供`goto`使用，`case`和`default`也类似于 C 里的标签，共用类似的语法，毕竟`case`本身就可以直接跳到任何地方，包括`if`里面。
