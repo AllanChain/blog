@@ -67,7 +67,7 @@ By looking into it carefully, you would find that when dealing with the end tags
 ## Second Attempt
 I use a variable to record how many blank level previous indent made, and render corresponding number of `</ul>` when dedenting, and rest will be `</ul></li>`
 
-But this is still not enough, what if your dedent is less than the blank level, such as:
+But this is still not enough, what if your dedent is less than the blank level, or in other words, you don't actually need to close all these blank levels, such as:
 
 <blockquote>
 <ul>
@@ -94,6 +94,44 @@ But this is still not enough, what if your dedent is less than the blank level, 
 </li>
 </ul>
 </ul></li>
+</ul>
+```
+If you think that you could use a variable to record number of previous blank levels, and substract some from it in every dedent until it become 0, take a look at this example:
+<blockquote>
+<ul>
+<li>Header 1
+<ul><ul>
+<li>Header 3
+<ul><ul>
+<li>Header 5
+</li>
+</ul>
+<li>Header 4
+</li>
+</ul></li>
+</ul>
+</ul>
+<li>Header 1
+</li>
+</ul>
+</blockquote>
+
+```html
+<ul>
+<li>Header 1
+<ul><ul>
+<li>Header 3
+<ul><ul>
+<li>Header 5
+</li>
+</ul>
+<li>Header 4
+</li>
+</ul></li>
+</ul>
+</ul>
+<li>Header 1
+</li>
 </ul>
 ```
 
