@@ -96,6 +96,44 @@ But this is still not enough, what if your dedent is less than the blank level, 
 </ul></li>
 </ul>
 ```
+If you think that you could use a variable to record number of previous blank levels, and substract some from it in every dedent until it become 0, take a look at this example:
+<blockquote>
+<ul>
+<li>Header 1
+<ul><ul>
+<li>Header 3
+<ul><ul>
+<li>Header 5
+</li>
+</ul>
+<li>Header 4
+</li>
+</ul></li>
+</ul>
+</ul>
+<li>Header 1
+</li>
+</ul>
+</blockquote>
+
+```html
+<ul>
+<li>Header 1
+<ul><ul>
+<li>Header 3
+<ul><ul>
+<li>Header 5
+</li>
+</ul>
+<li>Header 4
+</li>
+</ul></li>
+</ul>
+</ul>
+<li>Header 1
+</li>
+</ul>
+```
 
 ## Third Attempt
 I need a stack to record what levels are left blank, and just render `</ul>` if closing that level, and pop that level out of the stack. Else, I will render `</ul></li>` 
