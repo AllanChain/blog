@@ -1,6 +1,6 @@
 ---
-Title: 'WTFs in C'
-Date: 2020-01-01T13:45+08:00
+Title: "WTFs in C"
+Date: 2020-01-01T13:45:00+08:00
 Author: AllanChain
 Categories:
     - C
@@ -114,3 +114,88 @@ int main()
 > ```c
 > if (x >= 0 && ((unsigned int)x) == y)
 > ```
+## `continue` in `do...while`
+```c
+#include<stdio.h>
+
+enum {false,true};
+
+int main()
+{
+    int i=1;
+    do {
+        printf("%d\n",i);
+        i++;
+        if(i < 15)
+            continue;
+    }while(false);
+    return 0;
+}
+```
+跟在后面的`while`也是循环控制的一种，所以`continue`不会跳过`while`
+
+拓展知识：how `for` equals `while`?
+
+> Why does it tend to get into an infinite loop if I use `continue` in a `while` loop, but works fine in a `for` loop?
+> The loop-counter increment `i++` gets ignored in `while` loop if I use it after `continue`, but it works if it is in `for` loop.
+>
+> If `continue` ignores *subsequent* statements, then why doesn't it ignore the third statement of the `for` loop then, which contains the counter increment `i++`? Isn't the third statement of `for` loop *subsequent* to `continue` as well and should be ignored, given the third statement of `for` loop is executed *after* the loop body?
+>
+> ```c
+> while(i<10)   //causes infinite loop
+> {
+>     ...
+>     continue
+>     i++
+>     ...
+> }
+> 
+> for(i=0;i<10;i++)  //works fine and exits after 10 iterations
+> {
+>     ...
+>     continue
+>     ...
+> }
+> ```
+>
+> ---
+>
+> The reason is because the `continue` statement will short-circuit the statements that follow it in the loop body. Since the way you wrote the `while` loop has the increment statement following the `continue` statement, it gets short-circuited. You can solve this by changing your `while` loop.
+>
+> A lot of text books claim that:
+>
+> ```c
+> for (i = 0; i < N; ++i) {
+>     /*...*/
+> }
+> ```
+>
+> is equivalent to:
+>
+> ```c
+> i = 0;
+> while (i < N) {
+>     /*...*/
+>     ++i;
+> }
+> ```
+>
+> But, in reality, it is really like:
+>
+> ```c
+> j = 0;
+> while ((i = j++) < N) {
+>     /*...*/
+> }
+> ```
+>
+> Or, to be a little more pedantic:
+>
+> ```c
+> i = 0;
+> if (i < 10) do {
+>     /*...*/
+> } while (++i, (i < 10));
+> ```
+>
+> These are more equivalent, since now if the body of the `while` has a `continue`, the increment still occurs, just like in a `for`. The latter alternative only executes the increment after the iteration has completed, just like `for` (the former executes the increment before the iteration, deferring to save it in `i` until after the iteration).
