@@ -252,3 +252,21 @@ int main()
 居然编译器给过了！？
 
 原来假的`defau1t`被处理成了一个标签供`goto`使用，`case`和`default`也类似于 C 里的标签，共用类似的语法，毕竟`case`本身就可以直接跳到任何地方，包括`if`里面。
+
+## `case`真的可以随便跳吗？
+```c
+#include<stdio.h>
+int main()
+{
+    int a=1;
+    switch(a)
+    {   int b=20;
+        case 1: printf("b is %d\n",b);
+                break;
+        default:printf("b is %d\n",b);
+                break;
+    }
+    return 0;
+}
+```
+跳过了变量初始化就会报错了，编译都过不了
