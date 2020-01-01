@@ -10,6 +10,10 @@ Categories:
 
 *除非有说明，均在 gcc 下测试*
 
+## Nice websites
+- <https://www.geeksforgeeks.org/interesting-facts-in-c-programming/>
+- <http://www.gowrikumar.com/c/index.php>
+
 ## 往年题？
 ```c
 #include <stdio.h>
@@ -28,7 +32,7 @@ int main()
 ```
 其中，`gcc -E`认为的是
 ```c
-    i=- - -x+n*-x+n+-k;
+i=- - -x+n*-x+n+-k;
 ```
 注意到 C 的运算符处理和空格有关，故结果为
 ```
@@ -60,14 +64,14 @@ int main()
 }
 ```
 
-> <https://stackoverflow.com/a/4368983/8810271>
+> <https://stackoverflow.com/a/4368983>
 >
+> A single '#' will create a string from the given argument, regardless of what that argument contains, while the double '##' will create a new token by concatenating the arguments.
+>
+> ---
 > An occurrence of a parameter in a function-like macro, unless it is the operand of # or ##, is expanded before substituting it and rescanning the whole for further expansion. Because g's parameter is the operand of #, the argument is not expanded but instead immediately stringified ("f(1,2)"). Because h's parameter is not the operand of # nor ##, the argument is first expanded (12), then substituted (g(12)), then rescanning and further expansion occurs ("12").  
 
-
-## Nice websites
-- <https://www.geeksforgeeks.org/interesting-facts-in-c-programming/>
-- <http://www.gowrikumar.com/c/index.php>
+也就是说，碰到`#`或`##`后，宏就不会递归展开
 
 ## No print?
 ```c
@@ -199,3 +203,26 @@ int main()
 > ```
 >
 > These are more equivalent, since now if the body of the `while` has a `continue`, the increment still occurs, just like in a `for`. The latter alternative only executes the increment after the iteration has completed, just like `for` (the former executes the increment before the iteration, deferring to save it in `i` until after the iteration).
+
+## 著名的变态题
+```c
+#include<stdio.h>
+
+int main() {
+    int i = 1;
+    printf("%d", ++i+ ++i+ ++i);
+}
+```
+著名的 ALE(bushi) 如是说：
+> operation on 'i' may be undefined
+
+Stackoverflow 如是说
+> <https://stackoverflow.com/a/2989771/8810271>
+>
+> Modifying the value of `i` more than once without a sequence point in between the modifications results in undefined behavior. So, the results of your code are undefined.
+
+简单翻译成人话就是，想一口气多次改变变量值的行为是未定义的。所以考试考一个未定义的东西有什么用呢？
+
+所以“往年题”部分提到的例子也是未定义的。
+
+讲道理说，不同主流编译器在同样的计算机上，使用相同的合法的程序，产生不同的结果，要么是编译器的附加功能，要么就是未定义的运算了吧！
