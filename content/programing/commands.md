@@ -100,3 +100,9 @@ git submodule add https://github/....
 ```
 
 即可
+
+### Bash `**/*` 不是递归？
+```bash
+shopt -s globstar
+```
+即可
