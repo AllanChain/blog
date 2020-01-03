@@ -109,4 +109,21 @@ markup:
     renderer:
       unsafe: true
 ```
+## 新引擎，新bug
+### headerID
+Goldmark 在设置 headerID 的时候，默认是仅保留字母和数字，但是这对 CJK 及其不友好。“更有甚者”，该项目的作者是日本人，竟然不考虑对本国文字的支持？！还说，仅保留字母和数字是合适的默认行为。Excuse me? 不应该原封不动保留 Unicode 才是好的默认行为吗？
 
+据说会在 Hugo v0.63.0 解决，那就拭目以待吧。。
+### render_link
+本来说好可以支持 link 的 Markdown hook 的，但是呢，只支持`[text](url)`型，不支持`<url>`型。。\[摊手.jpg\]
+
+而且，说好引用其他 Markdown 文档的 render_link 实现居然还有点复杂。。还好找到了官方实现，不然又是大坑。。
+
+Hugo theme，注定又是一个面向 GitHub 编程。
+
+## TOC 新回复
+我又针对 toc 写了一篇[博客](hugo_toc.md)，然后有去原来的 gist 上评论了，受到了@iooeee 的回复。他说。。。他已经弃坑 Hugo 了。。
+
+我。。。
+
+怎么办，Zombie Zach决定我要不要弃坑！（bushi
