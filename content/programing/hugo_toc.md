@@ -8,7 +8,7 @@ Tags:
     - ToC
 ---
 
-As mentioned in [previous blog about Hugo](../谜之-Hugo), The  built-in Toc feature is very inconvenient. And recently, I find that the code I found on the Internet is not perfect. It just ensures enough end tags are rendered, And do not support where the first header is not the biggest. And I tried to fix them all.
+As mentioned in [previous blog about Hugo](hugo.md), The  built-in Toc feature is very inconvenient. And recently, I find that the code I found on the Internet is not perfect. It just ensures enough end tags are rendered, And do not support where the first header is not the biggest. And I tried to fix them all.
 
 ## First Attempt
 
