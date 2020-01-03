@@ -35,3 +35,7 @@ And as you can see, I have changed main color to gray. Because its default color
 ---
 
 Finally, [here](/file/solarized-dark.reg) is my reg file for dark theme.
+
+## UPDATE: ColorTool
+
+Microsoft actually has its official implementation [ColorTool](https://github.com/Microsoft/Terminal/tree/master/src/tools/ColorTool).
