@@ -95,14 +95,14 @@ rm -rf .git/path/to/submodule
 
 #### 添加已有
 
-```
+```shell
 git submodule add https://github/....
 ```
 
 即可
 
 ### Bash `**/*` 不是递归？
-```bash
+```shell
 shopt -s globstar
 ```
 即可

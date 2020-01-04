@@ -65,11 +65,11 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 而且这位老兄的代码就是会把标题里的一些诸如`don't`的标点干掉，也不会保留加粗的格式。
 
 解决办法就是去掉`planify | htmlEscape`, 并在
-```
+```django
 {{ $cleanedID := replace (replace $id "id=\"" "") "\"" "" }}
 ```
 后加入
-```
+```django
 {{- $header := replaceRE "<h[2-4].*?>((.|\n])+?)</h[2-4]>" "$1" $header -}}
 ```
 
@@ -80,7 +80,7 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 就问你`and (ConditionA) (ConditionB)` 是人话吗？没有`not`是什么？没有括号也叫 Function？怕是 Shell 用多了？
 
 `not`的正确打开方式：
-```
+```django
 {{ if eq (reflect.IsMap site.Params.address) false }}
 ```
 
