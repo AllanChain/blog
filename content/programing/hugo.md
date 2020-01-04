@@ -56,7 +56,7 @@ Hugo 自带的目录功能简直了，因为只能从 h1 开始，否则：
 
 自带的功能，老兄！这种事情都做得出来！NOT PYTHONIC AT ALL!
 
-最后我找到了<https://gist.github.com/skyzyx/a796d66f6a124f057f3374eff0b3f99a> @Iooeee 的代码，基本可以满足需求。
+最后我找到了<https://gist.github.com/skyzyx/a796d66f6a124f057f3374eff0b3f99a> @looeee 的代码，基本可以满足需求。
 
 ### 修改找到的 TOC 代码
 
@@ -122,8 +122,6 @@ Goldmark 在设置 headerID 的时候，默认是仅保留字母和数字，但�
 Hugo theme，注定又是一个面向 GitHub 编程。
 
 ## TOC 新回复
-我又针对 toc 写了一篇[博客](hugo_toc.md)，然后有去原来的 gist 上评论了，受到了@iooeee 的回复。他说。。。他已经弃坑 Hugo 了。。
+我又针对 toc 写了一篇[博客](hugo_toc.md)，然后有去原来的 gist 上评论了，受到了@looeee 的回复。他说。。。他已经弃坑 Hugo 了，使用 js 解决问题。
 
 我。。。
-
-怎么办，Zombie Zach决定我要不要弃坑！（bushi
