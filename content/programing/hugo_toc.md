@@ -1,6 +1,6 @@
 ---
 Title: "TOC in Hugo"
-Date: 2019-01-07T21:18:17+08:00
+Date: 2020-01-07T21:18:17+08:00
 Author: Allan Chain
 Categories:
     - Hugo
