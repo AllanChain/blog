@@ -1,6 +1,6 @@
 ---
 Title: "TOC in Hugo"
-Date: 2019-12-31T21:18:17+08:00
+Date: 2019-01-07T21:18:17+08:00
 Author: Allan Chain
 Categories:
     - Hugo
@@ -211,4 +211,135 @@ As for the end of toc, just do the same closing from last header  to the biggest
 
 So, [here](<https://github.com/AllanChain/hugo-xmag-solarized/blob/master/layouts/partials/toc.html>) is the ultimate code.
 
-(May be not so ultimate if you see this post long time after it was wriiten :smile:)
+(May be not so ultimate if you see this post long time after it was written :smile:)
+
+**UPDATE:** hugo template code:
+
+```django
+{{- $headers := findRE "<h[1-4].*?>(.|\n])+?</h[1-4]>" .Content -}}
+{{- $has_headers := ge (len $headers) 1 -}}
+{{- if $has_headers -}}
+
+{{- $largest := 6 -}}
+{{- range $headers -}}
+  {{- $headerLevel := index (findRE "[1-4]" . 1) 0 -}}
+  {{- $headerLevel := len (seq $headerLevel) -}}
+  {{- if lt $headerLevel $largest -}}
+    {{- $largest = $headerLevel -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $firstHeaderLevel := len (seq (index (findRE "[1-4]" (index $headers 0) 1) 0)) -}}
+
+{{- $.Scratch.Set "bareul" slice -}}
+<ul>
+  {{- range seq (sub $firstHeaderLevel $largest) -}}
+    <ul>
+    {{- $.Scratch.Add "bareul" (sub (add $largest .) 1) -}}
+  {{- end -}}
+  {{- range $i, $header := $headers -}}
+    {{- $headerLevel := index (findRE "[1-4]" . 1) 0 -}}
+    {{- $headerLevel := len (seq $headerLevel) -}}
+
+    {{/* get id="xyz" */}}
+    {{ $id := index (findRE "(id=\"(.*?)\")" $header 9) 0 }}
+
+    {{/* strip id="" to leave xyz (no way to get regex capturing groups in hugo :( */}}
+    {{ $cleanedID := replace (replace $id "id=\"" "") "\"" "" }}
+    {{- $header := replaceRE "<h[1-4].*?>((.|\n])+?)</h[1-4]>" "$1" $header -}}
+
+    {{- if ne $i 0 -}}
+      {{- $prevHeaderLevel := index (findRE "[1-4]" (index $headers (sub $i 1)) 1) 0 -}}
+      {{- $prevHeaderLevel := len (seq $prevHeaderLevel) -}}
+        {{- if gt $headerLevel $prevHeaderLevel -}}
+          {{- range seq $prevHeaderLevel (sub $headerLevel 1) -}}
+            <ul>
+            {{/* the first should not be recorded */}}
+            {{- if ne $prevHeaderLevel . -}}
+              {{- $.Scratch.Add "bareul" . -}}
+            {{- end -}}
+          {{- end -}}
+        {{- else -}}
+          </li>
+          {{- if lt $headerLevel $prevHeaderLevel -}}
+            {{- range seq (sub $prevHeaderLevel 1) -1 $headerLevel -}}
+              {{- if in ($.Scratch.Get "bareul") . -}}
+                </ul>
+                {{/* manually do pop item */}}
+                {{- $tmp := $.Scratch.Get "bareul" -}}
+                {{- $.Scratch.Delete "bareul" -}}
+                {{- $.Scratch.Set "bareul" slice}}
+                {{- range seq (sub (len $tmp) 1) -}}
+                  {{- $.Scratch.Add "bareul" (index $tmp (sub . 1)) -}}
+                {{- end -}}
+              {{- else -}}
+                </ul></li>
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        <li>
+          <a href="#{{- $cleanedID  -}}">{{- $header | safeHTML -}}</a>
+    {{- else -}}
+    <li>
+      <a href="#{{- $cleanedID -}}">{{- $header | safeHTML -}}</a>
+    {{- end -}}
+  {{- end -}}
+  <!-- {{- $firstHeaderLevel := len (seq (index (findRE "[1-4]" (index $headers 0) 1) 0)) -}} -->
+  {{ $firstHeaderLevel := $largest }}
+  {{- $lastHeaderLevel := len (seq (index (findRE "[1-4]" (index $headers (sub (len $headers) 1)) 1) 0)) -}}
+  </li>
+  {{- range seq (sub $lastHeaderLevel $firstHeaderLevel) -}}
+    {{- if in ($.Scratch.Get "bareul") (add . $firstHeaderLevel) -}}
+      </ul>
+    {{- else -}}
+      </ul></li>
+    {{- end -}}
+  {{- end -}}
+</ul>
+{{- end -}}
+```
+
+## JQuery Solution
+
+And I tried to implement this using JS, that's indeed much simpler. Besides, I can do many cool stuffs using JS!
+
+```javascript
+function createToC() {
+  let primaryHeading = 6;
+  let headings = [];
+  $("main :header").each(
+    (index, header) => {
+      let level = header.tagName.slice(-1);
+      if(level < primaryHeading) primaryHeading = level;
+      headings.push({
+        level: level,
+        id: header.id,
+        title: header.innerHTML
+      });
+    }
+  );
+  let root = $(document.createElement('ul'))
+    .appendTo($("#toc"));
+  let parents = [root];
+  let prevLevel = primaryHeading;
+  let parentIndex = 0;
+  headings.forEach(
+    (heading, index) => {
+      if (heading.level < prevLevel)
+        parentIndex -= prevLevel - heading.level;
+      else
+        for (let i=prevLevel; i < heading.level; i++, parentIndex++)
+          parents[parentIndex + 1] = $(document.createElement('ul'))
+            .appendTo(parents[parentIndex]);
+      prevLevel = heading.level;
+      $(document.createElement('a'))
+        .attr("href", "#" + heading.id)
+        .html(heading.title)
+        .appendTo($(document.createElement('li'))
+          .appendTo(parents[parentIndex]));
+    }
+  );
+}
+```
+
