@@ -106,3 +106,12 @@ git submodule add https://github/....
 shopt -s globstar
 ```
 即可
+
+### 查找文件
+
+```bash
+find -iname 'qwerty'
+find dir/ -iname 'qwerty'
+find -name 'Qwerty'
+```
+
