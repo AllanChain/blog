@@ -285,7 +285,6 @@ So, [here](<https://github.com/AllanChain/hugo-xmag-solarized/blob/master/layout
       <a href="#{{- $cleanedID -}}">{{- $header | safeHTML -}}</a>
     {{- end -}}
   {{- end -}}
-  <!-- {{- $firstHeaderLevel := len (seq (index (findRE "[1-4]" (index $headers 0) 1) 0)) -}} -->
   {{ $firstHeaderLevel := $largest }}
   {{- $lastHeaderLevel := len (seq (index (findRE "[1-4]" (index $headers (sub (len $headers) 1)) 1) 0)) -}}
   </li>
