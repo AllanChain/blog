@@ -6,8 +6,6 @@ Categories:
     - Daily
 Tags: 
     - Commands
-Description: >
-    各种命令
 ---
 
 ### 网络
@@ -68,6 +66,27 @@ ffmpeg -f lavfi -i anullsrc -t 5 -c:a libvorbis output.ogg
 #### 把视频和音频合起来
 ```shell
 ffmpeg -i all.mp4 -i all.m4a -c:v copy -c:a aac -strict experimental output.mp4
+```
+
+#### 合理转成 GIF
+
+The standard way to use ffmpeg for GIFs is
+
+Generate a palette from the video
+
+```bash
+ffmpeg -y -i file.mp4 -vf palettegen palette.png
+```
+Then,
+```bash
+ffmpeg -y -i file.mp4 -i palette.png -filter_complex paletteuse -r 10 -s 320x480 file.gif
+```
+More options documented here.
+
+所以使用我的 `ffmpegroup`脚本，第二步就是
+
+```bash
+ffmpegroup mp4/gif -z"-i palette.png -filter_complex paletteuse -r 10 -s 200x200 -y"
 ```
 
 ### 递归chmod
