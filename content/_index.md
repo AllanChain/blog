@@ -1,70 +1,50 @@
-+++
-Title = "Index of the Dustbin"
-[[indexSections]]
-    name = "Blogs"
+---
+Title: Index of the Dustbin
+indexSections:
+- links:
+  - summary: Every damning stuffs encountered when programing
+    text: My Programing Blog
+    thumbnail: https://www.python.org/static/img/python-logo-large.c36dccadd999.png
+    url: programing
+  - summary: Or some kind of notes
+    text: My Acedemy Blog
+    thumbnail: img/icons/PKU_RED.gif
+    url: academy
+  name: Blogs
 
-    [[indexSections.links]]
-        text = "My Programing Blog"
-        url = "programing"
-        thumbnail = "https://www.python.org/static/img/python-logo-large.c36dccadd999.png"
-        summary = "Every damning stuffs encountered when programing"
+- links:
+  - text: Foolish Password Generator
+    url: craft/pwd
+  - text: Solarized Dark for Mixplorer
+    url: craft/mix
+  - text: Solarized Again for PPT!
+    url: craft/ppt
+  - text: Solarized Fixed for CMD!
+    url: craft/cmd
+  name: Crafts
 
-    [[indexSections.links]]
-        text = "My Acedemy Blog"
-        url = "academy"
-        thumbnail = "img/icons/PKU_RED.gif"
-        summary = "Or some kind of notes"
+- links:
+  - text: Lucky Draw Time!
+    url: //allanchain.gitee.io/choujiang/iamnotindex.html
+  - text: Website Navigation
+    url: //allanchain.gitee.io/webnav/
+  name: Web Crafts
 
-[[indexSections]]
-    name = "Crafts"
+- links:
+  - summary: 'SRWC: Christian Way of Life'
+    text: About Monasticism
+    url: //allanchain.gitee.io/revealjs_slide/ChristianLife.html
+  name: Slide Shows
 
-    [[indexSections.links]]
-        text = "Foolish Password Generator"
-        url = "craft/pwd"
-
-    [[indexSections.links]]
-        text = "Solarized Dark for Mixplorer"
-        url = "craft/mix"
-
-    [[indexSections.links]]
-        text = "Solarized Again for PPT!"
-        url = "craft/ppt"
-
-    [[indexSections.links]]
-        text = "Solarized Fixed for CMD!"
-        url = "craft/cmd"
-
-[[indexSections]]
-    name = "Web Crafts"
-
-    [[indexSections.links]]
-        text = "Lucky Draw Time!"
-        url = "//allanchain.gitee.io/choujiang/iamnotindex.html"
-
-    [[indexSections.links]]
-        text = "Website Navigation"
-        url = "//allanchain.gitee.io/webnav/"
-
-[[indexSections]]
-    name = "Slide Shows"
-
-    [[indexSections.links]]
-        text = "About Monasticism"
-        url = "//allanchain.gitee.io/revealjs_slide/ChristianLife.html"
-        summary = "SRWC: Christian Way of Life"
-
-[[indexSections]]
-    name = "general"
-
-    [[indexSections.links]]
-        text = "About"
-        url = "about"
-
-    [[indexSections.links]]
-        text = "Showcase"
-        url = "showcase"
-
-    [[indexSections.links]]
-        text = "Terms & License"
-        url = "terms"
-+++
+- links:
+  - text: About
+    url: about
+  - text: Showcase
+    url: showcase
+  - text: Terms & License
+    url: terms
+  - text: RSS
+    summary: Just copy the link, DO NOT CLICK
+    url: index.xml
+  name: General
+---
