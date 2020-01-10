@@ -44,7 +44,9 @@ indexSections:
   - text: Terms & License
     url: terms
   - text: RSS
-    summary: Just copy the link, DO NOT CLICK
+    summary: |
+      DO NOT CLICK,
+      index.xml will do the trick
     url: index.xml
   name: General
 ---
