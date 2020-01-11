@@ -17,6 +17,8 @@ favicon = "//allanchain.github.io/img/favicon.ico"
     back = "&larr; Home"
     edit = "Edit &rarr;"
     truncated = "&hellip;"
+    title_programings = "Programing Blog"
+    title_academies = "Academic Blog"
 
 [gitalk]
   enabled = true

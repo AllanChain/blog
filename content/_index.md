@@ -2,11 +2,11 @@
 Title: Index of the Dustbin
 indexSections:
 - links:
-  - summary: Every damning stuffs encountered when programing
+  - summary: Exciting / strange things for programing
     text: My Programing Blog
     thumbnail: https://www.python.org/static/img/python-logo-large.c36dccadd999.png
     url: programing
-  - summary: Or some kind of notes
+  - summary: Messy writing and some kind of notes
     text: My Acedemy Blog
     thumbnail: img/icons/PKU_RED.gif
     url: academy
@@ -39,6 +39,8 @@ indexSections:
 - links:
   - text: About
     url: about
+  - text: Follow me on GitHub
+    url: https://github.com/AllanChain
   - text: Showcase
     url: showcase
   - text: Terms & License
