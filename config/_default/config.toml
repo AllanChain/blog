@@ -24,4 +24,4 @@ enableGitInfo = true
 
 [markup.highlight]
     style = "solarized-dark"
-    lineNos = false
+    lineNos = true
