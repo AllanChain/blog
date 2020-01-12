@@ -12,6 +12,7 @@ target="_blank">
 <br />
 2019 - 2020 Allan Chain"""
 favicon = "//allanchain.github.io/img/favicon.ico"
+color_scheme = "SolarizedDark"
 
 [text]
     back = "&larr; Home"
