@@ -41,6 +41,9 @@ indexSections:
     url: about
   - text: Follow me on GitHub
     url: https://github.com/AllanChain
+  - text: This Hugo Theme
+    summary: Powered by Hugo-Xmag-Solarized, Hugo-Xmag's fork
+    url: https://github.com/AllanChain/hugo-xmag-solarized
   - text: Showcase
     url: showcase
   - text: Terms & License
