@@ -26,14 +26,22 @@ indexSections:
 - links:
   - text: Lucky Draw Time!
     url: //allanchain.gitee.io/choujiang/iamnotindex.html
+    summary: |
+      Note that this is an outdated version,
+      newer version relies on api of the server.
+      And there is a even newer idea using hash.
   - text: Website Navigation
     url: //allanchain.github.io/webnav/
+    summary: |
+      A simple PWA application!
+      (because it's hard :sob:)
   name: Web Crafts
 
 - links:
   - summary: 'SRWC: Christian Way of Life'
     text: About Monasticism
     url: //allanchain.gitee.io/revealjs_slide/ChristianLife.html
+    summary: My PRE for SRWC
   name: Slide Shows
 
 - links:
@@ -52,13 +60,16 @@ indexSections:
     url: about
   - text: Follow me on GitHub
     url: https://github.com/AllanChain
+    summary: Sorry, no Twitter, Facebook, Weibo...
   - text: This Hugo Theme
     summary: Powered by Hugo-Xmag-Solarized, Hugo-Xmag's fork
     url: https://github.com/AllanChain/hugo-xmag-solarized
   - text: Showcase
     url: showcase
+    summary: Lab for testing my hugo theme
   - text: Terms & License
     url: terms
+    summary: Complicated copyright stuff :tired_face:
   - text: RSS
     summary: |
       DO NOT CLICK,
