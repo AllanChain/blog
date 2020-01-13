@@ -27,7 +27,7 @@ indexSections:
   - text: Lucky Draw Time!
     url: //allanchain.gitee.io/choujiang/iamnotindex.html
   - text: Website Navigation
-    url: //allanchain.gitee.io/webnav/
+    url: //allanchain.github.io/webnav/
   name: Web Crafts
 
 - links:
@@ -35,6 +35,17 @@ indexSections:
     text: About Monasticism
     url: //allanchain.gitee.io/revealjs_slide/ChristianLife.html
   name: Slide Shows
+
+- links:
+  - text: ᴍɪᴍɪ
+    url: https://zhangshuqiao.org/
+    thumbnail: https://avatars3.githubusercontent.com/u/16272760?s=100&v=4
+    summary: 做了一点微小的工作
+  - text: txtyb
+    url: https://txtyb.github.io/
+    thumbnail: https://avatars2.githubusercontent.com/u/14294192?s=100&v=4
+    summary: The quieter you be, the more you can hear.
+  name: Friends
 
 - links:
   - text: About
