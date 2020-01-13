@@ -28,7 +28,7 @@ As you can see in its README, the Dark[Green, Yellow, Blue, Cyan] can hardly be 
 
 So you can just copy the [Green, Yellow, Blue, Cyan] color values to the Dark[Green, Yellow, Blue, Cyan] ones.
 
-![my tone](/img/cmd-color.png)
+![my tone](cmd-color.png)
 
 And as you can see, I have changed main color to gray. Because its default color was DarkBlue and after making changes above, the it's necessary to bond another color as primary color.
 

@@ -50,7 +50,7 @@ But unfortunately:
 
 So here is another way, choose `Beta: Use Unicode UTF-8 for i18n`, in the prompt said above, and click to reboot. 
 
-![intl.cpl](/img/intl.cpl.png)
+![intl.cpl](intl.cpl.png)
 
 You will see that CMD is using UFT-8 now, and CMD recognizes those fonts! Enjoy programing!
 

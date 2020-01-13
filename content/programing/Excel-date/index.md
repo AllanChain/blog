@@ -8,7 +8,7 @@ Categories:
 
 I was trying to make a plan for the next few weeks, when I found Excel's strange behavior:
 
-![](/img/Excel_date1.png)
+![](Excel_date1.png)
 
 January 4th is missing? That's strange...
 
@@ -16,6 +16,6 @@ January 4th is missing? That's strange...
 
 After checking the formula bar
 
-![](/img/Excel_date2.png)
+![](Excel_date2.png)
 
 Alright, Excel auto added year to the date, and the gap between the first to dates is 364 days, resulting in the correct "increase" until `2017/1/3` -- 2016 is a leap year!
