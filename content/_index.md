@@ -41,7 +41,6 @@ indexSections:
   - summary: 'SRWC: Christian Way of Life'
     text: About Monasticism
     url: //allanchain.gitee.io/revealjs_slide/ChristianLife.html
-    summary: My PRE for SRWC
   name: Slide Shows
 
 - links:
@@ -69,7 +68,7 @@ indexSections:
     summary: Lab for testing my hugo theme
   - text: Terms & License
     url: terms
-    summary: Complicated copyright stuff :tired_face:
+    summary: "Complicated copyright stuff :tired_face:"
   - text: RSS
     summary: |
       DO NOT CLICK,
