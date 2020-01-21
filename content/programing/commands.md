@@ -134,3 +134,8 @@ find dir/ -iname 'qwerty'
 find -name 'Qwerty'
 ```
 
+### 开机启动 SSH
+
+```bash
+sudo systemctl enable sshd.service
+```
