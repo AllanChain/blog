@@ -59,8 +59,14 @@ endif
 :resize-pane -R 10 (Resizes the current pane right by 10 cells)
 ```
 
-## Still Problem
+## Border Chaos
 
-If I split the panes vertically, the first column of the right pane is overwritten by the separating line.
+If I split the panes vertically, the first column of the right pane is overwritten by the border.
 
 ![](chaos.png)
+
+It turns out to be the old problem with MinTTY. As you can see on the top-middle of the screenshot, the border is displayed in full width (2 chars), with introduced the chaos.
+
+To solve it, inspired by <https://github.com/mintty/mintty/issues/615>, all you need to do is Options &rarr; Text &rarr; Locale: Default (Or any language with sane character width). And the broken vim airline is solved too!
+
+![](fixed.png)
