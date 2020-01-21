@@ -79,10 +79,10 @@ window.addEventListener('resize', isMobileMenu)
 ![hugo](https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true)
 
 - Maecenas elementum vitae nibh vitae porttitor.
-- Aenean consequat, risus ut cursus placerat, arcu nulla sodales risus, ut molestie tellus tellus et dui.
-  1. Integer imperdiet turpis vitae lacus imperdiet, ut ornare ligula auctor. Integer in mi eu velit vehicula suscipit eget vulputate nulla.
+- Aenean `consequat`, risus ut cursus placerat, arcu nulla sodales risus, ut molestie tellus tellus et dui.
+  1. Integer imperdiet turpis vitae `lacus imperdiet`, ut ornare ligula auctor. Integer in mi eu velit vehicula suscipit eget vulputate nulla.
   1. Etiam vitae enim quis velit lobortis placerat a ut sem.
-     1. Curabitur lobortis ante sit amet orci pulvinar, sollicitudin viverra nunc accumsan.
+     1. Curabitur lobortis ante sit amet orci `pulvinar`, sollicitudin viverra nunc accumsan.
      1. Praesent fermentum orci quis leo facilisis posuere.
 
 ## Header 2
