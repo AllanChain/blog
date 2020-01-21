@@ -47,6 +47,8 @@ mintty 官方也有对 WSL 的支持，见 <https://github.com/mintty/wsltty>
 
 再导入之前就有的配置（可以直接复制到`%APPDATA%\wsltty\config`，这样可以不修改自动生成的快捷方式），就大功告成了！
 
+**UPDATE: **[这里](tmux-intro/index.md#border-chaos)修了 mintty 的一个配置 bug
+
 配置见下（备忘），注意修改了部分 Solarized 颜色：
 
 ```ini
