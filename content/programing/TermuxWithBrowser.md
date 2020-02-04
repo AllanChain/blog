@@ -7,7 +7,7 @@ Categories:
     - Python
 ---
 
-Download [xb.py](xb.py)
+Download [xb.py](/file/xb.py)
 
 难点：
 
