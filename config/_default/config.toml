@@ -13,7 +13,7 @@ hasCJKLanguage = true
 canonifyURLs = true
 enableEmoji = true
 disablePathToLower = true
-enableGitInfo = true
+enableGitInfo = false
 
 [permalinks]
     programing = "/programing/:year/:slug/"
