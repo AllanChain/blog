@@ -1,6 +1,6 @@
 ---
 Title: "Commands"
-Date: 2019-12-18T07:56:57+08:00
+Date: 2020-02-07T07:56:57+08:00
 Author: Allan Chain
 Categories:
     - Daily
@@ -8,13 +8,13 @@ Tags:
     - Commands
 ---
 
-### 网络
+## 网络
 
 ```shell
 # [Quick Fix] No Wireless Connection After Sleep
 sudo service network-manager restart
 ```
-### 各种查看
+## 各种查看
 
 ```shell
 # 端口占用
@@ -35,7 +35,7 @@ sudo nginx -s reload
 sudo nginx -s stop
 ```
 
-### FFMpeg
+## FFMpeg
 #### 去除和取出声音
 ```shell
 ffmpeg -i example.mkv -c copy -an nosound.mkv
@@ -102,7 +102,30 @@ find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
 
 > `chmod 644 {} \;` specifies the command that will be executed by `find` for each file. `{}` is replaced by the file path, and the semicolon denotes the end of the command (escaped, otherwise it would be interpreted by the shell instead of `find`). 
 
-### 关于 submodule
+## apt
+
+### 列出所有版本
+
+*<https://askubuntu.com/q/473886>*
+
+```bash
+apt-cache madison chromium-browser
+# or
+apt-cache showpkg lyx
+```
+
+### 安装特定版本
+
+*<https://askubuntu.com/q/428772>*
+
+```bash
+# get version of installed package
+apt-cache policy <package name>
+# install a specific package version
+sudo apt-get install <package name>=<version>
+```
+
+## 关于 submodule
 
 #### 删除
 
