@@ -10,6 +10,8 @@ Tags:
     - Emoji
 ---
 
+**UPDATE:** See <https://docs.sqlalchemy.org/en/11/dialects/mysql.html#unicode> for detail
+
 最近需要使用 SQLAlchemy 存弹幕的内容，但是遇到了存 emoji 的问题。
 
 ### `utf8_bin`?
