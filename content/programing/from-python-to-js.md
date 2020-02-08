@@ -9,6 +9,50 @@ Categories:
 
 Although the title *Top Ten Mistakes Python Programmers Make When Learning JavaScript* may sound better, I have only noticed a few mistakes now. And I will update this post when I make more mistakes :smile:
 
+## The `new` Operator
+
+You can simply create an instance of a class by `ClassName(...)` in Python. But in JavaScript you need the `new` operator. It can be easily forgotten!
+
+*See also <https://stackoverflow.com/q/1646698/8810271>, <https://stackoverflow.com/q/383402/8810271>*
+
+But why sometimes it still works when I forget `new`? For example:
+
+```JavaScript
+> b = new Date()
+2020-02-08T05:20:14.069Z
+> c = Date()
+'Sat Feb 08 2020 13:20:19 GMT+0800 (GMT+08:00)'
+```
+
+As the second link shows, there is a trick:
+
+```JavaScript
+function foo() {
+   // if user accidentally omits the new keyword, this will 
+   // silently correct the problem...
+   if ( !(this instanceof foo) )
+      return new foo();
+   // constructor logic follows...
+}
+```
+
+However, you must use `new` if you are using class:
+
+```JavaScript
+> class Bar {
+... constructor() {
+..... if ( !(this instanceof Bar) ) return new Bar()
+..... this.foo = 1
+..... }
+... }
+undefined
+> Bar()
+Thrown:
+TypeError: Class constructor Bar cannot be invoked without 'new'
+> new Bar()
+Bar { foo: 1 }
+```
+
 ## Element in Array or Key in Object / dict
 
 In Python, we have:
@@ -133,3 +177,24 @@ And note that  Python is more friendly:
      |  Base 0 means to interpret the base from the string as an integer literal.
      |  >>> int('0b100', base=0)
      |  4
+## Dead Variable
+
+*Based on <https://stackoverflow.com/a/54980674/8810271>*
+
+```JavaScript
+> let a = nothing
+Thrown:
+ReferenceError: nothing is not defined
+> let a = 1
+Thrown:
+SyntaxError: Identifier 'a' has already been declared
+> a = 1
+Thrown:
+ReferenceError: a is not defined
+```
+
+Once you have a typo when using `let` in console (such as forgetting `new`), the variable name will never come back. That's because variable initialization did not complete successfully, and you can't re-declare a variable that's already been declared.
+
+Worse still, you cannot delete the variable declared using `let`, `const` or `var`. Only things like "global variable" can be deleted. See also <https://stackoverflow.com/q/1596782/8810271>
+
+You have to reinvent a good variable name, or reopen the console.
