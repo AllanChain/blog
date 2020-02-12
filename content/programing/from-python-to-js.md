@@ -1,6 +1,6 @@
 ---
 Title: "From Python to JavaScript"
-Date: 2020-02-06T08:56:17+08:00
+Date: 2020-02-12T08:56:17+08:00
 Author: Allan Chain
 Categories:
     - JavaScript
@@ -198,3 +198,24 @@ Once you have a typo when using `let` in console (such as forgetting `new`), the
 Worse still, you cannot delete the variable declared using `let`, `const` or `var`. Only things like "global variable" can be deleted. See also <https://stackoverflow.com/q/1596782/8810271>
 
 You have to reinvent a good variable name, or reopen the console.
+
+## Sure Sorted?
+
+```JavaScript
+> [2, 1].sort()
+[ 1, 2 ]
+> [8, 10].sort()
+[ 10, 8 ]
+```
+
+No, JS `sort` is just String sorting:
+
+> The `sort()` method sorts the elements of an array *in place* and returns the sorted array. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
+
+And if you want number sorting, write:
+
+```JavaScript
+> [8, 10, 6, 19].sort((a, b) => a - b)
+[ 6, 8, 10, 19 ]
+```
+
