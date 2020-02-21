@@ -71,7 +71,24 @@ Categories:
 
 然后又指向了<https://github.com/microsoft/WSL/issues/3939>，说，Fixed in Windows Insider Build [18890](https://github.com/MicrosoftDocs/WSL/blob/live/WSL/release-notes.md#build-18890)。。版本不够，去你的！
 
+> :notebook_with_decorative_cover: **Note**
+>
+> 其实 WSL2 也可以，但是。。版本不够。。
+>
+> 其实也可以选择 Windows Insider 计划，但是升级有风险。。
+
 ## 尝试 Win10 家庭版安装
+
+*若是专业版、教育版、企业版，请走正规军：<https://docs.docker.com/docker-for-windows/install/>*
+
+系统要求摘录如下：
+
+> - Windows 10 64-bit: Pro, Enterprise, or Education (Build 15063 or later).
+> - Hyper-V and Containers Windows features must be enabled.
+> - The following hardware prerequisites are required to successfully run Client Hyper-V on Windows 10:
+>     - 64 bit processor with [Second Level Address Translation (SLAT)](http://en.wikipedia.org/wiki/Second_Level_Address_Translation)
+>     - 4GB system RAM
+>     - BIOS-level hardware virtualization support must be enabled in the BIOS settings. For more information, see [Virtualization](https://docs.docker.com/docker-for-windows/troubleshoot/#virtualization-must-be-enabled).
 
 这个的方法已经烂大街了，在此简要记录一下方法：
 
