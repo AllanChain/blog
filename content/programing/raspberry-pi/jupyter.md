@@ -1,6 +1,6 @@
 ---
 Title: "Jupyter on Raspberry Pi"
-Date: 2020-01-21T11:20:29+08:00
+Date: 2020-02-26T20:20:29+08:00
 Author: Allan Chain
 Categories:
     - Raspberry Pi
@@ -44,6 +44,12 @@ sudo systemctl stop jupyter
 # To launch while start up
 sudo systemctl enable jupyter
 ```
+
+> :grey_exclamation: **NOTICE**
+>
+> run `systemctl daemon-reload` often when changing unit file. Or it will silently use the old bad file.
+>
+> *不要问我是怎么知道的*
 
 ## libf77blas.so.3: cannot open shared object file
 
@@ -118,3 +124,36 @@ Explanation:
     -mathfs MATHFONTSIZE  mathjax fontsize (in %)
     -cellw CELLWIDTH      set cell width (px or %)
 > Font sizes are in `pt`
+
+## Behind Nginx
+
+*Reference: <https://gist.github.com/christopherbaek/39e6c432e212ca7a67ffe015fe869664>*
+
+- Disable SSL and bind IP back to localhost, add `base_url`
+
+```python
+c.NotebookApp.base_url = 'jupyter'
+c.NotebookApp.ip = '127.0.0.1'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = 'sha1:84cb...36f7e6'
+c.NotebookApp.port = 9999
+```
+
+- Config Nginx, **headers are important**, **slash is also important**
+
+```nginx
+location /jupyter/ {
+    proxy_pass http://127.0.0.1:9999/jupyter/;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Origin "";
+}
+```
+
