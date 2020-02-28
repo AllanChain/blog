@@ -1,5 +1,5 @@
 ---
-Title: "List Docker Tags USTC"
+Title: "List Docker Tags In China"
 Date: 2020-02-28T21:38:39+08:00
 Author: Allan Chain
 Categories:
@@ -24,11 +24,15 @@ done
 
 但是天朝。。
 
-网易和阿里的 API 都要求有 API Key 签名认证之类，比较繁琐，故使用 USTC 的镜像，缺点是标签不全。。
+网易和阿里的官方 API 里都要求有 API Key 签名认证之类，比较繁琐
 
-废话不说，根据一波猜测，得到了 USTC 标签的 API：
+故先尝试使用 USTC 的镜像，缺点是速度慢、标签不全。。根据一波猜测，得到了 USTC 标签的 API：
 
     https://docker.mirrors.ustc.edu.cn/v2/library/nginx/tags/list
+
+同理又意外获得了网易的，标签全！
+
+    https://hub-mirror.c.163.com/v2/library/nginx/tags/list
 
 于是根据<https://stackoverflow.com/a/39454426/8810271>代码改编：
 
@@ -53,7 +57,7 @@ exit
 fi
 
 image="$1"
-tags=`curl https://docker.mirrors.ustc.edu.cn/v2/library/${image}/tags/list | sed -e 's/.*\[//g' -e 's/"//g' -e 's/\]\}$//g' -e 's/,/\n/g'`
+tags=`curl https://hub-mirror.c.163.com/v2/library/${image}/tags/list | sed -e 's/.*\[//g' -e 's/"//g' -e 's/\]\}$//g' -e 's/,/\n/g'`
 
 if [ -n "$2" ]
 then
