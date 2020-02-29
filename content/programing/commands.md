@@ -1,6 +1,6 @@
 ---
 Title: "Commands"
-Date: 2020-02-07T07:56:57+08:00
+Date: 2020-02-29T07:56:57+08:00
 Author: Allan Chain
 Categories:
     - Daily
@@ -88,6 +88,18 @@ More options documented here.
 ```bash
 ffmpegroup mp4/gif -z"-i palette.png -filter_complex paletteuse -r 10 -s 200x200 -y"
 ```
+
+#### 直接倍速
+
+```bash
+ffmpeg -i input.mkv -filter:v "setpts=PTS/60" output.mkv
+```
+或者更快的，但是据说会有音频问题：
+```bash
+ffmpeg -itsscale 0.01666 -i input.mkv -c copy output.mkv
+```
+
+
 
 ### 递归chmod
 
