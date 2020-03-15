@@ -94,12 +94,16 @@ ffmpegroup mp4/gif -z"-i palette.png -filter_complex paletteuse -r 10 -s 200x200
 ```bash
 ffmpeg -i input.mkv -filter:v "setpts=PTS/60" output.mkv
 ```
-或者更快的，但是据说会有音频问题：
+或者更快的，但是会有音频问题，而且转出来帧率吓死人，并没有多少压缩作用，请慎用：
 ```bash
 ffmpeg -itsscale 0.01666 -i input.mkv -c copy output.mkv
 ```
 
+#### 调节帧率
 
+```bash
+ffmpeg -i input.mp4 -r 24 output.mp4
+```
 
 ### 递归chmod
 
