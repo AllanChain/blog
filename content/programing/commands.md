@@ -170,6 +170,15 @@ git submodule add https://github/....
 
 即可
 
+#### 忽略修改
+
+```.gitmodules
+[submodule "bundle/fugitive"]
+	path = bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+    ignore = dirty
+```
+
 ## Bash `**/*` 不是递归？
 ```shell
 shopt -s globstar
