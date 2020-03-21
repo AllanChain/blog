@@ -15,18 +15,29 @@ Tags:
 sudo service network-manager restart
 ```
 ## 各种查看
-
+### 端口占用
 ```shell
-# 端口占用
 sudo lsof -i:80
-# 单个文件权限
+```
+### 单个文件权限
+```bash
 ls -l file
-# 全部任务
+```
+### 全部任务
+```bash
 ps -e
-# 所有用户
+```
+### 所有用户
+```bash
 less /etc/passwd
 ```
-### Nginx
+### 系统发行版
+
+```bash
+cat /etc/os-release
+```
+
+## Nginx
 
 ```shell
 # 重新加载配置文件
@@ -101,7 +112,7 @@ ffmpeg -itsscale 0.01666 -i input.mkv -c copy output.mkv
 
 
 
-### 递归chmod
+## 递归chmod
 
 一个文件夹里既有子文件夹又有文件，但是由于之前操作不当，想要重新设置权限，但一个`-R`会把文件夹和文件同等对待。
 
@@ -155,13 +166,13 @@ git submodule add https://github/....
 
 即可
 
-### Bash `**/*` 不是递归？
+## Bash `**/*` 不是递归？
 ```shell
 shopt -s globstar
 ```
 即可
 
-### 查找文件
+## 查找文件
 
 ```bash
 find -iname 'qwerty'
@@ -169,8 +180,9 @@ find dir/ -iname 'qwerty'
 find -name 'Qwerty'
 ```
 
-### 开机启动 SSH
+## systemctl
 
+### 开机启动
 ```bash
 sudo systemctl enable sshd.service
 ```
