@@ -1,6 +1,6 @@
 ---
 Title: "Tmux Intro"
-Date: 2020-01-21T18:12:57+08:00
+Date: 2020-03-21T18:12:57+08:00
 Author: Allan Chain
 Categories:
     - Tmux
@@ -44,6 +44,20 @@ else
     set termguicolors
 endif
 ```
+
+## Enable True Color for vim
+
+*From <https://github.com/tmux/tmux/issues/1246> and <https://github.com/lifepillar/vim-solarized8#troubleshooting>*
+
+Basically,
+
+```vim
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+```
+
+will do the trick.
 
 ## Resize Panes
 
