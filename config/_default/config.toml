@@ -1,4 +1,4 @@
-baseurl = "https://txsf.ml"
+baseurl = "https://allanchain.github.io/blog"
 languageCode = "en-us"
 title = "AC's Blog"
 theme = "hugo-xmag-solarized"
