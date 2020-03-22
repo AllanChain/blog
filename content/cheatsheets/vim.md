@@ -15,3 +15,8 @@ Tags:
 `ctrl+w N` (notice the capital `N`) to enter terminal normal mode. You can even search in the terminal output!
 
 And hit either `i` or `a` to enter insert mode.
+
+## Paste yanked text into the Vim command line
+*From <https://stackoverflow.com/a/3997110/8810271>*
+
+Hit `Ctrl-R` then `"`. If you have literal control characters in what you have yanked, use `Ctrl-R`, `Ctrl-O`, `"`.

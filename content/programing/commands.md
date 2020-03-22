@@ -109,12 +109,6 @@ git submodule add https://github/....
     ignore = dirty
 ```
 
-## Bash `**/*` 不是递归？
-```shell
-shopt -s globstar
-```
-即可
-
 ## 查找文件
 
 ```bash

@@ -24,6 +24,7 @@ Global options (affect whole program instead of just one file:
 -v loglevel         set logging level
 -y                  overwrite output files
 -n                  never overwrite output files
+
 Video options:
 -r rate             set frame rate (Hz value, fraction or abbreviation)
 -s size             set frame size (WxH or abbreviation)
@@ -109,10 +110,4 @@ ffmpeg -i input.mkv -filter:v "setpts=PTS/60" output.mkv
 或者更快的，但是会有音频问题，而且转出来帧率吓死人，并没有多少压缩作用，请慎用：
 ```bash
 ffmpeg -itsscale 0.01666 -i input.mkv -c copy output.mkv
-```
-
-## 调节帧率
-
-```bash
-ffmpeg -i input.mp4 -r 24 output.mp4
 ```
