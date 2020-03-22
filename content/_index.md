@@ -6,6 +6,10 @@ indexSections:
     text: My Programing Blog
     thumbnail: https://www.python.org/static/img/python-logo-large.c36dccadd999.png
     url: programing
+  - text: Home-made Cheatsheets
+    summary: FFmpeg, Vim, Markdown... Everything I need
+    thumbnail: https://trac.ffmpeg.org/ffmpeg-logo.png
+    url: cheatsheets
   - summary: Messy writing and some kind of notes
     text: My Acedemy Blog
     thumbnail: img/icons/PKU_RED.gif
