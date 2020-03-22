@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           hugo --minify
-          echo 'txsf.ml' > ./public/CNAME
+          # echo 'txsf.ml' > ./public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
