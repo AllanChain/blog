@@ -13,6 +13,10 @@ Tags:
 
 `ctrl+]` to follow link, `ctrl+t` to trace back.
 
+## Quit all
+```vim
+:qa
+```
 ## Scroll the terminal
 *From <https://stackoverflow.com/a/50545253/8810271>*
 
