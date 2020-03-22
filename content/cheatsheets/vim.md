@@ -20,6 +20,14 @@ Tags:
 
 And hit either `i` or `a` to enter insert mode.
 
+## Open terminal / help page verically
+
+Use the `:vert[ical]` command modifier:
+
+```vim
+:vert term
+:vert help ex
+```
 ## Enter normal mode for command history
 `CTRL-F` `q:` `q/` `q?`
 
@@ -52,3 +60,8 @@ Switch to "Ex" mode.  This is a bit like typing ":" commands one after another, 
 - Mappings and abbreviations are not used.
 
 Therefore, Ex command can simply be considered as command.
+
+## Measure startup time
+```bash
+vim --startuptime vim.log
+```
