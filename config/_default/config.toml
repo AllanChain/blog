@@ -10,13 +10,14 @@ paginate = 6
 rssLimit = 20
 preserveTaxonomyNames = true
 hasCJKLanguage = true
-canonifyURLs = true
+canonifyURLs = false
 enableEmoji = true
 disablePathToLower = true
 enableGitInfo = false
 
 [permalinks]
     programing = "/programing/:year/:slug/"
+    cheatsheets = "/cheatsheets/:slug"
     academy = "/academy/:year/:slug/"
 
 [markup.goldmark.renderer]
