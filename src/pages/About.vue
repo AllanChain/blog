@@ -2,7 +2,7 @@
   <Layout>
     <h1>About us</h1>
     <div
-     v-for="edge of $page.allBlogs.edges" 
+     v-for="edge of $page.allBlogs.edges"
      :key="edge.node.title">
      {{ edge.node.title }}
      </div>
@@ -10,15 +10,15 @@
 </template>
 
 <page-query>
-query {
-  allBlogs {
-    edges {
-      node {
-        title
+  query {
+    allBlogs {
+      edges {
+        node {
+          title
+        }
       }
     }
   }
-}
 </page-query>
 
 <script>
@@ -26,7 +26,7 @@ export default {
   metaInfo: {
     title: 'About us'
   },
-  created() {
+  created () {
     console.log(this.$page)
   }
 }
