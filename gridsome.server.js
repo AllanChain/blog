@@ -4,55 +4,22 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-const axios = require('axios')
+const githubData = require('./api.github')
 
-const gql = async (query) => {
-  const resp = await axios({
-    method: 'post',
-    url: 'https://api.github.com/graphql',
-    data: { query },
-    headers: {
-      Authorization: 'bearer bc48cb2be22ab0b18b1a5dd0daa3dcc6501b5632'
-    }
-  })
-  //          axios gql
-  return resp.data.data
-}
-
-module.exports = function (api) {
+module.exports = (api) => {
+  const dataPromise = githubData()
   api.loadSource(async ({ addCollection }) => {
-    const resp = await gql(`{
-      repository(name: "blog", owner: "AllanChain") {
-        issues(first: 10) {
-          edges {
-            node {
-              title
-              body
-              labels(first: 5) {
-                edges {
-                  node {
-                    name
-                  }
-                }
-              }
-            }
-          }
-        }
-        labels(first: 5) {
-          edges {
-            node {
-              name
-              color
-              description
-            }
-          }
-        }
-      }
-    }`)
+    const { blogs, labels } = await dataPromise
     const blogCollection = addCollection('blogs')
-    for (edge of resp.repository.issues.edges) {
-      console.log(edge)
-      blogCollection.addNode(edge.node)
+    for (const blog of blogs) {
+      console.log(blog)
+      blogCollection.addNode(blog)
+    }
+    const labelCollection = addCollection('labels')
+    console.log(labels)
+    for (const label of labels) {
+      console.log(label)
+      labelCollection.addNode(label)
     }
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   })
