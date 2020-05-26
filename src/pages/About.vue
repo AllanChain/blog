@@ -2,23 +2,24 @@
   <Layout>
     <h1>About us</h1>
     <div
-     v-for="edge of $page.allBlogs.edges"
+     v-for="edge of $page.allPost.edges"
      :key="edge.node.title">
-     {{ edge.node.title }}
+     <g-link :to="'/' + edge.node.slug">{{ edge.node.title }}</g-link>
      </div>
   </Layout>
 </template>
 
 <page-query>
-  query {
-    allPost {
-      edges {
-        node {
-          title
-        }
+query {
+  allPost {
+    edges {
+      node {
+        title
+        slug
       }
     }
   }
+}
 </page-query>
 
 <script>
