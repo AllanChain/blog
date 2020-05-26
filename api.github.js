@@ -55,8 +55,8 @@ const matchFirst = (pattern, text) => {
 }
 
 const parseBody = text => {
-  text = text.split('---', 2)[0]
-  const result = {}
+  const result = {};
+  [text, result.body] = text.split('---', 2)
   for (const key in patterns) {
     result[key] = matchFirst(patterns[key], text)
   }
@@ -69,7 +69,6 @@ module.exports = async () => {
   const posts = repo.issues.edges.map(edge => ({
     ...parseBody(edge.node.body),
     title: edge.node.title,
-    body: edge.node.body,
     labels: edge.node.labels.edges.map(edge => edge.node.name)
   }))
   const labels = repo.labels.edges.map(edge => edge.node)
