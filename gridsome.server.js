@@ -9,6 +9,7 @@ const githubData = require('./api.github')
 module.exports = (api) => {
   const dataPromise = githubData()
   api.loadSource(async ({ addCollection }) => {
+    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     const { blogs, labels } = await dataPromise
     const blogCollection = addCollection('blogs')
     for (const blog of blogs) {
@@ -21,7 +22,6 @@ module.exports = (api) => {
       console.log(label)
       labelCollection.addNode(label)
     }
-    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   })
 
   api.createPages(({ createPage }) => {

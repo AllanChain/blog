@@ -30,9 +30,9 @@ const query = `{
 }`
 
 const patterns = {
-  slug: new RegExp('^\\[View Post on Blog\\]\\(https://allanchain.github.io/blog/(.*)\\)$', 'm'),
-  createTime: new RegExp('^\\*This post was originally created at (.*)\\*$', 'm'),
-  summary: new RegExp('^> (.*)', 'm')
+  slug: /^\[View Post on Blog\]\(https.*blog\/(.*)\)$/m,
+  createTime: /^\*This post was originally created at (.*)\*$/m,
+  summary: /^> (.*)/m
 }
 
 const gql = async () => {
@@ -60,6 +60,7 @@ const parseBody = text => {
   for (const key in patterns) {
     result[key] = matchFirst(patterns[key], text)
   }
+  result.id = result.slug
   return result
 }
 
