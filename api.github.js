@@ -66,12 +66,12 @@ const parseBody = text => {
 
 module.exports = async () => {
   const repo = await gql()
-  const blogs = repo.issues.edges.map(edge => ({
+  const posts = repo.issues.edges.map(edge => ({
     ...parseBody(edge.node.body),
     title: edge.node.title,
     body: edge.node.body,
     labels: edge.node.labels.edges.map(edge => edge.node.name)
   }))
   const labels = repo.labels.edges.map(edge => edge.node)
-  return { blogs, labels }
+  return { posts, labels }
 }

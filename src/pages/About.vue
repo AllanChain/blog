@@ -11,7 +11,7 @@
 
 <page-query>
   query {
-    allBlogs {
+    allPost {
       edges {
         node {
           title

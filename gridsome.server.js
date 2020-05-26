@@ -10,13 +10,13 @@ module.exports = (api) => {
   const dataPromise = githubData()
   api.loadSource(async ({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-    const { blogs, labels } = await dataPromise
-    const blogCollection = addCollection('blogs')
-    for (const blog of blogs) {
-      console.log(blog)
-      blogCollection.addNode(blog)
+    const { posts, labels } = await dataPromise
+    const postCollection = addCollection('Post')
+    for (const post of posts) {
+      console.log(post)
+      postCollection.addNode(post)
     }
-    const labelCollection = addCollection('labels')
+    const labelCollection = addCollection('Label')
     console.log(labels)
     for (const label of labels) {
       console.log(label)
