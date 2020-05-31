@@ -4,10 +4,10 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-const githubData = require('./api.github')
+const github = require('./src/api/github')
 
 module.exports = (api) => {
-  const dataPromise = githubData()
+  const dataPromise = github.data()
   api.loadSource(async ({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     const { posts, labels } = await dataPromise
