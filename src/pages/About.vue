@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1>About us</h1>
+    <h1>List</h1>
     <div
       v-for="edge of $page.allPost.edges"
       :key="edge.node.title"
@@ -31,7 +31,7 @@ export default {
     title: 'About us'
   },
   created () {
-    console.log(this.$page)
+    // console.log(this.$page)
   }
 }
 </script>
