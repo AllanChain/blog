@@ -1,5 +1,12 @@
 <template>
-  <div class="layout">
+<v-app>
+    <v-app-bar app dark>
+    </v-app-bar>
+    <v-content>
+    <slot/>
+    </v-content>
+</v-app>
+  <!-- <div class="layout">
     <header class="header">
       <strong>
         <g-link to="/">{{ $static.metadata.siteName }}</g-link>
@@ -10,7 +17,7 @@
       </nav>
     </header>
     <slot/>
-  </div>
+  </div> -->
 </template>
 
 <static-query>

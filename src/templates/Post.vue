@@ -1,8 +1,8 @@
 <template>
-<div>
+<Layout>
   <h1>{{ $page.post.title }}</h1>
   <main v-html="$page.post.body" />
-</div>
+</Layout>
 </template>
 
 <page-query>
