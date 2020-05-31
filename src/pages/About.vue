@@ -8,6 +8,8 @@
       <g-link :to="'/' + edge.node.slug">
         {{ edge.node.title }}
       </g-link>
+      <p>{{ edge.node.createdAt }}</p>
+      <p>{{ edge.node.summary }}</p>
     </div>
   </Layout>
 </template>
@@ -19,6 +21,9 @@
         node {
           title
           slug
+          summary
+          createdAt
+          lastEditedAt
         }
       }
     }

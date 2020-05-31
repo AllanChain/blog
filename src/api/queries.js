@@ -6,6 +6,8 @@ module.exports = {
           node {
             title
             body
+            createdAt
+            lastEditedAt
             labels(first: 5) {
               edges {
                 node {

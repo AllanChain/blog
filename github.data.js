@@ -8,14 +8,8 @@ md.use(require('markdown-it-emoji'))
 
 const patterns = {
   slug: /^\[View Post on Blog\]\(https.*blog\/(.*)\)$/m,
-  createTime: /^\*This post was originally created at (.*)\*$/m,
+  createdAt: /^\*This post was originally created at (.*)\*$/m,
   summary: /^> (.*)/m
-}
-
-const matchFirst = (pattern, text) => {
-  const result = text.match(pattern)
-  if (result === null) return null
-  return result[1]
 }
 
 const parseBody = text => {
@@ -24,7 +18,9 @@ const parseBody = text => {
   result.body = md.render(result.body)
   console.log(result.body)
   for (const key in patterns) {
-    result[key] = matchFirst(patterns[key], text)
+    const match = text.match(patterns[key])
+    // should not override if not provided
+    if (match !== null) result[key] = match[1]
   }
   result.id = result.slug
   return result
@@ -33,8 +29,10 @@ const parseBody = text => {
 module.exports = async () => {
   const repo = await api.gql('data')
   const posts = repo.issues.edges.map(edge => ({
-    ...parseBody(edge.node.body),
+    createdAt: edge.node.createdAt,
+    lastEditedAt: edge.node.lastEditedAt,
     title: edge.node.title,
+    ...parseBody(edge.node.body),
     labels: edge.node.labels.edges.map(edge => edge.node.name)
   }))
   const labels = repo.labels.edges.map(edge => edge.node)
