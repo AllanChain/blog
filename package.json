@@ -11,9 +11,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "gridsome": "^0.7.0",
-    "remark": "^12.0.0",
-    "remark-emoji": "^2.1.0",
-    "remark-html": "^11.0.2",
+    "markdown-it": "^11.0.0",
+    "markdown-it-emoji": "^1.4.0",
     "vuetify": "^2.2.30"
   },
   "devDependencies": {

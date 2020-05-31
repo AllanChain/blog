@@ -5,7 +5,7 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 const nodeExternals = require('webpack-node-externals')
-const github = require('./src/api/github')
+const githubData = require('./github.data')
 
 module.exports = (api) => {
   api.chainWebpack((config, { isServer }) => {
@@ -18,7 +18,7 @@ module.exports = (api) => {
     }
   })
 
-  const dataPromise = github.data()
+  const dataPromise = githubData()
   api.loadSource(async ({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     const { posts, labels } = await dataPromise
