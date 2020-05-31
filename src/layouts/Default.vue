@@ -1,11 +1,13 @@
 <template>
-<v-app>
-    <v-app-bar app dark>
-    </v-app-bar>
+  <v-app>
+    <v-app-bar
+      app
+      dark
+    />
     <v-content>
-    <slot/>
+      <slot />
     </v-content>
-</v-app>
+  </v-app>
   <!-- <div class="layout">
     <header class="header">
       <strong>

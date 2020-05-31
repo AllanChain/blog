@@ -1,22 +1,25 @@
 <template>
-<Layout>
-  <h1>{{ $page.post.title }}</h1>
-  <main v-html="$page.post.body" />
-</Layout>
+  <Layout>
+    <h1>{{ $page.post.title }}</h1>
+    <main
+      class="pa-3"
+      v-html="$page.post.body"
+    />
+  </Layout>
 </template>
 
 <page-query>
-query($id: ID!) {
-  post(id: $id) {
-    title
-    body
+  query($id: ID!) {
+    post(id: $id) {
+      title
+      body
+    }
   }
-}
 </page-query>
 
 <script>
 export default {
-  created() {
+  created () {
     console.log(this.$page)
   }
 }
