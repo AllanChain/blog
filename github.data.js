@@ -5,6 +5,8 @@ const md = require('markdown-it')({
 })
 
 md.use(require('markdown-it-emoji'))
+  .use(require('./src/markdown-it-code'))
+md.renderer.rules.code_block = md.renderer.rules.fence
 
 const patterns = {
   slug: /^\[View Post on Blog\]\(https.*blog\/(.*)\)$/m,

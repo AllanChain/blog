@@ -56,4 +56,12 @@ body {
 .nav__link {
   margin-left: 20px;
 }
+
+pre[class*="language-"] > .v-application code {
+  all: unset;
+}
+
+code[class*="language-"]::after {
+  content: unset;
+}
 </style>

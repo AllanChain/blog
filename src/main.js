@@ -16,6 +16,11 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'
   })
 
+  head.link.push({
+    rel: 'stylesheet',
+    href: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-tomorrow.min.css'
+  })
+
   Vue.use(Vuetify)
 
   appOptions.vuetify = new Vuetify({
