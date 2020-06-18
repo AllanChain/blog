@@ -11,8 +11,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "gridsome": "^0.7.0",
-    "markdown-it": "^11.0.0",
-    "markdown-it-emoji": "^1.4.0",
     "vuetify": "^2.2.30"
   },
   "devDependencies": {

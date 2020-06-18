@@ -5,7 +5,7 @@ module.exports = {
         edges {
           node {
             title
-            body
+            bodyHTML
             createdAt
             lastEditedAt
             labels(first: 5) {

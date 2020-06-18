@@ -13,5 +13,10 @@ module.exports = {
     })
     //          axios gql
     return resp.data.data.repository
+  },
+  htmlConvert (html) {
+    return html.replace(
+      /(<div class="highlight highlight-source-(.*?)">)/g,
+      '$1<div class="code-lang">$2</div>')
   }
 }

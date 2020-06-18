@@ -1,24 +1,17 @@
 const api = require('./src/api/github')
 
-const md = require('markdown-it')({
-  html: true
-})
-
-md.use(require('markdown-it-emoji'))
-  .use(require('./src/markdown-it-code'))
-md.renderer.rules.code_block = md.renderer.rules.fence
-
 const patterns = {
-  slug: /^\[View Post on Blog\]\(https.*blog\/(.*)\)$/m,
-  createdAt: /^\*This post was originally created at (.*)\*$/m,
-  summary: /^> (.*)/m
+  slug: /<a href="https.*blog\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
+  createdAt: /<em>This post was originally created at (.*)<\/em>/s,
+  // summary contains HTML, normally <p>
+  // s means "dot all"
+  summary: /<blockquote>(.*)<\/blockquote>/s
 }
 
 const parseBody = text => {
+  text = api.htmlConvert(text)
   const result = {};
-  [text, result.body] = text.split('---', 2)
-  result.body = md.render(result.body)
-  console.log(result.body)
+  [text, result.body] = text.split('<hr>', 2)
   for (const key in patterns) {
     const match = text.match(patterns[key])
     // should not override if not provided
@@ -34,7 +27,7 @@ module.exports = async () => {
     createdAt: edge.node.createdAt,
     lastEditedAt: edge.node.lastEditedAt,
     title: edge.node.title,
-    ...parseBody(edge.node.body),
+    ...parseBody(edge.node.bodyHTML),
     labels: edge.node.labels.edges.map(edge => edge.node.name)
   }))
   const labels = repo.labels.edges.map(edge => edge.node)

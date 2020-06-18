@@ -9,7 +9,7 @@
         {{ edge.node.title }}
       </g-link>
       <p>{{ edge.node.createdAt }}</p>
-      <p>{{ edge.node.summary }}</p>
+      <div v-html="edge.node.summary" />
     </div>
   </Layout>
 </template>

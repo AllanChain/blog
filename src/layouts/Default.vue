@@ -3,8 +3,9 @@
     <v-app-bar
       app
       dark
+      color="primary"
     />
-    <v-content>
+    <v-content class="ma-5">
       <slot />
     </v-content>
   </v-app>
@@ -55,13 +56,5 @@ body {
 
 .nav__link {
   margin-left: 20px;
-}
-
-pre[class*="language-"] > .v-application code {
-  all: unset;
-}
-
-code[class*="language-"]::after {
-  content: unset;
 }
 </style>
