@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "github-syntax-dark": "^0.5.0",
     "gridsome": "^0.7.0",
+    "primer-markdown": "^4.0.0",
     "vuetify": "^2.2.30"
   },
   "devDependencies": {
@@ -23,6 +24,9 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^4.14.1",
+    "sass": "^1.26.8",
+    "sass-loader": "^7.3.1",
     "vue-eslint-parser": "^7.1.0",
     "webpack-node-externals": "^1.7.2"
   }

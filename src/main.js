@@ -3,7 +3,7 @@
 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import './highlight.css'
+import './style/index.sass'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { appOptions, router, head, isClient }) {

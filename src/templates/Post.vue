@@ -2,7 +2,7 @@
   <Layout>
     <h1>{{ $page.post.title }}</h1>
     <article
-      class="article-main"
+      class="article-main markdown-body"
       v-html="$page.post.body"
     />
   </Layout>
