@@ -6,6 +6,14 @@
   all: unset;
 }
 
+article.article-main :not(pre) > code {
+  color: #476582;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
 .highlight {
   position: relative;
 }
@@ -15,10 +23,10 @@ pre {
   overflow: auto;
   line-height: 1.45;
   background-color: #282c34;
-  color: white;
+  color: #eee8d5;
   border-radius: 3px;
   margin-bottom: 16px;
-  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
 }
 
 .highlight .code-lang {

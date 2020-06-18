@@ -16,7 +16,7 @@ module.exports = {
   },
   htmlConvert (html) {
     return html.replace(
-      /(<div class="highlight highlight-source-(.*?)">)/g,
-      '$1<div class="code-lang">$2</div>')
+      /(<div class="highlight highlight-source-(.*?)">)<pre>(.*?)<\/pre>/gs,
+      '$1<div class="code-lang">$2</div><pre><code>$3</code></pre>')
   }
 }

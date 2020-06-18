@@ -1,7 +1,8 @@
 <template>
   <Layout>
     <h1>{{ $page.post.title }}</h1>
-    <div
+    <article
+      class="article-main"
       v-html="$page.post.body"
     />
   </Layout>
