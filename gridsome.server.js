@@ -17,7 +17,7 @@ module.exports = (api) => {
       ])
     }
   })
-
+  process.env.GRIDSOME_BASE_URL = api.config.publicPath
   const dataPromise = githubData()
   api.loadSource(async ({ addCollection }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/

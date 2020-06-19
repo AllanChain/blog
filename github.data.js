@@ -12,6 +12,8 @@ const parseBody = text => {
   text = api.htmlConvert(text)
   const result = {};
   [text, result.body] = text.split('<hr>', 2)
+  // forget <hr>
+  if (result.body === undefined) result.body = text
   for (const key in patterns) {
     const match = text.match(patterns[key])
     // should not override if not provided
@@ -37,7 +39,11 @@ const parseLabelName = labels => {
 const parseLabels = labels => {
   const result = {}
   for (const label of labels) {
+    [label.description, label.image] = label.description.split('|')
+    // let gridsome know that it do have this field
+    if (label.image === undefined) label.image = null
     const [key, name] = label.name.split(': ')
+    // skip for non-standard tag
     if (name !== undefined) {
       const value = { ...label, id: name }
       if (result[key] !== undefined) result[key].push(value)
