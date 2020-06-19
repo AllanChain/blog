@@ -1,14 +1,14 @@
 on:
   push:
     branches:
-      - master
+      - gridsome
 
 jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@gridsome
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
