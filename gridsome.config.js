@@ -6,6 +6,8 @@
 
 module.exports = {
   siteName: 'AC Dustbin',
+  siteUrl: 'https://allanchian.github.io',
+  pathPrefix: '/blog',
   plugins: [],
   templates: {
     Post: '/:blog/:slug',
