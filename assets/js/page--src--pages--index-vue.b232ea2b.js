@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{173:function(t,n,e){"use strict";e.r(n);var o={metaInfo:{title:"Home"}},r=e(29),a=Object(r.a)(o,(function(){var t=this.$createElement,n=this._self._c||t;return n("Layout",[n("g-link",{attrs:{to:"/programing"}},[this._v("\n    Programing Blog\n  ")])],1)}),[],!1,null,null,null);n.default=a.exports}}]);
