@@ -4,10 +4,37 @@
       app
       dark
       color="primary"
-    />
+    >
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
+    </v-app-bar>
     <v-content class="ma-5">
       <slot />
     </v-content>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <v-list shaped>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              {{ $static.metadata.siteName }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          link
+          to="/"
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -18,6 +45,16 @@
     }
   }
 </static-query>
+
+<script>
+export default {
+  data () {
+    return {
+      drawer: false
+    }
+  }
+}
+</script>
 
 <style>
 body {
