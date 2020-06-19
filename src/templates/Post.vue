@@ -19,6 +19,11 @@
 
 <script>
 export default {
+  metaInfo () {
+    return {
+      title: this.$page.post.title
+    }
+  },
   created () {
     console.log(this.$page)
   }

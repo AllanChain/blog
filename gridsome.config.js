@@ -5,9 +5,11 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'AC Dustbin',
   plugins: [],
   templates: {
-    Post: '/:slug'
+    Post: '/:blog/:slug',
+    Tag: '/tags/:id',
+    Blog: '/:id'
   }
 }

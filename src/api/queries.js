@@ -4,6 +4,7 @@ module.exports = {
       issues(first: 10, labels: ["blog: programing"]) {
         edges {
           node {
+            number
             title
             bodyHTML
             createdAt

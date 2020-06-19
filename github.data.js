@@ -21,15 +21,42 @@ const parseBody = text => {
   return result
 }
 
+const parseLabelName = labels => {
+  const result = {}
+  for (const label of labels) {
+    const [key, value] = label.split(': ')
+    if (value !== undefined) {
+      if (result[key] !== undefined) result[key].push(value)
+      else result[key] = [value]
+    }
+  }
+  result.blog = result.blog ? result.blog[0] : 'programing'
+  return result
+}
+
+const parseLabels = labels => {
+  const result = {}
+  for (const label of labels) {
+    const [key, name] = label.name.split(': ')
+    if (name !== undefined) {
+      const value = { ...label, id: name }
+      if (result[key] !== undefined) result[key].push(value)
+      else result[key] = [value]
+    }
+  }
+  return result
+}
+
 module.exports = async () => {
   const repo = await api.gql('data')
   const posts = repo.issues.edges.map(edge => ({
+    id: edge.node.number,
     createdAt: edge.node.createdAt,
     lastEditedAt: edge.node.lastEditedAt,
     title: edge.node.title,
     ...parseBody(edge.node.bodyHTML),
-    labels: edge.node.labels.edges.map(edge => edge.node.name)
+    ...parseLabelName(edge.node.labels.edges.map(edge => edge.node.name))
   }))
-  const labels = repo.labels.edges.map(edge => edge.node)
+  const labels = parseLabels(repo.labels.edges.map(edge => edge.node))
   return { posts, labels }
 }
