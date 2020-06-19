@@ -8,7 +8,7 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@gridsome
+    - uses: actions/checkout@master
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
