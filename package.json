@@ -13,7 +13,7 @@
     "github-syntax-dark": "^0.5.0",
     "gridsome": "^0.7.0",
     "primer-markdown": "^4.0.0",
-    "vuetify": "^2.2.30"
+    "vuetify": "^2.3.1"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
