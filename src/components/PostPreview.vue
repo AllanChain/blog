@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <g-link :to="post.path">
-      {{ post.title }}
-    </g-link>
-    <p>{{ post.createdAt }}</p>
-    <div v-html="post.summary" />
-  </div>
+  <v-card class="ma-3">
+    <v-card-title>
+      <g-link :to="post.path">
+        {{ post.title }}
+      </g-link>
+    </v-card-title>
+    <v-card-subtitle>
+      {{ post.createdAt }}
+    </v-card-subtitle>
+    <v-card-text class="pb-1">
+      <div v-html="post.summary" />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
