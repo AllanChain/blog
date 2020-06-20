@@ -13,7 +13,7 @@
             :name="edge.node.id"
             :to="edge.node.path"
             :description="edge.node.description"
-            :image="edge.node.image"
+            :logo="edge.node.logo"
           />
         </v-col>
       </v-row>
@@ -28,7 +28,7 @@
         node {
           id
           description
-          image
+          logo
           path
         }
       }

@@ -40,9 +40,9 @@ const parseLabelName = labels => {
 const parseLabels = labels => {
   const result = {}
   for (const label of labels) {
-    [label.description, label.image] = label.description.split('|')
+    [label.description, label.logo] = label.description.split('|')
     // let gridsome know that it do have this field
-    if (label.image === undefined) label.image = null
+    if (label.logo === undefined) label.logo = null
     const [key, name] = label.name.split(': ')
     // skip for non-standard tag
     if (name !== undefined) {

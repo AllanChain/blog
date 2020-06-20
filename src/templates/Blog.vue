@@ -21,7 +21,7 @@
               image
               tag {
                 id
-                image
+                logo
               }
             }
           }

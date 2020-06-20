@@ -4,11 +4,11 @@
       {{ capitalizeName }}
     </v-card-title>
     <div class="d-flex flex-no-wrap justify-space-between">
-      <v-card-text :class="{ 'pr-0' : !!image}">
+      <v-card-text :class="{ 'pr-0' : !!logo}">
         {{ description }}
       </v-card-text>
-      <v-avatar v-if="image" class="ma-3" rounded size="80">
-        <v-img :src="imageUrl" />
+      <v-avatar v-if="logo" class="ma-3" rounded size="80">
+        <v-img :src="logoUrl" />
       </v-avatar>
     </div>
     <v-card-actions>
@@ -41,15 +41,15 @@ export default {
       type: String,
       default: 'Dive In'
     },
-    image: {
+    logo: {
       type: String,
       default: null
     }
   },
   computed: {
-    imageUrl () {
-      if (this.image.startsWith('http')) return this.image
-      return process.env.GRIDSOME_BASE_URL + this.image
+    logoUrl () {
+      if (this.logo.startsWith('http')) return this.logo
+      return process.env.GRIDSOME_BASE_URL + this.logo
     },
     capitalizeName () {
       return capitalize(this.name) + ' Blog'
