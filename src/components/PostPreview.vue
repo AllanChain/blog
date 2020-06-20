@@ -1,5 +1,10 @@
 <template>
   <v-card class="ma-3">
+    <v-img
+      v-if="post.image"
+      max-height="200px"
+      :src="post.image"
+    />
     <v-card-title>
       <g-link :to="post.path">
         {{ post.title }}

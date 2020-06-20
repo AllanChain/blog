@@ -2,10 +2,11 @@ const api = require('./src/api/github')
 
 const patterns = {
   slug: /<a href="https.*blog\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
-  createdAt: /<em>This post was originally created at (.*)<\/em>/s,
+  createdAt: /<em>This post was originally created at (.*?)<\/em>/s,
   // summary contains HTML, normally <p>
   // s means "dot all"
-  summary: /<blockquote>(.*)<\/blockquote>/s
+  summary: /<blockquote>(.*?)<\/blockquote>/s,
+  image: /<img src="(.*?)"/
 }
 
 const parseBody = text => {

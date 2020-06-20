@@ -1,11 +1,7 @@
 <template>
   <Layout>
     <h1>{{ $page.tag.id }}</h1>
-    <PostPreview
-      v-for="edge in $page.tag.belongsTo.edges"
-      :key="edge.node.id"
-      :post="edge.node"
-    />
+    <PostList :edges="$page.tag.belongsTo.edges" />
   </Layout>
 </template>
 
@@ -22,6 +18,11 @@
               path
               summary
               createdAt
+              image
+              tag {
+                id
+                image
+              }
             }
           }
         }
@@ -31,11 +32,11 @@
 </page-query>
 
 <script>
-import PostPreview from '~/components/PostPreview'
+import PostList from '~/components/PostList'
 
 export default {
   components: {
-    PostPreview
+    PostList
   }
 }
 </script>
