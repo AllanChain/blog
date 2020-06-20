@@ -7,9 +7,9 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
     </v-app-bar>
-    <v-content class="ma-5">
+    <v-main class="ma-5">
       <slot />
-    </v-content>
+    </v-main>
     <v-navigation-drawer
       v-model="drawer"
       app
