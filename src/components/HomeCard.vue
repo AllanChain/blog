@@ -1,14 +1,14 @@
 <template>
   <v-card>
     <v-card-title class="headline pb-1">
-      {{ capitalizeName }}
+      {{ capitalize(name) }}
     </v-card-title>
     <div class="d-flex flex-no-wrap justify-space-between">
       <v-card-text :class="{ 'pr-0' : !!logo}">
         {{ description }}
       </v-card-text>
       <v-avatar v-if="logo" class="ma-3" rounded size="80">
-        <v-img :src="logoUrl" />
+        <v-img :src="fixUrl(logo)" />
       </v-avatar>
     </div>
     <v-card-actions>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import utils from '@/utils'
+import { fixUrl, capitalize } from '@/utils'
 
 export default {
   props: {
@@ -46,9 +46,9 @@ export default {
       default: null
     }
   },
-  computed: {
-    logoUrl: () => utils.fixUrl(this.logo),
-    capitalizeName: () => utils.capitalize(this.name) + ' Blog'
+  methods: {
+    fixUrl,
+    capitalize
   }
 }
 </script>
