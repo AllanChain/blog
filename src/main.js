@@ -2,8 +2,8 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-import './style/index.sass'
+// import 'vuetify/dist/vuetify.min.css'
+import './style.sass'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
