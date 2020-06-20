@@ -14,6 +14,7 @@
       </div>
       <div>{{ formatTime($page.post.createdAt) }}</div>
     </div>
+    <v-divider class="my-3" />
     <article
       class="article-main markdown-body mx-auto"
       style="max-width: 900px"
