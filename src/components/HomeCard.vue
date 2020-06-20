@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import capitalize from '@/utils'
+import utils from '@/utils'
 
 export default {
   props: {
@@ -52,7 +52,7 @@ export default {
       return process.env.GRIDSOME_BASE_URL + this.logo
     },
     capitalizeName () {
-      return capitalize(this.name) + ' Blog'
+      return utils.capitalize(this.name) + ' Blog'
     }
   }
 }
