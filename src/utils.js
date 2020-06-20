@@ -33,7 +33,7 @@ module.exports = {
    */
   fixUrl (url) {
     if (url.startsWith('http')) return url
-    return process.env.GRIDSOME_BASE_URL + url
+    return require(`@/assets/${url}?vuetify-preload`)
   },
   /**
    * Judge if the luminance of the color is smaller than the threshold

@@ -4,18 +4,17 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-const nodeExternals = require('webpack-node-externals')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./github.data')
 
 module.exports = (api) => {
   api.chainWebpack((config, { isServer }) => {
-    if (isServer) {
-      config.externals([
-        nodeExternals({
-          whitelist: [/^vuetify/]
-        })
-      ])
-    }
+    config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
+    config.plugin('VuetifyLoaderPlugin').tap(args => [{
+      progressiveImages: {
+        sharp: true
+      }
+    }])
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
   const dataPromise = githubData()
