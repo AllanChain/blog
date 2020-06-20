@@ -22,6 +22,8 @@
               tag {
                 id
                 logo
+                color
+                path
               }
             }
           }

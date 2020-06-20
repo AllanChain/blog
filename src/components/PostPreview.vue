@@ -16,9 +16,18 @@
           {{ formatTime(post.createdAt) }}
         </v-card-subtitle>
         <v-card-text class="pb-1">
+          <div class="mb-1">
+            <PostTag
+              v-for="tag of post.tag"
+              :key="tag.id"
+              :color="`#${tag.color}`"
+              :tag="tag"
+            />
+          </div>
           <div v-html="post.summary" />
         </v-card-text>
       </div>
+      <!-- If no heading image and have tag logo -->
       <v-avatar
         v-if="!post.image && post.tag.length && post.tag[0].logo"
         class="ma-3"
@@ -39,8 +48,12 @@
 
 <script>
 import { fixUrl, formatTime } from '@/utils'
+import PostTag from '@/components/PostTag'
 
 export default {
+  components: {
+    PostTag
+  },
   props: {
     post: {
       type: Object,
