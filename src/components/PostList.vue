@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row>
+    <v-row align="center">
       <v-col
         v-for="edge of edges"
         :key="edge.node.id"
