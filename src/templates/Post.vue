@@ -15,7 +15,8 @@
       <div>{{ formatTime($page.post.createdAt) }}</div>
     </div>
     <article
-      class="article-main markdown-body"
+      class="article-main markdown-body mx-auto"
+      style="max-width: 900px"
       v-html="$page.post.body"
     />
   </Layout>
