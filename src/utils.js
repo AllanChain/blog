@@ -21,10 +21,10 @@ module.exports = {
    */
   formatTime (s) {
     const d = new Date(s)
-    return (
-      `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()} ` +
-      `${pad2(d.getHours())}:${pad2(d.getMinutes())}`
-    )
+    const date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+    let time = `${pad2(d.getHours())}:${pad2(d.getMinutes())}`
+    if (time === '00:00') time = '11:11' // better default
+    return `${date} ${time}`
   },
   /**
    * Prefix with BASE_URL if not on other domain
