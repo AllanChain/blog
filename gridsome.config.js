@@ -4,6 +4,15 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
+const plugins = []
+if (process.env.WEBPACK_STATS) {
+  const { StatsWriterPlugin } = require('webpack-stats-plugin')
+  plugins.push(new StatsWriterPlugin({
+    fields: null,
+    stats: { chunkModules: true }
+  }))
+}
+
 module.exports = {
   siteName: 'AC Dustbin',
   siteUrl: 'https://allanchian.github.io',
@@ -13,5 +22,6 @@ module.exports = {
     Post: '/:blog/:slug',
     Tag: '/tags/:id',
     Blog: '/:id'
-  }
+  },
+  configureWebpack: { plugins }
 }
