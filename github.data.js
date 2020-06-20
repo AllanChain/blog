@@ -55,7 +55,14 @@ const parseLabels = labels => {
 }
 
 module.exports = async () => {
-  const repo = await api.gql('data')
+  const repo = await api.gql('data', {
+    repo: 'blog',
+    owner: 'AllanChain',
+    postCount: 10,
+    postLabels: ['blog: programing'],
+    postLabelCount: 5,
+    labelCount: 10
+  })
   const posts = repo.issues.edges.map(edge => ({
     id: edge.node.number,
     createdAt: edge.node.createdAt,

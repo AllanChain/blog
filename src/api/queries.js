@@ -1,7 +1,8 @@
 module.exports = {
-  data: `{
-    repository(name: "blog", owner: "AllanChain") {
-      issues(first: 10, labels: ["blog: programing"]) {
+  data: `
+  query($repo: String!, $owner: String!, $postCount: Int!, $postLabels: [String!], $postLabelCount: Int!, $labelCount: Int!) {
+    repository(name: $repo, owner: $owner) {
+      issues(first: $postCount, labels: $postLabels) {
         edges {
           node {
             number
@@ -9,7 +10,7 @@ module.exports = {
             bodyHTML
             createdAt
             lastEditedAt
-            labels(first: 5) {
+            labels(first: $postLabelCount) {
               edges {
                 node {
                   name
@@ -19,7 +20,7 @@ module.exports = {
           }
         }
       }
-      labels(first: 5) {
+      labels(first: $labelCount) {
         edges {
           node {
             name
