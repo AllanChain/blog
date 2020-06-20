@@ -47,13 +47,8 @@ export default {
     }
   },
   computed: {
-    logoUrl () {
-      if (this.logo.startsWith('http')) return this.logo
-      return process.env.GRIDSOME_BASE_URL + this.logo
-    },
-    capitalizeName () {
-      return utils.capitalize(this.name) + ' Blog'
-    }
+    logoUrl: () => utils.fixUrl(this.logo),
+    capitalizeName: () => utils.capitalize(this.name) + ' Blog'
   }
 }
 </script>
