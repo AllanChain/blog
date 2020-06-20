@@ -13,6 +13,7 @@
         />
       </div>
       <div>{{ formatTime($page.post.createdAt) }}</div>
+      <v-img v-if="$page.post.image" :src="$page.post.image" />
     </div>
     <v-divider class="my-3" />
     <article
