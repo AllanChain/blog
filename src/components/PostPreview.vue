@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-3">
+  <v-card>
     <v-img
       v-if="post.image"
       max-height="200px"
