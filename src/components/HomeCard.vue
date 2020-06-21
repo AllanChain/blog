@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="headline pb-1">
-      {{ capitalize(name) }}
+      {{ name }}
     </v-card-title>
     <div class="d-flex flex-no-wrap justify-space-between">
       <v-card-text :class="{ 'pr-0' : !!logo}">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { fixUrl, capitalize } from '@/utils'
+import { fixUrl } from '@/utils'
 
 export default {
   props: {
@@ -46,9 +46,6 @@ export default {
       default: null
     }
   },
-  methods: {
-    fixUrl,
-    capitalize
-  }
+  methods: { fixUrl }
 }
 </script>

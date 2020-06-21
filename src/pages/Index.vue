@@ -10,7 +10,7 @@
           md="4"
         >
           <HomeCard
-            :name="edge.node.id"
+            :name="capitalize(edge.node.id) + ' Blog'"
             :to="edge.node.path"
             :description="edge.node.description"
             :logo="edge.node.logo"
@@ -38,6 +38,7 @@
 
 <script>
 import HomeCard from '~/components/HomeCard'
+import { capitalize } from '@/utils'
 
 export default {
   metaInfo: {
@@ -45,7 +46,8 @@ export default {
   },
   components: {
     HomeCard
-  }
+  },
+  methods: { capitalize }
 }
 </script>
 
