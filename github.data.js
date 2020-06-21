@@ -1,7 +1,7 @@
 const api = require('./src/api/github')
 
 const patterns = {
-  slug: /<a href="https.*blog\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
+  slug: /<a href="https.*post\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
   createdAt: /<em>This post was originally created at (.*?)<\/em>/s,
   // summary contains HTML, normally <p>
   // s means "dot all"

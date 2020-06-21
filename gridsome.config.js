@@ -19,9 +19,9 @@ module.exports = {
   pathPrefix: '/blog',
   plugins: [],
   templates: {
-    Post: '/:blog/:slug',
-    Tag: '/tags/:id',
-    Blog: '/:id'
+    Post: '/post/:slug',
+    Tag: '/tag/:id',
+    Blog: '/blog/:id'
   },
   configureWebpack: { plugins }
 }
