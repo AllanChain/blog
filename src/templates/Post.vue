@@ -1,5 +1,8 @@
 <template>
   <Layout>
+    <template #title>
+      {{ $page.post.title }}
+    </template>
     <div class="article-head text-center">
       <h1 class="article-title">
         {{ $page.post.title }}

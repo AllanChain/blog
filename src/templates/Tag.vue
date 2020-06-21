@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <h1>{{ $page.tag.id }}</h1>
+    <template #title>
+      {{ capitalize($page.tag.id) }}
+    </template>
     <PostList :edges="$page.tag.belongsTo.edges" />
   </Layout>
 </template>
@@ -35,10 +37,12 @@
 
 <script>
 import PostList from '~/components/PostList'
+import { capitalize } from '@/utils'
 
 export default {
   components: {
     PostList
-  }
+  },
+  methods: { capitalize }
 }
 </script>

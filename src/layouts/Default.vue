@@ -6,6 +6,11 @@
       color="primary"
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-toolbar-title class="pl-0">
+        <slot name="title">
+          AC Dustbin
+        </slot>
+      </v-toolbar-title>
     </v-app-bar>
     <v-main class="ma-5">
       <slot />
