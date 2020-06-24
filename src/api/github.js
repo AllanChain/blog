@@ -13,7 +13,10 @@ module.exports = {
         Authorization: 'bearer bc48cb2be22ab0b18b1a5dd0daa3dcc6501b5632'
       }
     })
-    console.log(resp.data)
+    if (resp.data.error) {
+      console.log(resp.data.errors)
+      throw resp.data.errors[0].message
+    }
     //          axios gql
     return resp.data.data
   },
