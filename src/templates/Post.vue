@@ -16,8 +16,14 @@
         />
       </div>
       <div>
-        <v-icon>mdi-calendar-month-outline</v-icon>
-        {{ formatTime($page.post.createdAt) }}
+        <span class="px-3 py-1 d-inline-block">
+          <v-icon>mdi-calendar-month-outline</v-icon>
+          {{ formatTime($page.post.createdAt) }}
+        </span>
+        <span class="px-3 py-1 d-inline-block">
+          <v-icon>mdi-calendar-edit</v-icon>
+          {{ formatTime($page.post.lastEditedAt) }}
+        </span>
       </div>
       <v-img v-if="$page.post.image" :src="$page.post.image" />
     </div>
@@ -42,6 +48,7 @@
       summary
       body
       createdAt
+      lastEditedAt
       image
       labels {
         id
