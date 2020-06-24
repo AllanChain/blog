@@ -15,7 +15,12 @@
         Comment on GitHub
       </v-btn>
     </v-alert>
-    <v-timeline align-top dense>
+    <v-timeline
+      v-if="comments.length"
+      align-top
+      dense
+      style="margin-left: -30px;"
+    >
       <v-timeline-item v-for="comment in comments" :key="comment.id" left>
         <template v-slot:icon>
           <v-avatar>
@@ -44,7 +49,7 @@ export default {
   },
   data () {
     return {
-      comments: null
+      comments: []
     }
   },
   async created () {
