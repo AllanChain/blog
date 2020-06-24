@@ -6,7 +6,7 @@
     :to="tag.path"
     small
   >
-    {{ tag.id }}
+    {{ tag.name }}
   </v-chip>
 </template>
 

@@ -9,6 +9,8 @@ const patterns = {
   image: /<img src="(.*?)"/
 }
 
+const includedLabelTypes = ['blog', 'tag', 'series']
+
 const parseBody = text => {
   text = api.htmlConvert(text)
   const result = {};
@@ -24,34 +26,15 @@ const parseBody = text => {
   return result
 }
 
-const parseLabelName = labels => {
-  const result = {}
-  for (const label of labels) {
-    const [key, value] = label.split(': ')
-    if (value !== undefined) {
-      if (result[key] !== undefined) result[key].push(value)
-      else result[key] = [value]
-    }
-  }
-  result.blog = result.blog ? result.blog[0] : 'programing'
-  return result
+const isGoodLabel = label => {
+  const result = label.name.split(': ')
+  return result.length === 2 && includedLabelTypes.includes(result[0])
 }
 
-const parseLabels = labels => {
-  const result = {}
-  for (const label of labels) {
-    [label.description, label.logo] = label.description.split('|')
-    // let gridsome know that it do have this field
-    if (label.logo === undefined) label.logo = null
-    const [key, name] = label.name.split(': ')
-    // skip for non-standard tag
-    if (name !== undefined) {
-      const value = { ...label, id: name }
-      if (result[key] !== undefined) result[key].push(value)
-      else result[key] = [value]
-    }
-  }
-  return result
+const parseLabel = label => {
+  const [description, logo] = label.description.split('|')
+  const [type, name] = label.name.split(': ')
+  return { description, logo, id: label.name, color: label.color, type, name }
 }
 
 module.exports = async () => {
@@ -65,12 +48,14 @@ module.exports = async () => {
   })
   const posts = repo.issues.edges.map(edge => ({
     id: edge.node.number,
-    createdAt: edge.node.createdAt,
-    lastEditedAt: edge.node.lastEditedAt,
+    createdAt: new Date(edge.node.createdAt),
+    lastEditedAt: new Date(edge.node.lastEditedAt),
     title: edge.node.title,
     ...parseBody(edge.node.bodyHTML),
-    ...parseLabelName(edge.node.labels.edges.map(edge => edge.node.name))
+    labels: edge.node.labels.edges.map(edge => edge.node)
+      .filter(isGoodLabel).map(label => label.name)
   }))
-  const labels = parseLabels(repo.labels.edges.map(edge => edge.node))
+  const labels = repo.labels.edges.map(edge => edge.node)
+    .filter(isGoodLabel).map(parseLabel)
   return { posts, labels }
 }

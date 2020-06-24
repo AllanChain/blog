@@ -3,14 +3,14 @@
     <v-container fluid>
       <v-row>
         <v-col
-          v-for="edge of $static.allBlog.edges"
+          v-for="edge of $static.allLabel.edges"
           :key="edge.node.id"
           cols="12"
           sm="6"
           md="4"
         >
           <HomeCard
-            :name="capitalize(edge.node.id) + ' Blog'"
+            :name="capitalize(edge.node.name) + ' Blog'"
             :to="edge.node.path"
             :description="edge.node.description"
             :logo="edge.node.logo"
@@ -23,10 +23,10 @@
 
 <static-query>
   query {
-    allBlog {
+    allLabel(filter: { type: { eq: "blog" } }) {
       edges {
         node {
-          id
+          name
           description
           logo
           path

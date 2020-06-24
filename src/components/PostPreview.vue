@@ -18,7 +18,7 @@
         <v-card-text class="pb-1">
           <div class="mb-1">
             <PostTag
-              v-for="tag of post.tag"
+              v-for="tag of tags"
               :key="tag.id"
               :color="`#${tag.color}`"
               :tag="tag"
@@ -29,12 +29,12 @@
       </div>
       <!-- If no heading image and have tag logo -->
       <v-avatar
-        v-if="!post.image && post.tag.length && post.tag[0].logo"
+        v-if="!post.image && tags.length && tags[0].logo"
         class="ma-3"
         rounded
         size="80"
       >
-        <v-img :src="fixUrl(post.tag[0].logo)" />
+        <v-img :src="fixUrl(tags[0].logo)" />
       </v-avatar>
     </div>
     <v-card-actions>
@@ -58,6 +58,11 @@ export default {
     post: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    tags () {
+      return this.post.labels.filter(label => label.type === 'tag')
     }
   },
   methods: {

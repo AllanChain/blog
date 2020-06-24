@@ -20,8 +20,7 @@ module.exports = {
   plugins: [],
   templates: {
     Post: '/post/:slug',
-    Tag: '/tag/:id',
-    Blog: '/blog/:id'
+    Label: '/:type/:name'
   },
   configureWebpack: { plugins }
 }

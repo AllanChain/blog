@@ -9,7 +9,7 @@
       </h1>
       <div class="mb-2">
         <PostTag
-          v-for="tag of $page.post.tag"
+          v-for="tag of tags"
           :key="tag.id"
           :color="`#${tag.color}`"
           :tag="tag"
@@ -36,8 +36,10 @@
       body
       createdAt
       image
-      tag {
+      labels {
         id
+        name
+        type
         color
         path
       }
@@ -56,6 +58,11 @@ export default {
     }
   },
   components: { PostTag },
+  computed: {
+    tags () {
+      return this.$page.post.labels.filter(label => label.type === 'tag')
+    }
+  },
   methods: { formatTime }
 }
 </script>

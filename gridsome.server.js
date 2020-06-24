@@ -18,25 +18,40 @@ module.exports = (api) => {
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
   const dataPromise = githubData()
-  api.loadSource(async ({ addCollection }) => {
+  api.loadSource(async ({ addCollection, addSchemaTypes }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+    addSchemaTypes(`
+      type Post implements Node {
+        title: String,
+        createdAt: Date,
+        lastEditedAt: Date,
+        slug: String,
+        summary: String,
+        image: String,
+        labels: [Label],
+        body: String
+      }
+    `)
+    addSchemaTypes(`
+      type Label implements Node {
+        description: String,
+        logo: String,
+        name: String,
+        type: String,
+        color: String
+      }
+    `)
     const { posts, labels } = await dataPromise
     const postCollection = addCollection('Post')
-    const tagCollection = addCollection('Tag')
-    const blogCollection = addCollection('Blog')
-    postCollection.addReference('tag', 'Tag')
-    postCollection.addReference('blog', 'Blog')
+    const labelCollection = addCollection('Label')
+    postCollection.addReference('labels', 'Label')
 
     for (const post of posts) {
       postCollection.addNode(post)
     }
-    for (const tag of labels.tag) {
-      console.log(tag)
-      tagCollection.addNode(tag)
-    }
-    for (const blog of labels.blog) {
-      console.log(blog)
-      blogCollection.addNode(blog)
+    for (const label of labels) {
+      console.log(label)
+      labelCollection.addNode(label)
     }
   })
 
