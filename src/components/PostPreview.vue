@@ -36,7 +36,7 @@
       </v-avatar>
     </div>
     <v-card-text class="py-0">
-      <div v-html="post.summary" />
+      <div class="clean-last-p" v-html="post.summary" />
     </v-card-text>
     <v-card-actions>
       <v-spacer />
