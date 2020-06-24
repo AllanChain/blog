@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "github-syntax-dark": "^0.5.0",
     "gridsome": "^0.7.17",
+    "gridsome-plugin-pwa": "0.0.18",
     "primer-markdown": "^4.0.0",
     "vuetify": "^2.3.1"
   },
