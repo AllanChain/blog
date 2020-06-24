@@ -1,15 +1,38 @@
 module.exports = {
   data: `
-  query($repo: String!, $owner: String!, $postCount: Int!, $postLabels: [String!], $postLabelCount: Int!, $labelCount: Int!) {
+  query(
+    $repo: String!
+    $owner: String!
+    $postCount: Int!
+    $postLabels: [String!]
+    $postLabelCount: Int!
+    $labelCount: Int!
+    $reactionCount: Int!
+  ) {
     repository(name: $repo, owner: $owner) {
-      issues(first: $postCount, labels: $postLabels, filterBy: { createdBy: $owner }) {
+      issues(
+        first: $postCount
+        labels: $postLabels
+        filterBy: { createdBy: $owner }
+      ) {
         edges {
           node {
             number
             title
             bodyHTML
             createdAt
+            includesCreatedEdit
             lastEditedAt
+            reactions(first: $reactionCount) {
+              edges {
+                node {
+                  content
+                  user {
+                    login
+                  }
+                }
+              }
+            }
             labels(first: $postLabelCount) {
               edges {
                 node {
@@ -32,9 +55,25 @@ module.exports = {
     }
   }`,
   comment: `
-  query($repo: String!, $owner: String!, $postNumber: Int!, $commentCount: Int!, $reactionCount: Int!) {
+  query(
+    $repo: String!,
+    $owner: String!,
+    $postNumber: Int!,
+    $commentCount: Int!,
+    $reactionCount: Int!
+  ) {
     repository(name: $repo, owner: $owner) {
       issue(number: $postNumber) {
+        reactions(first: $reactionCount) {
+          edges {
+            node {
+              content
+              user {
+                login
+              }
+            }
+          }
+        }
         comments(first: $commentCount) {
           edges {
             node {
@@ -44,6 +83,7 @@ module.exports = {
                 login
               }
               bodyHTML
+              includesCreatedEdit
               lastEditedAt
               reactions(first: $reactionCount) {
                 edges {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Reactions v-if="loadStatus === 'success'" :reactions="postReactions" />
     <v-divider class="my-3" />
     <v-alert type="info" border="left" :icon="false">
       <p class="my-2 d-inline-block">
@@ -18,8 +19,14 @@
         Comment on GitHub
       </v-btn>
     </v-alert>
+    <div v-if="loadStatus === 'loading'" class="text-center">
+      <v-progress-circular indeterminate color="primary" />
+    </div>
+    <v-alert v-else-if="loadStatus === 'error'" type="error" border="left">
+      Error making GitHub API call
+    </v-alert>
     <v-timeline
-      v-if="comments.length"
+      v-else-if="comments.length"
       align-top
       dense
       style="margin-left: -30px;"
@@ -59,15 +66,24 @@ export default {
   },
   data () {
     return {
-      comments: []
+      comments: [],
+      postReactions: [],
+      loadStatus: 'loading'
     }
   },
   async created () {
-    const data = await ghApi.gql('comment', {
-      postNumber: this.number
-    })
-    this.comments = data.repository.issue.comments.edges
-      .map(edge => edge.node)
+    try {
+      const data = await ghApi.gql('comment', {
+        postNumber: this.number
+      })
+      this.comments = data.repository.issue.comments.edges
+        .map(edge => edge.node)
+      this.postReactions = data.repository.issue.reactions.edges
+        .map(edge => edge.node)
+      this.loadStatus = 'success'
+    } catch (err) {
+      this.loadStatus = 'error'
+    }
   }
 }
 </script>
