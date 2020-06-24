@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-[View Post on Blog](https://allanchain.github.io/iblog/<slug>)
+[View Post on Blog](https://allanchain.github.io/blog/post/<slug>)
 
 > 
 
