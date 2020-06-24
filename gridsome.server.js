@@ -22,23 +22,23 @@ module.exports = (api) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     addSchemaTypes(`
       type Post implements Node {
-        title: String,
-        createdAt: Date,
-        lastEditedAt: Date,
-        slug: String,
+        title: String!,
+        createdAt: Date!,
+        lastEditedAt: Date!,
+        slug: String!,
         summary: String,
         image: String,
         labels: [Label],
-        body: String
+        body: String!
       }
     `)
     addSchemaTypes(`
       type Label implements Node {
         description: String,
         logo: String,
-        name: String,
-        type: String,
-        color: String
+        name: String!,
+        type: String!,
+        color: String!
       }
     `)
     const { posts, labels } = await dataPromise
