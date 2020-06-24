@@ -38,7 +38,7 @@
           </v-avatar>
         </template>
         <v-card>
-          <v-card-text class="black--text">
+          <v-card-text class="black--text clean-last-p">
             <div v-html="comment.bodyHTML" />
           </v-card-text>
           <v-card-actions>
