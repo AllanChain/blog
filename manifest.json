@@ -1,6 +1,7 @@
 {
   "name": "AC Dustbin",
-  "short_name": "Gridsome",
+  "short_name": "AC Dustbin",
+  "description": "AllanChain's Dustbin",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#666600",
