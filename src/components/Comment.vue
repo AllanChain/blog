@@ -31,6 +31,11 @@
           <v-card-text class="black--text">
             <div v-html="comment.bodyHTML" />
           </v-card-text>
+          <v-card-actions>
+            <Reactions
+              :reactions="comment.reactions.edges.map(edge => edge.node)"
+            />
+          </v-card-actions>
         </v-card>
       </v-timeline-item>
     </v-timeline>
@@ -39,8 +44,10 @@
 
 <script>
 import ghApi from '@/api/github'
+import Reactions from '@/components/Reactions'
 
 export default {
+  components: { Reactions },
   props: {
     number: {
       type: Number,
