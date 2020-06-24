@@ -32,6 +32,7 @@
               path
               summary
               createdAt
+              lastEditedAt
               image
               labels {
                 id
