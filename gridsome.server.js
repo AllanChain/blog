@@ -46,13 +46,8 @@ module.exports = (api) => {
     const labelCollection = addCollection('Label')
     postCollection.addReference('labels', 'Label')
 
-    for (const post of posts) {
-      postCollection.addNode(post)
-    }
-    for (const label of labels) {
-      console.log(label)
-      labelCollection.addNode(label)
-    }
+    for (const post of posts) postCollection.addNode(post)
+    for (const label of labels) labelCollection.addNode(label)
   })
 
   api.createPages(({ createPage }) => {
