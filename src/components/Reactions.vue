@@ -3,6 +3,7 @@
     <v-chip
       v-for="(reaction, name) in sortedReactions"
       :key="name"
+      class="ma-1"
       color="primary"
       outlined
     >

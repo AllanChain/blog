@@ -1,7 +1,10 @@
 <template>
   <div>
-    <Reactions v-if="loadStatus === 'success'" :reactions="postReactions" />
-    <v-divider class="my-3" />
+    <Reactions
+      v-if="loadStatus === 'success'"
+      class="mt-5 mb-1"
+      :reactions="postReactions"
+    />
     <v-alert type="info" border="left" :icon="false">
       <p class="my-2 d-inline-block">
         Want to share your thoughts on this post?
