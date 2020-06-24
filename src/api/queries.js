@@ -83,8 +83,7 @@ module.exports = {
                 login
               }
               bodyHTML
-              includesCreatedEdit
-              lastEditedAt
+              createdAt
               reactions(first: $reactionCount) {
                 edges {
                   node {

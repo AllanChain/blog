@@ -34,7 +34,11 @@
       dense
       style="margin-left: -30px;"
     >
-      <v-timeline-item v-for="comment in comments" :key="comment.id" left>
+      <v-timeline-item
+        v-for="comment in comments"
+        :key="comment.id"
+        left
+      >
         <template v-slot:icon>
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
@@ -45,11 +49,14 @@
             <span>{{ comment.author.login }}</span>
           </v-tooltip>
         </template>
-        <v-card>
-          <v-card-text class="black--text clean-last-p">
+        <v-card color="blue-grey">
+          <div class="py-1 px-3 white--text">
+            {{ formatTime(comment.createdAt) }}
+          </div>
+          <v-card-text class="white black--text clean-last-p">
             <div v-html="comment.bodyHTML" />
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="white">
             <Reactions
               :reactions="comment.reactions.edges.map(edge => edge.node)"
             />
@@ -62,6 +69,7 @@
 
 <script>
 import ghApi from '@/api/github'
+import { formatTime } from '@/utils'
 import Reactions from '@/components/Reactions'
 
 export default {
@@ -92,7 +100,8 @@ export default {
     } catch (err) {
       this.loadStatus = 'error'
     }
-  }
+  },
+  methods: { formatTime }
 }
 </script>
 
