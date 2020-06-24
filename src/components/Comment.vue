@@ -5,7 +5,13 @@
       <p class="my-2 d-inline-block">
         Want to share your thoughts on this post?
       </p>
-      <v-btn class="float-right" color="purple">
+      <v-btn
+        class="float-right"
+        color="purple"
+        target="_blank"
+        rel="noopener"
+        :href="`https://github.com/AllanChain/blog/issues/${number}#new_comment_field`"
+      >
         Comment on GitHub
       </v-btn>
     </v-alert>
