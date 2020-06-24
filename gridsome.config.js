@@ -37,9 +37,9 @@ module.exports = {
       statusBarStyle: 'default',
       themeColor: '#666600',
       backgroundColor: '#ffffff',
-      icon: 'src/favicon.png'
-      // shortName: 'AC Dustbin', // Optional
-      // description: 'AllanChain\'s Dustbin', // Optional
+      icon: 'src/favicon.png',
+      shortName: 'AC Dustbin', // Optional
+      description: 'AllanChain\'s Dustbin' // Optional
       // gcmSenderId: undefined, // Optional
       // // Standard Meta Tags
       // svgFavicon: 'favicon.png', // Optional. Requires favicon.ico fallback
