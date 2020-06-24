@@ -2,7 +2,7 @@ module.exports = {
   data: `
   query($repo: String!, $owner: String!, $postCount: Int!, $postLabels: [String!], $postLabelCount: Int!, $labelCount: Int!) {
     repository(name: $repo, owner: $owner) {
-      issues(first: $postCount, labels: $postLabels) {
+      issues(first: $postCount, labels: $postLabels, filterBy: { createdBy: $owner }) {
         edges {
           node {
             number
