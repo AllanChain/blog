@@ -1,8 +1,10 @@
 const axios = require('axios')
 const queries = require('./queries')
+const config = require('./config')
 
 module.exports = {
   async gql (query, variables) {
+    variables = { ...config, ...variables }
     const resp = await axios({
       method: 'post',
       url: 'https://api.github.com/graphql',
@@ -11,8 +13,9 @@ module.exports = {
         Authorization: 'bearer bc48cb2be22ab0b18b1a5dd0daa3dcc6501b5632'
       }
     })
+    console.log(resp.data)
     //          axios gql
-    return resp.data.data.repository
+    return resp.data.data
   },
   htmlConvert (html) {
     return html.replace(

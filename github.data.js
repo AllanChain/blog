@@ -22,7 +22,6 @@ const parseBody = text => {
     // should not override if not provided
     if (match !== null) result[key] = match[1]
   }
-  result.id = result.slug
   return result
 }
 
@@ -38,14 +37,7 @@ const parseLabel = label => {
 }
 
 module.exports = async () => {
-  const repo = await api.gql('data', {
-    repo: 'blog',
-    owner: 'AllanChain',
-    postCount: 10,
-    postLabels: ['blog: programing'],
-    postLabelCount: 5,
-    labelCount: 10
-  })
+  const repo = (await api.gql('data')).repository
   const posts = repo.issues.edges.map(edge => ({
     id: edge.node.number,
     createdAt: new Date(edge.node.createdAt),

@@ -32,10 +32,11 @@
       class="article-main markdown-body mx-auto"
       style="max-width: 900px"
     >
-      <v-alert type="info" border="left" max-width="900">
+      <v-alert type="info" border="left">
         <div class="clean-last-p" v-html="$page.post.summary" />
       </v-alert>
       <div v-html="$page.post.body" />
+      <Comment :number="parseInt($page.post.id, 10)" />
     </article>
   </Layout>
 </template>
@@ -64,6 +65,7 @@
 <script>
 import { formatTime } from '@/utils'
 import PostTag from '@/components/PostTag'
+import Comment from '@/components/Comment'
 
 export default {
   metaInfo () {
@@ -71,7 +73,7 @@ export default {
       title: this.$page.post.title
     }
   },
-  components: { PostTag },
+  components: { PostTag, Comment },
   computed: {
     tags () {
       return this.$page.post.labels.filter(label => label.type === 'tag')

@@ -31,6 +31,36 @@ module.exports = {
       }
     }
   }`,
+  comment: `
+  query($repo: String!, $owner: String!, $postNumber: Int!, $commentCount: Int!, $reactionCount: Int!) {
+    repository(name: $repo, owner: $owner) {
+      issue(number: $postNumber) {
+        comments(first: $commentCount) {
+          edges {
+            node {
+              id
+              author {
+                avatarUrl(size: 64)
+                login
+              }
+              bodyHTML
+              lastEditedAt
+              reactions(first: $reactionCount) {
+                edges {
+                  node {
+                    content
+                    user {
+                      login
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }`,
   search: `{
     search(
       first: 2,

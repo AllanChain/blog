@@ -22,6 +22,7 @@ module.exports = (api) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     addSchemaTypes(`
       type Post implements Node {
+        id: ID!,
         title: String!,
         createdAt: Date!,
         lastEditedAt: Date!,
@@ -34,6 +35,7 @@ module.exports = (api) => {
     `)
     addSchemaTypes(`
       type Label implements Node {
+        id: ID!,
         description: String,
         logo: String,
         name: String!,
