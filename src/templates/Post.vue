@@ -15,15 +15,22 @@
           :tag="tag"
         />
       </div>
-      <div>{{ formatTime($page.post.createdAt) }}</div>
+      <div>
+        <v-icon>mdi-calendar-month-outline</v-icon>
+        {{ formatTime($page.post.createdAt) }}
+      </div>
       <v-img v-if="$page.post.image" :src="$page.post.image" />
     </div>
     <v-divider class="my-3" />
     <article
       class="article-main markdown-body mx-auto"
       style="max-width: 900px"
-      v-html="$page.post.body"
-    />
+    >
+      <v-alert type="info" border="left" max-width="900">
+        <div class="clean-last-p" v-html="$page.post.summary" />
+      </v-alert>
+      <div v-html="$page.post.body" />
+    </article>
   </Layout>
 </template>
 
