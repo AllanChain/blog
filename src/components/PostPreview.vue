@@ -13,18 +13,16 @@
     >
       <div>
         <v-card-subtitle>
+          <v-icon>mdi-calendar-month-outline</v-icon>
           {{ formatTime(post.createdAt) }}
         </v-card-subtitle>
-        <v-card-text class="pb-1">
-          <div class="mb-1">
-            <PostTag
-              v-for="tag of tags"
-              :key="tag.id"
-              :color="`#${tag.color}`"
-              :tag="tag"
-            />
-          </div>
-          <div v-html="post.summary" />
+        <v-card-text v-if="tags.length">
+          <PostTag
+            v-for="tag of tags"
+            :key="tag.id"
+            :color="`#${tag.color}`"
+            :tag="tag"
+          />
         </v-card-text>
       </div>
       <!-- If no heading image and have tag logo -->
@@ -37,6 +35,9 @@
         <v-img :src="fixUrl(tags[0].logo)" />
       </v-avatar>
     </div>
+    <v-card-text class="py-0">
+      <div v-html="post.summary" />
+    </v-card-text>
     <v-card-actions>
       <v-spacer />
       <v-btn text :to="post.path" color="primary">
