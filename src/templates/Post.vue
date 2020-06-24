@@ -32,7 +32,7 @@
       class="article-main markdown-body mx-auto"
       style="max-width: 900px"
     >
-      <v-alert type="info" border="left">
+      <v-alert v-if="$page.post.summary" type="info" border="left">
         <div class="clean-last-p" v-html="$page.post.summary" />
       </v-alert>
       <div v-html="$page.post.body" />
