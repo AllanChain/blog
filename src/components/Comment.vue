@@ -36,9 +36,14 @@
     >
       <v-timeline-item v-for="comment in comments" :key="comment.id" left>
         <template v-slot:icon>
-          <v-avatar>
-            <img :src="comment.author.avatarUrl">
-          </v-avatar>
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-avatar v-bind="attrs" v-on="on">
+                <img :src="comment.author.avatarUrl">
+              </v-avatar>
+            </template>
+            <span>{{ comment.author.login }}</span>
+          </v-tooltip>
         </template>
         <v-card>
           <v-card-text class="black--text clean-last-p">

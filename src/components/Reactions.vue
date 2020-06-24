@@ -1,15 +1,24 @@
 <template>
   <div>
-    <v-chip
+    <v-tooltip
       v-for="(reaction, name) in sortedReactions"
       :key="name"
-      class="ma-1"
-      color="primary"
-      outlined
+      bottom
     >
-      <span class="pr-2">{{ reaction.emoji }}</span>
-      <span>{{ reaction.users.length }}</span>
-    </v-chip>
+      <template #activator="{ on, attrs }">
+        <v-chip
+          class="ma-1"
+          color="primary"
+          v-bind="attrs"
+          outlined
+          v-on="on"
+        >
+          <span class="pr-2">{{ reaction.emoji }}</span>
+          <span>{{ reaction.users.length }}</span>
+        </v-chip>
+      </template>
+      <span>{{ reaction.users.join(', ') }}</span>
+    </v-tooltip>
   </div>
 </template>
 
