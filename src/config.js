@@ -15,5 +15,6 @@ module.exports = {
     reactionCount: 10
   },
   repoQuery: `user:${owner} repo:${repo}`,
-  repoUrl: `https://github.com/${owner}/${repo}`
+  repoUrl: `https://github.com/${owner}/${repo}`,
+  profileUrl: `https://github.com/${owner}`
 }

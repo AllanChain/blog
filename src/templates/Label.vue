@@ -89,7 +89,7 @@
 </page-query>
 
 <script>
-import ghApi from '@/api/github'
+import ghApi from '@/api'
 import PostPreview from '@/components/PostPreview'
 import { capitalize } from '@/utils'
 

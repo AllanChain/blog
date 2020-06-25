@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import ghApi from '@/api/github'
+import ghApi from '@/api'
 import { formatTime } from '@/utils'
 import Reactions from '@/components/Reactions'
 

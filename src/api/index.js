@@ -1,6 +1,11 @@
+/**
+ * This module is used by both server and client
+ * Need to be node and webpack capable
+ */
+
 const axios = require('axios')
 const queries = require('./queries')
-const config = require('./config')
+const config = require('../config')
 
 module.exports = {
   config,

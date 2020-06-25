@@ -1,4 +1,4 @@
-const api = require('./src/api/github')
+const ghApi = require('./src/api')
 
 const patterns = {
   slug: /<a href="https.*post\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
@@ -12,7 +12,7 @@ const patterns = {
 const includedLabelTypes = ['blog', 'tag', 'series']
 
 const parseBody = text => {
-  text = api.htmlConvert(text)
+  text = ghApi.htmlConvert(text)
   const result = {};
   [text, result.body] = text.split('<hr>', 2)
   // forget <hr>
@@ -39,7 +39,7 @@ const parseLabel = label => {
 }
 
 module.exports = async () => {
-  const repo = (await api.gql('data')).repository
+  const repo = (await ghApi.gql('data')).repository
   const posts = repo.issues.edges.map(edge => ({
     id: edge.node.number,
     createdAt: new Date(edge.node.createdAt),
