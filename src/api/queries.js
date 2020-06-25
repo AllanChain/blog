@@ -78,6 +78,7 @@ module.exports = {
           edges {
             node {
               id
+              resourcePath
               author {
                 avatarUrl(size: 64)
                 login
