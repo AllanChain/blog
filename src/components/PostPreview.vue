@@ -12,15 +12,15 @@
       class="d-flex flex-no-wrap justify-space-between"
     >
       <div>
-        <v-card-subtitle class="py-2">
-          <div>
+        <v-card-subtitle class="py-1">
+          <span class="mr-4 pb-1 d-inline-block">
             <v-icon>mdi-calendar-month-outline</v-icon>
             {{ formatTime(post.createdAt) }}
-          </div>
-          <div>
+          </span>
+          <span class="pb-1 d-inline-block">
             <v-icon>mdi-calendar-edit</v-icon>
             {{ formatTime(post.lastEditedAt) }}
-          </div>
+          </span>
         </v-card-subtitle>
         <v-card-text v-if="tags.length">
           <PostTag
