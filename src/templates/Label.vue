@@ -99,11 +99,21 @@ const sortBy = {
   title: sortString.bind(null, 'title')
 }
 
+const naiveSearch = (dest, pattern) => {
+  dest = dest.replace(/<.*?>/g, '')
+  const patterns = pattern.split(' ')
+  if (pattern.toLowerCase() === pattern) {
+    const destLower = dest.toLowerCase()
+    return patterns.every(p => destLower.includes(p))
+  }
+  return patterns.every(p => dest.includes(p))
+}
+
 const postFilter = (query, post) => {
-  const inTitle = post.title.includes(query)
+  const inTitle = naiveSearch(post.title, query)
   const inSummary = post.summary === null
     ? false
-    : post.summary.includes(query)
+    : naiveSearch(post.summary, query)
   return inTitle || inSummary
 }
 
