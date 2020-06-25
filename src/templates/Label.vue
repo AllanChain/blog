@@ -37,7 +37,7 @@
     <v-alert v-else-if="ghSearchStatus === 'error'" type="error" border="left">
       Error making GitHub API call
     </v-alert>
-    <v-container fluid>
+    <v-container v-if="orderedPosts.length" fluid>
       <v-row align="center">
         <v-col
           v-for="post of orderedPosts"
@@ -50,6 +50,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <div class="text-center py-2 grey--text text--darken-1">
+      Nothing to show ¯\_(ツ)_/¯
+    </div>
   </Layout>
 </template>
 
