@@ -41,7 +41,7 @@
         <v-img :src="fixUrl(tags[0].logo)" />
       </v-avatar>
     </div>
-    <v-card-text class="py-0">
+    <v-card-text class="py-0 black--text">
       <div class="clean-last-p" v-html="post.summary" />
     </v-card-text>
     <v-card-actions>
