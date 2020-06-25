@@ -22,6 +22,8 @@ const parseBody = text => {
     // should not override if not provided
     if (match !== null) result[key] = match[1]
   }
+  const createdAt = new Date(result.createdAt)
+  if (!isNaN(createdAt)) result.createdAt = createdAt
   return result
 }
 
