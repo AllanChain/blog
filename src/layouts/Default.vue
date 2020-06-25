@@ -8,7 +8,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
         <slot name="title">
-          AC Dustbin
+          {{ $static.metadata.siteName }}
         </slot>
       </v-toolbar-title>
     </v-app-bar>
@@ -40,7 +40,7 @@
         </v-list-item>
         <v-list-item
           link
-          href="https:///github.com/AllanChain"
+          :href="profileUrl"
           target="_blank"
           rel="noopener"
         >
@@ -65,10 +65,13 @@
 </static-query>
 
 <script>
+import { profileUrl } from '@/config'
+
 export default {
   data () {
     return {
-      drawer: false
+      drawer: false,
+      profileUrl
     }
   }
 }

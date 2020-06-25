@@ -14,7 +14,7 @@
         color="green darken-1"
         target="_blank"
         rel="noopener"
-        :href="`https://github.com/AllanChain/blog/issues/${number}#new_comment_field`"
+        :href="`${repoUrl}/issues/${number}#new_comment_field`"
       >
         <v-icon class="pr-2">
           mdi-github
@@ -82,6 +82,7 @@
 
 <script>
 import ghApi from '@/api'
+import { repoUrl } from '@/config'
 import { formatTime } from '@/utils'
 import Reactions from '@/components/Reactions'
 
@@ -95,6 +96,7 @@ export default {
   },
   data () {
     return {
+      repoUrl,
       comments: [],
       postReactions: [],
       loadStatus: 'loading'
