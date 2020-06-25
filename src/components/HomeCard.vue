@@ -13,7 +13,11 @@
     </div>
     <v-card-actions>
       <v-spacer />
-      <v-btn text :to="to" color="primary">
+      <v-btn
+        text
+        v-bind="linkProp"
+        color="primary"
+      >
         {{ action }}
       </v-btn>
     </v-card-actions>
@@ -35,7 +39,11 @@ export default {
     },
     to: {
       type: String,
-      required: true
+      default: undefined
+    },
+    href: {
+      type: String,
+      default: undefined
     },
     action: {
       type: String,
@@ -44,6 +52,18 @@ export default {
     logo: {
       type: String,
       default: null
+    }
+  },
+  computed: {
+    linkProp () {
+      if (this.href) {
+        return {
+          href: this.href,
+          rel: 'noopener',
+          target: '_blank'
+        }
+      }
+      return { to: this.to }
     }
   },
   methods: { fixUrl }

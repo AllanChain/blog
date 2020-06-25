@@ -16,5 +16,19 @@ module.exports = {
   },
   repoQuery: `user:${owner} repo:${repo}`,
   repoUrl: `https://github.com/${owner}/${repo}`,
-  profileUrl: `https://github.com/${owner}`
+  profileUrl: `https://github.com/${owner}`,
+  friends: [
+    {
+      name: 'ᴍɪᴍɪ',
+      blog: 'https://zhangshuqiao.org/',
+      avatar: 'https://avatars3.githubusercontent.com/u/16272760?s=100&v=4',
+      moto: '做了一点微小的工作'
+    },
+    {
+      name: 'txtyb',
+      blog: 'https://txtyb.github.io/',
+      avatar: 'https://avatars2.githubusercontent.com/u/14294192?s=100&v=4',
+      moto: 'The quieter you be, the more you can hear.'
+    }
+  ]
 }

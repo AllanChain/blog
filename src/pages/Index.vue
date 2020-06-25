@@ -1,7 +1,12 @@
 <template>
   <Layout>
     <v-container fluid>
-      <v-row>
+      <v-row justify="center">
+        <h2 class="pb-2">
+          Blog Entries
+        </h2>
+      </v-row>
+      <v-row justify="center">
         <v-col
           v-for="edge of $static.allLabel.edges"
           :key="edge.node.id"
@@ -14,6 +19,29 @@
             :to="edge.node.path"
             :description="edge.node.description"
             :logo="edge.node.logo"
+          />
+        </v-col>
+      </v-row>
+
+      <v-divider class="my-5" />
+      <v-row justify="center">
+        <h2 class="pb-2">
+          Friends
+        </h2>
+      </v-row>
+      <v-row justify="center">
+        <v-col
+          v-for="friend of friends"
+          :key="friend.name"
+          cols="12"
+          sm="6"
+          md="4"
+        >
+          <HomeCard
+            :name="friend.name"
+            :href="friend.blog"
+            :logo="friend.avatar"
+            :description="friend.moto"
           />
         </v-col>
       </v-row>
@@ -37,8 +65,9 @@
 </static-query>
 
 <script>
-import HomeCard from '~/components/HomeCard'
 import { capitalize } from '@/utils'
+import { friends } from '@/config'
+import HomeCard from '~/components/HomeCard'
 
 export default {
   metaInfo: {
@@ -46,6 +75,11 @@ export default {
   },
   components: {
     HomeCard
+  },
+  data () {
+    return {
+      friends
+    }
   },
   methods: { capitalize }
 }
