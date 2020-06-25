@@ -3,8 +3,9 @@ const queries = require('./queries')
 const config = require('./config')
 
 module.exports = {
+  config,
   async gql (query, variables) {
-    variables = { ...config, ...variables }
+    variables = { ...config.gqlVar, ...variables }
     const resp = await axios({
       method: 'post',
       url: 'https://api.github.com/graphql',

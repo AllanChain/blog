@@ -101,16 +101,16 @@ module.exports = {
       }
     }
   }`,
-  search: `{
+  search: `
+  query($searchQuery: String!) {
     search(
-      first: 2,
-      query: "网易 user:AllanChain repo:blog label:\\"blog: programing\\"",
+      first: 5,
+      query: $searchQuery,
       type: ISSUE
     ) {
       edges {
         node {
           ... on Issue {
-            title
             number
           }
         }
