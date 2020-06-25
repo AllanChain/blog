@@ -19,8 +19,10 @@
             v-model="query"
             prepend-inner-icon="mdi-magnify"
             label="Search Post Title and Summary"
+            hint="Hit Enter to do fulltext search on GitHub"
             outlined
-            hide-details
+            persistent-hint
+            clearable
             @input="ghSearchStatus = 'false'"
           />
         </v-form>
