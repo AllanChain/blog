@@ -15,16 +15,17 @@ module.exports = {
     return s.charAt(0).toUpperCase() + s.slice(1)
   },
   /**
-   * Format Date-readable string to human-readabel string
+   * Format Date-readable string to yyyy-mm-dd HH:MM
+   * If time part not provided, default is UTC 00:00
    * @param {string} s Date string to format, e.g. 2020-02-02T20:20Z
    * @returns {string}
    */
   formatTime (s) {
     const d = new Date(s)
-    const date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
-    let time = `${pad2(d.getHours())}:${pad2(d.getMinutes())}`
-    if (time === '00:00') time = '11:11' // better default
-    return `${date} ${time}`
+    return (
+      `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}` +
+      ` ${pad2(d.getHours())}:${pad2(d.getMinutes())}`
+    )
   },
   /**
    * Prefix with BASE_URL if not on other domain
