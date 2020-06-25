@@ -77,6 +77,9 @@
         </v-card>
       </v-timeline-item>
     </v-timeline>
+    <div v-else class="text-center py-2 grey--text text--darken-1">
+      There are no comments yet. Comment now!
+    </div>
   </div>
 </template>
 
