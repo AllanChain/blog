@@ -4,12 +4,22 @@
       {{ capitalize($page.label.name) }}
     </template>
     <v-row justify="center">
-      <v-col cols="12" sm="8" md="6">
+      <v-col cols="12" sm="6">
         <v-select
           v-model="sortKey"
           :items="sortKeys"
           label="Sort By"
           outlined
+          hide-details
+        />
+      </v-col>
+      <v-col cols="12" sm="6">
+        <v-text-field
+          v-model="query"
+          prepend-inner-icon="mdi-magnify"
+          label="Search Post Title and Summary"
+          outlined
+          hide-details
         />
       </v-col>
     </v-row>
@@ -73,6 +83,14 @@ const sortBy = {
   title: sortString.bind(null, 'title')
 }
 
+const postFilter = (query, post) => {
+  const inTitle = post.title.includes(query)
+  const inSummary = post.summary === null
+    ? false
+    : post.summary.includes(query)
+  return inTitle || inSummary
+}
+
 export default {
   components: {
     PostPreview
@@ -84,13 +102,16 @@ export default {
         { text: 'Modify Time', value: 'lastEditedAt' },
         { text: 'Post Title', value: 'title' }
       ],
-      sortKey: 'createdAt'
+      sortKey: 'createdAt',
+      query: null
     }
   },
   computed: {
     orderedPosts () {
-      const posts = this.$page.label.belongsTo.edges.map(edge => edge.node)
-      return posts.slice().sort(sortBy[this.sortKey])
+      // `posts` is already a copy
+      let posts = this.$page.label.belongsTo.edges.map(edge => edge.node)
+      if (this.query) posts = posts.filter(postFilter.bind(null, this.query))
+      return posts.sort(sortBy[this.sortKey])
     }
   },
   methods: { capitalize }
