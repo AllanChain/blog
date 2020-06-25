@@ -15,41 +15,33 @@ module.exports = {
         labels: $postLabels
         filterBy: { createdBy: $owner }
       ) {
-        edges {
-          node {
-            number
-            title
-            bodyHTML
-            createdAt
-            includesCreatedEdit
-            lastEditedAt
-            reactions(first: $reactionCount) {
-              edges {
-                node {
-                  content
-                  user {
-                    login
-                  }
-                }
+        nodes {
+          number
+          title
+          bodyHTML
+          createdAt
+          includesCreatedEdit
+          lastEditedAt
+          reactions(first: $reactionCount) {
+            nodes {
+              content
+              user {
+                login
               }
             }
-            labels(first: $postLabelCount) {
-              edges {
-                node {
-                  name
-                }
-              }
+          }
+          labels(first: $postLabelCount) {
+            nodes {
+              name
             }
           }
         }
       }
       labels(first: $labelCount) {
-        edges {
-          node {
-            name
-            color
-            description
-          }
+        nodes {
+          name
+          color
+          description
         }
       }
     }
@@ -65,34 +57,28 @@ module.exports = {
     repository(name: $repo, owner: $owner) {
       issue(number: $postNumber) {
         reactions(first: $reactionCount) {
-          edges {
-            node {
-              content
-              user {
-                login
-              }
+          nodes {
+            content
+            user {
+              login
             }
           }
         }
         comments(first: $commentCount) {
-          edges {
-            node {
-              id
-              resourcePath
-              author {
-                avatarUrl(size: 64)
-                login
-              }
-              bodyHTML
-              createdAt
-              reactions(first: $reactionCount) {
-                edges {
-                  node {
-                    content
-                    user {
-                      login
-                    }
-                  }
+          nodes {
+            id
+            resourcePath
+            author {
+              avatarUrl(size: 64)
+              login
+            }
+            bodyHTML
+            createdAt
+            reactions(first: $reactionCount) {
+              nodes {
+                content
+                user {
+                  login
                 }
               }
             }
@@ -108,11 +94,9 @@ module.exports = {
       query: $searchQuery,
       type: ISSUE
     ) {
-      edges {
-        node {
-          ... on Issue {
-            number
-          }
+      nodes {
+        ... on Issue {
+          number
         }
       }
     }

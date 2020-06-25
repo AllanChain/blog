@@ -40,16 +40,14 @@ const parseLabel = label => {
 
 module.exports = async () => {
   const repo = (await ghApi.gql('data')).repository
-  const posts = repo.issues.edges.map(edge => ({
-    id: edge.node.number,
-    createdAt: new Date(edge.node.createdAt),
-    lastEditedAt: new Date(edge.node.lastEditedAt),
-    title: edge.node.title,
-    ...parseBody(edge.node.bodyHTML),
-    labels: edge.node.labels.edges.map(edge => edge.node)
-      .filter(isGoodLabel).map(label => label.name)
+  const posts = repo.issues.nodes.map(node => ({
+    id: node.number,
+    createdAt: new Date(node.createdAt),
+    lastEditedAt: new Date(node.lastEditedAt),
+    title: node.title,
+    ...parseBody(node.bodyHTML),
+    labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
   }))
-  const labels = repo.labels.edges.map(edge => edge.node)
-    .filter(isGoodLabel).map(parseLabel)
+  const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
   return { posts, labels }
 }

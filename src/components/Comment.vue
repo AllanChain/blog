@@ -71,7 +71,7 @@
           </v-card-text>
           <v-card-actions class="white">
             <Reactions
-              :reactions="comment.reactions.edges.map(edge => edge.node)"
+              :reactions="comment.reactions.nodes"
             />
           </v-card-actions>
         </v-card>
@@ -110,10 +110,8 @@ export default {
       const data = await ghApi.gql('comment', {
         postNumber: this.number
       })
-      this.comments = data.repository.issue.comments.edges
-        .map(edge => edge.node)
-      this.postReactions = data.repository.issue.reactions.edges
-        .map(edge => edge.node)
+      this.comments = data.repository.issue.comments.nodes
+      this.postReactions = data.repository.issue.reactions.nodes
       this.loadStatus = 'success'
     } catch (err) {
       this.loadStatus = 'error'

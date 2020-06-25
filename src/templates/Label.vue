@@ -154,7 +154,7 @@ export default {
         const searchQuery =
           `${this.query} ${ghApi.config.repoQuery} label:"${this.$page.label.id}"`
         const data = await ghApi.gql('search', { searchQuery })
-        const results = data.search.edges.map(edge => edge.node.number)
+        const results = data.search.nodes.map(node => node.number)
         const posts = this.$page.label.belongsTo.edges.map(edge => edge.node)
         this.ghSearchResult =
           posts.filter(post => results.includes(parseInt(post.id, 10)))
