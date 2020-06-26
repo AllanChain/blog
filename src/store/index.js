@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count: 0
+    title: ''
   },
   mutations: {
-    increment (state) {
-      state.count++
+    setTitle (state, title) {
+      state.title = title
     }
   }
 })

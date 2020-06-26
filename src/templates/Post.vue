@@ -1,8 +1,5 @@
 <template>
-  <Layout>
-    <template #title>
-      {{ $page.post.title }}
-    </template>
+  <div>
     <div class="article-head text-center">
       <h1 class="article-title">
         {{ $page.post.title }}
@@ -38,7 +35,7 @@
       <div v-html="$page.post.body" />
       <Comment :number="parseInt($page.post.id, 10)" />
     </article>
-  </Layout>
+  </div>
 </template>
 
 <page-query>

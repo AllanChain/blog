@@ -7,9 +7,7 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
-        <slot name="title">
-          {{ $static.metadata.siteName }}
-        </slot>
+        {{ $store.state.title }}
       </v-toolbar-title>
     </v-app-bar>
     <v-main class="ma-5">

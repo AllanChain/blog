@@ -1,8 +1,5 @@
 <template>
-  <Layout>
-    <template #title>
-      {{ capitalize($page.label.name) }}
-    </template>
+  <div>
     <v-row justify="center">
       <v-col cols="12" sm="6">
         <v-select
@@ -53,7 +50,7 @@
     <div class="text-center py-2 grey--text text--darken-1">
       Nothing to show ¯\_(ツ)_/¯
     </div>
-  </Layout>
+  </div>
 </template>
 
 <page-query>
