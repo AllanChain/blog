@@ -36,6 +36,30 @@ export default {
         this.$store.commit('setTitle', newInfo.titleChunk)
       }
     }
+  },
+  mounted () {
+    if (location.hash) this.goToHash(location.hash.slice(1))
+    window.onhashchange = this.handleHash.bind(this)
+  },
+  methods: {
+    /**
+     * Two method below are handling hash
+     * more info at github.data.js
+     */
+    goToHash (hash) {
+      this.$vuetify.goTo(`#article-${hash}`, {
+        duration: 700,
+        offset: 120,
+        easing: 'easeInOutQuart'
+      })
+    },
+    handleHash () {
+      if (location.hash.startsWith('#~')) {
+        const hash = location.hash.slice(2)
+        this.goToHash(hash)
+        location.hash = `#${hash}`
+      }
+    }
   }
 }
 </script>
