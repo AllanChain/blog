@@ -7,6 +7,15 @@ const axios = require('axios')
 const queries = require('./queries')
 const config = require('../config')
 
+function ChainHTML (html) {
+  this.html = html
+  this.use = plugin => {
+    this.html = plugin(this.html)
+    return this
+  }
+  this.end = () => this.html
+}
+
 module.exports = {
   config,
   async gql (query, variables) {
@@ -26,9 +35,11 @@ module.exports = {
     //          axios gql
     return resp.data.data
   },
-  htmlConvert (html) {
-    return html.replace(
+  htmlPlugins: {
+    codeLang: html => html.replace(
       /(<div class="highlight highlight-source-(.*?)">)<pre>(.*?)<\/pre>/gs,
-      '$1<div class="code-lang">$2</div><pre><code>$3</code></pre>')
-  }
+      '$1<div class="code-lang">$2</div><pre><code>$3</code></pre>'
+    )
+  },
+  ChainHTML
 }

@@ -83,6 +83,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+h1, h2, h3,
+h4, h5, h6
+  @extend %headings !optional
 
+article.article-main.markdown-body %headings
+  .anchor-hover
+    text-decoration: none
+    margin-left: -15px
+    visibility: hidden
+  &:hover .anchor-hover
+    visibility: visible
 </style>
