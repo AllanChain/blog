@@ -1,8 +1,8 @@
 <template>
   <default-layout>
-    <v-scroll-y-transition>
+    <v-slide-x-transition>
       <router-view />
-    </v-scroll-y-transition>
+    </v-slide-x-transition>
   </default-layout>
 </template>
 
@@ -47,7 +47,8 @@ export default {
      * more info at github.data.js
      */
     goToHash (hash) {
-      this.$vuetify.goTo(`#article-${hash}`, {
+      const target = hash ? `#article-${hash}` : 0
+      this.$vuetify.goTo(target, {
         duration: 700,
         offset: 120,
         easing: 'easeInOutQuart'
@@ -57,8 +58,9 @@ export default {
       if (location.hash.startsWith('#~')) {
         const hash = location.hash.slice(2)
         this.goToHash(hash)
-        location.hash = `#${hash}`
-      }
+        // Remove #~xxx hash from history
+        history.replaceState(undefined, undefined, `#${hash}`)
+      } else this.goToHash(location.hash.slice(1))
     }
   }
 }

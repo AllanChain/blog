@@ -12,9 +12,13 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     rel: 'stylesheet',
     href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css'
   })
-
   head.link.push({
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'
   })
+
+  router.options.scrollBehavior = (to, from, savedPosition) => {
+    const top = savedPosition ? savedPosition.y : 0
+    setTimeout(() => window.scrollTo({ top, behavior: 'smooth' }), 500)
+  }
 }
