@@ -37,8 +37,8 @@ module.exports = {
   },
   htmlPlugins: {
     codeLang: html => html.replace(
-      /(<div class="highlight highlight-source-(.*?)">)<pre>(.*?)<\/pre>/gs,
-      '$1<div class="code-lang">$2</div><pre><code>$3</code></pre>'
+      /(<div class="highlight highlight-(source|text)-(.*?)">)<pre>(.*?)<\/pre>/gs,
+      '$1<div class="code-lang">$3</div><pre><code>$4</code></pre>'
     )
   },
   ChainHTML
