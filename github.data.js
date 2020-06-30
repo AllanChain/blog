@@ -33,10 +33,10 @@ const slugPlugin = html => {
 }
 
 const parseBody = text => {
-  const result = {};
-  [text, result.body] = text.split('<hr>', 2)
-  // forget <hr>
-  if (result.body === undefined) result.body = text
+  const result = {}
+  result.body = text.split('<hr>').slice(1).join('<hr>')
+  text = text.split('<hr>', 1)[0]
+  if (result.body === '') throw new Error('Post need <hr>')
   result.body = new ChainHTML(result.body)
     .use(htmlPlugins.codeLang)
     .use(slugPlugin)
@@ -46,6 +46,7 @@ const parseBody = text => {
     // should not override if not provided
     if (match !== null) result[key] = match[1]
   }
+  if (result.slug === undefined) throw new Error('Post need slug')
   const createdAt = new Date(result.createdAt)
   if (!isNaN(createdAt)) result.createdAt = createdAt
   return result
@@ -64,14 +65,20 @@ const parseLabel = label => {
 
 module.exports = async () => {
   const repo = (await gql('data')).repository
-  const posts = repo.issues.nodes.map(node => ({
-    id: node.number,
-    createdAt: new Date(node.createdAt),
-    lastEditedAt: new Date(node.lastEditedAt),
-    title: node.title,
-    ...parseBody(node.bodyHTML),
-    labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
-  }))
+  const posts = repo.issues.nodes.map(node => {
+    try {
+      return {
+        id: node.number,
+        createdAt: new Date(node.createdAt),
+        lastEditedAt: new Date(node.lastEditedAt),
+        title: node.title,
+        ...parseBody(node.bodyHTML),
+        labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
+      }
+    } catch (err) {
+      throw new Error(`Issue ${node.number}: ${err.message}`)
+    }
+  })
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
   return { posts, labels }
 }
