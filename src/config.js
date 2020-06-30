@@ -7,7 +7,9 @@ module.exports = {
     owner,
     postCount: 40,
     postLabels: [
-      'blog: programing'
+      'blog: programing',
+      'blog: cheatsheet',
+      'blog: moments'
     ],
     postLabelCount: 5,
     labelCount: 20,
