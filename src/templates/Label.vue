@@ -47,7 +47,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <div class="text-center py-2 grey--text text--darken-1">
+    <div v-else class="text-center py-2 grey--text text--darken-1">
       Nothing to show ¯\_(ツ)_/¯
     </div>
   </div>
