@@ -5,11 +5,11 @@
         {{ $page.post.title }}
       </h1>
       <div class="mb-2">
-        <PostTag
-          v-for="tag of tags"
-          :key="tag.id"
-          :color="`#${tag.color}`"
-          :tag="tag"
+        <PostLabel
+          v-for="label of this.$page.post.labels"
+          :key="label.id"
+          :color="`#${label.color}`"
+          :label="label"
         />
       </div>
       <div>
@@ -61,7 +61,7 @@
 
 <script>
 import { formatTime } from '@/utils'
-import PostTag from '@/components/PostTag'
+import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
 
 export default {
@@ -70,12 +70,7 @@ export default {
       title: this.$page.post.title
     }
   },
-  components: { PostTag, Comment },
-  computed: {
-    tags () {
-      return this.$page.post.labels.filter(label => label.type === 'tag')
-    }
-  },
+  components: { PostLabel, Comment },
   methods: { formatTime }
 }
 </script>

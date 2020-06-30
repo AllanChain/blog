@@ -22,23 +22,23 @@
             {{ formatTime(post.lastEditedAt) }}
           </span>
         </v-card-subtitle>
-        <v-card-text v-if="tags.length">
-          <PostTag
-            v-for="tag of tags"
-            :key="tag.id"
-            :color="`#${tag.color}`"
-            :tag="tag"
+        <v-card-text v-if="labels.length">
+          <PostLabel
+            v-for="label of labels"
+            :key="label.id"
+            :color="`#${label.color}`"
+            :label="label"
           />
         </v-card-text>
       </div>
       <!-- If no heading image and have tag logo -->
       <v-avatar
-        v-if="!post.image && tags.length && tags[0].logo"
+        v-if="logo"
         class="ma-3"
         rounded
         size="80"
       >
-        <v-img :src="fixUrl(tags[0].logo)" />
+        <v-img :src="fixUrl(logo)" />
       </v-avatar>
     </div>
     <v-card-text class="py-0 black--text">
@@ -55,11 +55,11 @@
 
 <script>
 import { fixUrl, formatTime } from '@/utils'
-import PostTag from '@/components/PostTag'
+import PostLabel from '@/components/PostLabel'
 
 export default {
   components: {
-    PostTag
+    PostLabel
   },
   props: {
     post: {
@@ -68,8 +68,11 @@ export default {
     }
   },
   computed: {
-    tags () {
-      return this.post.labels.filter(label => label.type === 'tag')
+    labels () {
+      return this.post.labels.filter(label => label.type !== 'blog')
+    },
+    logo () {
+      return !this.post.image && !!this.labels.length && this.labels[0].logo
     }
   },
   methods: {
