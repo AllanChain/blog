@@ -76,7 +76,9 @@ module.exports = async () => {
         labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
       }
     } catch (err) {
-      throw new Error(`Issue ${node.number}: ${err.message}`)
+      const message = `Issue ${node.number}: ${err.message}`
+      console.log('::error::' + message) // gh-action error
+      throw new Error(message)
     }
   })
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
