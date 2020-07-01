@@ -14,7 +14,7 @@
         md="4"
       >
         <HomeCard
-          :name="capitalize(edge.node.name) + ' Blog'"
+          :name="capitalize(edge.node.name)"
           :to="edge.node.path"
           :description="edge.node.description"
           :logo="edge.node.logo"
