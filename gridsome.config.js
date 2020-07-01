@@ -28,7 +28,7 @@ module.exports = {
       // Service Worker Options
       disableServiceWorker: false,
       serviceWorkerPath: 'service-worker.js',
-      cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg,gif',
+      cachedFileTypes: 'js,css,png,jpg,jpeg,svg,gif',
       disableTemplatedUrls: false, // Optional
       manifestPath: 'manifest.json',
       title: 'AC Dustbin',
