@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - gridsome
+  issues:
+    types: [opened, edited]
 
 jobs:
   build-and-deploy:
