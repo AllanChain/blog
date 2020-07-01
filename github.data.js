@@ -25,7 +25,7 @@ const includedLabelTypes = ['blog', 'tag', 'series']
 const slugPlugin = html => {
   const slugger = new GithubSlugger()
   return html.replace(/<h(\d)>(.*?)<\/h\1>/gs, (_, level, title) => {
-    const slug = slugger.slug(title)
+    const slug = slugger.slug(title.replace(/<.*?>/g, ''))
     return `<h${level}>
       <a id="article-${slug}" class="anchor-hover" href="#~${slug}">
       #</a> ${title}</h${level}>`
