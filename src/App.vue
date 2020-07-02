@@ -41,7 +41,9 @@ export default {
     this.$store.commit('setTitle',
       document.title.split(' - ').slice(0, -1).join(' - '))
     if (location.hash) {
-      this.$vuetify.goTo(location.hash, {
+      const el = document.querySelector(location.hash)
+      if (el === null) return
+      this.$vuetify.goTo(el, {
         duration: 700,
         /**
          * `offset` take app bar into account
