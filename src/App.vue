@@ -41,7 +41,7 @@ export default {
     this.$store.commit('setTitle',
       document.title.split(' - ').slice(0, -1).join(' - '))
     if (location.hash) {
-      const el = document.querySelector(location.hash)
+      const el = document.getElementById(location.hash.slice(1))
       if (el === null) return
       this.$vuetify.goTo(el, {
         duration: 700,
