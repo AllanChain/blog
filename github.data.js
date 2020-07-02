@@ -21,8 +21,7 @@ const slugPlugin = html => {
   return html.replace(/<h(\d)>(.*?)<\/h\1>/gs, (_, level, title) => {
     const slug = slugger.slug(title.replace(/<.*?>/g, ''))
     return `<h${level}>
-      <a id="${slug}" class="anchor-target"/>
-      <a class="anchor-hover" href="#${slug}">
+      <a id="article-${slug}" class="anchor-hover" href="#${slug}">
       #</a> ${title}</h${level}>`
   })
 }

@@ -71,7 +71,28 @@ export default {
     }
   },
   components: { PostLabel, Comment },
-  methods: { formatTime }
+  mounted () {
+    document.getElementsByClassName('anchor-hover').forEach(el => {
+      el.addEventListener('click', () => this.goToHash(el.hash))
+    })
+    if (location.hash) this.goToHash(location.hash)
+  },
+  methods: {
+    formatTime,
+    goToHash (hash) {
+      const el = document.getElementById(
+        'article-' + decodeURIComponent(hash.slice(1))
+      )
+      console.log(hash, el)
+      if (el === null) return
+      this.$vuetify.goTo(el, {
+        duration: 700,
+        // `offset` take app bar into account
+        offset: 10,
+        easing: 'easeInOutQuart'
+      })
+    }
+  }
 }
 </script>
 
@@ -87,7 +108,4 @@ article.article-main.markdown-body %headings
     opacity: 0 // not hidden to receive hover
   &:hover .anchor-hover
     opacity: 1
-  .anchor-target
-    position: relative
-    top: -100px
 </style>

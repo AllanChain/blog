@@ -3,6 +3,7 @@
 
 import store from '@/store'
 import vuetify from '@/plugins/vuetify'
+import goTo from 'vuetify/es5/services/goto'
 import './style.sass'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
@@ -16,4 +17,14 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'
   })
+
+  router.options.scrollBehavior = (to, from, savedPosition) => {
+    const target = savedPosition ? savedPosition.y : 0
+    if (to.hash) return null
+    setTimeout(() => goTo(target, {
+      duration: 700,
+      offset: 10,
+      easing: 'easeInOutQuart'
+    }), 500)
+  }
 }
