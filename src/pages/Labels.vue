@@ -19,6 +19,9 @@ import { capitalize } from '@/utils'
 import PostLabel from '@/components/PostLabel'
 
 export default {
+  metaInfo: {
+    title: 'All Labels'
+  },
   components: { PostLabel },
   computed: {
     labelByType () {
