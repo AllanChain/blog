@@ -17,6 +17,7 @@ module.exports = {
   siteName: 'AC Dustbin',
   siteUrl: 'https://allanchian.github.io',
   pathPrefix: '/blog',
+  outputDir: 'blog',
   templates: {
     Post: '/post/:slug',
     Label: '/:type/:name'

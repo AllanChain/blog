@@ -4,5 +4,6 @@
 src/.temp
 node_modules
 dist
+/blog/
 .env
 .env.*
