@@ -24,6 +24,7 @@
 
 <script>
 import { isDarkColor } from '@/utils'
+import { labelSizeBrkpnts } from '@/config'
 
 const textColor = color => isDarkColor(color, 101) ? 'white' : 'black'
 
@@ -62,10 +63,10 @@ export default {
     if (this.badge && this.label.belongsTo !== undefined) {
       const number = this.label.belongsTo.totalCount
       data.badgeContent = number
-      if (number > 5) {
+      if (number > labelSizeBrkpnts.normal) {
         data.size.small = false
-        if (number > 10) data.size.xLarge = true
-        else data.size.large = true
+        if (number > labelSizeBrkpnts.xLarge) data.size.xLarge = true
+        else if (number > labelSizeBrkpnts.large) data.size.large = true
       }
     }
     return data

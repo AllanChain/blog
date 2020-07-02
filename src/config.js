@@ -19,6 +19,7 @@ module.exports = {
   repoQuery: `user:${owner} repo:${repo}`,
   repoUrl: `https://github.com/${owner}/${repo}`,
   profileUrl: `https://github.com/${owner}`,
+  labelSizeBrkpnts: { normal: 2, large: 6, xLarge: 15 },
   friends: [
     {
       name: 'ᴍɪᴍɪ',
