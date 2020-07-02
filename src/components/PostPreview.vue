@@ -65,11 +65,15 @@ export default {
     post: {
       type: Object,
       required: true
+    },
+    filterLabel: {
+      type: String,
+      default: null
     }
   },
   computed: {
     labels () {
-      return this.post.labels.filter(label => label.type !== 'blog')
+      return this.post.labels.filter(label => label.id !== this.filterLabel)
     },
     logo () {
       return !this.post.image && !!this.labels.length && this.labels[0].logo

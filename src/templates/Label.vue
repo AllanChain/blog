@@ -43,7 +43,7 @@
           sm="6"
           md="4"
         >
-          <PostPreview :post="post" />
+          <PostPreview :post="post" :filter-label="$page.label.id" />
         </v-col>
       </v-row>
     </v-container>
