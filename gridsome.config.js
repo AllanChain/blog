@@ -36,7 +36,7 @@ module.exports = {
       startUrl: '.',
       display: 'standalone',
       statusBarStyle: 'default',
-      themeColor: '#666600',
+      themeColor: '#1976d2',
       backgroundColor: '#ffffff',
       icon: 'src/favicon.png',
       shortName: 'AC Dustbin', // Optional
