@@ -84,7 +84,10 @@ article.article-main.markdown-body %headings
   .anchor-hover
     text-decoration: none
     margin-left: -15px
-    visibility: hidden
+    opacity: 0 // not hidden to receive hover
   &:hover .anchor-hover
-    visibility: visible
+    opacity: 1
+  .anchor-target
+    position: relative
+    top: -100px
 </style>

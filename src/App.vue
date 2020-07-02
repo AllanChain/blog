@@ -36,32 +36,6 @@ export default {
         this.$store.commit('setTitle', newInfo.titleChunk)
       }
     }
-  },
-  mounted () {
-    if (location.hash) this.goToHash(location.hash.slice(1))
-    window.onhashchange = this.handleHash.bind(this)
-  },
-  methods: {
-    /**
-     * Two method below are handling hash
-     * more info at github.data.js
-     */
-    goToHash (hash) {
-      const target = hash ? `#article-${hash}` : 0
-      this.$vuetify.goTo(target, {
-        duration: 700,
-        offset: 120,
-        easing: 'easeInOutQuart'
-      })
-    },
-    handleHash () {
-      if (location.hash.startsWith('#~')) {
-        const hash = location.hash.slice(2)
-        this.goToHash(hash)
-        // Remove #~xxx hash from history
-        history.replaceState(undefined, undefined, `#${hash}`)
-      } else this.goToHash(location.hash.slice(1))
-    }
   }
 }
 </script>

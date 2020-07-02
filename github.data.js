@@ -14,12 +14,6 @@ const includedLabelTypes = ['blog', 'tag', 'series']
 
 /**
  * Add slug to HTML headers
- * Note that id, href and final result is different, to handle scroll
- * - id: prefixed by `article-`
- * - href: prefixed by `~`
- * - final: plain slug
- * prefixing href makes it possible to handle two same hash click
- * See the function at src/App.vue
  * @param {string} html html to add slug
  */
 const slugPlugin = html => {
@@ -27,7 +21,8 @@ const slugPlugin = html => {
   return html.replace(/<h(\d)>(.*?)<\/h\1>/gs, (_, level, title) => {
     const slug = slugger.slug(title.replace(/<.*?>/g, ''))
     return `<h${level}>
-      <a id="article-${slug}" class="anchor-hover" href="#~${slug}">
+      <a id="${slug}" class="anchor-target"/>
+      <a class="anchor-hover" href="#${slug}">
       #</a> ${title}</h${level}>`
   })
 }
