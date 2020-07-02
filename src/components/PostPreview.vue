@@ -22,11 +22,10 @@
             {{ formatTime(post.lastEditedAt) }}
           </span>
         </v-card-subtitle>
-        <v-card-text v-if="labels.length">
+        <v-card-text>
           <PostLabel
             v-for="label of labels"
             :key="label.id"
-            :color="`#${label.color}`"
             :label="label"
           />
         </v-card-text>
@@ -65,19 +64,18 @@ export default {
     post: {
       type: Object,
       required: true
-    },
-    filterLabel: {
-      type: String,
-      default: null
     }
   },
-  computed: {
-    labels () {
-      return this.post.labels.filter(label => label.id !== this.filterLabel)
-    },
-    logo () {
-      return !this.post.image && !!this.labels.length && this.labels[0].logo
+  data () {
+    const labels = this.post.labels.slice()
+      .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
+    let logo = false
+    if (!this.post.image) {
+      const restLabelLogos = labels.slice(1)
+        .map(label => label.logo).filter(Boolean)
+      logo = !!restLabelLogos.length && restLabelLogos.slice(-1)[0]
     }
+    return { labels, logo }
   },
   methods: {
     fixUrl,
