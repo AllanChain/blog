@@ -14,8 +14,8 @@
     "gridsome": "^0.7.17",
     "gridsome-plugin-pwa": "0.0.18",
     "primer-markdown": "^4.0.0",
-    "vuetify": "^2.3.2",
-    "vuex": "^3.4.0"
+    "vuetify": "^2.3.3",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "deepmerge": "^4.2.2",
