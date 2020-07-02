@@ -36,6 +36,10 @@ export default {
         this.$store.commit('setTitle', newInfo.titleChunk)
       }
     }
+  },
+  mounted () {
+    this.$store.commit('setTitle',
+      document.title.split(' - ').slice(0, -1).join(' - '))
   }
 }
 </script>
