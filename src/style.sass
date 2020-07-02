@@ -9,16 +9,6 @@ article.article-main.markdown-body
     background-color: rgba(27, 31, 35, 0.05)
     border-radius: 3px
 
-  .highlight
-    position: relative
-    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
-    .code-lang
-      position: absolute
-      top: 0.3em
-      right: 0.8em
-      font-size: 0.75rem
-      color: rgba(255, 255, 255, 0.6)
-
   pre, .highlight pre
     padding: 16px
     overflow: auto
@@ -30,6 +20,21 @@ article.article-main.markdown-body
       color: #eee8d5
       font-weight: normal
       font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+
+  .highlight
+    position: relative
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+    .code-lang
+      position: absolute
+      top: 0.3em
+      right: 0.8em
+      font-size: 0.75rem
+      color: rgba(255, 255, 255, 0.6)
+    @media (max-width: 500px)
+      margin-left: -20px
+      margin-right: -20px
+      pre
+        border-radius: 0
 
 .v-card__title
   word-break: normal !important
