@@ -1,17 +1,25 @@
 <template>
-  <div class="ma-1 d-inline-block">
+  <v-badge
+    overlap
+    bordered
+    class="ma-1"
+    offset-y="9"
+    :color="`#${label.color}`"
+    :content="badgeContent"
+    :value="badgeContent != undefined"
+  >
     <v-chip
       :color="`#${label.color}`"
       class="font-weight-bold"
       :to="label.path"
-      v-bind="style"
+      v-bind="{ ...style, ...size }"
     >
-      <v-icon left small>
+      <v-icon left v-bind="size">
         {{ icon }}
       </v-icon>
       {{ label.name }}
     </v-chip>
-  </div>
+  </v-badge>
 </template>
 
 <script>
@@ -29,12 +37,13 @@ export default {
   data () {
     const data = {
       style: {
-        small: true,
         label: false,
         outlined: false,
         textColor: textColor(this.label.color)
       },
-      icon: ''
+      size: { small: true, large: false, xLarge: false },
+      icon: '',
+      badgeContent: undefined
     }
     if (this.label.type === 'tag') {
       data.icon = 'mdi-tag-outline'
@@ -45,6 +54,15 @@ export default {
     } else if (this.label.type === 'blog') {
       data.icon = 'mdi-archive'
       data.style.label = true
+    }
+    if (this.label.belongsTo !== undefined) {
+      const number = this.label.belongsTo.totalCount
+      data.badgeContent = number
+      if (number > 5) {
+        data.size.small = false
+        if (number > 10) data.size.xLarge = true
+        else data.size.large = true
+      }
     }
     return data
   }

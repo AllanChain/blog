@@ -4,7 +4,12 @@
       <h2 class="my-3">
         {{ type }}
       </h2>
-      <PostLabel v-for="label of labels" :key="label.id" :label="label" />
+      <PostLabel
+        v-for="label of labels"
+        :key="label.id"
+        class="ma-2"
+        :label="label"
+      />
     </div>
   </v-container>
 </template>
@@ -17,9 +22,11 @@ export default {
   components: { PostLabel },
   computed: {
     labelByType () {
+      const labels = this.$static.allLabel.edges.map(edge => edge.node)
+        .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
       const labelByType = { Blog: [], Series: [], Tag: [] }
-      for (const edge of this.$static.allLabel.edges) {
-        labelByType[capitalize(edge.node.type)].push(edge.node)
+      for (const label of labels) {
+        labelByType[capitalize(label.type)].push(label)
       }
       return labelByType
     }
@@ -36,6 +43,9 @@ export default {
           type
           name
           path
+          belongsTo {
+            totalCount
+          }
         }
       }
     }
