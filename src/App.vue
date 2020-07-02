@@ -40,6 +40,18 @@ export default {
   mounted () {
     this.$store.commit('setTitle',
       document.title.split(' - ').slice(0, -1).join(' - '))
+    if (location.hash) {
+      this.$vuetify.goTo(location.hash, {
+        duration: 700,
+        /**
+         * `offset` take app bar into account
+         * to keep up with browser handler,
+         * set it negtive bar height
+         */
+        offset: -56,
+        easing: 'easeInOutQuart'
+      })
+    }
   }
 }
 </script>
