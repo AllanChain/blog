@@ -1,5 +1,5 @@
 <template>
-  <span class="ma-1">
+  <div class="ma-1 d-inline-block">
     <v-chip
       v-if="label.type === 'tag'"
       :color="`#${label.color}`"
@@ -33,7 +33,7 @@
       <v-icon left small>mdi-archive</v-icon>
       {{ label.name }}
     </v-chip>
-  </span>
+  </div>
 </template>
 
 <script>
