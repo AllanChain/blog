@@ -32,6 +32,10 @@ export default {
     label: {
       type: Object,
       required: true
+    },
+    badge: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -55,7 +59,7 @@ export default {
       data.icon = 'mdi-archive'
       data.style.label = true
     }
-    if (this.label.belongsTo !== undefined) {
+    if (this.badge && this.label.belongsTo !== undefined) {
       const number = this.label.belongsTo.totalCount
       data.badgeContent = number
       if (number > 5) {

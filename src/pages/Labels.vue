@@ -9,6 +9,7 @@
         :key="label.id"
         class="ma-2"
         :label="label"
+        badge
       />
     </div>
   </v-container>
