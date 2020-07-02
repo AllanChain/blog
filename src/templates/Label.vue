@@ -58,6 +58,7 @@
     label(id: $id) {
       id
       name
+      type
       belongsTo {
         edges {
           node {
@@ -118,6 +119,12 @@ const postFilter = (query, post) => {
 }
 
 export default {
+  metaInfo () {
+    return {
+      title: capitalize(this.$page.label.type) + ' - ' +
+        capitalize(this.$page.label.name)
+    }
+  },
   components: {
     PostPreview
   },
