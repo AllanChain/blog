@@ -19,8 +19,8 @@ jobs:
         echo "$D4"
       env:
         D1: ${{ contains(github.event.issue.labels.*.name, 'blog') }}
-        D2: ${{ github.event.pusher.name }}
-        D3: ${{ github.event.pusher.name == 'AllanChain' }}
+        D2: ${{ contains(github.event.issue.labels.*.name, 'blog') || (github.event.pusher.name == 'AllanChain') }}
+        D3: ${{ contains(github.event.issue.labels.*.name, 'blog') || github.event.pusher.name == 'AllanChain' }}
         D4: ${{ contains(github.event.pusher.name, 'AllanChain') }}
     - uses: actions/checkout@master
     - name: Use Node.js
