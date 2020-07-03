@@ -9,11 +9,12 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    if: ${{ contains(github.event.issue.labels.*.name, 'blog') }}
     steps:
     - name: debug
       run: echo "$GH_EVENT"
       env:
-        GH_EVENT: ${{ fromJSON(github.event) }}
+        GH_EVENT: ${{ fromJson(github.event) }}
     - uses: actions/checkout@master
     - name: Use Node.js
       uses: actions/setup-node@v1
