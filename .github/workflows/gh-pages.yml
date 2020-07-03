@@ -9,7 +9,6 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    if: ${{  ||  }}
     steps:
     - uses: hmarr/debug-action@master
     - name: debug
