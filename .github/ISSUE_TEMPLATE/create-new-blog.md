@@ -2,7 +2,7 @@
 name: Create New Blog
 about: RT.
 title: ''
-labels: ''
+labels: "@post"
 assignees: ''
 
 ---
