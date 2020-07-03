@@ -1,6 +1,14 @@
 @import "~primer-markdown/index.scss"
 @import "~github-syntax-dark/lib/github-dark.css"
 
+=full-width($margin)
+  @media (max-width: 500px)
+    margin-left: $margin
+    margin-right: $margin
+    border-radius: 0
+    pre
+      border-radius: 0
+
 article.article-main.markdown-body
   & :not(pre) > code
     color: #476582
@@ -30,17 +38,16 @@ article.article-main.markdown-body
       right: 0.8em
       font-size: 0.75rem
       color: rgba(255, 255, 255, 0.6)
-    @media (max-width: 500px)
-      margin-left: -20px
-      margin-right: -20px
-      pre
-        border-radius: 0
+    +full-width(-20px)
 
   & :not(.highlight) > pre
-    @media (max-width: 500px)
-      margin-left: -20px
-      margin-right: -20px
-      border-radius: 0
+    +full-width(-20px)
+
+  .v-card
+    .highlight
+      +full-width(-16px)
+    & :not(.highlight) > pre
+      +full-width(-16px)
 
 .v-card__title
   word-break: normal !important
