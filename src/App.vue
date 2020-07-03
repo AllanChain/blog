@@ -37,7 +37,7 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
     this.$store.commit('setTitle',
       document.title.split(' - ').slice(0, -1).join(' - '))
   }
