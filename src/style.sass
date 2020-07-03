@@ -9,6 +9,8 @@
     pre
       border-radius: 0
 
+$font-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+
 article.article-main.markdown-body
   & :not(pre) > code
     color: #476582
@@ -27,11 +29,11 @@ article.article-main.markdown-body
     code
       color: #eee8d5
       font-weight: normal
-      font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+      font-family: $font-mono
 
   .highlight
     position: relative
-    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+    font-family: $font-mono
     .code-lang
       position: absolute
       top: 0.3em
