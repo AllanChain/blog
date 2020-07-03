@@ -6,11 +6,7 @@ module.exports = {
     repo,
     owner,
     postCount: 40,
-    postLabels: [
-      'blog: programing',
-      'blog: cheatsheet',
-      'blog: moments'
-    ],
+    postLabels: ['@post'],
     postLabelCount: 5,
     labelCount: 20,
     commentCount: 10,
