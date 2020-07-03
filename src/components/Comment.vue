@@ -50,13 +50,13 @@
           </v-tooltip>
         </template>
         <v-card color="blue-grey">
-          <div class="py-1 px-3 d-flex">
-            <div class="d-flex grey--text text--lighten-3">
+          <div class="py-1 pl-3 pr-1 d-flex align-center">
+            <div class="grey--text text--lighten-3">
               {{ formatTime(comment.createdAt) }}
             </div>
             <v-spacer />
-            <a
-              class="px-0"
+            <v-btn
+              icon
               :href="`https://github.com/${comment.resourcePath}`"
               target="_blank"
               rel="noopener"
@@ -64,7 +64,7 @@
               <v-icon color="white">
                 mdi-github
               </v-icon>
-            </a>
+            </v-btn>
           </div>
           <v-card-text class="white black--text clean-last-p">
             <div v-html="comment.bodyHTML" />
