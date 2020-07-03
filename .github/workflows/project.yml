@@ -1,0 +1,23 @@
+name: Move Issue to Project Board
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  move-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to project board
+        if: >
+          contains(github.event.issue.labels.*.name, 'bug') ||
+          contains(github.event.issue.labels.*.name, 'enhancement')
+        uses: actions/github-script@0.8.0
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.projects.createCard({
+              column_id: 9842002,
+              content_id: context.payload.issue.id,
+              content_type: "Issue"
+            });
