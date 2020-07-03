@@ -14,11 +14,20 @@
       </div>
       <div>
         <span class="px-3 py-1 d-inline-block">
-          <v-icon>mdi-calendar-month-outline</v-icon>
+          <v-btn icon>
+            <v-icon>mdi-calendar-month-outline</v-icon>
+          </v-btn>
           {{ formatTime($page.post.createdAt) }}
         </span>
         <span class="px-3 py-1 d-inline-block">
-          <v-icon>mdi-calendar-edit</v-icon>
+          <v-btn
+            icon
+            :href="`${repoUrl}/issues/${$page.post.id}`"
+            target="_blank"
+            rel="noopener"
+          >
+            <v-icon>mdi-calendar-edit</v-icon>
+          </v-btn>
           {{ formatTime($page.post.lastEditedAt) }}
         </span>
       </div>
@@ -61,6 +70,7 @@
 
 <script>
 import { formatTime } from '@/utils'
+import { repoUrl } from '@/config'
 import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
 
@@ -71,6 +81,9 @@ export default {
     }
   },
   components: { PostLabel, Comment },
+  data () {
+    return { repoUrl }
+  },
   mounted () {
     document.getElementsByClassName('anchor-hover').forEach(el => {
       el.addEventListener('click', () => this.goToHash(el.hash))
