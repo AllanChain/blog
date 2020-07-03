@@ -9,7 +9,12 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.issue.labels.*.name, '@post') || github.event.pusher.name == 'AllanChain' }}
+    if: > 
+      ${{ 
+      (contains(github.event.issue.labels.*.name, '@post') && 
+      github.event.sender.login == 'AllanChain') || 
+      github.event.pusher.name == 'AllanChain' 
+      }}
     steps:
     - uses: hmarr/debug-action@master
     - uses: actions/checkout@master
