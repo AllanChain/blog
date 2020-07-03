@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import ghApi from '@/api'
+import { gql, htmlPlugins, ChainHTML } from '@/api'
 import { repoUrl } from '@/config'
 import { formatTime } from '@/utils'
 import Reactions from '@/components/Reactions'
@@ -107,8 +107,12 @@ export default {
   },
   async created () {
     try {
-      const data = await ghApi.gql('comment', {
+      const data = await gql('comment', {
         postNumber: this.number
+      })
+      data.repository.issue.comments.nodes.forEach(comment => {
+        comment.bodyHTML = new ChainHTML(comment.bodyHTML)
+          .use(htmlPlugins.codeLang).end()
       })
       this.comments = data.repository.issue.comments.nodes
       this.postReactions = data.repository.issue.reactions.nodes
