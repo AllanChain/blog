@@ -13,10 +13,10 @@ jobs:
     - uses: hmarr/debug-action@master
     - name: debug
       run: |
-        echo '$D1'
-        echo '$D2'
-        echo '$D3'
-        echo '$D4'
+        echo "$D1"
+        echo "$D2"
+        echo "$D3"
+        echo "$D4"
       env:
         D1: contains(github.event.issue.labels.*.name, 'blog')
         D2: github.event.pusher.name
