@@ -17,6 +17,8 @@ jobs:
       }}
     steps:
     - uses: actions/checkout@master
+    - name: debug
+      run: cat /github/workflow/event.json
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
