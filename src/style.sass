@@ -36,6 +36,12 @@ article.article-main.markdown-body
       pre
         border-radius: 0
 
+  & :not(.highlight) > pre
+    @media (max-width: 500px)
+      margin-left: -20px
+      margin-right: -20px
+      border-radius: 0
+
 .v-card__title
   word-break: normal !important
 
@@ -43,7 +49,7 @@ article.article-main.markdown-body
   margin-bottom: 0px
 
 *
-  & ::-webkit-scrollbar 
+  & ::-webkit-scrollbar
     width: 4px
     height: 4px
   & ::-webkit-scrollbar-thumb
