@@ -36,6 +36,14 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/labels">
+          <v-list-item-icon>
+            <v-icon>mdi-label-multiple-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>All Labels</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item
           link
           :href="profileUrl"
@@ -47,14 +55,6 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Follow Me</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/labels">
-          <v-list-item-icon>
-            <v-icon>mdi-label-multiple-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>All Labels</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
