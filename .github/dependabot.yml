@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: sunday
+    time: "07:00"
+    timezone: Asia/Manila
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: sass-loader
+    versions:
+    - ">= 8.a"
+    - "< 9"
