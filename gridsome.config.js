@@ -27,15 +27,16 @@ module.exports = {
     use: '@allanchain/gridsome-plugin-pwa',
     options: {
       manifestPath: 'manifest.json',
-      title: 'AC Dustbin',
-      startUrl: '.',
-      display: 'standalone',
-      statusBarStyle: 'default',
+      name: 'AC Dustbin',
       themeColor: '#1976d2',
-      backgroundColor: '#ffffff',
       icon: 'src/favicon.png',
-      shortName: 'AC Dustbin',
-      description: 'AllanChain\'s Dustbin',
+      manifestOptions: {
+        short_name: 'AC Dustbin',
+        description: 'AllanChain\'s Dustbin',
+        start_url: '.',
+        display: 'standalone',
+        background_color: '#ffffff'
+      },
       workboxOptions: {
         skipWaiting: true,
         exclude: [
