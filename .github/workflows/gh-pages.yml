@@ -2,8 +2,8 @@ name: Build and Deploy to gh-pages
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - gridsome
   issues:
     types: [opened, edited]
 
@@ -28,12 +28,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Prepare Content to Hash (ignore app version)
-      run: tail -n +4 package-lock.json > .content.to.hash
-    - uses: actions/cache@v2
+    - uses: actions/cache@v1
+      id: cache
       with:
-        path: mode_modules
-        key: node-${{ hashFiles('.content.to.hash') }}
+        path: node_modules
+        key: node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           node-
     - name: Install Packages
