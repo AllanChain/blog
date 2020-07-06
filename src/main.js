@@ -7,6 +7,8 @@ import goTo from 'vuetify/es5/services/goto'
 import './style.sass'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
+  if (isClient) require('./registerServiceWorker')
+
   Object.assign(appOptions, { vuetify, store })
 
   head.link.push({
