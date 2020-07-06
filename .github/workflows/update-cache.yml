@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - gridsome
+
+jobs:
+  update-cache:
+    name: Update Cache
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Prepare Content to Hash (ignore app version)
+      run: tail -n +4 package-lock.json > .content.to.hash
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: node_modules
+        key: node-${{ hashFiles('.content.to.hash') }}
+        restore-keys: |
+          node-
+    - name: Install Packages
+      # No need to install if hit, we are not building
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm install
