@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    title: ''
+    title: '',
+    swStatus: ''
   },
   mutations: {
     setTitle (state, title) {
       state.title = title
+    },
+    swUpdate (state, status) {
+      state.swStatus = status
     }
   }
 })

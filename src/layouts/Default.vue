@@ -57,6 +57,17 @@
             <v-list-item-title>Follow Me</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-divider />
+        <v-list-item>
+          <v-list-item-content>
+            <span>
+              <v-icon small>
+                mdi-cogs
+              </v-icon>
+              v{{ version }} - {{ $store.state.swStatus }}
+            </span>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </v-app>
@@ -77,7 +88,8 @@ export default {
   data () {
     return {
       drawer: false,
-      profileUrl
+      profileUrl,
+      version: process.env.GRIDSOME_VERSION
     }
   }
 }

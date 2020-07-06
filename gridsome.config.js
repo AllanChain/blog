@@ -24,13 +24,8 @@ module.exports = {
   },
   configureWebpack: { plugins },
   plugins: [{
-    use: 'gridsome-plugin-pwa',
+    use: '@allanchain/gridsome-plugin-pwa',
     options: {
-      // Service Worker Options
-      disableServiceWorker: false,
-      serviceWorkerPath: 'service-worker.js',
-      cachedFileTypes: 'js,css,png,jpg,jpeg,svg,gif',
-      disableTemplatedUrls: false, // Optional
       manifestPath: 'manifest.json',
       title: 'AC Dustbin',
       startUrl: '.',
@@ -39,16 +34,14 @@ module.exports = {
       themeColor: '#1976d2',
       backgroundColor: '#ffffff',
       icon: 'src/favicon.png',
-      shortName: 'AC Dustbin', // Optional
-      description: 'AllanChain\'s Dustbin' // Optional
-      // gcmSenderId: undefined, // Optional
-      // // Standard Meta Tags
-      // svgFavicon: 'favicon.png', // Optional. Requires favicon.ico fallback
-      // // Microsoft Windows Meta Tags
-      // msTileColor: '#666600', // Optional
-      // // Apple MacOS Meta Tags
-      // appleMaskIcon: 'favicon.png', // Optional
-      // appleMaskIconColor: '#666600' // Optional
+      shortName: 'AC Dustbin',
+      description: 'AllanChain\'s Dustbin',
+      workboxOptions: {
+        skipWaiting: true,
+        exclude: [
+          /manifest\.json/
+        ]
+      }
     }
   }]
 }

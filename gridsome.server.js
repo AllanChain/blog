@@ -17,6 +17,7 @@ module.exports = (api) => {
     }])
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
+  process.env.GRIDSOME_VERSION = process.env.npm_package_version
   const dataPromise = githubData()
   api.loadSource(async ({ addCollection, addSchemaTypes }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
