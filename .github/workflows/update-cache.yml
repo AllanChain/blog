@@ -1,3 +1,5 @@
+name: Update Cache
+
 on:
   push:
     branches:
