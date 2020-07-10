@@ -42,6 +42,7 @@ const parseBody = text => {
   }
   if (result.slug === undefined) throw new Error('Post need slug')
   const createdAt = new Date(result.createdAt)
+  // Only overwrite if is correct time
   if (!isNaN(createdAt)) result.createdAt = createdAt
   return result
 }
@@ -64,7 +65,8 @@ module.exports = async () => {
       return {
         id: node.number,
         createdAt: new Date(node.createdAt),
-        lastEditedAt: new Date(node.lastEditedAt),
+        // Fall back to create time if not edited
+        lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
         title: node.title,
         ...parseBody(node.bodyHTML),
         labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
