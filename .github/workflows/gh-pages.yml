@@ -18,7 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: debug
-      run: cat "$GITHUB_EVENT_PATH" | jq -M .
+      run: |
+        echo $GITHUB_REF
+        cat "$GITHUB_EVENT_PATH" | jq -M .
       env:
         A: ${{ contains(github.event.issue.labels.*.name, '@post') }}
         B: ${{ github.event.sender.login == 'AllanChain' }}
@@ -28,6 +30,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - name: Use Latest Release
+      run: git checkout "v$(semver $(git tag) | tail -n 1)"
     - uses: actions/cache@v1
       id: cache
       with:
