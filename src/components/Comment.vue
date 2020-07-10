@@ -43,7 +43,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-avatar v-bind="attrs" v-on="on">
-                <img :src="comment.author.avatarUrl">
+                <img :src="comment.author.avatarUrl" crossorigin="anonymous">
               </v-avatar>
             </template>
             <span>{{ comment.author.login }}</span>

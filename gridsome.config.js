@@ -40,7 +40,30 @@ module.exports = {
       workboxOptions: {
         skipWaiting: true,
         exclude: [
+          /assets\/icons/,
           /manifest\.json/
+        ],
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
+            handler: 'StaleWhileRevalidate',
+            options: { // Images don't support CORS
+              cacheName: 'GithHub-Images',
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            urlPattern: new RegExp('https://avatars\\d.githubusercontent.com/u/.*'),
+            handler: 'CacheFirst',
+            options: { // Avatars support CORS
+              cacheName: 'GithHub-Avatars',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
+          }
         ]
       }
     }
