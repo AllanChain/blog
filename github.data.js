@@ -43,7 +43,8 @@ const parseBody = text => {
   if (result.slug === undefined) throw new Error('Post need slug')
   const createdAt = new Date(result.createdAt)
   // Only overwrite if is correct time
-  if (!isNaN(createdAt)) result.createdAt = createdAt
+  if (isNaN(createdAt)) delete result.createdAt
+  else result.createdAt = createdAt
   return result
 }
 
