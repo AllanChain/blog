@@ -110,11 +110,63 @@ export default {
 </script>
 
 <style lang="sass">
+@import "~primer-markdown/index.scss"
+@import "~github-syntax-dark/lib/github-dark.css"
+
 h1, h2, h3,
 h4, h5, h6
   @extend %headings !optional
 
+$font-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+
+=full-width($margin)
+  @media (max-width: 500px)
+    margin-left: $margin
+    margin-right: $margin
+    border-radius: 0
+    pre
+      border-radius: 0
+
 article.article-main.markdown-body
+  & :not(pre) > code
+    color: #476582
+    padding: 0.25rem 0.5rem
+    margin: 0
+    background-color: rgba(27, 31, 35, 0.05)
+    border-radius: 3px
+
+  pre, .highlight pre
+    padding: 16px
+    overflow: auto
+    line-height: 1.45
+    background-color: #282c34
+    border-radius: 3px
+    font-size: 95%
+    code
+      color: #eee8d5
+      font-weight: normal
+      font-family: $font-mono
+
+  .highlight
+    position: relative
+    font-family: $font-mono
+    .code-lang
+      position: absolute
+      top: 0.2em
+      right: 0.6em
+      font-size: 0.75rem
+      color: rgba(255, 255, 255, 0.6)
+    +full-width(-20px)
+
+  & :not(.highlight) > pre
+    +full-width(-20px)
+
+  .v-card // comments
+    .highlight
+      +full-width(-16px)
+    & :not(.highlight) > pre
+      +full-width(-16px)
+
   %headings
     .anchor-hover
       text-decoration: none
@@ -122,6 +174,7 @@ article.article-main.markdown-body
       opacity: 0 // not hidden to receive hover
     &:hover .anchor-hover
       opacity: 1
+
   .article-summary a
     color: white
   a

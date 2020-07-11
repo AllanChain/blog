@@ -95,6 +95,18 @@ export default {
 }
 </script>
 
-<style>
+<style lang="sass">
+.v-card__title
+  word-break: normal !important
 
+.clean-last-p p:last-of-type
+  margin-bottom: 0px
+
+*
+  & ::-webkit-scrollbar
+    width: 4px
+    height: 4px
+  & ::-webkit-scrollbar-thumb
+    background-color: slategray
+    border-radius: 2px
 </style>
