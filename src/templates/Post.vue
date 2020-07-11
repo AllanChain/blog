@@ -39,7 +39,7 @@
       style="max-width: 900px"
     >
       <v-alert v-if="$page.post.summary" type="info" border="left">
-        <div class="clean-last-p" v-html="$page.post.summary" />
+        <div class="article-summary clean-last-p" v-html="$page.post.summary" />
       </v-alert>
       <div v-html="$page.post.body" />
       <Comment :number="parseInt($page.post.id, 10)" />
@@ -114,11 +114,16 @@ h1, h2, h3,
 h4, h5, h6
   @extend %headings !optional
 
-article.article-main.markdown-body %headings
-  .anchor-hover
-    text-decoration: none
-    margin-left: -15px
-    opacity: 0 // not hidden to receive hover
-  &:hover .anchor-hover
-    opacity: 1
+article.article-main.markdown-body
+  %headings
+    .anchor-hover
+      text-decoration: none
+      margin-left: -15px
+      opacity: 0 // not hidden to receive hover
+    &:hover .anchor-hover
+      opacity: 1
+  .article-summary a
+    color: white
+  a
+    word-break: break-word
 </style>
