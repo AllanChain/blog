@@ -41,7 +41,7 @@ jobs:
             `::set-output name=msg::${process.env.COMMIT_MSG}` +
             ` (${process.env.GITHUB_SHA.slice(0, 6)})`
           )
-        } else console.log(`::set-output name=msg::Deploy Post "${msg}"`)
+        } else console.log(`::set-output name=msg::Deploy Post "${process.env.TITLE}"`)
       env:
         IS_PUSH: ${{ github.event.pusher.name == 'AllanChain' }}
         COMMIT_MSG: ${{ github.event.head_commit.message }}
