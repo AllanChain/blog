@@ -36,8 +36,7 @@ jobs:
       id: msg
       shell: node {0}
       run: |
-        const isPush = process.env.IS_PUSH
-        if (isPush) {
+        if (process.env.IS_PUSH === 'true') {
           console.log(
             `::set-output name=msg::${process.env.COMMIT_MSG}` +
             ` (${process.env.GITHUB_SHA.slice(0, 6)})`
