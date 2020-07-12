@@ -32,10 +32,25 @@ jobs:
       run: npm install
     - name: Build App
       run: npm run build
+    - name: Determine Commit message
+      id: msg
+      shell: node {0}
+      run: |
+        const isPush = process.env.IS_PUSH
+        if (isPush) {
+          console.log(
+            `::set-output name=msg::${process.env.COMMIT_MSG}` +
+            ` (${process.env.GITHUB_SHA.slice(0, 6)})`
+          )
+        } else console.log(`::set-output name=msg::Deploy Post "${msg}"`)
+      env:
+        IS_PUSH: ${{ github.event.pusher.name == 'AllanChain' }}
+        COMMIT_MSG: ${{ github.event.head_commit.message }}
+        TITLE: ${{ github.event.issue.title }}
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./blog
         publish_branch: gh-pages
-        full_commit_message: ${{ github.event.issue.title }}
+        full_commit_message: ${{ steps.msg.outputs.msg }}
