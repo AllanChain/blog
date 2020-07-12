@@ -39,7 +39,7 @@ jobs:
         if (process.env.IS_PUSH === 'true') {
           console.log(
             `::set-output name=msg::${process.env.COMMIT_MSG}` +
-            ` (${process.env.GITHUB_SHA.slice(0, 6)})`
+            ` (${process.env.GITHUB_SHA.slice(0, 7)})`
           )
         } else console.log(`::set-output name=msg::Deploy Post "${process.env.TITLE}"`)
       env:
