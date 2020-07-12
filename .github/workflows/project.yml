@@ -7,11 +7,11 @@ on:
 jobs:
   move-to-project:
     runs-on: ubuntu-latest
+    if: >
+      contains(github.event.issue.labels.*.name, 'bug') ||
+      contains(github.event.issue.labels.*.name, 'enhancement')
     steps:
       - name: Add issue to project board
-        if: >
-          contains(github.event.issue.labels.*.name, 'bug') ||
-          contains(github.event.issue.labels.*.name, 'enhancement')
         uses: actions/github-script@0.8.0
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}

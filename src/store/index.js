@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    title: '',
-    swStatus: ''
+    title: 'AC Dustbin',
+    swStatus: 'pending'
   },
   mutations: {
     setTitle (state, title) {
