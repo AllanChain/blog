@@ -44,6 +44,14 @@
             <v-list-item-title>All Labels</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item @click="install && install.prompt()">
+          <v-list-item-icon>
+            <v-icon>mdi-plus-circle-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Add to Homescreen</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item
           link
           :href="profileUrl"
@@ -88,8 +96,21 @@ export default {
   data () {
     return {
       drawer: false,
+      install: false,
       profileUrl,
       version: process.env.GRIDSOME_VERSION
+    }
+  },
+  beforeMount () {
+    window.addEventListener('beforeinstallprompt', this.installPrompt)
+  },
+  beforeDestroy () {
+    window.removeEventListener('beforeinstallprompt', this.installPrompt)
+  },
+  methods: {
+    installPrompt (e) {
+      console.log('Receive install prompt')
+      this.install = e
     }
   }
 }
