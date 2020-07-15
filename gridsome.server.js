@@ -8,13 +8,26 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./github.data')
 
 module.exports = (api) => {
-  api.chainWebpack((config, { isServer }) => {
+  api.chainWebpack((config, { isClient, isProd }) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
     config.plugin('VuetifyLoaderPlugin').tap(args => [{
       progressiveImages: {
         sharp: true
       }
     }])
+    if (isProd && isClient) {
+      config.optimization.splitChunks({
+        maxSize: 170000,
+        cacheGroups: {
+          vendor: {
+            maxSize: 1000000,
+            test: /[\\/]node_modules[\\/](vue|vuex|vue-router|vue-meta)[\\/]/,
+            name: 'chunk-vendors',
+            chunks: 'all'
+          }
+        }
+      })
+    }
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
   process.env.GRIDSOME_VERSION = process.env.npm_package_version

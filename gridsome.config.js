@@ -22,6 +22,9 @@ module.exports = {
     Post: '/post/:slug',
     Label: '/:type/:name'
   },
+  css: {
+    split: true
+  },
   configureWebpack: { plugins },
   plugins: [{
     use: '@allanchain/gridsome-plugin-pwa',
