@@ -39,19 +39,19 @@ export default {
 </script>
 
 <static-query>
-  query {
-    allLabel {
-      edges {
-        node {
-          color
-          type
-          name
-          path
-          belongsTo {
-            totalCount
-          }
+query {
+  allLabel {
+    edges {
+      node {
+        color
+        type
+        name
+        path
+        belongsTo {
+          totalCount
         }
       }
     }
   }
+}
 </static-query>

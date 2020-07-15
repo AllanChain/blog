@@ -74,11 +74,11 @@
 </template>
 
 <static-query>
-  query {
-    metadata {
-      siteName
-    }
+query {
+  metadata {
+    siteName
   }
+}
 </static-query>
 
 <script>

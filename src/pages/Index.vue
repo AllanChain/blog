@@ -48,18 +48,18 @@
 </template>
 
 <static-query>
-  query {
-    allLabel(filter: { type: { eq: "blog" } }) {
-      edges {
-        node {
-          name
-          description
-          logo
-          path
-        }
+query {
+  allLabel(filter: { type: { eq: "blog" } }) {
+    edges {
+      node {
+        name
+        description
+        logo
+        path
       }
     }
   }
+}
 </static-query>
 
 <script>

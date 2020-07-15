@@ -54,32 +54,31 @@
 </template>
 
 <page-query>
-  query($id: ID!) {
-    label(id: $id) {
-      id
-      name
-      type
-      belongsTo {
-        edges {
-          node {
-            ... on Post {
+query($id: ID!) {
+  label(id: $id) {
+    id
+    name
+    type
+    belongsTo {
+      edges {
+        node {
+          ... on Post {
+            id
+            title
+            path
+            summary
+            createdAt
+            lastEditedAt
+            image
+            labels {
               id
-              title
+              type
+              name
+              logo
+              color
               path
-              summary
-              createdAt
-              lastEditedAt
-              image
-              labels {
-                id
-                type
-                name
-                logo
-                color
-                path
-                belongsTo {
-                  totalCount
-                }
+              belongsTo {
+                totalCount
               }
             }
           }
@@ -87,6 +86,7 @@
       }
     }
   }
+}
 </page-query>
 
 <script>

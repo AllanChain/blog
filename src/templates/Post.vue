@@ -48,24 +48,24 @@
 </template>
 
 <page-query>
-  query($id: ID!) {
-    post(id: $id) {
+query($id: ID!) {
+  post(id: $id) {
+    id
+    title
+    summary
+    body
+    createdAt
+    lastEditedAt
+    image
+    labels {
       id
-      title
-      summary
-      body
-      createdAt
-      lastEditedAt
-      image
-      labels {
-        id
-        name
-        type
-        color
-        path
-      }
+      name
+      type
+      color
+      path
     }
   }
+}
 </page-query>
 
 <script>
