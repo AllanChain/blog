@@ -111,6 +111,7 @@ export default {
     installPrompt (e) {
       console.log('Receive install prompt')
       this.install = e
+      e.preventDefault()
     }
   }
 }
