@@ -66,6 +66,26 @@ module.exports = {
                 statuses: [200]
               }
             }
+          },
+          {
+            urlPattern: new RegExp('/(index.json)?$'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'Post-Data',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
+          },
+          {
+            urlPattern: new RegExp('https://(cdn.jsdelivr.net|fonts.(gstatic|googleapis).com)/.*'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'Vuetify',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
           }
         ]
       }
