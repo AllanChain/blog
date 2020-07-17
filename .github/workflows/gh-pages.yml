@@ -43,7 +43,7 @@ jobs:
           )
         } else {
           console.log('::set-output name=msg::Deploy Post ' +
-            `"${process.env.TITLE}" (${process.env.NUMBER})`
+            `"${process.env.TITLE}" (#${process.env.NUMBER})`
           )
         }
       env:
