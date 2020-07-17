@@ -72,14 +72,6 @@ query($id: ID!) {
             image
             labels {
               id
-              type
-              name
-              logo
-              color
-              path
-              belongsTo {
-                totalCount
-              }
             }
           }
         }

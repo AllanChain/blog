@@ -26,7 +26,7 @@
           <PostLabel
             v-for="label of labels"
             :key="label.id"
-            :label="label"
+            :label-id="label.id"
           />
         </v-card-text>
       </div>
@@ -52,6 +52,22 @@
   </v-card>
 </template>
 
+<static-query>
+query {
+  allLabel {
+    edges {
+      node {
+        id
+        logo
+        belongsTo {
+          totalCount
+        }
+      }
+    }
+  }
+}
+</static-query>
+
 <script>
 import { fixUrl, formatTime } from '@/utils'
 import PostLabel from '@/components/PostLabel'
@@ -66,16 +82,23 @@ export default {
       required: true
     }
   },
-  data () {
-    const labels = this.post.labels.slice()
-      .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
-    let logo = false
-    if (!this.post.image) {
-      const restLabelLogos = labels.slice(1)
-        .map(label => label.logo).filter(Boolean)
-      logo = !!restLabelLogos.length && restLabelLogos.slice(-1)[0]
+  computed: {
+    labels () {
+      return this.post.labels.map(label =>
+        this.$static.allLabel.edges
+          .find(edge => edge.node.id === label.id)
+          .node
+      ).sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
+    },
+    logo () {
+      if (!this.post.image) {
+        // Do not use the hottest one
+        const restLabelLogos = this.labels.slice(1)
+          .map(label => label.logo).filter(Boolean)
+        return !!restLabelLogos.length && restLabelLogos.slice(-1)[0]
+      }
+      return false
     }
-    return { labels, logo }
   },
   methods: {
     fixUrl,

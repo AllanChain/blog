@@ -8,7 +8,7 @@
         v-for="label of labels"
         :key="label.id"
         class="ma-2"
-        :label="label"
+        :label-id="label.id"
         badge
       />
     </div>
@@ -43,10 +43,8 @@ query {
   allLabel {
     edges {
       node {
-        color
+        id
         type
-        name
-        path
         belongsTo {
           totalCount
         }

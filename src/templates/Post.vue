@@ -8,7 +8,7 @@
         <PostLabel
           v-for="label of this.$page.post.labels"
           :key="label.id"
-          :label="label"
+          :label-id="label.id"
         />
       </div>
       <div>
@@ -58,10 +58,6 @@ query($id: ID!) {
     image
     labels {
       id
-      name
-      type
-      color
-      path
     }
   }
 }

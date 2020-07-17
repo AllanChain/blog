@@ -22,6 +22,25 @@
   </v-badge>
 </template>
 
+<static-query>
+query {
+  allLabel {
+    edges {
+      node {
+        id
+        color
+        type
+        name
+        path
+        belongsTo {
+          totalCount
+        }
+      }
+    }
+  }
+}
+</static-query>
+
 <script>
 import { isDarkColor } from '@/utils'
 import { labelSizeBrkpnts } from '@/config'
@@ -30,8 +49,8 @@ const textColor = color => isDarkColor(color, 101) ? 'white' : 'black'
 
 export default {
   props: {
-    label: {
-      type: Object,
+    labelId: {
+      type: String,
       required: true
     },
     badge: {
@@ -39,37 +58,44 @@ export default {
       default: false
     }
   },
-  data () {
-    const data = {
-      style: {
-        label: false,
-        outlined: false,
-        textColor: textColor(this.label.color)
-      },
-      size: { small: true, large: false, xLarge: false },
-      icon: '',
-      badgeContent: undefined
+  data: () => ({
+    style: {
+      label: false,
+      outlined: false,
+      textColor: undefined
+    },
+    size: { small: true, large: false, xLarge: false },
+    icon: '',
+    badgeContent: undefined
+  }),
+  computed: {
+    label () {
+      return this.$static.allLabel.edges
+        .find(edge => edge.node.id === this.labelId)
+        .node
     }
+  },
+  created () {
+    this.style.textColor = textColor(this.label.color)
     if (this.label.type === 'tag') {
-      data.icon = 'mdi-tag-outline'
+      this.icon = 'mdi-tag-outline'
     } else if (this.label.type === 'series') {
-      data.icon = 'mdi-book'
-      data.style.textColor = undefined
-      data.style.outlined = true
+      this.icon = 'mdi-book'
+      this.style.textColor = undefined
+      this.style.outlined = true
     } else if (this.label.type === 'blog') {
-      data.icon = 'mdi-archive'
-      data.style.label = true
+      this.icon = 'mdi-archive'
+      this.style.label = true
     }
-    if (this.badge && this.label.belongsTo !== undefined) {
+    if (this.badge) {
       const number = this.label.belongsTo.totalCount
-      data.badgeContent = number
+      this.badgeContent = number
       if (number > labelSizeBrkpnts.normal) {
-        data.size.small = false
-        if (number > labelSizeBrkpnts.xLarge) data.size.xLarge = true
-        else if (number > labelSizeBrkpnts.large) data.size.large = true
+        this.size.small = false
+        if (number > labelSizeBrkpnts.xLarge) this.size.xLarge = true
+        else if (number > labelSizeBrkpnts.large) this.size.large = true
       }
     }
-    return data
   }
 }
 </script>
