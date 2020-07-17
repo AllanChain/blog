@@ -8,7 +8,6 @@
         <PostLabel
           v-for="label of this.$page.post.labels"
           :key="label.id"
-          :color="`#${label.color}`"
           :label="label"
         />
       </div>
