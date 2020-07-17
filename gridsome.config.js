@@ -25,6 +25,7 @@ module.exports = {
   css: {
     split: true
   },
+  cacheBusting: false,
   configureWebpack: { plugins },
   plugins: [{
     use: '@allanchain/gridsome-plugin-pwa',
