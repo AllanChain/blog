@@ -2,10 +2,10 @@ name: Move Issue to Project Board
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 jobs:
-  move-to-project:
+  blog-code:
     runs-on: ubuntu-latest
     if: >
       contains(github.event.issue.labels.*.name, 'bug') ||
@@ -18,6 +18,20 @@ jobs:
           script: |
             github.projects.createCard({
               column_id: 9842002,
+              content_id: context.payload.issue.id,
+              content_type: "Issue"
+            });
+  blog-post:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, '@WIP')
+    steps:
+      - name: Add issue to project board
+        uses: actions/github-script@0.8.0
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.projects.createCard({
+              column_id: 10075483,
               content_id: context.payload.issue.id,
               content_type: "Issue"
             });
