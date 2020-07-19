@@ -2,7 +2,7 @@ name: Move Issue to Project Board
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 jobs:
   blog-code:
@@ -25,6 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.labels.*.name, '@WIP')
     steps:
+      - name: debug
+        run: cat "$GITHUB_EVENT_PATH" | jq -M .
+        env:
+          A: ${{ github.event.action.changes.label }}
+          B: ${{ github.event.action == 'labeled' }}
+          C: ${{ github.event.action.changes.label == '@WIP' }}
       - name: Add issue to project board
         uses: actions/github-script@0.8.0
         with:
