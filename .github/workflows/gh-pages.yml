@@ -36,21 +36,20 @@ jobs:
       id: msg
       shell: node {0}
       run: |
-        if (process.env.IS_PUSH === 'true') {
+        const event = JSON.parse(process.env.GITHUB_EVENT)
+        if (event.pusher.name == 'AllanChain') {
           console.log('::set-output name=msg::' +
-            `${process.env.COMMIT_MSG.split('\n', 1)[0]}` +
+            `${event.head_commit.message.split('\n', 1)[0]}` +
             ` (${process.env.GITHUB_SHA.slice(0, 7)})`
           )
         } else {
-          console.log('::set-output name=msg::Deploy Post ' +
-            `"${process.env.TITLE}" (#${process.env.NUMBER})`
+          console.log('::set-output name=msg::' +
+            (event.action === 'edited' ? 'Edit' : 'Create') +
+            ` "${event.issue.title}" (#${event.issue.number})`
           )
         }
       env:
-        IS_PUSH: ${{ github.event.pusher.name == 'AllanChain' }}
-        COMMIT_MSG: ${{ github.event.head_commit.message }}
-        TITLE: ${{ github.event.issue.title }}
-        NUMBER: ${{ github.event.issue.number }}
+        GITHUB_EVENT: ${{ toJson(github.event) }}
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
