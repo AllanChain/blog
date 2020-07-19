@@ -7,9 +7,7 @@ on:
 jobs:
   blog-code:
     runs-on: ubuntu-latest
-    if: >
-      contains(github.event.issue.labels.*.name, 'bug') ||
-      contains(github.event.issue.labels.*.name, 'enhancement')
+    if: contains(fromJson('["bug", "enhancement"]'), github.event.label.name)
     steps:
       - name: Add issue to project board
         uses: actions/github-script@0.8.0
@@ -23,14 +21,8 @@ jobs:
             });
   blog-post:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, '@WIP')
+    if: github.event.label.name == '@WIP'
     steps:
-      - name: debug
-        run: cat "$GITHUB_EVENT_PATH" | jq -M .
-        env:
-          A: ${{ github.event.action.changes.label }}
-          B: ${{ github.event.action == 'labeled' }}
-          C: ${{ github.event.action.changes.label == '@WIP' }}
       - name: Add issue to project board
         uses: actions/github-script@0.8.0
         with:
