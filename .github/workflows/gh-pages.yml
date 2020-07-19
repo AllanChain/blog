@@ -37,7 +37,7 @@ jobs:
       shell: node {0}
       run: |
         const event = JSON.parse(process.env.GITHUB_EVENT)
-        if (event.pusher.name == 'AllanChain') {
+        if (event.pusher && event.pusher.name === 'AllanChain') {
           console.log('::set-output name=msg::' +
             `${event.head_commit.message.split('\n', 1)[0]}` +
             ` (${process.env.GITHUB_SHA.slice(0, 7)})`
