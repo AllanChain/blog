@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue"
   },
   "dependencies": {
-    "@allanchain/gridsome-plugin-pwa": "^0.2.3",
+    "@allanchain/gridsome-plugin-pwa": "^0.2.4",
     "axios": "^0.19.2",
     "github-syntax-dark": "^0.5.0",
     "gridsome": "^0.7.19",
