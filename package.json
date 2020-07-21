@@ -16,7 +16,7 @@
     "gridsome": "^0.7.19",
     "primer-markdown": "^4.0.0",
     "register-service-worker": "^1.7.1",
-    "vuetify": "^2.3.4",
+    "vuetify": "^2.3.5",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
