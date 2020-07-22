@@ -49,15 +49,16 @@
             <span>{{ comment.author.login }}</span>
           </v-tooltip>
         </template>
-        <v-card color="blue-grey">
+        <v-card color="cyan darken-3">
           <div class="py-1 pl-3 pr-1 d-flex align-center">
-            <div class="grey--text text--lighten-3">
+            <div class="white--text font-weight-thin">
               {{ formatTime(comment.createdAt) }}
             </div>
             <v-spacer />
             <v-btn
               icon
               :href="`https://github.com/${comment.resourcePath}`"
+              style="margin: -4px;"
               target="_blank"
               rel="noopener"
             >
