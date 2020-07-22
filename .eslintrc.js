@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
+  ecmaVersion: 2020,
   extends: [
     'standard',
     'plugin:vue/recommended',
