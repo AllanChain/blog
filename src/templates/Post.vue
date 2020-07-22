@@ -71,9 +71,29 @@ import Comment from '@/components/Comment'
 
 export default {
   metaInfo () {
-    return {
-      title: this.$page.post.title
+    const meta = { title: this.$page.post.title }
+    if (this.$page.post.body.includes('$')) {
+      if (window && !window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        }
+      }
+      meta.script = [
+        {
+          src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js',
+          id: 'MathJax-script',
+          async: true,
+          defer: true,
+          key: 'mathjax'
+        }
+      ]
     }
+    return meta
   },
   components: { PostLabel, Comment },
   data () {
