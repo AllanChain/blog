@@ -12,13 +12,13 @@
         />
       </div>
       <div>
-        <span class="px-3 py-1 d-inline-block">
+        <span class="px-3 d-inline-block">
           <v-btn icon>
             <v-icon>mdi-calendar-month-outline</v-icon>
           </v-btn>
           {{ formatTime($page.post.createdAt) }}
         </span>
-        <span class="px-3 py-1 d-inline-block">
+        <span class="px-3 d-inline-block">
           <v-btn
             icon
             :href="`${repoUrl}/issues/${$page.post.id}`"
