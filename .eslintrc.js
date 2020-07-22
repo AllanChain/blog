@@ -1,7 +1,10 @@
 module.exports = {
   root: true,
   parser: 'vue-eslint-parser',
-  ecmaVersion: 2020,
+  parserOptions: {
+    ecmaVersion: 2020
+  },
+  ignorePatterns: ['!.cz-config.js'],
   extends: [
     'standard',
     'plugin:vue/recommended',
