@@ -117,6 +117,12 @@ export default {
       this.comments = data.repository.issue.comments.nodes
       this.postReactions = data.repository.issue.reactions.nodes
       this.loadStatus = 'success'
+      if (
+        window?.MathJax?.typesetPromise &&
+        this.comments.some(node => node.bodyHTML.includes('$'))
+      ) {
+        this.$nextTick(window.MathJax.typesetPromise)
+      }
     } catch (err) {
       this.loadStatus = 'error'
     }
