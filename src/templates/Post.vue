@@ -76,11 +76,12 @@ export default {
       if (window && !window.MathJax) {
         window.MathJax = {
           tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            macros: {
+              ds: '\\displaystyle'
+            }
           },
-          svg: {
-            fontCache: 'global'
-          }
+          svg: { fontCache: 'global' }
         }
       }
       meta.script = [
