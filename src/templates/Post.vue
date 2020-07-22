@@ -86,7 +86,7 @@ export default {
       }
       meta.script = [
         {
-          src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js',
+          src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
           id: 'MathJax-script',
           async: true,
           defer: true,
