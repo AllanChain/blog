@@ -85,17 +85,6 @@ export default {
   metaInfo () {
     const meta = { title: this.$page.post.title }
     if (this.$page.post.body.includes('$')) {
-      if (window && !window.MathJax) {
-        window.MathJax = {
-          tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            macros: {
-              ds: '\\displaystyle'
-            }
-          },
-          svg: { fontCache: 'global' }
-        }
-      }
       meta.script = [
         {
           src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
@@ -112,11 +101,30 @@ export default {
   data () {
     return { repoUrl }
   },
-  mounted () {
-    document.getElementsByClassName('anchor-hover').forEach(el => {
-      el.addEventListener('click', () => this.goToHash(el.hash))
-    })
-    if (location.hash) this.goToHash(location.hash)
+  watch: {
+    '$page.post.id': {
+      immediate: true,
+      handler () {
+        if (process.isServer) return
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              macros: {
+                ds: '\\displaystyle'
+              }
+            },
+            svg: { fontCache: 'global' }
+          }
+        } else this.$nextTick(window.MathJax.typesetPromise)
+        this.$nextTick(() => {
+          document.getElementsByClassName('anchor-hover').forEach(el => {
+            el.addEventListener('click', () => this.goToHash(el.hash))
+          })
+          if (location.hash) this.goToHash(location.hash)
+        })
+      }
+    }
   },
   methods: {
     formatTime,

@@ -106,26 +106,36 @@ export default {
       loadStatus: 'loading'
     }
   },
-  async created () {
-    try {
-      const data = await gql('comment', {
-        postNumber: this.number
-      })
-      data.repository.issue.comments.nodes.forEach(comment => {
-        comment.bodyHTML = new ChainHTML(comment.bodyHTML)
-          .use(htmlPlugins.codeLang).end()
-      })
-      this.comments = data.repository.issue.comments.nodes
-      this.postReactions = data.repository.issue.reactions.nodes
-      this.loadStatus = 'success'
-      if (
-        window?.MathJax?.typesetPromise &&
-        this.comments.some(node => node.bodyHTML.includes('$'))
-      ) {
-        this.$nextTick(window.MathJax.typesetPromise)
+  watch: {
+    number: {
+      immediate: true,
+      async handler (postNumber) {
+        if (process.isServer) return
+        this.comments = []
+        this.postReactions = []
+        this.loadStatus = 'loading'
+        try {
+          const data = await gql('comment', { postNumber })
+          data.repository.issue.comments.nodes.forEach(comment => {
+            comment.bodyHTML = new ChainHTML(comment.bodyHTML)
+              .use(htmlPlugins.codeLang)
+              .use(htmlPlugins.issueLink)
+              .use(htmlPlugins.trimIssue)
+              .end()
+          })
+          this.comments = data.repository.issue.comments.nodes
+          this.postReactions = data.repository.issue.reactions.nodes
+          this.loadStatus = 'success'
+          if (
+            window?.MathJax?.typesetPromise &&
+            this.comments.some(node => node.bodyHTML.includes('$'))
+          ) {
+            this.$nextTick(window.MathJax.typesetPromise)
+          }
+        } catch (err) {
+          this.loadStatus = 'error'
+        }
       }
-    } catch (err) {
-      this.loadStatus = 'error'
     }
   },
   methods: { formatTime }

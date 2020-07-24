@@ -33,6 +33,8 @@ const parseBody = text => {
   if (result.body === '') throw new Error('Post need <hr>')
   result.body = new ChainHTML(result.body)
     .use(htmlPlugins.codeLang)
+    .use(htmlPlugins.issueLink)
+    .use(htmlPlugins.trimIssue)
     .use(slugPlugin)
     .end()
   for (const key in patterns) {
