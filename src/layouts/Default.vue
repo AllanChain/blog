@@ -72,7 +72,7 @@
               <v-icon small>
                 mdi-cogs
               </v-icon>
-              v{{ version }} - {{ $store.state.swStatus }}
+              {{ version }} - {{ $store.state.swStatus }}
             </span>
           </v-list-item-content>
         </v-list-item>
@@ -98,10 +98,11 @@ export default {
       drawer: false,
       install: false,
       profileUrl,
-      version: process.env.GRIDSOME_VERSION
+      version: '<version>'
     }
   },
   beforeMount () {
+    this.version = 'v' + process.env.GRIDSOME_VERSION
     window.addEventListener('beforeinstallprompt', this.installPrompt)
   },
   beforeDestroy () {
