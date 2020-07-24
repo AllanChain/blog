@@ -11,14 +11,26 @@
           :label-id="label.id"
         />
       </div>
+      <div class="text-center">
+        <a
+          rel="license"
+          href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+        >
+          <img
+            alt="CC-by-nc-sa"
+            style="border-width:0"
+            src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"
+          >
+        </a>
+      </div>
       <div>
-        <span class="px-3 py-1 d-inline-block">
+        <span class="px-3 d-inline-block">
           <v-btn icon>
             <v-icon>mdi-calendar-month-outline</v-icon>
           </v-btn>
           {{ formatTime($page.post.createdAt) }}
         </span>
-        <span class="px-3 py-1 d-inline-block">
+        <span class="px-3 d-inline-block">
           <v-btn
             icon
             :href="`${repoUrl}/issues/${$page.post.id}`"
@@ -71,19 +83,48 @@ import Comment from '@/components/Comment'
 
 export default {
   metaInfo () {
-    return {
-      title: this.$page.post.title
+    const meta = { title: this.$page.post.title }
+    if (this.$page.post.body.includes('$')) {
+      meta.script = [
+        {
+          src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
+          id: 'MathJax-script',
+          async: true,
+          defer: true,
+          key: 'mathjax'
+        }
+      ]
     }
+    return meta
   },
   components: { PostLabel, Comment },
   data () {
     return { repoUrl }
   },
-  mounted () {
-    document.getElementsByClassName('anchor-hover').forEach(el => {
-      el.addEventListener('click', () => this.goToHash(el.hash))
-    })
-    if (location.hash) this.goToHash(location.hash)
+  watch: {
+    '$page.post.id': {
+      immediate: true,
+      handler () {
+        if (process.isServer) return
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              macros: {
+                ds: '\\displaystyle'
+              }
+            },
+            svg: { fontCache: 'global' }
+          }
+        } else this.$nextTick(window.MathJax.typesetPromise)
+        this.$nextTick(() => {
+          document.getElementsByClassName('anchor-hover').forEach(el => {
+            el.addEventListener('click', () => this.goToHash(el.hash))
+          })
+          if (location.hash) this.goToHash(location.hash)
+        })
+      }
+    }
   },
   methods: {
     formatTime,

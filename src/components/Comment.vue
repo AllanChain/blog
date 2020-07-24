@@ -49,15 +49,16 @@
             <span>{{ comment.author.login }}</span>
           </v-tooltip>
         </template>
-        <v-card color="blue-grey">
+        <v-card color="cyan darken-3">
           <div class="py-1 pl-3 pr-1 d-flex align-center">
-            <div class="grey--text text--lighten-3">
+            <div class="white--text font-weight-thin">
               {{ formatTime(comment.createdAt) }}
             </div>
             <v-spacer />
             <v-btn
               icon
               :href="`https://github.com/${comment.resourcePath}`"
+              style="margin: -4px;"
               target="_blank"
               rel="noopener"
             >
@@ -105,20 +106,36 @@ export default {
       loadStatus: 'loading'
     }
   },
-  async created () {
-    try {
-      const data = await gql('comment', {
-        postNumber: this.number
-      })
-      data.repository.issue.comments.nodes.forEach(comment => {
-        comment.bodyHTML = new ChainHTML(comment.bodyHTML)
-          .use(htmlPlugins.codeLang).end()
-      })
-      this.comments = data.repository.issue.comments.nodes
-      this.postReactions = data.repository.issue.reactions.nodes
-      this.loadStatus = 'success'
-    } catch (err) {
-      this.loadStatus = 'error'
+  watch: {
+    number: {
+      immediate: true,
+      async handler (postNumber) {
+        if (process.isServer) return
+        this.comments = []
+        this.postReactions = []
+        this.loadStatus = 'loading'
+        try {
+          const data = await gql('comment', { postNumber })
+          data.repository.issue.comments.nodes.forEach(comment => {
+            comment.bodyHTML = new ChainHTML(comment.bodyHTML)
+              .use(htmlPlugins.codeLang)
+              .use(htmlPlugins.issueLink)
+              .use(htmlPlugins.trimIssue)
+              .end()
+          })
+          this.comments = data.repository.issue.comments.nodes
+          this.postReactions = data.repository.issue.reactions.nodes
+          this.loadStatus = 'success'
+          if (
+            window?.MathJax?.typesetPromise &&
+            this.comments.some(node => node.bodyHTML.includes('$'))
+          ) {
+            this.$nextTick(window.MathJax.typesetPromise)
+          }
+        } catch (err) {
+          this.loadStatus = 'error'
+        }
+      }
     }
   },
   methods: { formatTime }

@@ -2,12 +2,15 @@ version: 2
 updates:
 - package-ecosystem: npm
   directory: "/"
+  target-branch: dev
   schedule:
     interval: daily
     day: sunday
     time: "07:00"
     timezone: Asia/Manila
   open-pull-requests-limit: 5
+  reviewers:
+  - 'AllanChain'
   ignore:
   - dependency-name: sass-loader
     versions:
