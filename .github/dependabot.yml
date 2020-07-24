@@ -9,6 +9,8 @@ updates:
     time: "07:00"
     timezone: Asia/Manila
   open-pull-requests-limit: 5
+  reviewers:
+  - 'AllanChain'
   ignore:
   - dependency-name: sass-loader
     versions:
