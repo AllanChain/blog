@@ -45,8 +45,8 @@ module.exports = {
       '<a class="issue-link" href'
     ),
     issueLink: html => html.replace(
-      /<a href="\d+">(.*)(#.*)<\/a>/g,
-      `<a href="${process.env.GRIDSOME_BASE_URL}post/$1$2">$1$2</a>`
+      /<a href="\d+">(.*?)(#.*?)?<\/a>/g,
+      `<a class="post-link" href="${process.env.GRIDSOME_BASE_URL}post/$1$2">$1$2</a>`
     )
   },
   ChainHTML
