@@ -86,7 +86,9 @@ export default {
     const meta = { title: this.$page.post.title }
     if (this.$page.post.body.includes('$')) {
       meta.script = [
-        {
+        { // https://vue-meta.nuxtjs.org/api/#once
+          once: true,
+          skip: (typeof window !== 'undefined' && window.MathJax.version),
           src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
           id: 'MathJax-script',
           async: true,
