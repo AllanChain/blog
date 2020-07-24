@@ -6,7 +6,18 @@ import vuetify from '@/plugins/vuetify'
 import goTo from 'vuetify/es5/services/goto'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
-  if (isClient) require('./registerServiceWorker')
+  if (isClient) {
+    require('./registerServiceWorker')
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        macros: {
+          ds: '\\displaystyle'
+        }
+      },
+      svg: { fontCache: 'global' }
+    }
+  }
 
   Object.assign(appOptions, { vuetify, store })
 

@@ -106,17 +106,7 @@ export default {
       immediate: true,
       handler () {
         if (process.isServer) return
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex: {
-              inlineMath: [['$', '$'], ['\\(', '\\)']],
-              macros: {
-                ds: '\\displaystyle'
-              }
-            },
-            svg: { fontCache: 'global' }
-          }
-        } else this.$nextTick(window.MathJax.typesetPromise)
+        if (window.MathJax) this.$nextTick(window.MathJax.typesetPromise)
         this.$nextTick(() => {
           document.getElementsByClassName('anchor-hover').forEach(el => {
             el.addEventListener('click', () => this.goToHash(el.hash))
