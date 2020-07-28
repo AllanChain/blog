@@ -34,6 +34,7 @@ module.exports = {
       name: 'AC Dustbin',
       themeColor: '#1976d2',
       icon: 'src/favicon.png',
+      maskableIcon: true,
       manifestOptions: {
         short_name: 'AC Dustbin',
         description: 'AllanChain\'s Dustbin',
@@ -43,10 +44,6 @@ module.exports = {
       },
       workboxOptions: {
         skipWaiting: true,
-        exclude: [
-          /assets\/icons/,
-          /manifest\.json/
-        ],
         runtimeCaching: [
           {
             urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),

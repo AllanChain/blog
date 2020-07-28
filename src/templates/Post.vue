@@ -86,8 +86,8 @@ export default {
     const meta = { title: this.$page.post.title }
     if (this.$page.post.body.includes('$')) {
       meta.script = [
-        { // https://vue-meta.nuxtjs.org/api/#once
-          once: true,
+        {
+          once: true, // https://vue-meta.nuxtjs.org/api/#once
           skip: (typeof window !== 'undefined' && window.MathJax.version),
           src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
           id: 'MathJax-script',
@@ -128,8 +128,7 @@ export default {
       if (el === null) return
       this.$vuetify.goTo(el, {
         duration: 700,
-        // `offset` take app bar into account
-        offset: 10,
+        offset: 10, // already take app bar into account
         easing: 'easeInOutQuart'
       })
     }
