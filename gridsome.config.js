@@ -43,10 +43,6 @@ module.exports = {
       },
       workboxOptions: {
         skipWaiting: true,
-        exclude: [
-          /assets\/icons/,
-          /manifest\.json/
-        ],
         runtimeCaching: [
           {
             urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
