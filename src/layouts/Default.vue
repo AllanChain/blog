@@ -36,6 +36,14 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/post/about">
+          <v-list-item-icon>
+            <v-icon>mdi-information-variant</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>About</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link to="/labels">
           <v-list-item-icon>
             <v-icon>mdi-label-multiple-outline</v-icon>
