@@ -21,7 +21,7 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "cz-customizable": "^6.2.1",
+    "cz-customizable": "^6.3.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.6.0",
     "eslint-config-standard": "^14.1.1",
