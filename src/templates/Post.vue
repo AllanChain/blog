@@ -19,7 +19,7 @@
           <img
             alt="CC-by-nc-sa"
             style="border-width:0"
-            src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"
+            src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png"
           >
         </a>
       </div>

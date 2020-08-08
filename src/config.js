@@ -5,10 +5,10 @@ module.exports = {
   gqlVar: {
     repo,
     owner,
-    postCount: 40,
+    postCount: 100,
     postLabels: ['@post'],
     postLabelCount: 5,
-    labelCount: 20,
+    labelCount: 40,
     commentCount: 10,
     reactionCount: 10
   },
