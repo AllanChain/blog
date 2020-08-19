@@ -52,7 +52,7 @@
             <v-list-item-title>All Labels</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="install && install.prompt()">
+        <v-list-item :disabled="!install" @click="install.prompt()">
           <v-list-item-icon>
             <v-icon>mdi-plus-circle-outline</v-icon>
           </v-list-item-icon>
