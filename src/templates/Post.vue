@@ -55,6 +55,7 @@
       <div v-html="$page.post.body" />
       <Comment :number="parseInt($page.post.id, 10)" />
     </article>
+    <Fab />
   </div>
 </template>
 
@@ -80,6 +81,7 @@ import { formatTime } from '@/utils'
 import { repoUrl } from '@/config'
 import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
+import Fab from '@/components/Fab'
 
 export default {
   metaInfo () {
@@ -99,7 +101,7 @@ export default {
     }
     return meta
   },
-  components: { PostLabel, Comment },
+  components: { PostLabel, Comment, Fab },
   data () {
     return { repoUrl }
   },

@@ -27,7 +27,7 @@ jobs:
       id: cache
       with:
         path: node_modules
-        key: node-${{ hashFiles('**/package-lock.json') }}
+        key: node-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           node-
     - name: Install Packages
