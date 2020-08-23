@@ -28,6 +28,12 @@ module.exports = {
       blog: 'https://txtyb.github.io/',
       avatar: 'https://avatars2.githubusercontent.com/u/14294192?s=100&v=4',
       moto: 'The quieter you be, the more you can hear.'
+    },
+    {
+      name: 'Yixuan-Wang',
+      blog: 'https://yixuan-wang.github.io/blog/',
+      avatar: 'https://avatars2.githubusercontent.com/u/21151119?s=100&v=4',
+      moto: 'Pak'
     }
   ]
 }
