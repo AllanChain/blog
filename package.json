@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "build": "gridsome build",
@@ -37,6 +37,7 @@
     "sass-loader": "^7.3.1",
     "vue-eslint-parser": "^7.1.0",
     "vuetify-loader": "^1.6.0",
-    "webpack-stats-plugin": "^0.3.2"
+    "webpack-stats-plugin": "^0.3.2",
+    "workbox-build": "^6.0.0-alpha.2"
   }
 }
