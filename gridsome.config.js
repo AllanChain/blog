@@ -42,49 +42,12 @@ module.exports = {
         display: 'standalone',
         background_color: '#ffffff'
       },
+      workboxPluginMode: 'injectManifest',
       workboxOptions: {
-        skipWaiting: true,
-        runtimeCaching: [
-          {
-            urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
-            handler: 'StaleWhileRevalidate',
-            options: { // Images don't support CORS
-              cacheName: 'GithHub-Images',
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
-          {
-            urlPattern: new RegExp('https://avatars\\d.githubusercontent.com/u/.*'),
-            handler: 'CacheFirst',
-            options: { // Avatars support CORS
-              cacheName: 'GithHub-Avatars',
-              cacheableResponse: {
-                statuses: [200]
-              }
-            }
-          },
-          {
-            urlPattern: new RegExp('/(index.json)?$'),
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'Post-Data',
-              cacheableResponse: {
-                statuses: [200]
-              }
-            }
-          },
-          {
-            urlPattern: new RegExp('https://(cdn.jsdelivr.net|fonts.(gstatic|googleapis).com)/.*'),
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'Vuetify',
-              cacheableResponse: {
-                statuses: [200]
-              }
-            }
-          }
+        swSrc: './src/service-worker.js',
+        globPatterns: [
+          'assets/@(js|css)/*',
+          'assets/data/**/index.json'
         ]
       }
     }
