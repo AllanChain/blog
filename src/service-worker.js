@@ -57,7 +57,7 @@ registerRoute(
   new InjectRevision({
     cacheName: 'Post-Data',
     plugins: [
-      ExpirationPlugin({
+      new ExpirationPlugin({
         maxEntries: 20
       })
     ]
