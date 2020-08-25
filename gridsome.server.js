@@ -16,17 +16,7 @@ module.exports = (api) => {
       }
     }])
     if (isProd && isClient) {
-      config.optimization.splitChunks({
-        maxSize: 170000,
-        cacheGroups: {
-          vendor: {
-            maxSize: 1000000,
-            test: /[\\/]node_modules[\\/](vue|vuex|vue-router|vue-meta)[\\/]/,
-            name: 'chunk-vendors',
-            chunks: 'all'
-          }
-        }
-      })
+      config.optimization.splitChunks({ chunks: 'all' })
     }
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
