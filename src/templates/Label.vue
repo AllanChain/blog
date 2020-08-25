@@ -3,6 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" sm="6">
         <v-select
+          id="sort-by"
           v-model="sortKey"
           :items="sortKeys"
           label="Sort By"
@@ -13,6 +14,7 @@
       <v-col cols="12" sm="6">
         <v-form @submit.prevent="ghSearch">
           <v-text-field
+            id="gh-search"
             v-model="query"
             prepend-inner-icon="mdi-magnify"
             label="Search Post Title and Summary"
