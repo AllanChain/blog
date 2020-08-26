@@ -16,7 +16,7 @@
 
 ## Why Issues?
 
-I have already disscussed in [vue-iblog#why-use-github-issues](96). Besides, People will see my post if I mention other issues. ~~正所谓打广告于无形之中~~
+I have already disscussed in [vue-iblog#why-use-github-issues](issues/96). Besides, People will see my post if I mention other issues. ~~正所谓打广告于无形之中~~
 
 ## Lisence
 
@@ -25,3 +25,5 @@ The code base is licensed under **MIT license**, while the blog posts are licens
 ## Web Page Service
 
 This blog uses GitHub pages to serve the contents, and there are no third-party services. Thus I won't know anything if you visited my site unless you leave a kind :heart: reaction or comment, which is a great motivation to write.
+
+However, if you want only subscribe to posts, you can use third-party services like RSSHub (e.g. https://rsshub.diy.now.sh/github/issue/allanchain/blog/open/%40post)
