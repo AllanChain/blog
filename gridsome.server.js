@@ -16,7 +16,16 @@ module.exports = (api) => {
       }
     }])
     if (isProd && isClient) {
-      config.optimization.splitChunks({ chunks: 'all' })
+      config.optimization.splitChunks({
+        chunks: 'all',
+        cacheGroups: {
+          vueVendor: {
+            test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
+            name: 'vue-vendors',
+            chunks: 'all'
+          }
+        }
+      })
     }
   })
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
