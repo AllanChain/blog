@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
+import csso from 'csso'
 
 Vue.use(Vuetify)
 
@@ -8,6 +9,8 @@ export default new Vuetify({
     iconfont: 'mdi'
   },
   theme: {
-    disable: true
+    options: {
+      minifyTheme: css => csso.minify(css).css
+    }
   }
 })
