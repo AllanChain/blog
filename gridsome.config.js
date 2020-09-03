@@ -42,13 +42,34 @@ module.exports = {
         display: 'standalone',
         background_color: '#ffffff'
       },
-      workboxPluginMode: 'injectManifest',
-      workboxCompileSrc: false,
+      workboxPluginMode: 'generateSW',
       workboxOptions: {
-        swSrc: './src/service-worker.js',
-        globPatterns: [
-          'assets/@(js|css)/*',
-          'assets/data/**/index.json'
+        skipWaiting: true,
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
+            handler: 'StaleWhileRevalidate', // Images don't support CORS
+            options: { cacheName: 'GithHub' }
+          },
+          {
+            urlPattern: new RegExp('https://avatars\\d.githubusercontent.com/u/.*'),
+            handler: 'CacheFirst', // Avatars support CORS
+            options: { cacheName: 'GithHub' }
+          },
+          {
+            urlPattern: new RegExp('/(index.json)?$'),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'Post-Data',
+              networkTimeoutSeconds: 3,
+              expiration: { maxEntries: 20 }
+            }
+          },
+          {
+            urlPattern: new RegExp('https://(cdn.jsdelivr.net|fonts.(gstatic|googleapis).com)/.*'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'CDN' }
+          }
         ]
       }
     }
