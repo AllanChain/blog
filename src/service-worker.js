@@ -1,8 +1,6 @@
-import { precacheAndRoute } from 'workbox-precaching'
-import { registerRoute } from 'workbox-routing'
-import { StaleWhileRevalidate, CacheFirst, Strategy } from 'workbox-strategies'
-import { ExpirationPlugin } from 'workbox-expiration'
-import { WorkboxError } from 'workbox-core/_private/WorkboxError'
+/* eslint-env worker */
+/* eslint-disable no-undef */
+importScripts('http://storage.googleapis.com/workbox-cdn/releases/6.0.0-alpha.2/workbox-sw.js')
 
 const manifest = self.__WB_MANIFEST
 const precacheManifest = []
@@ -13,7 +11,7 @@ for (const file of manifest) {
   else precacheManifest.push(file)
 }
 
-class InjectRevision extends Strategy {
+class InjectRevision extends workbox.strategies.Strategy {
   async _handle (request, handler) {
     let injectedUrl, response, error
     const urlToMatch = request.url.match(new RegExp('.*?://.*?(/.*)'))[1]
@@ -35,35 +33,38 @@ class InjectRevision extends Strategy {
       }
     }
     if (!response) { // fetch fail
-      throw new WorkboxError('no-response', { url: request.url, error })
+      throw new Error('no-response', { url: request.url, error })
     }
     return response
   }
 }
 
-precacheAndRoute(precacheManifest)
+workbox.precaching.precacheAndRoute(precacheManifest)
+self.addEventListener('install', function (event) {
+  event.waitUntil(self.skipWaiting())
+})
 
 // https://developers.google.com/web/tools/workbox/modules/workbox-cacheable-response#what_are_the_defaults
-registerRoute(
+workbox.routing.registerRoute(
   new RegExp('https://camo.githubusercontent.com/.*'),
-  new StaleWhileRevalidate({ cacheName: 'GithHub' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'GithHub' })
 )
-registerRoute(
+workbox.routing.registerRoute(
   new RegExp('https://avatars\\d.githubusercontent.com/u/.*'),
-  new CacheFirst({ cacheName: 'GithHub' })
+  new workbox.strategies.CacheFirst({ cacheName: 'GithHub' })
 )
-registerRoute(
+workbox.routing.registerRoute(
   new RegExp('/index.json$'),
   new InjectRevision({
     cacheName: 'Post-Data',
     plugins: [
-      new ExpirationPlugin({
+      new workbox.expiration.ExpirationPlugin({
         maxEntries: 20
       })
     ]
   })
 )
-registerRoute(
+workbox.routing.registerRoute(
   new RegExp('https://(cdn.jsdelivr.net|fonts.(gstatic|googleapis).com)/.*'),
-  new CacheFirst({ cacheName: 'CDN' })
+  new workbox.strategies.CacheFirst({ cacheName: 'CDN' })
 )
