@@ -8,6 +8,7 @@ module.exports = {
     $postLabelCount: Int!
     $labelCount: Int!
     $reactionCount: Int!
+    $extraDataNumber: Int!
   ) {
     repository(name: $repo, owner: $owner) {
       issues(
@@ -36,6 +37,9 @@ module.exports = {
             }
           }
         }
+      }
+      extraData: issue(number: $extraDataNumber) {
+        bodyText
       }
       labels(first: $labelCount) {
         nodes {

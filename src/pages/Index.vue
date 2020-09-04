@@ -64,7 +64,7 @@ query {
 
 <script>
 import { capitalize } from '@/utils'
-import { friends } from '@/config'
+import { friends } from '@/.temp/extraData.json'
 import HomeCard from '~/components/HomeCard'
 
 export default {

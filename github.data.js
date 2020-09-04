@@ -1,4 +1,5 @@
 const GithubSlugger = require('github-slugger')
+const yaml = require('js-yaml')
 const { gql, htmlPlugins, ChainHTML } = require('./src/api')
 
 const patterns = {
@@ -81,5 +82,6 @@ module.exports = async () => {
     }
   })
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
-  return { posts, labels }
+  const extraData = yaml.safeLoad(repo.extraData.bodyText)
+  return { posts, labels, extraData }
 }

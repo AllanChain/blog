@@ -4,11 +4,16 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
+const { relative: pathRelative } = require('path')
+const { writeFile } = require('fs')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./github.data')
 
 module.exports = (api) => {
-  api.chainWebpack((config, { isClient, isProd }) => {
+  process.env.GRIDSOME_BASE_URL = api.config.publicPath
+  process.env.GRIDSOME_VERSION = process.env.npm_package_version
+  const dataPromise = githubData()
+  api.chainWebpack(async (config, { isClient, isProd }) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
     config.plugin('VuetifyLoaderPlugin').tap(args => [{
       progressiveImages: {
@@ -27,10 +32,19 @@ module.exports = (api) => {
         }
       })
     }
+    /**
+     * write temp file while configuring webpack
+     * so that won't be deleted by gridsome
+     * Also, at this time, .temp/ is already created
+     */
+    const { extraData } = await dataPromise
+
+    writeFile(
+      pathRelative(__dirname, './src/.temp/extraData.json'),
+      JSON.stringify(extraData),
+      err => { if (err) throw err }
+    )
   })
-  process.env.GRIDSOME_BASE_URL = api.config.publicPath
-  process.env.GRIDSOME_VERSION = process.env.npm_package_version
-  const dataPromise = githubData()
   api.loadSource(async ({ addCollection, addSchemaTypes }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     addSchemaTypes(`
