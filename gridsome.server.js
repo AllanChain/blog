@@ -32,6 +32,7 @@ module.exports = (api) => {
         }
       })
     }
+    config.module.rule('gql').test(/\.gql$/).use('gql').loader('raw-loader')
     /**
      * write temp file while configuring webpack
      * so that won't be deleted by gridsome

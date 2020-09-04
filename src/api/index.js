@@ -23,7 +23,7 @@ module.exports = {
     const resp = await axios({
       method: 'post',
       url: 'https://api.github.com/graphql',
-      data: { query: queries[query], variables },
+      data: { query: queries(query), variables },
       headers: {
         Authorization: 'bearer bc48cb2be22ab0b18b1a5dd0daa3dcc6501b5632'
       }

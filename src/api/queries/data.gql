@@ -1,0 +1,50 @@
+query(
+  $repo: String!
+  $owner: String!
+  $postCount: Int!
+  $postLabels: [String!]
+  $postLabelCount: Int!
+  $labelCount: Int!
+  $reactionCount: Int!
+  $extraDataNumber: Int!
+) {
+  repository(name: $repo, owner: $owner) {
+    issues(
+      first: $postCount
+      labels: $postLabels
+      filterBy: { createdBy: $owner }
+    ) {
+      nodes {
+        number
+        title
+        bodyHTML
+        createdAt
+        includesCreatedEdit
+        lastEditedAt
+        reactions(first: $reactionCount) {
+          nodes {
+            content
+            user {
+              login
+            }
+          }
+        }
+        labels(first: $postLabelCount) {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+    extraData: issue(number: $extraDataNumber) {
+      bodyText
+    }
+    labels(first: $labelCount) {
+      nodes {
+        name
+        color
+        description
+      }
+    }
+  }
+}
