@@ -4,7 +4,7 @@
 
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-const { relative: pathRelative } = require('path')
+const { resolve: pathResolve } = require('path')
 const { writeFile } = require('fs')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./github.data')
@@ -40,7 +40,7 @@ module.exports = (api) => {
     const { extraData } = await dataPromise
 
     writeFile(
-      pathRelative(__dirname, './src/.temp/extraData.json'),
+      pathResolve(process.GRIDSOME.config.tmpDir, 'extraData.json'),
       JSON.stringify(extraData),
       err => { if (err) throw err }
     )
