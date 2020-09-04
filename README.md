@@ -9,7 +9,7 @@
 <p align="center">
   <img alt="made with vue" src="https://img.shields.io/badge/made_with-vue-41b883">
   <img alt="made with gridsome" src="https://img.shields.io/badge/made_with-gridsome-5bd1a1">
-  <img alt="powered by github issues" src="https://img.shields.io/badge/powered_by-gitHub_issues-black">
+  <img alt="powered by github" src="https://img.shields.io/badge/powered_by-github-black">
 </p>
 
 This repo contains source code of the blog. And blog posts are in [issues](https://github.com/AllanChain/blog/issues)
