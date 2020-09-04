@@ -33,7 +33,9 @@ export default {
       this.fab = top > 300
     },
     toTop () {
-      this.$router.push({ hash: '' })
+      this.$router.push({ hash: '' }).catch(err => {
+        if (err.name !== 'NavigationDuplicated') console.error(err)
+      })
       this.$vuetify.goTo(0)
     }
   }
