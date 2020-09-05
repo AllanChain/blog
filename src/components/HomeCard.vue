@@ -7,7 +7,7 @@
       <v-card-text :class="{ 'pr-0' : !!logo}">
         {{ description }}
       </v-card-text>
-      <v-avatar v-if="logo" class="ma-3" rounded size="80">
+      <v-avatar v-if="logo" class="ma-3" rounded="circle" size="80">
         <v-img :src="fixUrl(logo)" />
       </v-avatar>
     </div>
