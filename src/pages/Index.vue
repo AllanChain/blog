@@ -1,10 +1,28 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
-      <h2 class="pb-2">
-        Blog Entries
-      </h2>
-    </v-row>
+    <v-alert
+      class="py-2"
+      border="left"
+      color="amber darken-3"
+      icon="mdi-gold"
+      outlined
+    >
+      <span class="d-inline-block my-1">
+        We will glow in the dark turning dust to gold.
+      </span>
+      <span class="float-right my-1">
+        <v-icon color="primary">mdi-video</v-icon>
+        <a
+          class="text-decoration-none"
+          target="blank"
+          rel="noopener"
+          href="https://www.bilibili.com/video/bv14h411R7iL"
+        >
+          Dream It Possible
+        </a>
+      </span>
+    </v-alert>
+    <HomeHeader>Blog Entries</HomeHeader>
     <v-row justify="center">
       <v-col
         v-for="edge of $static.allLabel.edges"
@@ -22,12 +40,7 @@
       </v-col>
     </v-row>
 
-    <v-divider class="my-5" />
-    <v-row justify="center">
-      <h2 class="pb-2">
-        Friends
-      </h2>
-    </v-row>
+    <HomeHeader>Friends</HomeHeader>
     <v-row justify="center">
       <v-col
         v-for="friend of friends"
@@ -66,13 +79,15 @@ query {
 import { capitalize } from '@/utils'
 import { friends } from '@/.temp/extraData.json'
 import HomeCard from '~/components/HomeCard'
+import HomeHeader from '@/components/HomeHeader'
 
 export default {
   metaInfo: {
     title: 'Home'
   },
   components: {
-    HomeCard
+    HomeCard,
+    HomeHeader
   },
   data () {
     return {
