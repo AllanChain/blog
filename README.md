@@ -17,3 +17,4 @@ This repo contains source code of the blog. And blog posts are in [issues](https
 ## Quick Links
 
 - [About This Blog](https://allanchain.github.io/blog/post/about/)
+- [Request Freinds Link](https://github.com/AllanChain/blog/issues/148)
