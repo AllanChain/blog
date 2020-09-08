@@ -83,7 +83,7 @@ import HomeHeader from '@/components/HomeHeader'
 
 export default {
   metaInfo: {
-    title: 'Home'
+    title: 'AC Dustbin'
   },
   components: {
     HomeCard,
