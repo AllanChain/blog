@@ -44,7 +44,6 @@ module.exports = {
       },
       workboxPluginMode: 'generateSW',
       workboxOptions: {
-        skipWaiting: true,
         runtimeCaching: [
           {
             urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
