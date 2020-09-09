@@ -1,9 +1,9 @@
 <template>
   <v-container class="text-center">
     <div v-for="(labels, type) in labelByType" :key="type">
-      <h2 class="my-3">
+      <HomeHeader>
         {{ type }}
-      </h2>
+      </HomeHeader>
       <PostLabel
         v-for="label of labels"
         :key="label.id"
@@ -18,12 +18,13 @@
 <script>
 import { capitalize } from '@/utils'
 import PostLabel from '@/components/PostLabel'
+import HomeHeader from '@/components/HomeHeader'
 
 export default {
   metaInfo: {
     title: 'All Labels'
   },
-  components: { PostLabel },
+  components: { PostLabel, HomeHeader },
   computed: {
     labelByType () {
       const labels = this.$static.allLabel.edges.map(edge => edge.node)
