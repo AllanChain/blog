@@ -143,11 +143,14 @@ export default {
 .clean-last-p p:last-of-type
   margin-bottom: 0px
 
-*
-  & ::-webkit-scrollbar
-    width: 4px
-    height: 4px
-  & ::-webkit-scrollbar-thumb
-    background-color: slategray
-    border-radius: 2px
+.theme--dark
+  ::-webkit-scrollbar
+    background-color: #151515
+
+  ::-webkit-scrollbar-thumb
+    background-color: #454545
+    &:hover
+      background-color: #7a7a7a
+    &:active
+      background-color: #a6a6a6
 </style>

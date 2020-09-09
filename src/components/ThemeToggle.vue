@@ -12,6 +12,8 @@ export default {
   watch: {
     '$vuetify.theme.dark' (val) {
       localStorage.setItem('vuetify__dark', val)
+      // toggle(token [, force]) force add or force remove
+      document.documentElement.classList.toggle('theme--dark', val)
     }
   },
   beforeMount () {
