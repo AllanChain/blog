@@ -73,18 +73,26 @@
             <v-list-item-title>Follow Me</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-divider />
+        <!-- <v-divider />
         <v-list-item>
           <v-list-item-content>
-            <span>
-              <v-icon small>
-                mdi-cogs
-              </v-icon>
-              {{ version }} - {{ $store.state.swStatus }}
-            </span>
+
           </v-list-item-content>
-        </v-list-item>
+        </v-list-item> -->
       </v-list>
+      <template #append>
+        <v-divider />
+        <div class="px-4 py-2 d-flex">
+          <v-chip outlined>
+            <v-icon small left>
+              mdi-cogs
+            </v-icon>
+            {{ version }} - {{ $store.state.swStatus }}
+          </v-chip>
+          <v-spacer />
+          <ThemeToggle />
+        </div>
+      </template>
     </v-navigation-drawer>
   </v-app>
 </template>
@@ -99,8 +107,10 @@ query {
 
 <script>
 import { profileUrl } from '@/config'
+import ThemeToggle from '@/components/ThemeToggle'
 
 export default {
+  components: { ThemeToggle },
   data () {
     return {
       drawer: false,

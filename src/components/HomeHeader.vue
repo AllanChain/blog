@@ -1,5 +1,5 @@
 <template>
-  <h2 class="home-header my-3 text-center indigo--text text--darken-2">
+  <h2 class="home-header my-3 text-center indigo--text">
     <span class="home-header-text">
       <v-icon large class="home-header-swing-left">
         mdi-chevron-double-right
@@ -31,22 +31,24 @@
 
 $swing-distance-out : 9px
 $swing-distance-in : 1px
+$swing-color-out: slategray
+$swing-color-in: #3F51B5
 
 @keyframes swing-left
   0%, 100%
     left: -$swing-distance-out
-    color: slategray
+    color: $swing-color-out
   50%
     left: $swing-distance-in
-    color: #303F9F
+    color: $swing-color-in
 
 @keyframes swing-right
   0%, 100%
     right: -$swing-distance-out
-    color: slategray
+    color: $swing-color-out
   50%
     right: $swing-distance-in
-    color: #303F9F
+    color: $swing-color-in
 
 .home-header-swing-left
   animation: swing-left 1.5s ease-in infinite

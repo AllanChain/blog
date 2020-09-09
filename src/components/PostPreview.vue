@@ -40,9 +40,12 @@
         <v-img :src="fixUrl(logo)" />
       </v-avatar>
     </div>
-    <v-card-text class="py-0 black--text">
-      <div class="clean-last-p" v-html="post.summary" />
-    </v-card-text>
+    <div>
+      <!-- Wrap card-text in div to avoid being gray -->
+      <v-card-text class="py-0">
+        <div class="clean-last-p" v-html="post.summary" />
+      </v-card-text>
+    </div>
     <v-card-actions>
       <v-spacer />
       <v-btn text :to="post.path" color="primary">

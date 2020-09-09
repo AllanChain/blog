@@ -208,4 +208,11 @@ article.article-main.markdown-body
     color: white
   a
     word-break: break-word
+
+.theme--dark article.article-main.markdown-body
+  & :not(pre) > code
+    color: #eee8d5
+    background-color: #282c34
+  blockquote
+    color: #bec1c5
 </style>

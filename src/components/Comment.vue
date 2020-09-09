@@ -67,10 +67,23 @@
               </v-icon>
             </v-btn>
           </div>
-          <v-card-text class="white black--text clean-last-p">
+          <v-card-text
+            class="clean-last-p"
+            :class="{
+              'white': !$vuetify.theme.dark,
+              'black--text': !$vuetify.theme.dark,
+              'black': $vuetify.theme.dark,
+              'white--text': $vuetify.theme.dark
+            }"
+          >
             <div v-html="comment.bodyHTML" />
           </v-card-text>
-          <v-card-actions class="white">
+          <v-card-actions
+            :class="{
+              'white': !$vuetify.theme.dark,
+              'black': $vuetify.theme.dark,
+            }"
+          >
             <Reactions
               :reactions="comment.reactions.nodes"
             />
