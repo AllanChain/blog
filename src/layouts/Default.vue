@@ -15,6 +15,7 @@
     </v-main>
     <v-navigation-drawer
       v-model="drawer"
+      height="100%"
       app
     >
       <v-list shaped>
