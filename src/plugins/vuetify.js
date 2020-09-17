@@ -1,16 +1,21 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import csso from 'csso'
 
 Vue.use(Vuetify)
 
-export default new Vuetify({
+const vuetifyOptions = {
   icons: {
     iconfont: 'mdi'
-  },
-  theme: {
+  }
+}
+
+if (process.isServer) {
+  const csso = require('csso')
+  vuetifyOptions.theme = {
     options: {
       minifyTheme: css => csso.minify(css).css
     }
   }
-})
+}
+
+export default new Vuetify(vuetifyOptions)

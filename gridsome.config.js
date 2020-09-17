@@ -6,11 +6,8 @@
 
 const plugins = []
 if (process.env.WEBPACK_STATS) {
-  const { StatsWriterPlugin } = require('webpack-stats-plugin')
-  plugins.push(new StatsWriterPlugin({
-    fields: null,
-    stats: { chunkModules: true }
-  }))
+  const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+  plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = {

@@ -22,12 +22,24 @@ module.exports = (api) => {
     }])
     if (isProd && isClient) {
       config.optimization.splitChunks({
-        chunks: 'all',
+        chunks: 'initial',
+        maxInitialRequests: Infinity,
         cacheGroups: {
           vueVendor: {
             test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
             name: 'vue-vendors',
-            chunks: 'all'
+          },
+          gridsome: {
+            test: /[\\/]node_modules[\\/](gridsome|vue-meta)[\\/]/,
+            name: 'gridsome-vendors',
+          },
+          polyfill: {
+            test: /[\\/]node_modules[\\/]core-js[\\/]/,
+            name: 'core-js'
+          },
+          axios: {
+            test: /[\\/]node_modules[\\/]axios[\\/]/,
+            name: 'axios'
           }
         }
       })

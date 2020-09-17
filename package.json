@@ -12,7 +12,8 @@
   },
   "browser": {
     "fs": false,
-    "path": false
+    "path": false,
+    "csso": false
   },
   "dependencies": {
     "@allanchain/gridsome-plugin-pwa": "^0.3.0",
@@ -44,7 +45,7 @@
     "sass-loader": "^7.3.1",
     "vue-eslint-parser": "^7.1.0",
     "vuetify-loader": "^1.6.0",
-    "webpack-stats-plugin": "^0.3.2",
+    "webpack-bundle-analyzer": "^3.8.0",
     "workbox-build": "^6.0.0-alpha.2"
   }
 }
