@@ -46,11 +46,11 @@ module.exports = (api) => {
       config.plugin('extract-css').tap(() => [{
         filename: 'assets/css/styles.[contenthash:8].css'
       }])
+
+      config.output.filename('assets/js/[name].[contenthash:8].js')
+      config.output.chunkFilename('assets/js/[name].[contenthash:8].js')
     }
     config.module.rule('gql').test(/\.gql$/).use('gql').loader('raw-loader')
-
-    config.output.filename('assets/js/[name].[contenthash:8].js')
-    config.output.chunkFilename('assets/js/[name].[contenthash:8].js')
 
     /**
      * write temp file while configuring webpack
