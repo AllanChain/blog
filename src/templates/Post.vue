@@ -215,4 +215,6 @@ article.article-main.markdown-body
     background-color: #282c34
   blockquote
     color: #bec1c5
+  table tr
+    background-color: transparent
 </style>
