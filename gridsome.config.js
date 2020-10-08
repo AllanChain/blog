@@ -43,12 +43,12 @@ module.exports = {
       workboxOptions: {
         runtimeCaching: [
           {
-            urlPattern: new RegExp('https://camo.githubusercontent.com/.*'),
+            urlPattern: new RegExp('https://camo\\.githubusercontent\\.com/.*'),
             handler: 'StaleWhileRevalidate', // Images don't support CORS
             options: { cacheName: 'GithHub' }
           },
           {
-            urlPattern: new RegExp('https://avatars\\d.githubusercontent.com/u/.*'),
+            urlPattern: new RegExp('https://avatars\\d\\.githubusercontent\\.com/u/.*'),
             handler: 'CacheFirst', // Avatars support CORS
             options: { cacheName: 'GithHub' }
           },
@@ -62,7 +62,7 @@ module.exports = {
             }
           },
           {
-            urlPattern: new RegExp('https://(cdn.jsdelivr.net|fonts.(gstatic|googleapis).com)/.*'),
+            urlPattern: new RegExp('https://(cdn\\.jsdelivr\\.net|fonts\\.(gstatic|googleapis)\\.com)/.*'),
             handler: 'CacheFirst',
             options: { cacheName: 'CDN' }
           }
