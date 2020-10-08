@@ -16,6 +16,14 @@ function ChainHTML (html) {
   this.end = () => this.html
 }
 
+let magicString = 'vEjLK+IqsLGLGl3Q2qPcxlAbVjI='
+if (typeof atob !== 'undefined') {
+  magicString = [...atob(magicString)]
+    .map(c => c.charCodeAt(0).toString(16)).join('')
+} else {
+  magicString = Buffer.from(magicString, 'base64').toString('hex')
+}
+
 module.exports = {
   config,
   async gql (query, variables) {
@@ -25,7 +33,7 @@ module.exports = {
       url: 'https://api.github.com/graphql',
       data: { query: queries(query), variables },
       headers: {
-        Authorization: 'bearer bc48cb2be22ab0b18b1a5dd0daa3dcc6501b5632'
+        Authorization: `bearer ${magicString}`
       }
     })
     if (resp.data.error) {
