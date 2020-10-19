@@ -31,9 +31,9 @@ jobs:
         restore-keys: |
           node-
     - name: Install Packages
-      run: npm install
+      run: yarn
     - name: Build App
-      run: npm run build
+      run: yarn build
     - name: Determine Commit message
       id: msg
       shell: node {0}
