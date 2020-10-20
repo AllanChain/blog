@@ -31,7 +31,7 @@ jobs:
         restore-keys: |
           node-
     - name: Install Packages
-      run: yarn
+      run: yarn --frozen-lockfile
     - name: Build App
       run: yarn build
     - name: Determine Commit message
