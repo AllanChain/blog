@@ -13,7 +13,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    if: > 
+    if: >
       (contains(github.event.issue.labels.*.name, '@post') &&
       github.event.sender.login == 'AllanChain') ||
       github.event.pusher.name == 'AllanChain'
@@ -31,9 +31,11 @@ jobs:
         restore-keys: |
           node-
     - name: Install Packages
-      run: npm install
+      run: yarn --frozen-lockfile
     - name: Build App
-      run: npm run build
+      run: yarn build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Determine Commit message
       id: msg
       shell: node {0}

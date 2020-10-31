@@ -1,9 +1,0 @@
-query($searchQuery: String!) {
-  search(first: 5, query: $searchQuery, type: ISSUE) {
-    nodes {
-      ... on Issue {
-        number
-      }
-    }
-  }
-}
