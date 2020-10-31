@@ -84,7 +84,7 @@ query($id: ID!) {
 </page-query>
 
 <script>
-import ghApi from '@/api'
+import { getSearchResult } from '@/api/client'
 import PostPreview from '@/components/PostPreview'
 import { capitalize } from '@/utils'
 
@@ -152,10 +152,8 @@ export default {
     async ghSearch () {
       this.ghSearchStatus = 'loading'
       try {
-        const searchQuery =
-          `${this.query} ${ghApi.config.repoQuery} label:"${this.$page.label.id}"`
-        const data = await ghApi.gql('search', { searchQuery })
-        const results = data.search.nodes.map(node => node.number)
+        const data = await getSearchResult(this.$page.label.id, this.query)
+        const results = data.items.map(node => node.number)
         const posts = this.$page.label.belongsTo.edges.map(edge => edge.node)
         this.ghSearchResult =
           posts.filter(post => results.includes(parseInt(post.id, 10)))

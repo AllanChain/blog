@@ -43,16 +43,16 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-avatar v-bind="attrs" v-on="on">
-                <img :src="comment.author.avatarUrl" crossorigin="anonymous">
+                <img :src="comment.user.avatar_url" crossorigin="anonymous">
               </v-avatar>
             </template>
-            <span>{{ comment.author.login }}</span>
+            <span>{{ comment.user.login }}</span>
           </v-tooltip>
         </template>
         <v-card color="cyan darken-3">
           <div class="py-1 pl-3 pr-1 d-flex align-center">
             <div class="white--text font-weight-thin">
-              {{ formatTime(comment.createdAt) }}
+              {{ formatTime(comment.created_at) }}
             </div>
             <v-spacer />
             <v-btn
@@ -76,7 +76,7 @@
               'white--text': $vuetify.theme.dark
             }"
           >
-            <div v-html="comment.bodyHTML" />
+            <div v-html="comment.body_html" />
           </v-card-text>
           <v-card-actions
             :class="{
@@ -85,7 +85,7 @@
             }"
           >
             <Reactions
-              :reactions="comment.reactions.nodes"
+              :reactions="comment.reactions"
             />
           </v-card-actions>
         </v-card>
@@ -98,7 +98,8 @@
 </template>
 
 <script>
-import { gql, htmlPlugins, ChainHTML } from '@/api'
+import { htmlPlugins, ChainHTML } from '@/api/html'
+import { getComments, getPostReactions } from '@/api/client'
 import { repoUrl } from '@/config'
 import { formatTime } from '@/utils'
 import Reactions from '@/components/Reactions'
@@ -128,25 +129,25 @@ export default {
         this.postReactions = []
         this.loadStatus = 'loading'
         try {
-          const data = await gql('comment', { postNumber })
-          data.repository.issue.comments.nodes.forEach(comment => {
-            comment.bodyHTML = new ChainHTML(comment.bodyHTML)
-              .use(htmlPlugins.codeLang)
-              .use(htmlPlugins.issueLink)
-              .use(htmlPlugins.trimIssue)
-              .end()
-          })
-          this.comments = data.repository.issue.comments.nodes
-          this.postReactions = data.repository.issue.reactions.nodes
-          this.loadStatus = 'success'
-          if (
-            window?.MathJax?.typesetPromise &&
-            this.comments.some(node => node.bodyHTML.includes('$'))
-          ) {
-            this.$nextTick(window.MathJax.typesetPromise)
-          }
+          this.comments = await getComments(postNumber)
+          this.postReactions = await getPostReactions(postNumber)
         } catch (err) {
           this.loadStatus = 'error'
+        }
+        this.comments.forEach(comment => {
+          comment.body_html = new ChainHTML(comment.body_html)
+            .use(htmlPlugins.codeLang)
+            .use(htmlPlugins.issueLink)
+            .use(htmlPlugins.trimIssue)
+            .end()
+        })
+
+        this.loadStatus = 'success'
+        if (
+          window?.MathJax?.typesetPromise &&
+            this.comments.some(node => node.body_html.includes('$'))
+        ) {
+          this.$nextTick(window.MathJax.typesetPromise)
         }
       }
     }

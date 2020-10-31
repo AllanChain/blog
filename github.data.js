@@ -1,6 +1,7 @@
 const GithubSlugger = require('github-slugger')
 const yaml = require('js-yaml')
-const { gql, htmlPlugins, ChainHTML } = require('./src/api')
+const { htmlPlugins, ChainHTML } = require('./src/api/html')
+const serverData = require('./src/api/server')
 
 const patterns = {
   slug: /<a href="https.*post\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
@@ -63,7 +64,7 @@ const parseLabel = label => {
 }
 
 module.exports = async () => {
-  const repo = (await gql('data')).repository
+  const repo = (await serverData()).repository
   const posts = repo.issues.nodes.map(node => {
     try {
       return {
