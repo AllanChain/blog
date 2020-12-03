@@ -11,6 +11,7 @@ module.exports = {
     'plugin:gridsome/recommended'
   ],
   rules: {
-    'vue/max-attributes-per-line': ['error', { singleline: 4 }]
+    'vue/max-attributes-per-line': ['error', { singleline: 4 }],
+    'prefer-regex-literals': 'off'
   }
 }

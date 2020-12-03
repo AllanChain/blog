@@ -27,11 +27,11 @@ module.exports = (api) => {
         cacheGroups: {
           vueVendor: {
             test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
-            name: 'vue-vendors',
+            name: 'vue-vendors'
           },
           gridsome: {
             test: /[\\/]node_modules[\\/](gridsome|vue-meta)[\\/]/,
-            name: 'gridsome-vendors',
+            name: 'gridsome-vendors'
           },
           polyfill: {
             test: /[\\/]node_modules[\\/]core-js[\\/]/,

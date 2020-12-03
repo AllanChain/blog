@@ -39,7 +39,7 @@
         :key="comment.id"
         left
       >
-        <template v-slot:icon>
+        <template #icon>
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-avatar v-bind="attrs" v-on="on">
