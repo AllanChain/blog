@@ -19,7 +19,7 @@
           alt="CC-by-nc-sa"
           width="123"
           height="20"
-          style="margin: auto;"
+          style="margin: auto"
           :src="require(`@/assets/license.svg?vuetify-preload`)"
         />
       </a>
@@ -90,7 +90,7 @@ export default {
       meta.script = [
         {
           once: true, // https://vue-meta.nuxtjs.org/api/#once
-          skip: (typeof window !== 'undefined' && window.MathJax.version),
+          skip: typeof window !== 'undefined' && window.MathJax.version,
           src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js',
           id: 'MathJax-script',
           async: true,
@@ -115,6 +115,22 @@ export default {
           document.getElementsByClassName('anchor-hover').forEach(el => {
             el.addEventListener('click', () => this.goToHash(el.hash))
           })
+          document
+            .querySelectorAll('.code-bar .mdi-content-copy')
+            .forEach(el => {
+              el.addEventListener('click', () => {
+                navigator.clipboard.writeText(
+                  //  .highlight         pre                code
+                  el.parentElement.nextElementSibling.firstElementChild
+                    .innerText
+                ).then(() => {
+                  el.style.color = 'lightgreen'
+                  setTimeout(() => { el.style.color = null }, 2000)
+                }).catch(() => {
+                  el.style.color = 'red'
+                })
+              })
+            })
           if (location.hash) this.goToHash(location.hash)
         })
       }
@@ -179,12 +195,14 @@ article.article-main.markdown-body
   .highlight
     position: relative
     font-family: $font-mono
-    .code-lang
+    .code-bar
       position: absolute
       top: 0.2em
       right: 0.6em
       font-size: 0.75rem
       color: rgba(255, 255, 255, 0.6)
+      .mdi-content-copy:hover
+        color: white
     +full-width(-20px)
 
   & :not(.highlight) > pre
