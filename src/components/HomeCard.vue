@@ -13,13 +13,11 @@
     </div>
     <v-card-actions>
       <v-spacer />
-      <v-btn
-        text
-        v-bind="linkProp"
-        color="primary"
-      >
-        {{ action }}
-      </v-btn>
+      <g-link class="text-decoration-none" v-bind="linkProp">
+        <v-btn text ripple color="primary">
+          {{ action }}
+        </v-btn>
+      </g-link>
     </v-card-actions>
   </v-card>
 </template>

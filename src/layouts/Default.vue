@@ -26,33 +26,36 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
-          link
-          to="/"
-        >
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/post/about">
-          <v-list-item-icon>
-            <v-icon>mdi-information-variant</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>About</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/labels">
-          <v-list-item-icon>
-            <v-icon>mdi-label-multiple-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>All Labels</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <g-link class="text-decoration-none" to="/">
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </g-link>
+        <g-link class="text-decoration-none" to="/post/about">
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-information-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </g-link>
+        <g-link class="text-decoration-none" to="/labels">
+          <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-label-multiple-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>All Labels</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </g-link>
         <v-list-item :disabled="!install" @click="install.prompt()">
           <v-list-item-icon>
             <v-icon>mdi-plus-circle-outline</v-icon>

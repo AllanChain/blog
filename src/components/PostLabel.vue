@@ -8,17 +8,19 @@
     :content="badgeContent"
     :value="badgeContent != undefined"
   >
-    <v-chip
-      :color="`#${label.color}`"
-      class="font-weight-bold"
-      :to="label.path"
-      v-bind="{ ...style, ...size }"
-    >
-      <v-icon left v-bind="size">
-        {{ icon }}
-      </v-icon>
-      {{ label.name }}
-    </v-chip>
+    <g-link class="text-decoration-none" :to="label.path">
+      <v-chip
+        :color="`#${label.color}`"
+        class="font-weight-bold"
+        ripple
+        v-bind="{ ...style, ...size }"
+      >
+        <v-icon left v-bind="size">
+          {{ icon }}
+        </v-icon>
+        {{ label.name }}
+      </v-chip>
+    </g-link>
   </v-badge>
 </template>
 

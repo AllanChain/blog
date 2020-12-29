@@ -48,9 +48,11 @@
     </div>
     <v-card-actions>
       <v-spacer />
-      <v-btn text :to="post.path" color="primary">
-        Dive In
-      </v-btn>
+      <g-link class="text-decoration-none" :to="post.path">
+        <v-btn text ripple color="primary">
+          Dive In
+        </v-btn>
+      </g-link>
     </v-card-actions>
   </v-card>
 </template>

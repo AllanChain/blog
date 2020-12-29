@@ -12,6 +12,7 @@ module.exports = {
   ],
   rules: {
     'vue/max-attributes-per-line': ['error', { singleline: 4 }],
-    'prefer-regex-literals': 'off'
+    'prefer-regex-literals': 'off',
+    'gridsome/require-g-link-to': 'off'
   }
 }
