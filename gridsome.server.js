@@ -77,7 +77,8 @@ module.exports = (api) => {
         summary: String,
         image: String,
         labels: [Label],
-        body: String!
+        body: String!,
+        serializedHeadings: String!
       }
     `)
     addSchemaTypes(`

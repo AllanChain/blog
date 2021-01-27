@@ -1,61 +1,66 @@
 <template>
   <div>
-    <div class="article-head text-center">
-      <h1 class="article-title">
-        {{ $page.post.title }}
-      </h1>
-      <div class="mb-2">
-        <PostLabel
-          v-for="label of this.$page.post.labels"
-          :key="label.id"
-          :label-id="label.id"
-        />
+    <div class="article-all">
+      <div class="article-head text-center">
+        <h1 class="article-title">
+          {{ $page.post.title }}
+        </h1>
+        <div class="mb-2">
+          <PostLabel
+            v-for="label of this.$page.post.labels"
+            :key="label.id"
+            :label-id="label.id"
+          />
+        </div>
+        <a
+          rel="license"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        >
+          <v-img
+            alt="CC-by-nc-sa"
+            width="123"
+            height="20"
+            style="margin: auto"
+            :src="require(`@/assets/license.svg?vuetify-preload`)"
+          />
+        </a>
+        <div>
+          <span class="px-3 d-inline-block">
+            <v-btn icon>
+              <v-icon>mdi-calendar-month-outline</v-icon>
+            </v-btn>
+            {{ formatTime($page.post.createdAt) }}
+          </span>
+          <span class="px-3 d-inline-block">
+            <v-btn
+              icon
+              :href="`${repoUrl}/issues/${$page.post.id}`"
+              target="_blank"
+              rel="noopener"
+            >
+              <v-icon>mdi-calendar-edit</v-icon>
+            </v-btn>
+            {{ formatTime($page.post.lastEditedAt) }}
+          </span>
+        </div>
+        <v-img v-if="$page.post.image" :src="$page.post.image" />
       </div>
-      <a
-        rel="license"
-        href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-      >
-        <v-img
-          alt="CC-by-nc-sa"
-          width="123"
-          height="20"
-          style="margin: auto"
-          :src="require(`@/assets/license.svg?vuetify-preload`)"
-        />
-      </a>
-      <div>
-        <span class="px-3 d-inline-block">
-          <v-btn icon>
-            <v-icon>mdi-calendar-month-outline</v-icon>
-          </v-btn>
-          {{ formatTime($page.post.createdAt) }}
-        </span>
-        <span class="px-3 d-inline-block">
-          <v-btn
-            icon
-            :href="`${repoUrl}/issues/${$page.post.id}`"
-            target="_blank"
-            rel="noopener"
-          >
-            <v-icon>mdi-calendar-edit</v-icon>
-          </v-btn>
-          {{ formatTime($page.post.lastEditedAt) }}
-        </span>
-      </div>
-      <v-img v-if="$page.post.image" :src="$page.post.image" />
+      <v-divider class="my-3" />
+      <article class="article-main markdown-body">
+        <v-alert v-if="$page.post.summary" type="info" border="left">
+          <div class="article-summary clean-last-p" v-html="$page.post.summary" />
+        </v-alert>
+        <!-- Functional div for correct toc-wrapper height -->
+        <div style="position: relative">
+          <div class="toc-wrapper">
+            <ToC :serialized-headings="$page.post.serializedHeadings" />
+          </div>
+          <div v-html="$page.post.body" />
+          <Comment :number="parseInt($page.post.id, 10)" />
+        </div>
+      </article>
+      <Fab />
     </div>
-    <v-divider class="my-3" />
-    <article
-      class="article-main markdown-body mx-auto"
-      style="max-width: 900px"
-    >
-      <v-alert v-if="$page.post.summary" type="info" border="left">
-        <div class="article-summary clean-last-p" v-html="$page.post.summary" />
-      </v-alert>
-      <div v-html="$page.post.body" />
-      <Comment :number="parseInt($page.post.id, 10)" />
-    </article>
-    <Fab />
   </div>
 </template>
 
@@ -69,6 +74,7 @@ query($id: ID!) {
     createdAt
     lastEditedAt
     image
+    serializedHeadings
     labels {
       id
     }
@@ -82,6 +88,7 @@ import { repoUrl } from '@/config'
 import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
 import Fab from '@/components/Fab'
+import ToC from '@/components/ToC'
 
 export default {
   metaInfo () {
@@ -101,7 +108,7 @@ export default {
     }
     return meta
   },
-  components: { PostLabel, Comment, Fab },
+  components: { PostLabel, Comment, Fab, ToC },
   data () {
     return { repoUrl }
   },
@@ -112,7 +119,7 @@ export default {
         if (process.isServer) return
         if (window.MathJax) this.$nextTick(window.MathJax.typesetPromise)
         this.$nextTick(() => {
-          document.getElementsByClassName('anchor-hover').forEach(el => {
+          document.getElementsByClassName('hash-link').forEach(el => {
             el.addEventListener('click', () => this.goToHash(el.hash))
           })
           document
@@ -235,4 +242,25 @@ article.article-main.markdown-body
     color: #bec1c5
   table tr
     background-color: transparent
+
+.article-all
+  @media (min-width: 1000px)
+    max-width: 75vw
+
+.toc-wrapper
+  display: none
+  @media (min-width: 1000px)
+    display: block
+    position: absolute
+    height: 100%
+    left: calc( 75vw + 10px )
+    width: calc( 25vw - 55px )
+  .toc
+    position: sticky
+    top: 70px
+    ul
+      list-style: none
+      padding-left: 0
+      li li
+        margin-left: 20px
 </style>

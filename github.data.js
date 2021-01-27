@@ -18,14 +18,19 @@ const includedLabelTypes = ['blog', 'tag', 'series']
  * Add slug to HTML headers
  * @param {string} html html to add slug
  */
-const slugPlugin = html => {
+const processSlug = html => {
   const slugger = new GithubSlugger()
-  return html.replace(/<h(\d)>(.*?)<\/h\1>/gs, (_, level, title) => {
-    const slug = slugger.slug(title.replace(/<.*?>/g, ''))
-    return `<h${level}>
-      <a id="article-${slug}" class="anchor-hover" href="#${slug}">
-      #</a> ${title}</h${level}>`
-  })
+  const headings = []
+  return {
+    body: html.replace(/<h(\d)>(.*?)<\/h\1>/gs, (_, level, content) => {
+      const slug = slugger.slug(content.replace(/<.*?>/g, ''))
+      headings.push({ level: parseInt(level, 10), slug, content })
+      return `<h${level}>
+      <a id="article-${slug}" class="anchor-hover hash-link" href="#${slug}">
+      #</a> ${content}</h${level}>`
+    }),
+    serializedHeadings: JSON.stringify(headings)
+  }
 }
 
 const parseBody = text => {
@@ -37,8 +42,8 @@ const parseBody = text => {
     .use(htmlPlugins.codeLang)
     .use(htmlPlugins.issueLink)
     .use(htmlPlugins.trimIssue)
-    .use(slugPlugin)
     .end()
+  Object.assign(result, processSlug(result.body))
   for (const key in patterns) {
     const match = text.match(patterns[key])
     // should not override if not provided

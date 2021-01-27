@@ -8,6 +8,7 @@ function ChainHTML (html) {
 }
 
 module.exports = {
+  // Core plugins are used both server side (post) and client side (comment)
   htmlPlugins: {
     codeLang: html => html.replace(
       /(<div class="highlight highlight-(source|text)-(.*?)">)<pre>(.*?)<\/pre>/gs,

@@ -16,6 +16,7 @@
     <v-navigation-drawer
       v-model="drawer"
       height="100%"
+      disable-resize-watcher
       app
     >
       <v-list shaped>
