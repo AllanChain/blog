@@ -1,3 +1,5 @@
+const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { resolve } = require('path')
 const GithubSlugger = require('github-slugger')
 const yaml = require('js-yaml')
 const { htmlPlugins, ChainHTML } = require('./src/api/html')
@@ -68,12 +70,23 @@ const parseLabel = label => {
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-module.exports = async () => {
+const getData = async () => {
+  const cacheFile = resolve(__dirname, '.cache.github/data.json')
+  if (process.env.NODE_ENV === 'development' && existsSync(cacheFile)) {
+    return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
+  }
   const repo = (await serverData()).repository
+  writeFileSync(cacheFile, JSON.stringify(repo), { encoding: 'utf-8' })
+  return repo
+}
+
+module.exports = async () => {
+  const repo = await getData()
   const posts = repo.issues.nodes.map(node => {
     try {
       return {
         id: node.number,
+        // Will overwrite in `parseBody` spread
         createdAt: new Date(node.createdAt),
         // Fall back to create time if not edited
         lastEditedAt: new Date(node.lastEditedAt || node.createdAt),

@@ -1,5 +1,4 @@
 *.log
-.cache
 .DS_Store
 src/.temp
 node_modules
@@ -7,3 +6,5 @@ dist
 /blog/
 .env
 .env.*
+.cache*
+.vscode
