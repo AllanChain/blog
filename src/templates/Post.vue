@@ -254,9 +254,11 @@ article.article-main.markdown-body
     word-break: break-word
 
 .theme--dark article.article-main.markdown-body
-  & :not(pre) > code
+  :not(pre) > code
     color: #eee8d5
     background-color: #282c34
+  pre > code
+    background-color: transparent
   blockquote
     color: #bec1c5
   table tr
