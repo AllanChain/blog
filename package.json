@@ -1,13 +1,14 @@
 {
   "name": "blog",
-  "version": "1.10.0",
+  "version": "1.11.0-beta.0",
   "private": true,
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "lint": "eslint *.js src/**/*.js src/**/*.vue",
-    "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue"
+    "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue",
+    "gitag": "node scripts/gitag.js"
   },
   "browser": {
     "csso": false,
