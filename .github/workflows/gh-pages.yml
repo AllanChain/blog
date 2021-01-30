@@ -26,12 +26,14 @@ jobs:
     - uses: actions/cache@v2
       id: cache
       with:
-        path: node_modules
+        path: |
+          node_modules
+          .yarn/cache
         key: node-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           node-
     - name: Install Packages
-      run: yarn --frozen-lockfile
+      run: yarn install --immutable --check-cache
     - name: Build App
       run: yarn build
       env:
