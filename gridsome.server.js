@@ -8,10 +8,11 @@ const { resolve: pathResolve } = require('path')
 const { writeFile } = require('fs')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./github.data')
+const { version } = require('./package.json')
 
 module.exports = (api) => {
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
-  process.env.GRIDSOME_VERSION = process.env.npm_package_version
+  process.env.GRIDSOME_VERSION = version
   const dataPromise = githubData()
   api.chainWebpack(async (config, { isClient, isProd }) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin, [{
