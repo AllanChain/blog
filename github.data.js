@@ -71,7 +71,7 @@ const parseLabel = label => {
 }
 
 const getData = async () => {
-  const cacheFile = resolve(__dirname, '.cache.github/data.json')
+  const cacheFile = resolve(__dirname, '.cache.github.json')
   if (process.env.NODE_ENV === 'development' && existsSync(cacheFile)) {
     return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
   }
