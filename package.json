@@ -6,7 +6,6 @@
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
-    "commit": "./node_modules/cz-customizable/standalone.js",
     "lint": "eslint *.js src/**/*.js src/**/*.vue",
     "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue"
   },
@@ -28,7 +27,6 @@
   },
   "devDependencies": {
     "csso": "^4.0.3",
-    "cz-customizable": "^6.2.1",
     "deepmerge": "^4.2.2",
     "eslint": "^7.15.0",
     "eslint-config-standard": "^16.0.2",
