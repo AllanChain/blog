@@ -14,11 +14,8 @@ module.exports = (api) => {
   process.env.GRIDSOME_VERSION = process.env.npm_package_version
   const dataPromise = githubData()
   api.chainWebpack(async (config, { isClient, isProd }) => {
-    config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
-    config.plugin('VuetifyLoaderPlugin').tap(args => [{
-      progressiveImages: {
-        sharp: true
-      }
+    config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin, [{
+      progressiveImages: { sharp: true }
     }])
     if (isProd && isClient) {
       config.optimization.splitChunks({
