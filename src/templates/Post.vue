@@ -53,9 +53,12 @@
         <!-- Functional div for correct toc-wrapper height -->
         <div style="position: relative">
           <div class="toc-wrapper">
-            <ToC :serialized-headings="$page.post.serializedHeadings" />
+            <ToC
+              :serialized-headings="$page.post.serializedHeadings"
+              :active-slug="activeSlug"
+            />
           </div>
-          <div v-html="$page.post.body" />
+          <div ref="articleContent" v-html="$page.post.body" />
           <Comment :number="parseInt($page.post.id, 10)" />
         </div>
       </article>
@@ -110,7 +113,7 @@ export default {
   },
   components: { PostLabel, Comment, Fab, ToC },
   data () {
-    return { repoUrl }
+    return { repoUrl, activeSlug: '' }
   },
   watch: {
     '$page.post.id': {
@@ -143,19 +146,35 @@ export default {
       }
     }
   },
+  mounted () {
+    document.addEventListener('scroll', this.onscroll)
+  },
+  destroyed () {
+    document.removeEventListener('scroll', this.onscroll)
+  },
   methods: {
     formatTime,
     goToHash (hash) {
       const el = document.getElementById(
         'article-' + decodeURIComponent(hash.slice(1))
       )
-      console.log(hash, el)
       if (el === null) return
       this.$vuetify.goTo(el, {
         duration: 700,
         offset: 10, // already take app bar into account
         easing: 'easeInOutQuart'
       })
+    },
+    onscroll (event) {
+      const headings = this.$refs.articleContent.querySelectorAll('.anchor-hover')
+      for (const [index, heading] of headings.entries()) {
+        if (heading.getBoundingClientRect().y > 75) {
+          if (index === 0) return
+          this.activeSlug = headings[index - 1].id.slice(8)
+          return
+        }
+      }
+      this.activeSlug = headings[headings.length - 1].id.slice(8)
     }
   }
 }
@@ -258,9 +277,4 @@ article.article-main.markdown-body
   .toc
     position: sticky
     top: 70px
-    ul
-      list-style: none
-      padding-left: 0
-      li li
-        margin-left: 20px
 </style>
