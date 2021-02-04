@@ -38,7 +38,7 @@ module.exports = {
   },
   /**
    * Judge if the luminance of the color is smaller than the threshold
-   * @param {string} color color to judge, rrggbb fromat
+   * @param {string} color color to judge, rrggbb format
    * @param {number} threshold threshold
    * @returns {boolean}
    */
