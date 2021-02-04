@@ -57,7 +57,7 @@
             <v-spacer />
             <v-btn
               icon
-              :href="`https://github.com/${comment.resourcePath}`"
+              :href="comment.html_url"
               style="margin: -4px;"
               target="_blank"
               rel="noopener"
@@ -155,7 +155,3 @@ export default {
   methods: { formatTime }
 }
 </script>
-
-<style>
-
-</style>
