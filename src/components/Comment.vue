@@ -68,24 +68,12 @@
           </div>
           <v-card-text
             class="clean-last-p"
-            :class="{
-              'white': !$vuetify.theme.dark,
-              'black--text': !$vuetify.theme.dark,
-              'black': $vuetify.theme.dark,
-              'white--text': $vuetify.theme.dark
-            }"
+            :class="themeClass"
           >
             <div v-html="comment.body_html" />
           </v-card-text>
-          <v-card-actions
-            :class="{
-              'white': !$vuetify.theme.dark,
-              'black': $vuetify.theme.dark,
-            }"
-          >
-            <Reactions
-              :reactions="comment.reactions"
-            />
+          <v-card-actions :class="themeClass">
+            <Reactions :reactions="comment.reactions" />
           </v-card-actions>
         </v-card>
       </v-timeline-item>
@@ -117,6 +105,11 @@ export default {
       comments: [],
       postReactions: [],
       loadStatus: 'loading'
+    }
+  },
+  computed: {
+    themeClass () {
+      return this.$vuetify.theme.dark ? 'theme--dark' : 'theme--light'
     }
   },
   watch: {
@@ -155,7 +148,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import '~vuetify/src/styles/styles.sass'
 
 @media #{map-get($display-breakpoints, 'xs-only')}
@@ -163,4 +156,12 @@ export default {
     margin-left: -30px
   .v-timeline-item
     margin-right: -10px
+
++theme(v-card__text) using ($material)
+  background-color: map-get($material, 'cards')
+  color: map-deep-get($material, 'text', 'primary')
+
++theme(v-card__actions) using ($material)
+  background-color: map-get($material, 'cards')
+  color: map-deep-get($material, 'text', 'primary')
 </style>
