@@ -1,0 +1,26 @@
+// Using scss because sass/sass#1088
+
+$card-title-word-break: normal;
+
+// Rally preset
+$material-dark: (
+  'status-bar': (
+    'regular': #27272f
+  ),
+  'background': #33333d,
+  'cards': #373740,
+  'dividers': #33333d,
+  'tabs': rgba(255, 255, 255, .3)
+);
+
+// Basil preset
+$material-light: (
+  'status-bar': (
+    'regular': #ECE9D5
+  ),
+  'background': #FFFBE6,
+  'cards': rgba(185, 228, 201, .1),
+  'text': (
+    'primary': #356859
+  )
+);

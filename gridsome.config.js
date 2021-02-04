@@ -20,7 +20,12 @@ module.exports = {
     Label: '/:type/:name'
   },
   css: {
-    split: true
+    split: true,
+    loaderOptions: {
+      sass: {
+        data: "@import '@/styles/variables.scss'"
+      }
+    }
   },
   cacheBusting: false,
   configureWebpack: { plugins },
