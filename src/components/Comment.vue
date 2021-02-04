@@ -32,7 +32,6 @@
       v-else-if="comments.length"
       align-top
       dense
-      style="margin-left: -30px;"
     >
       <v-timeline-item
         v-for="comment in comments"
@@ -42,8 +41,8 @@
         <template #icon>
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
-              <v-avatar v-bind="attrs" v-on="on">
-                <img :src="comment.user.avatar_url" crossorigin="anonymous">
+              <v-avatar size="36" v-bind="attrs" v-on="on">
+                <img :src="`${comment.user.avatar_url}&s=36`" crossorigin="anonymous">
               </v-avatar>
             </template>
             <span>{{ comment.user.login }}</span>
@@ -155,3 +154,13 @@ export default {
   methods: { formatTime }
 }
 </script>
+
+<style lang="sass">
+@import '~vuetify/src/styles/styles.sass'
+
+@media #{map-get($display-breakpoints, 'xs-only')}
+  .v-timeline
+    margin-left: -30px
+  .v-timeline-item
+    margin-right: -10px
+</style>
