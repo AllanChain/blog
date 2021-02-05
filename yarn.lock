@@ -1445,7 +1445,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.3, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.6":
+"@types/json-schema@npm:^7.0.3, @types/json-schema@npm:^7.0.6":
   version: 7.0.7
   resolution: "@types/json-schema@npm:7.0.7"
   checksum: b9d2c509fa4e0b82f58e73f5e6ab76c60ff1884ba41bb82f37fb1cece226d4a3e5a62fedf78a43da0005373a6713d9abe61c1e592906402c41c08ad6ab26d52b
@@ -2736,7 +2736,7 @@ __metadata:
     vue-eslint-parser: ^7.1.0
     vue-template-compiler: ^2.6.12
     vuetify: ^2.3.21
-    vuetify-loader: 1.6.0
+    vuetify-loader: ^1.7.2
     vuex: ^3.5.1
     webpack: ^4.46.0
     webpack-bundle-analyzer: ^4.2.0
@@ -3141,6 +3141,13 @@ __metadata:
   dependencies:
     caller-callsite: ^2.0.0
   checksum: c4b19e43d4d2afc62c2b283d74844811a4517a162f9490f62c74421ddcfbd3e3334890fd9c474db98b20d62598a0ae659798c402623866b6f6068683a81ec5e7
+  languageName: node
+  linkType: hard
+
+"callsite@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "callsite@npm:1.0.0"
+  checksum: 5940b23533433f4886dea106cdb16d8a511b36ebaf2ac0bbe0adae547a4259f142d37074f864e12f424927b50cf364fffd1fd75d45a62a622d22984d2375e859
   languageName: node
   linkType: hard
 
@@ -4175,6 +4182,15 @@ __metadata:
     supports-color:
       optional: true
   checksum: 0d41ba5177510e8b388dfd7df143ab0f9312e4abdaba312595461511dac88e9ef8101939d33b4e6d37e10341af6a5301082e4d7d6f3deb4d57bc05fc7d296fad
+  languageName: node
+  linkType: hard
+
+"decache@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "decache@npm:4.6.0"
+  dependencies:
+    callsite: ^1.0.0
+  checksum: f599e1cefae0a1d64d6f4b9d24bbe24ca467d752ba071225655352a8151188a16d5e46331f41aead3e8b9e7a14aa90010341c5490a2fd3b4fe48096e864a6c58
   languageName: node
   linkType: hard
 
@@ -5561,15 +5577,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-loader@npm:^4.0.0":
-  version: 4.3.0
-  resolution: "file-loader@npm:4.3.0"
+"file-loader@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "file-loader@npm:6.2.0"
   dependencies:
-    loader-utils: ^1.2.3
-    schema-utils: ^2.5.0
+    loader-utils: ^2.0.0
+    schema-utils: ^3.0.0
   peerDependencies:
-    webpack: ^4.0.0
-  checksum: 03535f889b56836dc462f20e138ba5ad46893cc079cfb970b3434aa4d4e959a1e52770fa62e87d657f4d7d3dd9207726a464dee19eb82ccdafdc2e5c6a80f92a
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 0f103418c072ec66c081a9908cd7824ee19905e18be16889cb050f5f373998afaf7ca4c2fd2df4cabf703a2cd526aefe59105930e3f8d266a5b35e6d5f5b3cf4
   languageName: node
   linkType: hard
 
@@ -7910,7 +7926,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^1.0.1, loader-utils@npm:^1.0.2, loader-utils@npm:^1.1.0, loader-utils@npm:^1.2.0, loader-utils@npm:^1.2.3":
+"loader-utils@npm:^1.0.1, loader-utils@npm:^1.0.2, loader-utils@npm:^1.1.0, loader-utils@npm:^1.2.3":
   version: 1.4.0
   resolution: "loader-utils@npm:1.4.0"
   dependencies:
@@ -10985,17 +11001,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^2.5.0":
-  version: 2.7.1
-  resolution: "schema-utils@npm:2.7.1"
-  dependencies:
-    "@types/json-schema": ^7.0.5
-    ajv: ^6.12.4
-    ajv-keywords: ^3.5.2
-  checksum: 3851bcc7e44a3f35d3ca96e460c598aa24cec9fe395b196395316a043dc111d25735a9a49b1a115e4b52d5ed0d8bbcfb9fe1bfd077610f192b613e020d3f3ef2
-  languageName: node
-  linkType: hard
-
 "schema-utils@npm:^3.0.0":
   version: 3.0.0
   resolution: "schema-utils@npm:3.0.0"
@@ -12903,17 +12908,18 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"vuetify-loader@npm:1.6.0":
-  version: 1.6.0
-  resolution: "vuetify-loader@npm:1.6.0"
+"vuetify-loader@npm:^1.7.2":
+  version: 1.7.2
+  resolution: "vuetify-loader@npm:1.7.2"
   dependencies:
-    file-loader: ^4.0.0
-    loader-utils: ^1.2.0
+    decache: ^4.6.0
+    file-loader: ^6.2.0
+    loader-utils: ^2.0.0
   peerDependencies:
     vue-template-compiler: ^2.6.10
     vuetify: ^1.3.0 || ^2.0.0
-    webpack: ^4.0.0
-  checksum: 66d643b2a95d801c78475c8a966bf99ae2580cfacb7391045f8501aab4bbf8934b1d96d225189babdba173e1797f000ddd8f60e09552a6c0c9a98672581a29b9
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 4e4fb2ed10fd4a6ede70d49cc5f79b36979ec4b9ab40c6c6678b4f6ae07d58b95094920341dab55046602dfa94320f6d823bc128ccbf7990c640ce7c5d79f615
   languageName: node
   linkType: hard
 
