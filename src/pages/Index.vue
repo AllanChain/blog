@@ -77,7 +77,7 @@ query {
 
 <script>
 import { capitalize } from '@/utils'
-import { friends } from '@/.temp/extraData.json'
+import { friends } from '@/api/server/.cache/extra.json'
 import HomeCard from '~/components/HomeCard'
 import HomeHeader from '@/components/HomeHeader'
 

@@ -1,0 +1,21 @@
+type Post implements Node {
+  id: ID!,
+  title: String!,
+  createdAt: Date!,
+  lastEditedAt: Date!,
+  slug: String!,
+  summary: String,
+  image: String,
+  labels: [Label],
+  body: String!,
+  serializedHeadings: String!
+}
+
+type Label implements Node {
+  id: ID!,
+  description: String,
+  logo: String,
+  name: String!,
+  type: String!,
+  color: String!
+}

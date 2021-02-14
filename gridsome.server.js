@@ -1,13 +1,6 @@
-// Server API makes it possible to hook into various parts of Gridsome
-// on server-side and add custom data to the GraphQL data layer.
-// Learn more: https://gridsome.org/docs/server-api/
-
-// Changes here require a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
-const { resolve: pathResolve } = require('path')
-const { writeFile } = require('fs')
+const fs = require('fs')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const githubData = require('./github.data')
+const githubData = require('./src/api/server')
 const { version } = require('./package.json')
 
 module.exports = (api) => {
@@ -48,47 +41,9 @@ module.exports = (api) => {
       config.output.filename('assets/js/[name].[contenthash:8].js')
       config.output.chunkFilename('assets/js/[name].[contenthash:8].js')
     }
-    config.module.rule('gql').test(/\.gql$/).use('gql').loader('raw-loader')
-
-    /**
-     * write temp file while configuring webpack
-     * so that won't be deleted by gridsome
-     * Also, at this time, .temp/ is already created
-     */
-    const { extraData } = await dataPromise
-
-    writeFile(
-      pathResolve(process.GRIDSOME.config.tmpDir, 'extraData.json'),
-      JSON.stringify(extraData),
-      err => { if (err) throw err }
-    )
   })
   api.loadSource(async ({ addCollection, addSchemaTypes }) => {
-    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-    addSchemaTypes(`
-      type Post implements Node {
-        id: ID!,
-        title: String!,
-        createdAt: Date!,
-        lastEditedAt: Date!,
-        slug: String!,
-        summary: String,
-        image: String,
-        labels: [Label],
-        body: String!,
-        serializedHeadings: String!
-      }
-    `)
-    addSchemaTypes(`
-      type Label implements Node {
-        id: ID!,
-        description: String,
-        logo: String,
-        name: String!,
-        type: String!,
-        color: String!
-      }
-    `)
+    addSchemaTypes(fs.readFileSync('./blog.schema.gql'))
     const { posts, labels } = await dataPromise
     const postCollection = addCollection('Post')
     const labelCollection = addCollection('Label')
@@ -96,9 +51,5 @@ module.exports = (api) => {
 
     for (const post of posts) postCollection.addNode(post)
     for (const label of labels) labelCollection.addNode(label)
-  })
-
-  api.createPages(({ createPage }) => {
-    // Use the Pages API here: https://gridsome.org/docs/pages-api/
   })
 }

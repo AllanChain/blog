@@ -9,6 +9,9 @@ query(
   $extraDataNumber: Int!
 ) {
   repository(name: $repo, owner: $owner) {
+    owner {
+      id
+    }
     issues(
       first: $postCount
       labels: $postLabels

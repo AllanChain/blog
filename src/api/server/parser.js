@@ -1,9 +1,6 @@
-const { readFileSync, writeFileSync, existsSync } = require('fs')
-const { resolve } = require('path')
 const GithubSlugger = require('github-slugger')
-const yaml = require('js-yaml')
-const { htmlPlugins, ChainHTML } = require('./src/api/html')
-const serverData = require('./src/api/server')
+
+const { htmlPlugins, ChainHTML } = require('../html')
 
 const patterns = {
   slug: /<a href="https.*post\/(.*?)" rel="nofollow">View Post on Blog<\/a>/,
@@ -14,7 +11,7 @@ const patterns = {
   image: /<img src="(.*?)"/
 }
 
-const includedLabelTypes = ['blog', 'tag', 'series']
+// const includedLabelTypes = ['blog', 'tag', 'series']
 
 /**
  * Add slug to HTML headers
@@ -61,6 +58,7 @@ const parseBody = text => {
 
 const isGoodLabel = label => {
   const result = label.name.split(': ')
+  const { includedLabelTypes } = require('./.cache/extra.json')
   return result.length === 2 && includedLabelTypes.includes(result[0])
 }
 
@@ -70,37 +68,27 @@ const parseLabel = label => {
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-const getData = async () => {
-  const cacheFile = resolve(__dirname, '.cache.github.json')
-  if (process.env.NODE_ENV === 'development' && existsSync(cacheFile)) {
-    return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
+const parsePost = node => {
+  try {
+    return {
+      id: node.number,
+      // Will overwrite in `parseBody` spread
+      createdAt: new Date(node.createdAt),
+      // Fall back to create time if not edited
+      lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
+      title: node.title,
+      ...parseBody(node.bodyHTML),
+      labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
+    }
+  } catch (err) {
+    const message = `Issue ${node.number}: ${err.message}`
+    console.error('::error::', message) // gh-action error
+    throw new Error(message)
   }
-  const repo = (await serverData()).repository
-  writeFileSync(cacheFile, JSON.stringify(repo), { encoding: 'utf-8' })
-  return repo
 }
 
-module.exports = async () => {
-  const repo = await getData()
-  const posts = repo.issues.nodes.map(node => {
-    try {
-      return {
-        id: node.number,
-        // Will overwrite in `parseBody` spread
-        createdAt: new Date(node.createdAt),
-        // Fall back to create time if not edited
-        lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
-        title: node.title,
-        ...parseBody(node.bodyHTML),
-        labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
-      }
-    } catch (err) {
-      const message = `Issue ${node.number}: ${err.message}`
-      console.log('::error::' + message) // gh-action error
-      throw new Error(message)
-    }
-  })
-  const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
-  const extraData = yaml.safeLoad(repo.extraData.bodyText)
-  return { posts, labels, extraData }
+module.exports = {
+  isGoodLabel,
+  parseLabel,
+  parsePost
 }
