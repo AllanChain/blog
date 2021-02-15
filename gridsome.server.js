@@ -11,6 +11,20 @@ module.exports = (api) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin, [{
       progressiveImages: { sharp: true }
     }])
+    // Since we are using progressive image provided by vuetify-loader,
+    // we need to use file loader to separate high-res image from js file,
+    // using file-loader, not url-loader provided by gridsome
+    config.module.rules.delete('images')
+    /* eslint-disable indent */
+    config.module.rule('lazy-images')
+      // no `?vuetify-preload` query present
+      .test(/\.(png|jpe?g|gif|webp)$/)
+      .use('file-loader')
+        .loader(require.resolve('file-loader'))
+        .options({
+          name: 'assets/img/[name].[contenthash:8].[ext]'
+        })
+    /* eslint-enable indent */
     if (isProd && isClient) {
       config.optimization.splitChunks({
         chunks: 'initial',
