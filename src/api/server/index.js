@@ -6,9 +6,10 @@ const axios = require('axios')
 
 const config = require('../../config')
 const { isGoodLabel, parseLabel, parsePost } = require('./parser')
+const { useCachedLabelLogo } = require('./image')
 
-const cacheDir = path.resolve(__dirname, '.cache')
-
+const cacheDir = path.resolve(__dirname, '../../assets/.cache')
+const imageCacheDir = path.resolve(cacheDir, 'images')
 const serverData = async (variables) => {
   const query = fs.readFileSync(
     path.resolve(__dirname, './data.gql'),
@@ -34,16 +35,12 @@ const serverData = async (variables) => {
     }
     throw error
   }
-  if (resp.data.error) {
+  if (resp.data.errors) {
     console.log(resp.data.errors)
     throw resp.data.errors[0].message
   }
   //          axios gql
   return resp.data.data
-}
-
-const prepareCache = () => {
-  fs.mkdirSync(path.resolve(cacheDir), { recursive: true })
 }
 
 const getCacheFirstData = async () => {
@@ -65,11 +62,14 @@ const writeExtraData = (extraData) => {
 }
 
 module.exports = async () => {
-  prepareCache()
+  fs.mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
   const repo = await getCacheFirstData()
   const extraData = yaml.safeLoad(repo.extraData.bodyText)
   writeExtraData(extraData)
   const posts = repo.issues.nodes.map(parsePost)
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
+  await Promise.all(labels.map(
+    useCachedLabelLogo.bind(null, repo.owner.databaseId)
+  ))
   return { posts, labels }
 }

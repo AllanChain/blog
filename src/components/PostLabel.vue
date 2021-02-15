@@ -45,7 +45,7 @@ query {
 
 <script>
 import { isDarkColor } from '@/utils'
-import { labelSizeBrkpnts } from '@/api/server/.cache/extra.json'
+import { labelSizeBrkpnts } from '@/assets/.cache/extra.json'
 
 const textColor = color => isDarkColor(color, 101) ? 'white' : 'black'
 

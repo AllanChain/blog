@@ -58,7 +58,7 @@ const parseBody = text => {
 
 const isGoodLabel = label => {
   const result = label.name.split(': ')
-  const { includedLabelTypes } = require('./.cache/extra.json')
+  const { includedLabelTypes } = require('../../assets/.cache/extra.json')
   return result.length === 2 && includedLabelTypes.includes(result[0])
 }
 

@@ -10,7 +10,9 @@ query(
 ) {
   repository(name: $repo, owner: $owner) {
     owner {
-      id
+      ... on User {
+        databaseId
+      }
     }
     issues(
       first: $postCount

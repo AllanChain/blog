@@ -10,11 +10,6 @@
     "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue",
     "gitag": "node scripts/gitag.js"
   },
-  "browser": {
-    "csso": false,
-    "fs": false,
-    "path": false
-  },
   "dependencies": {
     "@allanchain/gridsome-plugin-pwa": "^0.3.0",
     "axios": "^0.21.1",

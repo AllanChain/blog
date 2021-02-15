@@ -34,6 +34,9 @@ module.exports = {
    */
   fixUrl (url) {
     if (url.startsWith('http')) return url
+    if (url.startsWith('@cache')) {
+      return require(`@/assets/.cache/images/${url.slice(7)}?vuetify-preload`)
+    }
     return require(`@/assets/${url}?vuetify-preload`)
   },
   /**

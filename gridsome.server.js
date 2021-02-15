@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { IgnorePlugin } = require('webpack')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const githubData = require('./src/api/server')
 const { version } = require('./package.json')
@@ -11,6 +12,9 @@ module.exports = (api) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin, [{
       progressiveImages: { sharp: true }
     }])
+    config.plugin('IgnorePlugin').use(IgnorePlugin, [
+      /(api\/server|csso)/
+    ])
     // Since we are using progressive image provided by vuetify-loader,
     // we need to use file loader to separate high-res image from js file,
     // using file-loader, not url-loader provided by gridsome
@@ -45,6 +49,10 @@ module.exports = (api) => {
           axios: {
             test: /[\\/]node_modules[\\/]axios[\\/]/,
             name: 'axios'
+          },
+          lowRes: {
+            test: /assets[\\/].+\.(png|jpe?g|gif|webp)/,
+            name: 'lowRes'
           }
         }
       })
