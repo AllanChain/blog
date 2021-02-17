@@ -13,7 +13,7 @@ module.exports = (api) => {
       progressiveImages: { sharp: true }
     }])
     config.plugin('IgnorePlugin').use(IgnorePlugin, [
-      /(api\/server|csso)/
+      /(api\/server)/
     ])
     // Since we are using progressive image provided by vuetify-loader,
     // we need to use file loader to separate high-res image from js file,
