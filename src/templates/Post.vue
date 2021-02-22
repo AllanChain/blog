@@ -43,7 +43,7 @@
             {{ formatTime($page.post.lastEditedAt) }}
           </span>
         </div>
-        <v-img v-if="$page.post.image" :src="$page.post.image" />
+        <v-img v-if="$page.post.image" :src="fixUrl($page.post.image)" />
       </div>
       <v-divider class="my-3" />
       <article class="article-main markdown-body">
@@ -86,7 +86,7 @@ query($id: ID!) {
 </page-query>
 
 <script>
-import { formatTime } from '@/utils'
+import { formatTime, fixUrl } from '@/utils'
 import { repoUrl } from '@/config'
 import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
@@ -154,6 +154,7 @@ export default {
   },
   methods: {
     formatTime,
+    fixUrl,
     goToHash (hash) {
       const el = document.getElementById(
         'article-' + decodeURIComponent(hash.slice(1))

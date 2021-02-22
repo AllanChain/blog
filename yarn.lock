@@ -2941,6 +2941,7 @@ __metadata:
     github-syntax-dark: ^0.5.0
     gridsome: ^0.7.19
     js-yaml: ^3.14.1
+    mime: ^2.5.2
     primer-markdown: ^4.0.0
     raw-loader: ^4.0.1
     register-service-worker: ^1.7.2
@@ -8637,6 +8638,15 @@ fsevents@~2.3.1:
   bin:
     mime: cli.js
   checksum: 19f6f7046cea23d39fb75ee6b99caf1781303a5cbf189c0f209d5b70e4b467642b64106a9f9d3ffce08b6ddfdcfaa95fb60e449c12ae29fb979c229b978e420b
+  languageName: node
+  linkType: hard
+
+"mime@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "mime@npm:2.5.2"
+  bin:
+    mime: cli.js
+  checksum: 3e5377f0a1891350247699c5fff0469752a35d5c0baeb7cbee86907c143215ee8621d17c17401f10ffe020a0b327aa503b98cb7340039fce69bc465aed414fb7
   languageName: node
   linkType: hard
 

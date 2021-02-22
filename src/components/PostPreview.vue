@@ -3,7 +3,7 @@
     <v-img
       v-if="post.image"
       max-height="200px"
-      :src="post.image"
+      :src="fixUrl(post.image)"
     />
     <v-card-title class="pb-0">
       {{ post.title }}
