@@ -15,10 +15,10 @@
     </span></span></a><span class="v-badge__wrapper"><span aria-atomic="true" aria-label="Badge" aria-live="polite" role="status" class="v-badge__badge" style="bottom:calc(100% - 9px);left:calc(100% - 12px);right:auto;top:auto;background-color:#f1da4e;border-color:#f1da4e;display:none;"></span></span></span></div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><div aria-label="CC-by-nc-sa" role="img" class="v-image v-responsive theme--light" style="height:20px;width:123px;margin:auto;"><div class="v-image__image v-image__image--preload v-image__image--cover" style="background-image:;background-position:center center;"></div><div class="v-responsive__content"></div></div></a><div><span class="px-3 d-inline-block"><button type="button" class="v-btn v-btn--icon v-btn--round theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate mdi mdi-calendar-month-outline theme--light"></i></span></button>
           2020-02-07 04:23
         </span><span class="px-3 d-inline-block"><a href="https://github.com/AllanChain/blog/issues/70" target="_blank" rel="noopener" class="v-btn v-btn--icon v-btn--round theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate mdi mdi-calendar-edit theme--light"></i></span></a>
-          2020-07-20 09:25
+          2021-02-22 08:52
         </span></div><!----></div><hr role="separator" aria-orientation="horizontal" class="my-3 v-divider theme--light"><article class="article-main markdown-body"><div role="alert" class="v-alert v-sheet theme--dark v-alert--border v-alert--border-left info"><div class="v-alert__wrapper"><i aria-hidden="true" class="v-icon notranslate v-alert__icon mdi mdi-information theme--dark"></i><div class="v-alert__content"><div class="article-summary clean-last-p">
 <p>Although the title <em>Top Ten Mistakes Python Programmers Make When Learning JavaScript</em> may sound better, I have only noticed a few mistakes now. And I will update this post when I make more mistakes <g-emoji class="g-emoji" alias="smile" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png">😄</g-emoji></p>
-</div></div><div class="v-alert__border v-alert__border--left"></div></div></div><div style="position: relative"><div class="toc-wrapper"><div class="toc">Table of Contents<ul><li><a href="#the-new-operator" class="hash-link">The <code>new</code> Operator</a><ul></ul></li><li><a href="#element-in-array-or-key-in-object--dict" class="hash-link">Element in Array or Key in Object / dict</a><ul></ul></li><li><a href="#weird-map--are-they-different" class="hash-link">Weird map / Are they Different?</a><ul></ul></li><li><a href="#parseint-vs-int" class="hash-link"><code>parseInt</code> v.s. <code>int</code></a><ul></ul></li><li><a href="#dead-variable" class="hash-link">Dead Variable</a><ul></ul></li><li><a href="#sure-sorted" class="hash-link">Sure Sorted?</a><ul></ul></li><li><a href="#how-do-you-split" class="hash-link">How do you split?</a><ul></ul></li><li><a href="#mutable-default-parameter" class="hash-link">Mutable Default Parameter?</a><ul></ul></li></ul></div></div><div>
+</div></div><div class="v-alert__border v-alert__border--left"></div></div></div><div style="position: relative"><div class="toc-wrapper"><div class="toc">Table of Contents<ul><li><a href="#the-new-operator" class="hash-link">The <code>new</code> Operator</a><ul></ul></li><li><a href="#element-in-array-or-key-in-object--dict" class="hash-link">Element in Array or Key in Object / dict</a><ul></ul></li><li><a href="#weird-map--are-they-different" class="hash-link">Weird map / Are they Different?</a><ul></ul></li><li><a href="#parseint-vs-int" class="hash-link"><code>parseInt</code> v.s. <code>int</code></a><ul></ul></li><li><a href="#dead-variable" class="hash-link">Dead Variable</a><ul></ul></li><li><a href="#sure-sorted" class="hash-link">Sure Sorted?</a><ul></ul></li><li><a href="#how-do-you-split" class="hash-link">How do you split?</a><ul></ul></li><li><a href="#mutable-default-parameter" class="hash-link">Mutable Default Parameter?</a><ul></ul></li><li><a href="#beware-of-method--function-names" class="hash-link">Beware of Method / Function Names</a><ul></ul></li></ul></div></div><div>
 <h2>
       <a id="article-the-new-operator" class="anchor-hover hash-link" href="#the-new-operator">
       #</a> The <code>new</code> Operator</h2>
@@ -252,7 +252,29 @@ ReferenceError: <span class="pl-s1">a</span> <span class="pl-s1">is</span> <span
 <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-en">f</span>()
 [<span class="pl-c1">1</span>]
 <span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-en">f</span>()
-[<span class="pl-c1">1</span>, <span class="pl-c1">1</span>]</code></pre></div></div><div data-v-7088a7f0><!----><div role="alert" class="v-alert v-sheet theme--dark v-alert--border v-alert--border-left info" data-v-7088a7f0><div class="v-alert__wrapper"><div class="v-alert__content"><p class="my-2 d-inline-block" data-v-7088a7f0>
+[<span class="pl-c1">1</span>, <span class="pl-c1">1</span>]</code></pre></div>
+<h2>
+      <a id="article-beware-of-method--function-names" class="anchor-hover hash-link" href="#beware-of-method--function-names">
+      #</a> Beware of Method / Function Names</h2>
+<p>Some methods / functions achieve similar, if not the same, effect, but with different names. They are so similar that I often get confused.</p>
+<div class="highlight highlight-source-python"><div class="code-bar">
+      <span class="mdi mdi-content-copy"></span>
+      <span class="code-lang">python</span>
+      </div><pre><code><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s">'abc'</span>.<span class="pl-en">startswith</span>(<span class="pl-s">'a'</span>)
+<span class="pl-c1">True</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s">''</span>.<span class="pl-en">join</span>([<span class="pl-s">'a'</span>, <span class="pl-s">'b'</span>, <span class="pl-s">'c'</span>])
+<span class="pl-s">'abc'</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s">'abc'</span>.<span class="pl-en">index</span>(<span class="pl-s">'a'</span>)
+<span class="pl-c1">0</span></code></pre></div>
+<div class="highlight highlight-source-js"><div class="code-bar">
+      <span class="mdi mdi-content-copy"></span>
+      <span class="code-lang">js</span>
+      </div><pre><code><span class="pl-c1">&gt;</span> <span class="pl-s">'abc'</span><span class="pl-kos">.</span><span class="pl-en">startsWith</span><span class="pl-kos">(</span><span class="pl-s">'a'</span><span class="pl-kos">)</span>
+<span class="pl-c1">true</span>
+<span class="pl-c1">&gt;</span> <span class="pl-kos">[</span><span class="pl-s">'a'</span><span class="pl-kos">,</span> <span class="pl-s">'b'</span><span class="pl-kos">,</span> <span class="pl-s">'c'</span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-en">join</span><span class="pl-kos">(</span><span class="pl-s">''</span><span class="pl-kos">)</span>
+<span class="pl-s">'abc'</span>
+<span class="pl-c1">&gt;</span> <span class="pl-s">'abc'</span><span class="pl-kos">.</span><span class="pl-en">indexOf</span><span class="pl-kos">(</span><span class="pl-s">'a'</span><span class="pl-kos">)</span>
+<span class="pl-c1">0</span></code></pre></div></div><div data-v-7088a7f0><!----><div role="alert" class="v-alert v-sheet theme--dark v-alert--border v-alert--border-left info" data-v-7088a7f0><div class="v-alert__wrapper"><div class="v-alert__content"><p class="my-2 d-inline-block" data-v-7088a7f0>
       Want to share your thoughts on this post?
     </p><a href="https://github.com/AllanChain/blog/issues/70#new_comment_field" target="_blank" rel="noopener" class="float-right v-btn v-btn--is-elevated v-btn--has-bg theme--dark v-size--default green darken-1" data-v-7088a7f0><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate pr-2 mdi mdi-github theme--dark" data-v-7088a7f0></i>
       Comment on GitHub
