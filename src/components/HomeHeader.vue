@@ -1,5 +1,5 @@
 <template>
-  <h2 class="home-header my-3 text-center indigo--text">
+  <h2 class="home-header my-3 text-center text--secondary">
     <span class="home-header-text">
       <v-icon large class="home-header-swing-left">
         mdi-chevron-double-right
