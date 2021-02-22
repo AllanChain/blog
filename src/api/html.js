@@ -18,7 +18,7 @@ module.exports = {
       </div><pre><code>$4</code></pre>`
     ),
     trimIssue: html => html.replace(
-      /<a class="issue-link js-issue-link"( data-[a-z-]*?=".*?")+ href/g,
+      /<a class="issue-link js-issue-link" .*? href/g,
       '<a class="issue-link" href'
     ),
     issueLink: html => html.replace(
