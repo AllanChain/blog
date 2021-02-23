@@ -44,8 +44,12 @@ module.exports = {
         display: 'standalone',
         background_color: '#ffffff'
       },
+      appShellPath: 'offline/index.html',
       workboxPluginMode: 'generateSW',
       workboxOptions: {
+        globPatterns: ['assets/@(js|css)/*', 'offline/index.html'],
+        navigateFallback: '/blog/offline/index.html',
+        navigateFallbackAllowlist: [/\/$/],
         runtimeCaching: [
           {
             urlPattern: new RegExp('https://camo\\.githubusercontent\\.com/.*'),
@@ -58,7 +62,7 @@ module.exports = {
             options: { cacheName: 'GithHub' }
           },
           {
-            urlPattern: new RegExp('/(index.json)?$'),
+            urlPattern: new RegExp('/index.json$'),
             handler: 'NetworkFirst',
             options: {
               cacheName: 'Post-Data',

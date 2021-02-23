@@ -5,15 +5,15 @@ __metadata:
   version: 4
   cacheKey: 7
 
-"@allanchain/gridsome-plugin-pwa@npm:^0.4.0-alpha.1":
-  version: 0.4.0-alpha.1
-  resolution: "@allanchain/gridsome-plugin-pwa@npm:0.4.0-alpha.1"
+"@allanchain/gridsome-plugin-pwa@npm:^0.4.0-alpha.5":
+  version: 0.4.0-alpha.5
+  resolution: "@allanchain/gridsome-plugin-pwa@npm:0.4.0-alpha.5"
   dependencies:
     workbox-build: ^6.0.0
   peerDependencies:
     gridsome: ^0.7.0
     webpack: ^4.40.0
-  checksum: f4ab82d3404e95a0efb571399faaacf59959ccda11bb65e7d107e1deb6e4e5a794ca4f515001b0ecc90e5552241921ef66a6d6f5bfe6dfacc36303132f7233b0
+  checksum: 780c16d4d949939fee036ed4a3aeb75f3d38874b5fd64c12f58e0b8500d5d7ace534b96080e1596b0abfc2bd2af7416032dc3c256c41040b4d9e8ed9d8095bd7
   languageName: node
   linkType: hard
 
@@ -2924,7 +2924,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "blog@workspace:."
   dependencies:
-    "@allanchain/gridsome-plugin-pwa": ^0.4.0-alpha.1
+    "@allanchain/gridsome-plugin-pwa": ^0.4.0-alpha.5
     axios: ^0.21.1
     csso: ^4.0.3
     deepmerge: ^4.2.2
