@@ -1,5 +1,8 @@
 <template>
-  <h2 class="home-header my-3 text-center text--secondary">
+  <h2
+    class="home-header my-3 text-center"
+    :style="{ color: $vuetify.theme.dark ? '#7986CB' :'#3F51B5' }"
+  >
     <span class="home-header-text">
       <v-icon large class="home-header-swing-left">
         mdi-chevron-double-right

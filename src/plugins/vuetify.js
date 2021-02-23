@@ -9,11 +9,9 @@ const vuetifyOptions = {
   },
   theme: {
     light: {
-      secondary: '#3F51B5',
       anchor: '#1976D2'
     },
     dark: {
-      secondary: '#7986CB',
       anchor: '#2196F3'
     }
   }
