@@ -89,11 +89,13 @@ export default {
   },
   computed: {
     labels () {
-      return this.post.labels.map(label =>
-        this.$static.allLabel.edges
-          .find(edge => edge.node.id === label.id)
-          .node
-      ).sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
+      // New labels in received data will not match any known label in old js.
+      // Ignoring them as a temporary fix
+      return this.$static.allLabel.edges.filter(edge =>
+        this.post.labels.findIndex(label => label.id === edge.node.id) !== -1
+      )
+        .map(edge => edge.node)
+        .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
     },
     logo () {
       if (!this.post.image) {
