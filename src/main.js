@@ -27,7 +27,7 @@ export default function (Vue, { appOptions, router, head, isClient }) {
   })
   head.link.push({
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'
+    href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap'
   })
 
   router.options.scrollBehavior = (to, from, savedPosition) => {
