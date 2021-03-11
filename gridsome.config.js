@@ -22,8 +22,19 @@ module.exports = {
       manifestPath: 'manifest.json',
       name: 'AC Dustbin',
       themeColor: '#1976d2',
-      icon: 'src/favicon.png',
-      maskableIcon: true,
+      icon: {
+        androidChrome: [
+          {
+            src: './src/icon-maskable.png',
+            sizes: [512, 384, 192, 144],
+            purpose: 'maskable'
+          },
+          {
+            sizes: [512, 384, 192, 144, 96, 72, 48],
+            purpose: 'any'
+          }
+        ]
+      },
       manifestOptions: {
         short_name: 'AC Dustbin',
         description: 'AllanChain\'s Dustbin',
