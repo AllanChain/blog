@@ -31,7 +31,7 @@ module.exports = (api) => {
     /* eslint-enable indent */
     if (isProd && isClient) {
       config.optimization.splitChunks({
-        chunks: 'initial',
+        chunks: 'all',
         maxInitialRequests: Infinity,
         cacheGroups: {
           vueVendor: {
@@ -48,10 +48,12 @@ module.exports = (api) => {
           },
           axios: {
             test: /[\\/]node_modules[\\/]axios[\\/]/,
+            minSize: 10000,
             name: 'axios'
           },
           lowRes: {
             test: /assets[\\/].+\.(png|jpe?g|gif|webp)/,
+            minSize: 10000,
             name: 'lowRes'
           }
         }
@@ -62,6 +64,10 @@ module.exports = (api) => {
 
       config.output.filename('assets/js/[name].[contenthash:8].js')
       config.output.chunkFilename('assets/js/[name].[contenthash:8].js')
+      if (process.env.WEBPACK_STATS) {
+        const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+        config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin)
+      }
     }
   })
   api.loadSource(async ({ addCollection, addSchemaTypes }) => {

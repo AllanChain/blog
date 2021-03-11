@@ -1,15 +1,3 @@
-// This is where project configuration and plugin options are located.
-// Learn more: https://gridsome.org/docs/config
-
-// Changes here require a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
-
-const plugins = []
-if (process.env.WEBPACK_STATS) {
-  const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-  plugins.push(new BundleAnalyzerPlugin())
-}
-
 module.exports = {
   siteName: 'AC Dustbin',
   siteUrl: 'https://allanchian.github.io',
@@ -28,7 +16,6 @@ module.exports = {
     }
   },
   cacheBusting: false,
-  configureWebpack: { plugins },
   plugins: [{
     use: '@allanchain/gridsome-plugin-pwa',
     options: {
