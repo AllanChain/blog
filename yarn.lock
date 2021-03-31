@@ -2962,7 +2962,6 @@ __metadata:
     gridsome: ^0.7.23
     js-yaml: ^3.14.1
     mime: ^2.5.2
-    p-limit: ^3.1.0
     primer-markdown: ^4.0.0
     raw-loader: ^4.0.2
     register-service-worker: ^1.7.2
@@ -9587,7 +9586,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^3.0.2, p-limit@npm:^3.1.0":
+"p-limit@npm:^3.0.2":
   version: 3.1.0
   resolution: "p-limit@npm:3.1.0"
   dependencies:
