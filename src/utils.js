@@ -1,3 +1,9 @@
+const magicCommonJpegHead =
+  '/9j/2wBDAFA3PEY8MlBGQUZaVVBfeMiCeG5uePWvuZHI' +
+  '/'.repeat(52) +
+  '2wBDAVVaWnhpeOuCguv' +
+  '/'.repeat(73) +
+  'wAARCA'
 /**
  * Pad string / number with leading zero to become 2-digit
  * @param {(string|number)} s string or nmuber to be padded
@@ -28,17 +34,25 @@ module.exports = {
     )
   },
   /**
-   * Prefix with BASE_URL if not on other domain
-   * @param {string} url URL to fix
-   * @returns {string}
+   * Compress JPEG data URI
+   * @param {string} uri The input URI
+   * @returns {string} The compressed URI
    */
-  fixUrl (url) {
-    if (url.startsWith('http')) return url
-
-    if (url.startsWith('@cache')) {
-      return require(`@/assets/.cache/images/${url.slice(7)}?vuetify-preload`)
-    }
-    return require(`@/assets/${url}?vuetify-preload`)
+  compressDataURI (uri) {
+    return uri
+      .replace(magicCommonJpegHead, '')
+      .replace(new RegExp('A'.repeat(18), 'g'), '$')
+  },
+  /**
+   * Decompress JPEG data URI
+   * @param {string} compressed  The compressed URI
+   * @returns {string} The decoded URI
+   */
+  decompressDataURI (compressed) {
+    // capability for no image at all
+    if (!compressed) return null
+    return 'data:image/jpeg;base64,' + magicCommonJpegHead +
+      compressed.replace(/\$/g, 'A'.repeat(18))
   },
   /**
    * Judge if the luminance of the color is smaller than the threshold

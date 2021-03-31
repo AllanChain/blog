@@ -3,7 +3,8 @@
     <v-img
       v-if="post.image"
       max-height="200px"
-      :src="fixUrl(post.image)"
+      :src="post.image"
+      :lazy-src="decompressDataURI(post.imageLazy)"
     />
     <v-card-title class="pb-0">
       {{ post.title }}
@@ -37,7 +38,7 @@
         rounded
         size="80"
       >
-        <v-img :src="fixUrl(logo)" />
+        <v-img :src="logo.src" :lazy-src="decompressDataURI(logo.lazySrc)" />
       </v-avatar>
     </div>
     <div>
@@ -64,6 +65,7 @@ query {
       node {
         id
         logo
+        logoLazy
         belongsTo {
           totalCount
         }
@@ -74,7 +76,7 @@ query {
 </static-query>
 
 <script>
-import { fixUrl, formatTime } from '@/utils'
+import { decompressDataURI, formatTime } from '@/utils'
 import PostLabel from '@/components/PostLabel'
 
 export default {
@@ -100,15 +102,19 @@ export default {
     logo () {
       if (!this.post.image) {
         // Do not use the hottest one
-        const restLabelLogos = this.labels.slice(1)
-          .map(label => label.logo).filter(Boolean)
-        return !!restLabelLogos.length && restLabelLogos.slice(-1)[0]
+        const restLabelsWithLogo = this.labels.slice(1)
+          .filter(label => !!label.logo)
+        if (!restLabelsWithLogo.length) return null
+        return {
+          src: restLabelsWithLogo[0].logo,
+          lazySrc: restLabelsWithLogo[0].logoLazy
+        }
       }
       return false
     }
   },
   methods: {
-    fixUrl,
+    decompressDataURI,
     formatTime
   }
 }

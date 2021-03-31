@@ -8,7 +8,7 @@
         {{ description }}
       </v-card-text>
       <v-avatar v-if="logo" class="ma-3" rounded="circle" size="80">
-        <v-img :src="fixUrl(logo)" />
+        <v-img :src="logo" :lazy-src="decompressDataURI(logoLazy)" />
       </v-avatar>
     </div>
     <v-card-actions>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { fixUrl } from '@/utils'
+import { decompressDataURI } from '@/utils'
 
 export default {
   props: {
@@ -47,6 +47,10 @@ export default {
       type: String,
       default: 'Dive In'
     },
+    logoLazy: {
+      type: String,
+      default: null
+    },
     logo: {
       type: String,
       default: null
@@ -64,6 +68,6 @@ export default {
       return { to: this.to }
     }
   },
-  methods: { fixUrl }
+  methods: { decompressDataURI }
 }
 </script>

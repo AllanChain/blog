@@ -67,16 +67,19 @@ const writeExtraData = (extraData) => {
 module.exports = async () => {
   console.log('Preparing blog data...')
   fs.mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
+
   console.log('  Fetching GitHub GraphQL data...')
   const repo = await getCacheFirstData()
   const extraData = yaml.safeLoad(repo.extraData.bodyText)
   writeExtraData(extraData)
   const posts = repo.issues.nodes.map(parsePost)
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
+
   console.log('  Fetching label logos...')
   await Promise.all(labels.map(
     useCachedLabelLogo.bind(null, repo.owner.databaseId)
   ))
+
   console.log('  Fetching post images...')
   await Promise.all(posts.map(useCachedPostImage))
   return { posts, labels }

@@ -6,6 +6,7 @@ type Post implements Node {
   slug: String!,
   summary: String,
   image: String,
+  imageLazy: String,
   labels: [Label],
   body: String!,
   serializedHeadings: String!
@@ -15,6 +16,7 @@ type Label implements Node {
   id: ID!,
   description: String,
   logo: String,
+  logoLazy: String,
   name: String!,
   type: String!,
   color: String!

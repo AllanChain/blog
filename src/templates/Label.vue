@@ -72,6 +72,7 @@ query($id: ID!) {
             createdAt
             lastEditedAt
             image
+            imageLazy
             labels {
               id
             }

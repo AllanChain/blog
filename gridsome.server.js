@@ -1,6 +1,7 @@
 const fs = require('fs')
 const { IgnorePlugin } = require('webpack')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const githubData = require('./src/api/server')
 const { version } = require('./package.json')
 
@@ -9,27 +10,19 @@ module.exports = (api) => {
   process.env.GRIDSOME_VERSION = version
   const dataPromise = githubData()
   api.chainWebpack(async (config, { isClient, isProd }) => {
-    config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin, [{
-      progressiveImages: { sharp: true }
+    config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
+    config.plugin('CopyPlugin').use(CopyPlugin, [{
+      patterns: [
+        { from: 'src/assets/.cache/images/', to: 'img' }
+      ]
     }])
     config.plugin('IgnorePlugin').use(IgnorePlugin, [
       /(api\/server)/
     ])
-    // Since we are using progressive image provided by vuetify-loader,
-    // we need to use file loader to separate high-res image from js file,
-    // using file-loader, not url-loader provided by gridsome
+    // We are not using g-image which uses url-loader,
+    // we just need file-loader to get correct url
     config.module.rules.delete('images')
-    /* eslint-disable indent */
-    config.module.rule('lazy-images')
-      // no `?vuetify-preload` query present
-      .test(/\.(png|jpe?g|gif|webp)$/)
-      .use('file-loader')
-        .loader(require.resolve('file-loader'))
-        .options({
-          name: 'assets/img/[name].[contenthash:8].[ext]'
-        })
 
-    /* eslint-enable indent */
     if (isProd && isClient) {
       config.optimization.splitChunks({
         chunks: 'all',
@@ -51,11 +44,6 @@ module.exports = (api) => {
             test: /[\\/]node_modules[\\/]axios[\\/]/,
             minSize: 10000,
             name: 'axios'
-          },
-          lowRes: {
-            test: /assets[\\/].+\.(png|jpe?g|gif|webp)/,
-            minSize: 10000,
-            name: 'lowRes'
           }
         }
       })

@@ -4,18 +4,15 @@ const { promisify } = require('util')
 const { createHash } = require('crypto')
 const axios = require('axios')
 const mime = require('mime')
+const sharp = require('sharp')
+const { compressDataURI } = require('../../utils')
 
 const imageCacheDir = path.resolve(__dirname, '../../assets/.cache/images')
 const isGitHubImageAbbr = s => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s, userId) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = s => s.startsWith('http')
-const resolveDest = filename => ({
-  dest: `${imageCacheDir}/${filename}`,
-  // `@cache` is a fake alias which will be expanded in `util.fixUrl`
-  // This is a workaroud for webpack to bundle .cache/images
-  asset: `@cache/${filename}`
-})
+const resolveDest = filename => path.join(imageCacheDir, filename)
 
 const guessUnknownFilename = hash => {
   for (const file of fs.readdirSync(imageCacheDir)) {
@@ -34,11 +31,11 @@ const getImageDownloadLocation = async (url) => {
     : guessUnknownFilename(url, hash)
 
   if (filename) {
-    const { dest, asset } = resolveDest(filename)
+    const dest = resolveDest(filename)
 
     try {
       const stats = await promisify(fs.stat)(dest)
-      if (stats.size > 1000) return asset
+      if (stats.size > 1000) return { filename, dest }
     } catch (err) {
       if (err.code !== 'ENOENT') throw err
     }
@@ -52,30 +49,59 @@ const getImageDownloadLocation = async (url) => {
     })
     // note mime returns ext without dot
     const ext = mime.getExtension(response.headers['content-type'])
-    const { dest, asset } = resolveDest(`${hash}.${ext}`)
+    const filename = `${hash}.${ext}`
+    const dest = resolveDest(filename)
     await response.data.pipe(fs.createWriteStream(dest))
-    return asset
+    return { filename, dest }
   } catch (err) {
     console.error(`::error:: Cannot fetch ${url} : ${err}`)
     throw err
   }
 }
 
+const getImageInfo = async (url) => {
+  const { filename, dest } = await getImageDownloadLocation(url)
+  // Weird concurrency issue, cannot reproduce?
+  // Not caused by massive files, because still issue processing one-by-one
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  try {
+    const { data } = await sharp(dest)
+      .jpeg({ quality: 10 })
+      .resize(9)
+      .toBuffer({ resolveWithObject: true })
+
+    return {
+      lazySrc: compressDataURI(data.toString('base64')),
+      src: process.env.GRIDSOME_BASE_URL + 'img/' + filename
+    }
+  } catch (err) {
+    throw new Error(`Cannot process ${dest}: ${err.message}`)
+  }
+}
+
 const useCachedLabelLogo = async (userId, label) => {
   if (!label.logo) return
 
+  let imageInfo
+
   if (isGitHubImageAbbr(label.logo)) {
-    label.logo = await getImageDownloadLocation(
+    imageInfo = await getImageInfo(
       expandGitHubImageAbbr(label.logo, userId)
     )
   } else if (isInternetImage(label.logo)) {
-    label.logo = await getImageDownloadLocation(label.logo)
+    imageInfo = await getImageInfo(label.logo)
   } // else do nothing, backward capability
+
+  label.logo = imageInfo.src
+  label.logoLazy = imageInfo.lazySrc
 }
 
 const useCachedPostImage = async post => {
   if (!post.image) return
-  post.image = await getImageDownloadLocation(post.image)
+  const imageInfo = await getImageInfo(post.image)
+  post.image = imageInfo.src
+  post.imageLazy = imageInfo.lazySrc
 }
 module.exports = {
   useCachedLabelLogo,

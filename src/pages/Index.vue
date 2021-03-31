@@ -36,6 +36,7 @@
           :to="edge.node.path"
           :description="edge.node.description"
           :logo="edge.node.logo"
+          :logo-lazy="edge.node.logoLazy"
         />
       </v-col>
     </v-row>
@@ -68,6 +69,7 @@ query {
         name
         description
         logo
+        logoLazy
         path
       }
     }
