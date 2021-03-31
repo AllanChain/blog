@@ -18,6 +18,7 @@ export default {
   },
   beforeMount () {
     let darkTheme = localStorage.getItem('vuetify__dark')
+
     if (darkTheme === null) {
       try {
         darkTheme = matchMedia('(prefers-color-scheme: dark)')

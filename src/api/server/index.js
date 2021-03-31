@@ -10,6 +10,7 @@ const { useCachedLabelLogo, useCachedPostImage } = require('./image')
 
 const cacheDir = path.resolve(__dirname, '../../assets/.cache')
 const imageCacheDir = path.resolve(cacheDir, 'images')
+
 const serverData = async (variables) => {
   const query = fs.readFileSync(
     path.resolve(__dirname, './data.gql'),
@@ -35,6 +36,7 @@ const serverData = async (variables) => {
     }
     throw error
   }
+
   if (resp.data.errors) {
     console.log(resp.data.errors)
     throw resp.data.errors[0].message
@@ -45,6 +47,7 @@ const serverData = async (variables) => {
 
 const getCacheFirstData = async () => {
   const cacheFile = path.resolve(cacheDir, 'data.json')
+
   if (process.env.NODE_ENV === 'development' && fs.existsSync(cacheFile)) {
     return JSON.parse(fs.readFileSync(cacheFile, { encoding: 'utf-8' }))
   }

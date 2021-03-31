@@ -79,6 +79,7 @@ export default {
   },
   created () {
     this.style.textColor = textColor(this.label.color)
+
     if (this.label.type === 'tag') {
       this.icon = 'mdi-tag-outline'
     } else if (this.label.type === 'series') {
@@ -89,9 +90,11 @@ export default {
       this.icon = 'mdi-archive'
       this.style.label = true
     }
+
     if (this.badge) {
       const number = this.label.belongsTo.totalCount
       this.badgeContent = number
+
       if (number > labelSizeBrkpnts.normal) {
         this.size.small = false
         if (number > labelSizeBrkpnts.xLarge) this.size.xLarge = true

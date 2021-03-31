@@ -28,6 +28,7 @@ module.exports = (api) => {
         .options({
           name: 'assets/img/[name].[contenthash:8].[ext]'
         })
+
     /* eslint-enable indent */
     if (isProd && isClient) {
       config.optimization.splitChunks({
@@ -64,6 +65,7 @@ module.exports = (api) => {
 
       config.output.filename('assets/js/[name].[contenthash:8].js')
       config.output.chunkFilename('assets/js/[name].[contenthash:8].js')
+
       if (process.env.WEBPACK_STATS) {
         const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
         config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin)

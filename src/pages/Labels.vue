@@ -30,6 +30,7 @@ export default {
       const labels = this.$static.allLabel.edges.map(edge => edge.node)
         .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
       const labelByType = { Blog: [], Series: [], Tag: [] }
+
       for (const label of labels) {
         labelByType[capitalize(label.type)].push(label)
       }

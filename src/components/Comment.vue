@@ -120,6 +120,7 @@ export default {
         this.comments = []
         this.postReactions = []
         this.loadStatus = 'loading'
+
         try {
           this.comments = await getComments(postNumber)
           this.postReactions = await getPostReactions(postNumber)
@@ -135,6 +136,7 @@ export default {
         })
 
         this.loadStatus = 'success'
+
         if (
           window?.MathJax?.typesetPromise &&
             this.comments.some(node => node.body_html.includes('$'))

@@ -100,6 +100,7 @@ const sortBy = {
 const naiveSearch = (dest, pattern) => {
   dest = dest.replace(/<.*?>/g, '')
   const patterns = pattern.split(' ')
+
   if (pattern.toLowerCase() === pattern) {
     const destLower = dest.toLowerCase()
     return patterns.every(p => destLower.includes(p))
@@ -151,6 +152,7 @@ export default {
     capitalize,
     async ghSearch () {
       this.ghSearchStatus = 'loading'
+
       try {
         const data = await getSearchResult(this.$page.label.id, this.query)
         const results = data.items.map(node => node.number)

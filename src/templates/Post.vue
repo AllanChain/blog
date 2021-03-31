@@ -7,7 +7,7 @@
         </h1>
         <div class="mb-2">
           <PostLabel
-            v-for="label of this.$page.post.labels"
+            v-for="label of $page.post.labels"
             :key="label.id"
             :label-id="label.id"
           />
@@ -96,6 +96,7 @@ import ToC from '@/components/ToC'
 export default {
   metaInfo () {
     const meta = { title: this.$page.post.title }
+
     if (this.$page.post.body.includes('$')) {
       meta.script = [
         {
@@ -168,6 +169,7 @@ export default {
     },
     onscroll (event) {
       const headings = this.$refs.articleContent.querySelectorAll('.anchor-hover')
+
       for (const [index, heading] of headings.entries()) {
         if (heading.getBoundingClientRect().y > 75) {
           if (index === 0) return

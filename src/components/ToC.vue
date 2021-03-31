@@ -1,8 +1,10 @@
 <script>
 const createTocTree = (headings, baseLevel, index, children, activeSlug) => {
   let containsActive = false
+
   while (index < headings.length) {
     if (baseLevel > headings[index].level) return { index, containsActive }
+
     if (baseLevel === headings[index].level) {
       const active = headings[index].slug === activeSlug
       // Using bitwise or to be concise
@@ -33,6 +35,7 @@ const renderTocNode = (h, node) => {
     { class: { 'toc-active': node.active } },
     node.children.map(child => renderTocNode(h, child))
   )
+
   if (node.content === null) return ulElement
   else {
     return h('li', [

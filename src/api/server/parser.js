@@ -43,6 +43,7 @@ const parseBody = text => {
     .use(htmlPlugins.trimIssue)
     .end()
   Object.assign(result, processSlug(result.body))
+
   for (const key in patterns) {
     const match = text.match(patterns[key])
     // should not override if not provided

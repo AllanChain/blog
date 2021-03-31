@@ -1,5 +1,6 @@
 function ChainHTML (html) {
   this.html = html
+
   this.use = plugin => {
     this.html = plugin(this.html)
     return this

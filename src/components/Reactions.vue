@@ -43,6 +43,7 @@ export default {
   },
   data () {
     const sortedReactions = {}
+
     if (Array.isArray(this.reactions)) {
       for (const reaction of this.reactions) {
         if (sortedReactions[reaction.content] === undefined) {

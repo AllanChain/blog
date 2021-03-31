@@ -16,12 +16,14 @@ const resolveDest = filename => ({
   // This is a workaroud for webpack to bundle .cache/images
   asset: `@cache/${filename}`
 })
+
 const guessUnknownFilename = hash => {
   for (const file of fs.readdirSync(imageCacheDir)) {
     if (file.startsWith(hash)) return file
   }
   return null
 }
+
 const getImageDownloadLocation = async (url) => {
   const hasher = createHash('sha256')
   hasher.update(url)
@@ -30,8 +32,10 @@ const getImageDownloadLocation = async (url) => {
   const filename = ext
     ? `${hash}${ext}`
     : guessUnknownFilename(url, hash)
+
   if (filename) {
     const { dest, asset } = resolveDest(filename)
+
     try {
       const stats = await promisify(fs.stat)(dest)
       if (stats.size > 1000) return asset
@@ -39,6 +43,7 @@ const getImageDownloadLocation = async (url) => {
       if (err.code !== 'ENOENT') throw err
     }
   }
+
   try {
     const response = await axios({
       method: 'GET',
@@ -55,8 +60,10 @@ const getImageDownloadLocation = async (url) => {
     throw err
   }
 }
+
 const useCachedLabelLogo = async (userId, label) => {
   if (!label.logo) return
+
   if (isGitHubImageAbbr(label.logo)) {
     label.logo = await getImageDownloadLocation(
       expandGitHubImageAbbr(label.logo, userId)
@@ -65,6 +72,7 @@ const useCachedLabelLogo = async (userId, label) => {
     label.logo = await getImageDownloadLocation(label.logo)
   } // else do nothing, backward capability
 }
+
 const useCachedPostImage = async post => {
   if (!post.image) return
   post.image = await getImageDownloadLocation(post.image)
