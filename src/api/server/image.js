@@ -28,18 +28,21 @@ const getImageDownloadLocation = async (url) => {
   const ext = path.extname(url)
   const filename = ext
     ? `${hash}${ext}`
-    : guessUnknownFilename(url, hash)
+    : guessUnknownFilename(hash)
 
   if (filename) {
     const dest = resolveDest(filename)
 
     try {
       const stats = await promisify(fs.stat)(dest)
-      if (stats.size > 1000) return { filename, dest }
+      if (stats.size > 100) return { filename, dest }
+      console.log(`    ${dest} too small`)
     } catch (err) {
       if (err.code !== 'ENOENT') throw err
     }
   }
+
+  console.log(`    ${filename || hash} not available, downloading...`)
 
   try {
     const response = await axios({
@@ -48,7 +51,8 @@ const getImageDownloadLocation = async (url) => {
       responseType: 'stream'
     })
     // note mime returns ext without dot
-    const ext = mime.getExtension(response.headers['content-type'])
+    let ext = mime.getExtension(response.headers['content-type'])
+    if (ext === 'jpeg') ext = 'jpg' // prefer jpg extension
     const filename = `${hash}.${ext}`
     const dest = resolveDest(filename)
     const writer = fs.createWriteStream(dest)
