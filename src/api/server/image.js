@@ -51,8 +51,12 @@ const getImageDownloadLocation = async (url) => {
     const ext = mime.getExtension(response.headers['content-type'])
     const filename = `${hash}.${ext}`
     const dest = resolveDest(filename)
-    await response.data.pipe(fs.createWriteStream(dest))
-    return { filename, dest }
+    const writer = fs.createWriteStream(dest)
+    response.data.pipe(writer)
+    return new Promise((resolve, reject) => {
+      writer.on('finish', () => resolve({ filename, dest }))
+      writer.on('error', reject)
+    })
   } catch (err) {
     console.error(`::error:: Cannot fetch ${url} : ${err}`)
     throw err
@@ -61,9 +65,6 @@ const getImageDownloadLocation = async (url) => {
 
 const getImageInfo = async (url) => {
   const { filename, dest } = await getImageDownloadLocation(url)
-  // Weird concurrency issue, cannot reproduce?
-  // Not caused by massive files, because still issue processing one-by-one
-  await new Promise(resolve => setTimeout(resolve, 1000))
 
   try {
     const { data } = await sharp(dest)
