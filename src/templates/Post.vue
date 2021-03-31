@@ -56,7 +56,7 @@
         </v-alert>
         <!-- Functional div for correct toc-wrapper height -->
         <div style="position: relative">
-          <div class="toc-wrapper">
+          <div v-if="$page.post.serializedHeadings != '[]'" class="toc-wrapper">
             <ToC
               :serialized-headings="$page.post.serializedHeadings"
               :active-slug="activeSlug"
@@ -174,7 +174,7 @@ export default {
     },
     onscroll (event) {
       const headings = this.$refs.articleContent.querySelectorAll('.anchor-hover')
-
+      if (!headings.length) return
       for (const [index, heading] of headings.entries()) {
         if (heading.getBoundingClientRect().y > 75) {
           if (index === 0) return
