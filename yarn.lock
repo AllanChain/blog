@@ -2956,14 +2956,12 @@ __metadata:
     eslint-plugin-promise: ^4.3.1
     eslint-plugin-vue: ^7.7.0
     fibers: ^5.0.0
-    file-loader: ^6.2.0
     github-slugger: ^1.3.0
     github-syntax-dark: ^0.5.0
     gridsome: ^0.7.23
     js-yaml: ^3.14.1
     mime: ^2.5.2
     primer-markdown: ^4.0.0
-    raw-loader: ^4.0.2
     register-service-worker: ^1.7.2
     sass: ^1.32.8
     sass-loader: ^7.3.1
@@ -10829,18 +10827,6 @@ fsevents@~2.3.1:
     iconv-lite: 0.4.24
     unpipe: 1.0.0
   checksum: dc56e010d276f2fc3a17c2dd071f857917cd3734f64051488c845a9878a1eb47e03a9644861f135568d8ab4c2062072700b73060956b36f3a987025bc809402f
-  languageName: node
-  linkType: hard
-
-"raw-loader@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "raw-loader@npm:4.0.2"
-  dependencies:
-    loader-utils: ^2.0.0
-    schema-utils: ^3.0.0
-  peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
-  checksum: 1a08968df5bf185923102de589dc28da6c9953f87059c80de3cbfdfb47bc15907f23f5e21048f03af2842df01d0dde2630826697c783c4c9683ea71f04f4538d
   languageName: node
   linkType: hard
 

@@ -19,9 +19,6 @@ module.exports = (api) => {
     config.plugin('IgnorePlugin').use(IgnorePlugin, [
       /(api\/server)/
     ])
-    // We are not using g-image which uses url-loader,
-    // we just need file-loader to get correct url
-    config.module.rules.delete('images')
 
     if (isProd && isClient) {
       config.optimization.splitChunks({
