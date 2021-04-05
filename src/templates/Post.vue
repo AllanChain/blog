@@ -175,6 +175,7 @@ export default {
     onscroll (event) {
       const headings = this.$refs.articleContent.querySelectorAll('.anchor-hover')
       if (!headings.length) return
+
       for (const [index, heading] of headings.entries()) {
         if (heading.getBoundingClientRect().y > 75) {
           if (index === 0) return
