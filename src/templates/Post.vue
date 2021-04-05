@@ -207,6 +207,9 @@ $font-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
       border-radius: 0
 
 article.article-main.markdown-body
+  mjx-container[display="true"]
+    overflow-x: auto
+    overflow-y: hidden
   & :not(pre) > code
     color: #476582
     padding: 0.25rem 0.5rem
