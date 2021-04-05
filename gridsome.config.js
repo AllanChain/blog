@@ -50,14 +50,12 @@ module.exports = {
         navigateFallbackAllowlist: [/\/$/],
         runtimeCaching: [
           {
-            urlPattern: new RegExp('https://camo\\.githubusercontent\\.com/.*'),
-            handler: 'StaleWhileRevalidate', // Images don't support CORS
-            options: { cacheName: 'GithHub' }
-          },
-          {
-            urlPattern: new RegExp('https://avatars\\d\\.githubusercontent\\.com/u/.*'),
-            handler: 'CacheFirst', // Avatars support CORS
-            options: { cacheName: 'GithHub' }
+            urlPattern: new RegExp('/img/.*'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'GithHub',
+              expiration: { maxEntries: 20 }
+            }
           },
           {
             urlPattern: new RegExp('/index.json$'),
@@ -71,7 +69,10 @@ module.exports = {
           {
             urlPattern: new RegExp('https://(cdn\\.jsdelivr\\.net|fonts\\.(gstatic|googleapis)\\.com)/.*'),
             handler: 'CacheFirst',
-            options: { cacheName: 'CDN' }
+            options: {
+              cacheName: 'CDN',
+              expiration: { maxEntries: 5 }
+            }
           }
         ]
       }
