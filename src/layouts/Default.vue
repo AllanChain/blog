@@ -5,7 +5,15 @@
       dark
       color="primary"
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-badge
+        left
+        dot
+        overlap
+        color="red"
+        :value="$store.state.swStatus === 'updated'"
+      >
+        <v-app-bar-nav-icon @click="drawer = !drawer" />
+      </v-badge>
       <v-toolbar-title class="pl-0">
         {{ $store.state.title }}
       </v-toolbar-title>
@@ -88,12 +96,14 @@
       <template #append>
         <v-divider />
         <div class="px-4 py-2 d-flex">
-          <v-chip outlined>
-            <v-icon small left>
-              mdi-cogs
-            </v-icon>
-            {{ version }} - {{ $store.state.swStatus }}
-          </v-chip>
+          <v-badge dot overlap color="red" :value="$store.state.swStatus === 'updated'">
+            <v-chip outlined @click="reload">
+              <v-icon small left>
+                mdi-cogs
+              </v-icon>
+              {{ version }} - {{ $store.state.swStatus }}
+            </v-chip>
+          </v-badge>
           <v-spacer />
           <ThemeToggle />
         </div>
@@ -136,12 +146,18 @@ export default {
       console.log('Receive install prompt')
       this.install = e
       e.preventDefault()
+    },
+    reload () {
+      location.reload(true)
     }
   }
 }
 </script>
 
 <style lang="sass">
+header .v-toolbar__content
+  padding-left: 0px
+
 .clean-last-p p:last-of-type
   margin-bottom: 0px
 
