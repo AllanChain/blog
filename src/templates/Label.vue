@@ -73,8 +73,16 @@ query($id: ID!) {
             lastEditedAt
             image
             imageLazy
+            logo {
+              src
+              lazySrc
+            }
             labels {
               id
+              type
+              color
+              name
+              path
             }
           }
         }

@@ -25,20 +25,20 @@
         </v-card-subtitle>
         <v-card-text>
           <PostLabel
-            v-for="label of labels"
+            v-for="label of post.labels"
             :key="label.id"
-            :label-id="label.id"
+            :label="label"
           />
         </v-card-text>
       </div>
       <!-- If no heading image and have tag logo -->
       <v-avatar
-        v-if="logo"
+        v-if="!post.image && post.logo"
         class="ma-3"
         rounded
         size="80"
       >
-        <v-img :src="logo.src" :lazy-src="decompressDataURI(logo.lazySrc)" />
+        <v-img :src="post.logo.src" :lazy-src="decompressDataURI(post.logo.lazySrc)" />
       </v-avatar>
     </div>
     <div>
@@ -58,23 +58,6 @@
   </v-card>
 </template>
 
-<static-query>
-query {
-  allLabel {
-    edges {
-      node {
-        id
-        logo
-        logoLazy
-        belongsTo {
-          totalCount
-        }
-      }
-    }
-  }
-}
-</static-query>
-
 <script>
 import { decompressDataURI, formatTime } from '@/utils'
 import PostLabel from '@/components/PostLabel'
@@ -87,30 +70,6 @@ export default {
     post: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    labels () {
-      // New labels in received data will not match any known label in old js.
-      // Ignoring them as a temporary fix
-      return this.$static.allLabel.edges.filter(edge =>
-        this.post.labels.findIndex(label => label.id === edge.node.id) !== -1
-      )
-        .map(edge => edge.node)
-        .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
-    },
-    logo () {
-      if (!this.post.image) {
-        // Do not use the hottest one
-        const restLabelsWithLogo = this.labels.slice(1)
-          .filter(label => !!label.logo)
-        if (!restLabelsWithLogo.length) return null
-        return {
-          src: restLabelsWithLogo[0].logo,
-          lazySrc: restLabelsWithLogo[0].logoLazy
-        }
-      }
-      return false
     }
   },
   methods: {

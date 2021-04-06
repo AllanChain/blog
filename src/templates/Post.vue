@@ -9,7 +9,7 @@
           <PostLabel
             v-for="label of $page.post.labels"
             :key="label.id"
-            :label-id="label.id"
+            :label="label"
           />
         </div>
         <a
@@ -85,6 +85,10 @@ query($id: ID!) {
     serializedHeadings
     labels {
       id
+      type
+      name
+      color
+      path
     }
   }
 }

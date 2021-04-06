@@ -24,25 +24,6 @@
   </v-badge>
 </template>
 
-<static-query>
-query {
-  allLabel {
-    edges {
-      node {
-        id
-        color
-        type
-        name
-        path
-        belongsTo {
-          totalCount
-        }
-      }
-    }
-  }
-}
-</static-query>
-
 <script>
 import { isDarkColor } from '@/utils'
 import { labelSizeBrkpnts } from '@/assets/.cache/extra.json'
@@ -51,9 +32,12 @@ const textColor = color => isDarkColor(color, 101) ? 'white' : 'black'
 
 export default {
   props: {
-    labelId: {
-      type: String,
-      required: true
+    label: {
+      type: Object,
+      required: true,
+      validator (label) {
+        return ['name', 'color', 'path', 'type'].every(key => key in label)
+      }
     },
     badge: {
       type: Boolean,
@@ -70,13 +54,6 @@ export default {
     icon: '',
     badgeContent: undefined
   }),
-  computed: {
-    label () {
-      return this.$static.allLabel.edges
-        .find(edge => edge.node.id === this.labelId)
-        .node
-    }
-  },
   created () {
     this.style.textColor = textColor(this.label.color)
 

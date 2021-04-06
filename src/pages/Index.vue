@@ -25,7 +25,7 @@
     <HomeHeader>Blog Entries</HomeHeader>
     <v-row justify="center">
       <v-col
-        v-for="edge of $static.allLabel.edges"
+        v-for="edge of $page.allLabel.edges"
         :key="edge.node.id"
         cols="12"
         sm="6"
@@ -61,7 +61,7 @@
   </v-container>
 </template>
 
-<static-query>
+<page-query>
 query {
   allLabel(filter: { type: { eq: "blog" } }) {
     edges {
@@ -75,7 +75,7 @@ query {
     }
   }
 }
-</static-query>
+</page-query>
 
 <script>
 import { capitalize } from '@/utils'

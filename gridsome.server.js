@@ -2,6 +2,7 @@ const fs = require('fs')
 const { IgnorePlugin } = require('webpack')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const { createBelongsToKey } = require('gridsome/lib/graphql')
 const githubData = require('./src/api/server')
 const { version } = require('./package.json')
 
@@ -57,12 +58,56 @@ module.exports = (api) => {
       }
     }
   })
-  api.loadSource(async ({ addCollection, addSchemaTypes }) => {
+  api.loadSource(async ({
+    addCollection,
+    addSchemaTypes,
+    addSchemaResolvers
+  }) => {
     addSchemaTypes(fs.readFileSync('./blog.schema.gql'))
     const { posts, labels } = await dataPromise
     const postCollection = addCollection('Post')
     const labelCollection = addCollection('Label')
     postCollection.addReference('labels', 'Label')
+
+    const sortLabels = (labels, store) => {
+      const labelWithUsage = []
+
+      for (const labelId of labels) {
+        const label = store.getCollection('Label').getNodeById(labelId)
+        const usedBy = store.chainIndex({
+          [createBelongsToKey(label)]: { $eq: true }
+        }).data().length
+        labelWithUsage.push({ label, usedBy })
+      }
+      return labelWithUsage.sort((a, b) => b.usedBy - a.usedBy).map(e => e.label)
+    }
+
+    addSchemaResolvers({
+      Post: {
+        labels (post, args, { store }) {
+          return sortLabels(post.labels, store)
+        },
+        logo: {
+          type: 'type Logo { src: String, lazySrc: String }',
+          resolve (post, args, { store }) {
+            const sortedLabels = sortLabels(post.labels, store)
+
+            // Exclude hottest label
+            for (let i = sortedLabels.length - 1; i > 0; i--) {
+              const label = sortedLabels[i]
+
+              if (label.logo) {
+                return {
+                  src: label.logo,
+                  lazySrc: label.logoLazy
+                }
+              }
+            }
+            return null
+          }
+        }
+      }
+    })
 
     for (const post of posts) postCollection.addNode(post)
     for (const label of labels) labelCollection.addNode(label)

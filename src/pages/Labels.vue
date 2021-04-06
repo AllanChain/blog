@@ -8,7 +8,7 @@
         v-for="label of labels"
         :key="label.id"
         class="ma-2"
-        :label-id="label.id"
+        :label="label"
         badge
       />
     </div>
@@ -27,7 +27,7 @@ export default {
   components: { PostLabel, HomeHeader },
   computed: {
     labelByType () {
-      const labels = this.$static.allLabel.edges.map(edge => edge.node)
+      const labels = this.$page.allLabel.edges.map(edge => edge.node)
         .sort((a, b) => b.belongsTo.totalCount - a.belongsTo.totalCount)
       const labelByType = { Blog: [], Series: [], Tag: [] }
 
@@ -40,13 +40,16 @@ export default {
 }
 </script>
 
-<static-query>
+<page-query>
 query {
   allLabel {
     edges {
       node {
         id
         type
+        name
+        color
+        path
         belongsTo {
           totalCount
         }
@@ -54,4 +57,4 @@ query {
     }
   }
 }
-</static-query>
+</page-query>
