@@ -97,10 +97,7 @@ module.exports = (api) => {
               const label = sortedLabels[i]
 
               if (label.logo) {
-                return {
-                  src: label.logo,
-                  lazySrc: label.logoLazy
-                }
+                return label.logo
               }
             }
             return null

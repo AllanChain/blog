@@ -35,8 +35,8 @@
           :name="capitalize(edge.node.name)"
           :to="edge.node.path"
           :description="edge.node.description"
-          :logo="edge.node.logo"
-          :logo-lazy="edge.node.logoLazy"
+          :logo="edge.node.logo.src"
+          :logo-lazy="edge.node.logo.lazySrc"
         />
       </v-col>
     </v-row>
@@ -68,9 +68,11 @@ query {
       node {
         name
         description
-        logo
-        logoLazy
         path
+        logo {
+          src
+          lazySrc
+        }
       }
     }
   }

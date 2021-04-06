@@ -71,8 +71,10 @@ query($id: ID!) {
             summary
             createdAt
             lastEditedAt
-            image
-            imageLazy
+            image {
+              src
+              lazySrc
+            }
             logo {
               src
               lazySrc

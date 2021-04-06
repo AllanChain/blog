@@ -1,3 +1,8 @@
+type Image {
+  src: String,
+  lazySrc: String
+}
+
 type Post implements Node {
   id: ID!,
   title: String!,
@@ -5,8 +10,8 @@ type Post implements Node {
   lastEditedAt: Date!,
   slug: String!,
   summary: String,
-  image: String,
-  imageLazy: String,
+  image: Image, # Post head image
+  logo: Image,  # logo from preferred label
   labels: [Label],
   body: String!,
   serializedHeadings: String!
@@ -15,8 +20,7 @@ type Post implements Node {
 type Label implements Node {
   id: ID!,
   description: String,
-  logo: String,
-  logoLazy: String,
+  logo: Image,
   name: String!,
   type: String!,
   color: String!

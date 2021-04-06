@@ -45,8 +45,8 @@
         </div>
         <v-img
           v-if="$page.post.image"
-          :src="$page.post.image"
-          :lazy-src="decompressDataURI($page.post.imageLazy)"
+          :src="$page.post.image.src"
+          :lazy-src="decompressDataURI($page.post.image.lazySrc)"
         />
       </div>
       <v-divider class="my-3" />
@@ -80,8 +80,10 @@ query($id: ID!) {
     body
     createdAt
     lastEditedAt
-    image
-    imageLazy
+    image {
+      src
+      lazySrc
+    }
     serializedHeadings
     labels {
       id

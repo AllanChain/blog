@@ -3,8 +3,8 @@
     <v-img
       v-if="post.image"
       max-height="200px"
-      :src="post.image"
-      :lazy-src="decompressDataURI(post.imageLazy)"
+      :src="post.image.src"
+      :lazy-src="decompressDataURI(post.image.lazySrc)"
     />
     <v-card-title class="pb-0">
       {{ post.title }}

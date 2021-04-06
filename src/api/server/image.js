@@ -97,16 +97,13 @@ const useCachedLabelLogo = async (userId, label) => {
   } else if (isInternetImage(label.logo)) {
     imageInfo = await getImageInfo(label.logo)
   } // else do nothing, backward capability
-
-  label.logo = imageInfo.src
-  label.logoLazy = imageInfo.lazySrc
+  label.logo = imageInfo
 }
 
 const useCachedPostImage = async post => {
   if (!post.image) return
   const imageInfo = await getImageInfo(post.image)
-  post.image = imageInfo.src
-  post.imageLazy = imageInfo.lazySrc
+  post.image = imageInfo
 }
 module.exports = {
   useCachedLabelLogo,
