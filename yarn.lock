@@ -2948,13 +2948,13 @@ __metadata:
     copy-webpack-plugin: ^6.4.1
     csso: ^4.2.0
     deepmerge: ^4.2.2
-    eslint: ^7.23.0
+    eslint: ^7.25.0
     eslint-config-standard: ^16.0.2
     eslint-plugin-gridsome: ^1.6.2
     eslint-plugin-import: ^2.22.1
     eslint-plugin-node: ^11.1.0
-    eslint-plugin-promise: ^4.3.1
-    eslint-plugin-vue: ^7.8.0
+    eslint-plugin-promise: ^5.1.0
+    eslint-plugin-vue: ^7.9.0
     fibers: ^5.0.0
     github-slugger: ^1.3.0
     github-syntax-dark: ^0.5.0
@@ -2963,17 +2963,17 @@ __metadata:
     mime: ^2.5.2
     primer-markdown: ^4.0.0
     register-service-worker: ^1.7.2
-    sass: ^1.32.8
+    sass: ^1.32.12
     sass-loader: ^7.3.1
     sharp: ^0.25.2
     vue: ^2.6.12
     vue-eslint-parser: ^7.6.0
     vue-template-compiler: ^2.6.12
-    vuetify: ^2.4.9
+    vuetify: ^2.4.11
     vuetify-loader: ^1.7.2
     vuex: ^3.6.2
     webpack: ^4.46.0
-    webpack-bundle-analyzer: ^4.4.0
+    webpack-bundle-analyzer: ^4.4.1
   languageName: unknown
   linkType: soft
 
@@ -3561,7 +3561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:>=2.0.0 <4.0.0, chokidar@npm:^3.4.1":
+"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.4.1":
   version: 3.5.1
   resolution: "chokidar@npm:3.5.1"
   dependencies:
@@ -5272,16 +5272,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-promise@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "eslint-plugin-promise@npm:4.3.1"
-  checksum: 3a6f4180008bb3b7106371ed49060c9bca06ba5cffa82fb249f83d2c4fcf94bbefd468a837bff1164dd52066fe1be7ff2d126b212aaa8fe13e681916e78b1618
+"eslint-plugin-promise@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "eslint-plugin-promise@npm:5.1.0"
+  peerDependencies:
+    eslint: ^7.0.0
+  checksum: e62947aaea6882951a1a9f5fe3e3c7925b8dcc222338f7979bd1495ba0f0dc701820116b108be1e801f6e5156eb9a928142f29c659fd21a5d65a4be495bb327d
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^7.8.0":
-  version: 7.8.0
-  resolution: "eslint-plugin-vue@npm:7.8.0"
+"eslint-plugin-vue@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "eslint-plugin-vue@npm:7.9.0"
   dependencies:
     eslint-utils: ^2.1.0
     natural-compare: ^1.4.0
@@ -5289,7 +5291,7 @@ __metadata:
     vue-eslint-parser: ^7.6.0
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0
-  checksum: 1b8b89ebbd0b50f55f2d2d9f93a336e377ec4e6114d074ac8661860b8210d2526b73216a624848dc9c8c2b975e010778a1bb0e10cfb26228e78940a81099c84d
+  checksum: 0b2c5d03ed45d75fab7663d06828ffe441a752248de98e1d4e065a445d451da8e112622c07cf47c78228200bd419e2b2455501dbbe4fb6f46123e429f8d334ad
   languageName: node
   linkType: hard
 
@@ -5336,9 +5338,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.23.0":
-  version: 7.23.0
-  resolution: "eslint@npm:7.23.0"
+"eslint@npm:^7.25.0":
+  version: 7.25.0
+  resolution: "eslint@npm:7.25.0"
   dependencies:
     "@babel/code-frame": 7.12.11
     "@eslint/eslintrc": ^0.4.0
@@ -5379,7 +5381,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: a8d2e9a76a46c84506b0f1a4dc5ac11bfc68ad3c074c1061cabb86c8205aafb5f2786bb662968179be10cc067674ed2b9ad5879dd84027b53660d1f6fa407f4a
+  checksum: 8d418fccd017608f6d04551c85fb2b3f12f722933f79e5c71a6c9f27ec989c4cf24727f5b05344d5851c91cd676e6776607f3d1a4e337353ade5e7f62602fb91
   languageName: node
   linkType: hard
 
@@ -11388,14 +11390,14 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.32.8":
-  version: 1.32.8
-  resolution: "sass@npm:1.32.8"
+"sass@npm:^1.32.12":
+  version: 1.32.12
+  resolution: "sass@npm:1.32.12"
   dependencies:
-    chokidar: ">=2.0.0 <4.0.0"
+    chokidar: ">=3.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: a4d67e6be7b3c479d44065b1dd63fc76b90cfb5f5c9684a5d93fb9721c283bae4ec3f4dab478125ee21f3618dd408a9ba65bd3ba6482ab5a422fc86e1ca18b17
+  checksum: 01ddd4abce9817d2fa46f6379bacb76605e298e8ed91fc1caed21d9b8f8ac62948f973716f8a4488f4348746aa54bb47957dfef6698e8097e07846a15fa42644
   languageName: node
   linkType: hard
 
@@ -12037,11 +12039,11 @@ fsevents@~2.3.1:
   linkType: hard
 
 "ssri@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "ssri@npm:6.0.1"
+  version: 6.0.2
+  resolution: "ssri@npm:6.0.2"
   dependencies:
     figgy-pudding: ^3.5.1
-  checksum: 9520acadfe75867e4a9d815572320133465730b1cd5f76b80913096b69266eceb40673e62b4899c7a62607eb07f625b9748016d94bdfcf8d813b3c2f9629ec76
+  checksum: 7c2e5d442f6252559c8987b7114bcf389fe5614bf65de09ba3e6f9a57b9b65b2967de348fcc3acccff9c069adb168140dd2c5fc2f6f4a779e604a27ef1f7d551
   languageName: node
   linkType: hard
 
@@ -13414,12 +13416,12 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"vuetify@npm:^2.4.9":
-  version: 2.4.9
-  resolution: "vuetify@npm:2.4.9"
+"vuetify@npm:^2.4.11":
+  version: 2.4.11
+  resolution: "vuetify@npm:2.4.11"
   peerDependencies:
     vue: ^2.6.4
-  checksum: 0261d05f94db07622c53f3ab9bb340478ccdd3bbf3e8523789cdfb395c69f1e39d232c082a5c72701ee24c04bc041e98ca14475b5bc6b1d321558b17ce212549
+  checksum: 0ae0d8c01d693d76360badd9563599c789622b510ff8ae27ba8bd475e43f6316cafcf2955fb7f15d479c336b9b1bbea2d1bd3428df75221feaff45f898c46d2b
   languageName: node
   linkType: hard
 
@@ -13474,9 +13476,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"webpack-bundle-analyzer@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "webpack-bundle-analyzer@npm:4.4.0"
+"webpack-bundle-analyzer@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "webpack-bundle-analyzer@npm:4.4.1"
   dependencies:
     acorn: ^8.0.4
     acorn-walk: ^8.0.0
@@ -13489,7 +13491,7 @@ fsevents@~2.3.1:
     ws: ^7.3.1
   bin:
     webpack-bundle-analyzer: lib/bin/analyzer.js
-  checksum: ffe2615756f94274512c60c2a6f98d444a4f502841a423bfb20b0aa00f14e6ef350600d1e906e55b6e22ca0247f72fc0d190123a954601088f90078bec136149
+  checksum: 6803a706ebcc2fadc85f490046b875ca1fe99d2dfd7dbf072920f47ac7549216900ab70d13156c6ca846b245fd9e484e5fbcdf85a015753099f3f687fb1fc27e
   languageName: node
   linkType: hard
 
