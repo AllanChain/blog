@@ -16,3 +16,7 @@ dist
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+
+# Cypress
+cypress/videos

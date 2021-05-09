@@ -6,6 +6,9 @@
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
+    "serve": "serve",
+    "test": "cypress run",
+    "cypress:open": "cypress open",
     "lint": "eslint *.js src/**/*.js src/**/*.vue",
     "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue",
     "gitag": "node scripts/gitag.js"
@@ -29,6 +32,7 @@
   "devDependencies": {
     "copy-webpack-plugin": "^6.4.1",
     "csso": "^4.2.0",
+    "cypress": "^7.2.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.25.0",
     "eslint-config-standard": "^16.0.2",
@@ -44,6 +48,7 @@
     "raw-loader": "^4.0.2",
     "sass": "^1.32.12",
     "sass-loader": "^10.1.1",
+    "serve": "^11.3.2",
     "sharp": "^0.27.2",
     "vue-eslint-parser": "^7.6.0",
     "vue-template-compiler": "^2.6.12",

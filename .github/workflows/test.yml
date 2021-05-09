@@ -1,0 +1,46 @@
+name: Simple Test
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: .yarn/cache
+          key: node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            node-
+      - name: Install Packages
+        run: yarn install --immutable --check-cache
+      - name: Build App
+        run: yarn build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cypress Test
+        run: |
+          yarn serve &
+          yarn test
+      - uses: actions/checkout@master
+        with:
+          ref: gh-pages
+          fetch-depth: 1
+          path: .cache/blog
+      - name: Move Files
+        run: |
+          rm -r .cache/blog/assets/data
+          mv blog/assets/data .cache/blog/assets/data
+      - name: Cypress Test PWA
+        run: |
+          yarn serve .cache &
+          yarn test
