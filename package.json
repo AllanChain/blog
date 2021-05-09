@@ -17,11 +17,11 @@
     "csso": false
   },
   "dependencies": {
-    "@allanchain/gridsome-plugin-pwa": "allanchain/gridsome-plugin-pwa",
+    "@allanchain/gridsome-plugin-pwa": "allanchain/gridsome-plugin-pwa#commit=550d078d7a72fd21c38ede31246e083d8272a13b",
     "axios": "^0.21.1",
     "core-js": "^3.10.0",
     "github-syntax-dark": "^0.5.0",
-    "gridsome": "gridsome/gridsome#workspace=gridsome",
+    "gridsome": "gridsome/gridsome#workspace=gridsome&commit=f7bbd1ddb4acee65f7e56fc73a2d70c819132034",
     "primer-markdown": "^4.0.0",
     "regenerator-runtime": "^0.13.7",
     "register-service-worker": "^1.7.2",
