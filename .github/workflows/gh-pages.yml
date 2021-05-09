@@ -61,3 +61,5 @@ jobs:
         publish_dir: ./blog
         publish_branch: gh-pages
         full_commit_message: ${{ steps.msg.outputs.msg }}
+        user_name: github-actions[bot]
+        user_email: github-actions[bot]@users.noreply.github.com
