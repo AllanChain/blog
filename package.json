@@ -30,12 +30,14 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@yarnpkg/pnpify": "^3.0.0-rc.3",
     "copy-webpack-plugin": "^6.4.1",
     "csso": "^4.2.0",
     "cypress": "^7.2.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.25.0",
     "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-gridsome": "^1.6.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",

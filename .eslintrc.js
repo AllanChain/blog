@@ -4,6 +4,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  env: {
+    'cypress/globals': true
+  },
+  plugins: ['cypress'],
   extends: [
     'standard',
     'plugin:vue/recommended',
