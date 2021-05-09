@@ -27,11 +27,13 @@ jobs:
         id: cache
         with:
           path: .yarn/cache
-          key: node-${{ hashFiles('**/yarn.lock') }}
+          key: pnp-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            node-
+            pnp-
       - name: Install Packages
-        run: yarn install --immutable --check-cache
+        run: yarn install --immutable
+        env:
+          YARN_CHECKSUM_BEHAVIOR: ignore
       - name: Build App
         run: yarn build
         env:
