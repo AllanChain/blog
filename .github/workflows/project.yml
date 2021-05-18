@@ -9,27 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(fromJson('["bug", "enhancement"]'), github.event.label.name)
     steps:
-      - name: Add issue to project board
-        uses: actions/github-script@0.8.0
+      - uses: alex-page/github-project-automation-plus@v0.7.1
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.projects.createCard({
-              column_id: 9842002,
-              content_id: context.payload.issue.id,
-              content_type: "Issue"
-            });
-  blog-post:
+          project: Blog bugs & todos
+          column: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  wip-blog-post:
     runs-on: ubuntu-latest
     if: github.event.label.name == '@WIP'
     steps:
-      - name: Add issue to project board
-        uses: actions/github-script@0.8.0
+      - uses: alex-page/github-project-automation-plus@v0.7.1
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.projects.createCard({
-              column_id: 10075483,
-              content_id: context.payload.issue.id,
-              content_type: "Issue"
-            });
+          project: Post Process
+          column: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  done-blog-post:
+    runs-on: ubuntu-latest
+    if: github.event.label.name == '@post'
+    steps:
+      - uses: alex-page/github-project-automation-plus@v0.7.1
+        with:
+          project: Post Process
+          column: Done
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
