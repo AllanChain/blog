@@ -4250,10 +4250,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001219":
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109":
   version: 1.0.30001220
   resolution: "caniuse-lite@npm:1.0.30001220"
   checksum: 0c8b62c1c09861a8e670a2ea243f8ad6c711d3a32e7d569326bda6eab58051b5e559cc40c4fb96cceca2f89dec68eb14da0c3a3c933178db81a399b316c764dd
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001219":
+  version: 1.0.30001239
+  resolution: "caniuse-lite@npm:1.0.30001239"
+  checksum: f1fbd95a97d66359f518c12045e2ae32975aeae8b0451ba8a5608bc0ece47c7d18ab7edea51bffa7fb0656747d3e1418384904ab8a2a5f97698ad744b157537c
   languageName: node
   linkType: hard
 
@@ -5848,9 +5855,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.723":
-  version: 1.3.725
-  resolution: "electron-to-chromium@npm:1.3.725"
-  checksum: 90801f5cc30f76495412ce86cef141cd22924ec75c88c276eaa42435d09370d9df5d8127060dae4fdb96a3ea0b0a726ee228788affb997e7f4172f4e54001c5d
+  version: 1.3.756
+  resolution: "electron-to-chromium@npm:1.3.756"
+  checksum: f50a3de3df177c8fdcc6b80f38a48cb6e3326a13d96b4ea73c55e378882dddc3c57657a33d1cc30c460a1ee06dc6504015539115a13e5719e9ae6cd0ba6535a1
   languageName: node
   linkType: hard
 
@@ -10227,9 +10234,9 @@ fsevents@~2.3.1:
   linkType: hard
 
 "node-releases@npm:^1.1.71":
-  version: 1.1.71
-  resolution: "node-releases@npm:1.1.71"
-  checksum: a6ab18069e43d70b811fa7f12b397619f2003f78ac2ed0affa30876880ca3036a191d33679d93baac166afa12a7b1b1716e13f3c82c0f0fa09e2c83db3f91faf
+  version: 1.1.73
+  resolution: "node-releases@npm:1.1.73"
+  checksum: 44a6caec3330538a669c156fa84833725ae92b317585b106e08ab292c14da09f30cb913c10f1a7402180a51b10074832d4e045b6c3512d74c37d86b41a69e63b
   languageName: node
   linkType: hard
 
@@ -10304,9 +10311,9 @@ fsevents@~2.3.1:
   linkType: hard
 
 "normalize-url@npm:^4.1.0":
-  version: 4.5.0
-  resolution: "normalize-url@npm:4.5.0"
-  checksum: 34e9d01095df5c9348bf75f6cf0552c01438a29119aecdb747eead6ccd36a386209acdc093fc993edd32731b3056ff2977ffab44e4b8eed4d8aafdf0feae90c7
+  version: 4.5.1
+  resolution: "normalize-url@npm:4.5.1"
+  checksum: 9a9dee01df02ad23e171171893e56e22d752f7cff86fb96aafeae074819b572ea655b60f8302e2d85dbb834dc885c972cc1c573892fea24df46b2765065dd05a
   languageName: node
   linkType: hard
 
@@ -11515,13 +11522,13 @@ fsevents@~2.3.1:
   linkType: hard
 
 "postcss@npm:^7.0.0, postcss@npm:^7.0.1, postcss@npm:^7.0.14, postcss@npm:^7.0.27, postcss@npm:^7.0.32, postcss@npm:^7.0.5, postcss@npm:^7.0.6":
-  version: 7.0.35
-  resolution: "postcss@npm:7.0.35"
+  version: 7.0.36
+  resolution: "postcss@npm:7.0.36"
   dependencies:
     chalk: ^2.4.2
     source-map: ^0.6.1
     supports-color: ^6.1.0
-  checksum: 6b197769057f38b9d4d8778c7e3b8b4a56c0c2c3ac8edf7552b06ac964e1a3601567fa2c5335a54fba103492305b0fc1347ce786fd72e30903a22f09f86525ae
+  checksum: 4cfc0989b9ad5d0e8971af80d87f9c5beac5c84cb89ff22ad69852edf73c0a2fa348e7e0a135b5897bf893edad0fe86c428769050431ad9b532f072ff530828d
   languageName: node
   linkType: hard
 
@@ -15118,8 +15125,8 @@ fsevents@~2.3.1:
   linkType: hard
 
 "ws@npm:^7.3.1":
-  version: 7.4.5
-  resolution: "ws@npm:7.4.5"
+  version: 7.5.0
+  resolution: "ws@npm:7.5.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -15128,7 +15135,7 @@ fsevents@~2.3.1:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 5c7d1527f93ef27f9306aaf52db76315e8ff84174d1df717196527c50334c80bc10307dcaf6674a9aca4bb73aac3f77c23d3d9b1800e8aa810a5ee7f52d67cfb
+  checksum: 1918eef52c78c57c920a6ffc1da0be2d2e3a3ab0f54e8db2e7e8534dae2e50a184fd460da143a16dd90bd9d3e15468468331f9e4617723f52c1a2232a698ec15
   languageName: node
   linkType: hard
 
