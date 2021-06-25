@@ -3723,6 +3723,7 @@ __metadata:
     sass-loader: ^10.1.1
     serve: ^11.3.2
     sharp: ^0.27.2
+    typescript: ^4.3.4
     vue: ^2.6.12
     vue-eslint-parser: ^7.6.0
     vue-template-compiler: ^2.6.12
@@ -14077,6 +14078,26 @@ fsevents@~2.3.1:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
+  languageName: node
+  linkType: hard
+
+typescript@^4.3.4:
+  version: 4.3.4
+  resolution: "typescript@npm:4.3.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 75e1f2769c7ff38c718523d05eaf1c2611dbf92c0ab0f85f603ead9bb23416af2009a5dac46e76ef6a207a8508fa53f51b43a41f2a91b1241b53cd744c16128c
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.3.4#~builtin<compat/typescript>":
+  version: 4.3.4
+  resolution: "typescript@patch:typescript@npm%3A4.3.4#~builtin<compat/typescript>::version=4.3.4&hash=34ad7d"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 3b9d89d6d34162316668a4c1eff51451d5387447d33e9608d526fbd3eb1b8bcf370a134a3546a6e4b429e76855cbf61374d17245612643dd74e7ae0cf29ca299
   languageName: node
   linkType: hard
 
