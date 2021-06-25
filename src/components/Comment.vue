@@ -133,7 +133,7 @@ export default {
       repoUrl,
       postComments: [],
       postReactions: [],
-      liveFetch: localStorage.getItem('blog-comment-live') === 'true',
+      liveFetch: false,
       loadStatus: 'loading'
     }
   },
@@ -151,6 +151,9 @@ export default {
       this.update(this.number)
       localStorage.setItem('blog-comment-live', JSON.stringify(liveFetch))
     }
+  },
+  beforeMount () {
+    this.liveFetch = localStorage.getItem('blog-comment-live') === 'true'
   },
   methods: {
     formatTime,
