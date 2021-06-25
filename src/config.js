@@ -10,6 +10,8 @@ module.exports = {
     postLabelCount: 5,
     labelCount: 40,
     commentCount: 10,
+    // display this number of user on one reaction
+    reactionCount: 5,
     // issue number for extra data
     extraDataNumber: 148
   },

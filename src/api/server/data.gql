@@ -5,6 +5,8 @@ query(
   $postLabels: [String!]
   $postLabelCount: Int!
   $labelCount: Int!
+  $commentCount: Int!
+  $reactionCount: Int!
   $extraDataNumber: Int!
 ) {
   repository(name: $repo, owner: $owner) {
@@ -28,6 +30,36 @@ query(
         labels(first: $postLabelCount) {
           nodes {
             name
+          }
+        }
+        reactionGroups {
+          content
+          users(first: $reactionCount) {
+            totalCount
+            nodes {
+              login
+            }
+          }
+        }
+        comments(first: $commentCount) {
+          nodes {
+            id
+            resourcePath
+            author {
+              avatarUrl(size: 64)
+              id: login
+            }
+            bodyHTML
+            createdAt
+            reactionGroups {
+              content
+              users(first: $reactionCount) {
+                totalCount
+                nodes {
+                  login
+                }
+              }
+            }
           }
         }
       }

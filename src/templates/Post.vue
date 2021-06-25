@@ -63,7 +63,11 @@
             />
           </div>
           <div ref="articleContent" v-html="$page.post.body" />
-          <Comment :number="parseInt($page.post.id, 10)" />
+          <Comment
+            :number="parseInt($page.post.id, 10)"
+            :reactions="$page.post.reactions"
+            :comments="$page.post.comments"
+          />
         </div>
       </article>
       <Fab />
@@ -89,6 +93,25 @@ query($id: ID!) {
       name
       color
       path
+    }
+    reactions {
+      emoji
+      count
+      users
+    }
+    comments {
+      resourcePath
+      author {
+        id
+        avatarUrl
+      }
+      bodyHTML
+      createdAt
+      reactions {
+        emoji
+        count
+        users
+      }
     }
   }
 }

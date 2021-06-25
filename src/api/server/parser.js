@@ -63,6 +63,36 @@ const isGoodLabel = label => {
   return result.length === 2 && includedLabelTypes.includes(result[0])
 }
 
+const parseReactionGroups = (reactionGroups) => {
+  const emojis = {
+    CONFUSED: '😕',
+    EYES: '👀',
+    HEART: '❤',
+    HOORAY: '🎉',
+    LAUGH: '😄',
+    ROCKET: '🚀',
+    THUMBS_DOWN: '👎',
+    THUMBS_UP: '👍'
+  }
+  return reactionGroups
+    .filter(group => group.users.totalCount)
+    .map(group => ({
+      ID: group.content,
+      emoji: emojis[group.content],
+      count: group.users.totalCount,
+      users: group.users.nodes.map(node => node.login)
+    }))
+}
+
+const parseComment = node => {
+  const { reactionGroups, createdAt, ...rest } = node
+  return ({
+    ...rest,
+    createdAt: new Date(createdAt),
+    reactions: parseReactionGroups(reactionGroups)
+  })
+}
+
 const parseLabel = label => {
   const [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
@@ -79,7 +109,9 @@ const parsePost = node => {
       lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
       title: node.title,
       ...parseBody(node.bodyHTML),
-      labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name)
+      labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name),
+      reactions: parseReactionGroups(node.reactionGroups),
+      comments: node.comments.nodes.map(parseComment)
     }
   } catch (err) {
     const message = `Issue ${node.number}: ${err.message}`

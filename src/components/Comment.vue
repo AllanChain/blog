@@ -22,6 +22,27 @@
         Comment on GitHub
       </v-btn>
     </v-alert>
+    <div class="d-flex justify-center align-center">
+      <v-switch
+        v-model="liveFetch"
+        class="mt-0"
+        hide-details
+        :label="`${ liveFetch ? 'Showing' : 'Not showing' } latest comments`"
+      />
+      <v-tooltip bottom>
+        <template #activator="{ on, attrs }">
+          <v-icon
+            class="mx-2"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            mdi-cloud-question
+          </v-icon>
+        </template>
+        <span>This consumes GitHub API call, and may hit API rate limits for your IP.</span>
+      </v-tooltip>
+    </div>
     <div v-if="loadStatus === 'loading'" class="text-center">
       <v-progress-circular indeterminate color="primary" />
     </div>
@@ -29,12 +50,12 @@
       Error making GitHub API call
     </v-alert>
     <v-timeline
-      v-else-if="comments.length"
+      v-else-if="postComments.length"
       align-top
       dense
     >
       <v-timeline-item
-        v-for="comment in comments"
+        v-for="comment in postComments"
         :key="comment.id"
         left
       >
@@ -42,21 +63,21 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-avatar size="36" v-bind="attrs" v-on="on">
-                <img :src="`${comment.user.avatar_url}&s=36`" crossorigin="anonymous">
+                <img :src="`${comment.author.avatarUrl}&s=36`" crossorigin="anonymous">
               </v-avatar>
             </template>
-            <span>{{ comment.user.login }}</span>
+            <span>{{ comment.author.login }}</span>
           </v-tooltip>
         </template>
         <v-card color="cyan darken-3">
           <div class="py-1 pl-3 pr-1 d-flex align-center">
             <div class="white--text font-weight-thin">
-              {{ formatTime(comment.created_at) }}
+              {{ formatTime(comment.createdAt) }}
             </div>
             <v-spacer />
             <v-btn
               icon
-              :href="comment.html_url"
+              :href="comment.resourcePath"
               style="margin: -4px;"
               target="_blank"
               rel="noopener"
@@ -70,7 +91,7 @@
             class="clean-last-p"
             :class="themeClass"
           >
-            <div v-html="comment.body_html" />
+            <div v-html="comment.bodyHTML" />
           </v-card-text>
           <v-card-actions :class="themeClass">
             <Reactions :reactions="comment.reactions" />
@@ -97,13 +118,22 @@ export default {
     number: {
       type: Number,
       required: true
+    },
+    comments: {
+      type: Array,
+      required: true
+    },
+    reactions: {
+      type: Array,
+      required: true
     }
   },
   data () {
     return {
       repoUrl,
-      comments: [],
+      postComments: [],
       postReactions: [],
+      liveFetch: localStorage.getItem('blog-comment-live') === 'true',
       loadStatus: 'loading'
     }
   },
@@ -115,38 +145,54 @@ export default {
   watch: {
     number: {
       immediate: true,
-      async handler (postNumber) {
-        if (process.isServer) return
-        this.comments = []
+      handler (number) { this.update(number) }
+    },
+    liveFetch (liveFetch) {
+      this.update(this.number)
+      localStorage.setItem('blog-comment-live', JSON.stringify(liveFetch))
+    }
+  },
+  methods: {
+    formatTime,
+    async  update (postNumber) {
+      if (process.isServer) return
+
+      if (!this.liveFetch) {
+        this.postComments = this.comments
+        this.postReactions = this.reactions
+        this.loadStatus = 'success'
+      } else {
+        this.postComments = []
         this.postReactions = []
         this.loadStatus = 'loading'
 
         try {
-          this.comments = await getComments(postNumber)
+          this.postComments = await getComments(postNumber)
           this.postReactions = await getPostReactions(postNumber)
+          this.postComments.forEach(comment => {
+            comment.bodyHTML = new ChainHTML(comment.bodyHTML)
+              .use(htmlPlugins.codeLang)
+              .use(htmlPlugins.issueLink)
+              .use(htmlPlugins.trimIssue)
+              .end()
+          })
+
+          this.loadStatus = 'success'
         } catch (err) {
+          console.error(err)
           this.loadStatus = 'error'
-        }
-        this.comments.forEach(comment => {
-          comment.body_html = new ChainHTML(comment.body_html)
-            .use(htmlPlugins.codeLang)
-            .use(htmlPlugins.issueLink)
-            .use(htmlPlugins.trimIssue)
-            .end()
-        })
-
-        this.loadStatus = 'success'
-
-        if (
-          window?.MathJax?.typesetPromise &&
-            this.comments.some(node => node.body_html.includes('$'))
-        ) {
-          this.$nextTick(window.MathJax.typesetPromise)
+          return
         }
       }
+
+      if (
+        window?.MathJax?.typesetPromise &&
+            this.postComments.some(node => node.bodyHTML.includes('$'))
+      ) {
+        this.$nextTick(window.MathJax.typesetPromise)
+      }
     }
-  },
-  methods: { formatTime }
+  }
 }
 </script>
 

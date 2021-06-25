@@ -1,23 +1,46 @@
 type Post implements Node {
-  id: ID!,
-  title: String!,
-  createdAt: Date!,
-  lastEditedAt: Date!,
-  slug: String!,
-  summary: String,
-  image: String,
-  imageLazy: String,
-  labels: [Label],
-  body: String!,
+  id: ID!
+  title: String!
+  createdAt: Date!
+  lastEditedAt: Date!
+  slug: String!
+  summary: String
+  image: String
+  imageLazy: String
+  labels: [Label]
+  body: String!
   serializedHeadings: String!
+  reactions: [Reaction]
+  comments: [Comment]
 }
 
 type Label implements Node {
-  id: ID!,
-  description: String,
-  logo: String,
-  logoLazy: String,
-  name: String!,
-  type: String!,
+  id: ID!
+  description: String
+  logo: String
+  logoLazy: String
+  name: String!
+  type: String!
   color: String!
+}
+
+type Reaction {
+  id: ID!
+  emoji: String!
+  count: Number!
+  users: [String]
+}
+
+type Comment {
+  id: ID!
+  resourcePath: String!
+  author: Author
+  bodyHTML: String!
+  createdAt: Date!
+  reactions: [Reaction]
+}
+
+type Author {
+  id: ID!
+  avatarUrl: String!
 }
