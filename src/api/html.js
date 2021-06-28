@@ -12,11 +12,13 @@ module.exports = {
   // Core plugins are used both server side (post) and client side (comment)
   htmlPlugins: {
     codeLang: html => html.replace(
-      /(<div class="highlight highlight-(source|text)-(.*?)">)<pre>(.*?)<\/pre>/gs,
-      `$1<div class="code-bar">
+      // `g`: match all occurence; `[^]` to match all characters
+      /<div.+?(highlight-(?:source|text)-(.+?))\b[^]+?><pre>([^]+?)<\/pre>/g,
+      `<div class="highlight $1">
+      <div class="code-bar">
       <span class="mdi mdi-content-copy"></span>
-      <span class="code-lang">$3</span>
-      </div><pre><code>$4</code></pre>`
+      <span class="code-lang">$2</span>
+      </div><pre><code>$3</code></pre>`
     ),
     trimIssue: html => html.replace(
       /<a class="issue-link js-issue-link" .*? href/g,
