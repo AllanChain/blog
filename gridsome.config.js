@@ -8,7 +8,6 @@ module.exports = {
     Label: '/:type/:name'
   },
   css: {
-    split: true,
     loaderOptions: {
       sass: {
         additionalData: "@import '@/styles/variables.scss'"

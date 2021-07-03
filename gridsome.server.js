@@ -2,6 +2,8 @@ const fs = require('fs')
 const { IgnorePlugin } = require('webpack')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const { PurgeCSS } = require('purgecss')
+const fg = require('fast-glob')
 const githubData = require('./src/api/server')
 const resolvers = require('./src/api/server/resolvers')
 const { version } = require('./package.json')
@@ -42,6 +44,12 @@ module.exports = (api) => {
             test: /[\\/]node_modules[\\/]axios[\\/]/,
             minSize: 10000,
             name: 'axios'
+          },
+          styles: {
+            name: 'styles',
+            test: m => /css\/mini-extract/.test(m.type),
+            chunks: 'all',
+            enforce: true
           }
         }
       })
@@ -73,5 +81,44 @@ module.exports = (api) => {
 
     for (const post of posts) postCollection.addNode(post)
     for (const label of labels) labelCollection.addNode(label)
+  })
+  api.afterBuild(async () => {
+    // purge embedded css
+    const files = await fg(['blog/**/*.html'])
+    Promise.all(files.map(async file => {
+      let html = fs.readFileSync(file, 'utf-8')
+      let vuetifyCSS
+      // Two purpose replacing with a placeholder:
+      // - Easy replace again after async handler return
+      // - Remove selectors PurgeCSS will otherwise consider used
+      html = html.replace(
+        /(<style .+? id="vuetify-theme-stylesheet" .+?>)([^]+?)<\/style>/,
+        (match, tag, css) => {
+          vuetifyCSS = css
+          return `${tag}<%= VUETIFY_CSS %></style>`
+        }
+      )
+      const result = await new PurgeCSS().purge({
+        content: [{
+          raw: html,
+          extension: 'html'
+        }],
+        css: [{
+          raw: vuetifyCSS
+        }]
+      })
+      html = html.replace('<%= VUETIFY_CSS %>', result[0].css)
+      fs.writeFileSync(file, html, { encoding: 'utf-8' })
+    }))
+    // purge external css
+    const purgeResults = await new PurgeCSS().purge({
+      content: ['blog/**/*.html', 'src/**/*.vue'],
+      css: ['blog/assets/css/*'],
+      output: 'blog/assets/css/'
+    })
+
+    for (const purgeResult of purgeResults) {
+      fs.writeFileSync(purgeResult.file, purgeResult.css, { encoding: 'utf-8' })
+    }
   })
 }
