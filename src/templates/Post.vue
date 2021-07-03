@@ -124,6 +124,7 @@ import PostLabel from '@/components/PostLabel'
 import Comment from '@/components/Comment'
 import Fab from '@/components/Fab'
 import ToC from '@/components/ToC'
+import { useLoadNotifier } from '@/composables/usePageLoading'
 
 export default {
   metaInfo () {
@@ -145,6 +146,9 @@ export default {
     return meta
   },
   components: { PostLabel, Comment, Fab, ToC },
+  setup () {
+    useLoadNotifier()
+  },
   data () {
     return { repoUrl, activeSlug: '' }
   },

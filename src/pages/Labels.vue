@@ -19,12 +19,16 @@
 import { capitalize } from '@/utils'
 import PostLabel from '@/components/PostLabel'
 import HomeHeader from '@/components/HomeHeader'
+import { useLoadNotifier } from '@/composables/usePageLoading'
 
 export default {
   metaInfo: {
     title: 'All Labels'
   },
   components: { PostLabel, HomeHeader },
+  setup () {
+    useLoadNotifier()
+  },
   computed: {
     labelByType () {
       const labels = this.$page.allLabel.edges.map(edge => edge.node)

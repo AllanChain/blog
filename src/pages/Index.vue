@@ -82,6 +82,7 @@ import { capitalize } from '@/utils'
 import { friends } from '@/assets/.cache/extra.json'
 import HomeCard from '~/components/HomeCard'
 import HomeHeader from '@/components/HomeHeader'
+import { useLoadNotifier } from '@/composables/usePageLoading'
 
 export default {
   metaInfo: {
@@ -90,6 +91,9 @@ export default {
   components: {
     HomeCard,
     HomeHeader
+  },
+  setup () {
+    useLoadNotifier()
   },
   data () {
     return {

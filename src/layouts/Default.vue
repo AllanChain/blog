@@ -17,6 +17,13 @@
       <v-toolbar-title class="pl-0">
         {{ $store.state.title }}
       </v-toolbar-title>
+      <v-progress-linear
+        :active="loading"
+        :indeterminate="loading"
+        absolute
+        bottom
+        color="teal darken-3"
+      />
     </v-app-bar>
     <v-main class="ma-5">
       <slot />
@@ -123,9 +130,15 @@ query {
 <script>
 import { profileUrl } from '@/config'
 import ThemeToggle from '@/components/ThemeToggle'
+import { loading } from '@/composables/usePageLoading'
 
 export default {
   components: { ThemeToggle },
+  setup () {
+    return {
+      loading
+    }
+  },
   data () {
     return {
       drawer: false,

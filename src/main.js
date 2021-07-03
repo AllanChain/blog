@@ -1,9 +1,11 @@
 // This is the main.js file. Import global CSS and scripts here.
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
+import goTo from 'vuetify/es5/services/goto'
 import store from '@/store'
 import vuetify from '@/plugins/vuetify'
-import goTo from 'vuetify/es5/services/goto'
+import '@/plugins/composition-api'
+import { startLoading } from '@/composables/usePageLoading'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
   if (isClient) {
@@ -35,4 +37,8 @@ export default function (Vue, { appOptions, router, head, isClient }) {
       easing: 'easeInOutQuart'
     }), 500)
   }
+  router.beforeEach((to, from, next) => {
+    if (!to.hash) { startLoading() }
+    next()
+  })
 }

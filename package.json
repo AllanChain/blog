@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@allanchain/gridsome-plugin-pwa": "allanchain/gridsome-plugin-pwa#commit=550d078d7a72fd21c38ede31246e083d8272a13b",
+    "@vue/composition-api": "^1.0.0-rc.13",
     "axios": "^0.21.1",
     "core-js": "^3.10.0",
     "github-syntax-dark": "^0.5.0",

@@ -95,6 +95,7 @@ query($id: ID!) {
 <script>
 import { getSearchResult } from '@/api/client'
 import PostPreview from '@/components/PostPreview'
+import { useLoadNotifier } from '@/composables/usePageLoading'
 import { capitalize } from '@/utils'
 
 const sortDate = (key, a, b) => new Date(b[key]) - new Date(a[key])
@@ -126,14 +127,17 @@ const postFilter = (query, post) => {
 }
 
 export default {
+  components: {
+    PostPreview
+  },
+  setup () {
+    useLoadNotifier()
+  },
   metaInfo () {
     return {
       title: capitalize(this.$page.label.type) + ' - ' +
         capitalize(this.$page.label.name)
     }
-  },
-  components: {
-    PostPreview
   },
   data () {
     return {
