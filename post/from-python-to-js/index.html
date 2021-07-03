@@ -169,7 +169,7 @@ TypeError: <span class="pl-v">Class</span> <span class="pl-s1">constructor</span
 </blockquote>
 <p>Well, that makes sense. And I'm going to specify a radix when using <code>parseInt</code>.</p>
 <p>And note that  Python is more friendly:</p>
-<pre><code>class int(object)
+<div class="snippet-clipboard-content position-relative" data-snippet-clipboard-copy-content="class int(object)
  |  int([x]) -&gt; integer
  |  int(x, base=10) -&gt; integer
  |
@@ -184,7 +184,22 @@ TypeError: <span class="pl-v">Class</span> <span class="pl-s1">constructor</span
  |  Base 0 means to interpret the base from the string as an integer literal.
  |  &gt;&gt;&gt; int('0b100', base=0)
  |  4
-</code></pre>
+"><pre><code>class int(object)
+ |  int([x]) -&gt; integer
+ |  int(x, base=10) -&gt; integer
+ |
+ |  Convert a number or string to an integer, or return 0 if no arguments
+ |  are given.  If x is a number, return x.__int__().  For floating point
+ |  numbers, this truncates towards zero.
+ |
+ |  If x is not a number or if base is given, then x must be a string,
+ |  bytes, or bytearray instance representing an integer literal in the
+ |  given base.  The literal can be preceded by '+' or '-' and be surrounded
+ |  by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+ |  Base 0 means to interpret the base from the string as an integer literal.
+ |  &gt;&gt;&gt; int('0b100', base=0)
+ |  4
+</code></pre></div>
 <h2>
       <a id="article-dead-variable" class="anchor-hover hash-link" href="#dead-variable">
       #</a> Dead Variable</h2>
