@@ -3702,6 +3702,7 @@ __metadata:
     deepmerge: ^4.2.2
     eslint: ^7.25.0
     eslint-config-standard: ^16.0.2
+    eslint-import-resolver-node: ^0.3.4
     eslint-plugin-cypress: ^2.11.3
     eslint-plugin-gridsome: ^1.6.2
     eslint-plugin-import: ^2.22.1
@@ -6147,7 +6148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.4":
+"eslint-import-resolver-node@npm:*, eslint-import-resolver-node@npm:^0.3.4":
   version: 0.3.4
   resolution: "eslint-import-resolver-node@npm:0.3.4"
   dependencies:
