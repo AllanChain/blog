@@ -6,16 +6,17 @@
       color="primary"
     >
       <v-badge
-        left
         dot
+        offset-x="15"
+        offset-y="15"
         overlap
         color="red"
-        :value="$store.state.swStatus === 'updated'"
+        :value="updatable"
       >
         <v-app-bar-nav-icon @click="drawer = !drawer" />
       </v-badge>
       <v-toolbar-title class="pl-0">
-        {{ $store.state.title }}
+        {{ title }}
       </v-toolbar-title>
       <v-progress-linear
         :active="loading"
@@ -103,12 +104,12 @@
       <template #append>
         <v-divider />
         <div class="px-4 py-2 d-flex">
-          <v-badge dot overlap color="red" :value="$store.state.swStatus === 'updated'">
-            <v-chip outlined @click="reload">
+          <v-badge dot overlap color="red" :value="updatable">
+            <v-chip outlined @click="skipWaiting">
               <v-icon small left>
                 mdi-cogs
               </v-icon>
-              v{{ version }} - {{ $store.state.swStatus }}
+              v{{ version }}{{ updatable ? ' - updatable': '' }}
             </v-chip>
           </v-badge>
           <v-spacer />
@@ -128,15 +129,23 @@ query {
 </static-query>
 
 <script>
+import { inject } from '@vue/composition-api'
 import { profileUrl } from '@/config'
 import ThemeToggle from '@/components/ThemeToggle'
 import { loading } from '@/composables/usePageLoading'
+import { useServiceWorker } from '@/composables/useServiceWorker'
 
 export default {
   components: { ThemeToggle },
   setup () {
+    const title = inject('title')
+    const { updatable, skipWaiting } = useServiceWorker()
+
     return {
-      loading
+      loading,
+      title,
+      updatable,
+      skipWaiting
     }
   },
   data () {
@@ -158,9 +167,6 @@ export default {
       console.log('Receive install prompt')
       this.install = e
       e.preventDefault()
-    },
-    reload () {
-      location.reload(true)
     }
   }
 }

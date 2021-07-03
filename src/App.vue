@@ -16,11 +16,23 @@ query {
 </static-query>
 
 <script>
+import { ref, provide, onBeforeMount } from '@vue/composition-api'
 import DefaultLayout from '@/layouts/Default'
 
 export default {
   components: {
     DefaultLayout
+  },
+  setup () {
+    const title = ref('AC Dustbin')
+
+    provide('title', title)
+
+    onBeforeMount(() => {
+      title.value = document.title.split(' - ').slice(0, -1).join(' - ')
+    })
+
+    return { title }
   },
   metaInfo () {
     return {
@@ -33,13 +45,11 @@ export default {
         }
       ],
       changed: newInfo => {
-        this.$store.commit('setTitle', newInfo.titleChunk)
+        this.title = newInfo.titleChunk
       }
     }
   },
   beforeMount () {
-    this.$store.commit('setTitle',
-      document.title.split(' - ').slice(0, -1).join(' - '))
   }
 }
 </script>

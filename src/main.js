@@ -2,14 +2,12 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import goTo from 'vuetify/es5/services/goto'
-import store from '@/store'
 import vuetify from '@/plugins/vuetify'
 import '@/plugins/composition-api'
 import { startLoading } from '@/composables/usePageLoading'
 
 export default function (Vue, { appOptions, router, head, isClient }) {
   if (isClient) {
-    require('./registerServiceWorker')
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -21,7 +19,7 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     }
   }
 
-  Object.assign(appOptions, { vuetify, store })
+  Object.assign(appOptions, { vuetify })
 
   head.link.push({
     rel: 'stylesheet',

@@ -29,7 +29,7 @@ module.exports = (api) => {
         maxInitialRequests: Infinity,
         cacheGroups: {
           vueVendor: {
-            test: /[\\/]node_modules[\\/](vue|vuex|vue-router)[\\/]/,
+            test: /[\\/]node_modules[\\/](vue|vue-router)[\\/]/,
             name: 'vue-vendors'
           },
           gridsome: {

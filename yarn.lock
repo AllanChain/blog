@@ -3743,7 +3743,6 @@ __metadata:
     vue-template-compiler: ^2.6.12
     vuetify: ^2.4.11
     vuetify-loader: ^1.7.2
-    vuex: ^3.6.2
     webpack: ^4.46.0
     webpack-bundle-analyzer: ^4.4.1
   languageName: unknown
@@ -14734,15 +14733,6 @@ typescript@^4.3.4:
   peerDependencies:
     vue: ^2.6.4
   checksum: 0ae0d8c01d693d76360badd9563599c789622b510ff8ae27ba8bd475e43f6316cafcf2955fb7f15d479c336b9b1bbea2d1bd3428df75221feaff45f898c46d2b
-  languageName: node
-  linkType: hard
-
-"vuex@npm:^3.6.2":
-  version: 3.6.2
-  resolution: "vuex@npm:3.6.2"
-  peerDependencies:
-    vue: ^2.0.0
-  checksum: 37915741ba9557024ea42579e2c8d81847ec699d07d8ea3aa673929f26fceba8c59e7e1e6a875fd3962e50018bc30f782f5ace34d83307ef228ad46a4df343da
   languageName: node
   linkType: hard
 
