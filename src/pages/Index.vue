@@ -40,6 +40,18 @@
         />
       </v-col>
     </v-row>
+    <HomeHeader>Recent Updates</HomeHeader>
+    <v-row>
+      <v-col
+        v-for="edge of $page.allPost.edges"
+        :key="edge.node.id"
+        cols="12"
+        sm="6"
+        md="4"
+      >
+        <PostPreview :post="edge.node" />
+      </v-col>
+    </v-row>
 
     <HomeHeader>Friends</HomeHeader>
     <v-row justify="center">
@@ -74,14 +86,40 @@ query {
       }
     }
   }
+  allPost(sortBy: "lastEditedAt", limit: 3) {
+    edges {
+      node {
+        id
+        title
+        path
+        summary
+        createdAt
+        lastEditedAt
+        image
+        imageLazy
+        logo {
+          src
+          lazySrc
+        }
+        labels {
+          id
+          type
+          color
+          name
+          path
+        }
+      }
+    }
+  }
 }
 </page-query>
 
 <script>
 import { capitalize } from '@/utils'
 import { friends } from '@/assets/.cache/extra.json'
-import HomeCard from '~/components/HomeCard'
+import HomeCard from '@/components/HomeCard'
 import HomeHeader from '@/components/HomeHeader'
+import PostPreview from '@/components/PostPreview'
 import { useLoadNotifier } from '@/composables/usePageLoading'
 
 export default {
@@ -90,7 +128,8 @@ export default {
   },
   components: {
     HomeCard,
-    HomeHeader
+    HomeHeader,
+    PostPreview
   },
   setup () {
     useLoadNotifier()
