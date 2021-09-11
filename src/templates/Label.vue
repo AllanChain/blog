@@ -56,7 +56,7 @@
 </template>
 
 <page-query>
-query($id: ID!) {
+query ($id: ID!) {
   label(id: $id) {
     id
     name

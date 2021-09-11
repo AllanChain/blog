@@ -76,7 +76,7 @@
 </template>
 
 <page-query>
-query($id: ID!) {
+query ($id: ID!) {
   post(id: $id) {
     id
     title
