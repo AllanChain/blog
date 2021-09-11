@@ -26,8 +26,9 @@
 
 <script>
 import { isDarkColor } from '@/utils'
-import { labelSizeBrkpnts } from '@/assets/.cache/extra.json'
+import extraData from '@/assets/.cache/extra.json'
 
+const { labelSizeBrkpnts } = extraData
 const textColor = color => isDarkColor(color, 101) ? 'white' : 'black'
 
 export default {

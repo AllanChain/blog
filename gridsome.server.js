@@ -19,9 +19,9 @@ module.exports = (api) => {
         { from: 'src/assets/.cache/images/', to: 'img' }
       ]
     }])
-    config.plugin('IgnorePlugin').use(IgnorePlugin, [
-      /(api\/server)/
-    ])
+    config.plugin('IgnorePlugin').use(IgnorePlugin, [{
+      resourceRegExp: /(api\/server)/
+    }])
 
     if (isProd && isClient) {
       config.optimization.splitChunks({

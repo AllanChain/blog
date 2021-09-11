@@ -116,11 +116,13 @@ query {
 
 <script>
 import { capitalize } from '@/utils'
-import { friends } from '@/assets/.cache/extra.json'
+import extraData from '@/assets/.cache/extra.json'
 import HomeCard from '@/components/HomeCard'
 import HomeHeader from '@/components/HomeHeader'
 import PostPreview from '@/components/PostPreview'
 import { useLoadNotifier } from '@/composables/usePageLoading'
+
+const { friends } = extraData
 
 export default {
   metaInfo: {
