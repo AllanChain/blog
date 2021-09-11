@@ -11,7 +11,7 @@
     "cypress:open": "cypress open",
     "lint": "eslint *.js src/**/*.js src/**/*.vue",
     "lint:fix": "eslint --fix *.js src/**/*.js src/**/*.vue",
-    "gitag": "node scripts/gitag.js"
+    "release": "release-it"
   },
   "dependencies": {
     "@allanchain/gridsome-plugin-pwa": "allanchain/gridsome-plugin-pwa#commit=550d078d7a72fd21c38ede31246e083d8272a13b",
@@ -27,7 +27,9 @@
     "vuetify": "^2.5.8"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^3.3.0",
     "@yarnpkg/pnpify": "^3.0.0-rc.3",
+    "conventional-changelog-conventionalcommits": "^4.6.1",
     "copy-webpack-plugin": "^6.4.1",
     "cypress": "^8.3.0",
     "deepmerge": "^4.2.2",
@@ -47,8 +49,10 @@
     "mime": "^2.5.2",
     "purgecss": "^4.0.3",
     "raw-loader": "^4.0.2",
+    "release-it": "^14.11.5",
     "sass": "~1.32.12",
     "sass-loader": "^10.1.1",
+    "semver": "^7.3.5",
     "serve": "^11.3.2",
     "sharp": "^0.27.2",
     "typescript": "^4.3.5",
