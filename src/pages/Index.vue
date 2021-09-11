@@ -1,5 +1,48 @@
 <template>
   <v-container fluid>
+    <v-row justify="center">
+      <v-col cols="12" md="5">
+        <v-img
+          class="rounded-circle mx-auto my-4"
+          src="/avatar/300.jpg"
+          lazy-src="/avatar/37.png"
+          max-width="250"
+        />
+      </v-col>
+      <v-col cols="12" md="6" class="d-table">
+        <div style="vertical-align: middle" class="d-table-cell">
+          <p class="text-h6">
+            Hi! Thanks for your interest in my blog!
+          </p>
+          <p>
+            I'm Allan Chain, a programming hobbyist and open source lover.
+            My primary programming languages are
+            <v-icon>mdi-language-python</v-icon> Python and
+            <v-icon>mdi-language-javascript</v-icon> JavaScript.
+            I'm also having (or had) "fun" with
+            <span
+              v-for="icon of [
+                'mdi-docker',
+                'mdi-manjaro',
+                'mdi-raspberry-pi',
+                'mdi-minecraft',
+                'mdi-language-java',
+                'mdi-language-go',
+                'mdi-language-rust'
+              ]"
+              :key="icon"
+            >
+              <v-icon>{{ icon }}</v-icon>
+            </span>
+          </p>
+          <p>
+            This blog mainly hosts my notes when programming,
+            as well as some other interesting bits.
+          </p>
+        </div>
+      </v-col>
+      <v-col cols="0" md="1" />
+    </v-row>
     <v-alert
       class="py-2"
       border="left"
