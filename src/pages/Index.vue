@@ -4,8 +4,8 @@
       <v-col cols="12" md="5">
         <v-img
           class="rounded-circle mx-auto my-4"
-          src="/avatar/300.jpg"
-          lazy-src="/avatar/37.png"
+          :src="`${baseURL}avatar/300.jpg`"
+          :lazy-src="`${baseURL}avatar/37.png`"
           max-width="250"
         />
       </v-col>
@@ -181,7 +181,8 @@ export default {
   },
   data () {
     return {
-      friends
+      friends,
+      baseURL: process.env.GRIDSOME_BASE_URL
     }
   },
   methods: { capitalize }
