@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { execSync } = require('child_process')
 const { IgnorePlugin } = require('webpack')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -8,9 +9,11 @@ const githubData = require('./src/api/server')
 const resolvers = require('./src/api/server/resolvers')
 const { version } = require('./package.json')
 
+const revision = execSync('git rev-parse --short HEAD').toString().trim()
+
 module.exports = (api) => {
   process.env.GRIDSOME_BASE_URL = api.config.publicPath
-  process.env.GRIDSOME_VERSION = version
+  process.env.GRIDSOME_VERSION = `${version}+${revision}`
   const dataPromise = githubData()
   api.chainWebpack(async (config, { isClient, isProd }) => {
     config.plugin('VuetifyLoaderPlugin').use(VuetifyLoaderPlugin)
