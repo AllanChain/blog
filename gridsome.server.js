@@ -117,6 +117,7 @@ module.exports = (api) => {
     const purgeResults = await new PurgeCSS().purge({
       content: ['blog/**/*.html', 'src/**/*.vue'],
       css: ['blog/assets/css/*'],
+      safelist: ['v-tooltip__content'],
       output: 'blog/assets/css/'
     })
 
