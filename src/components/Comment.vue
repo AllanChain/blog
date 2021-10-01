@@ -33,7 +33,7 @@
         <template #activator="{ on, attrs }">
           <v-icon
             class="mx-2"
-            dark
+            :dark="$vuetify.theme.dark"
             v-bind="attrs"
             v-on="on"
           >
