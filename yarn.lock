@@ -7737,7 +7737,7 @@ fsevents@~2.3.2:
       optional: true
   bin:
     gridsome: ./bin/gridsome.js
-  checksum: 95d89dd1ba9db0f4abcfad3e82c01c2bde5ad42fcac9683ca379ab03b65e5d94cac402e9f488a3873c48aa57deff6aff3808f6164cddada3641d77bc43efac1c
+  checksum: 4618692186fbffaea1073e0b503ed7404118ef7c62a2dbfd2d8a0370daad04f71c5be6997c33353e3b3b49095bdaa349a01bf0186f5e927a5ef8fb0f0aeebd77
   languageName: node
   linkType: hard
 
