@@ -63,6 +63,7 @@
             />
           </div>
           <div ref="articleContent" v-html="$page.post.body" />
+          <div style="clear: both;" />
           <Comment
             :number="parseInt($page.post.id, 10)"
             :reactions="$page.post.reactions"
@@ -295,6 +296,9 @@ article.article-main.markdown-body
     color: white
   a
     word-break: break-word
+
+  img
+    background: transparent
 
 .theme--dark article.article-main.markdown-body
   :not(pre) > code
