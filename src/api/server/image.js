@@ -42,7 +42,7 @@ const getImageDownloadLocation = async (url) => {
     }
   }
 
-  console.log(`    ${filename || hash} not available, downloading...`)
+  console.log(`    Downloading ${filename || hash} (${url})`)
 
   try {
     const response = await axios({
