@@ -160,9 +160,9 @@ export default {
         if (process.isServer) return
         if (window.MathJax) this.$nextTick(window.MathJax.typesetPromise)
         this.$nextTick(() => {
-          document.getElementsByClassName('hash-link').forEach(el => {
+          for (const el in document.getElementsByClassName('hash-link')) {
             el.addEventListener('click', () => this.goToHash(el.hash))
-          })
+          }
           document
             .querySelectorAll('.code-bar .mdi-content-copy')
             .forEach(el => {
