@@ -43,7 +43,6 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.18.0",
     "fast-glob": "^3.2.7",
-    "fibers": "^5.0.0",
     "github-slugger": "^1.4.0",
     "js-yaml": "^3.14.1",
     "mime": "^2.5.2",
