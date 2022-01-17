@@ -3853,6 +3853,11 @@ __metadata:
     vuetify-loader: ^1.7.3
     webpack: ^5.66.0
     webpack-bundle-analyzer: ^4.5.0
+  dependenciesMeta:
+    open@7.4.2:
+      unplugged: true
+    open@8.2.1:
+      unplugged: true
   languageName: unknown
   linkType: soft
 
