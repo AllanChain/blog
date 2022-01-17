@@ -60,5 +60,6 @@
     "vuetify-loader": "^1.7.3",
     "webpack": "^5.55.1",
     "webpack-bundle-analyzer": "^4.4.2"
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
