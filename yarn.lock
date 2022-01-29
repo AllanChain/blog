@@ -3898,14 +3898,6 @@ __metadata:
     webpack: ^5.67.0
     webpack-bundle-analyzer: ^4.5.0
   dependenciesMeta:
-    gridsome@0.7.23:
-      unplugged: true
-    jest-worker@24.0.0:
-      unplugged: true
-    jest-worker@26.6.2:
-      unplugged: true
-    jest-worker@27.2.4:
-      unplugged: true
     open@7.4.2:
       unplugged: true
     open@8.2.1:
