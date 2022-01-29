@@ -70,7 +70,7 @@ module.exports = async () => {
 
   console.log('  Fetching GitHub GraphQL data...')
   const repo = await getCacheFirstData()
-  const extraData = yaml.safeLoad(repo.extraData.bodyText)
+  const extraData = yaml.load(repo.extraData.bodyText)
   writeExtraData(extraData)
   const posts = repo.issues.nodes.map(parsePost)
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
