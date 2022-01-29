@@ -6,7 +6,7 @@
     "build": "gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
-    "serve": "serve",
+    "serve": "serve -l 5000",
     "test": "cypress run",
     "cypress:open": "cypress open",
     "lint": "eslint *.js src/**/*.js src/**/*.vue",

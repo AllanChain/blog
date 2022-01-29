@@ -20,3 +20,4 @@ dist
 
 # Cypress
 cypress/videos
+cypress/screenshots
