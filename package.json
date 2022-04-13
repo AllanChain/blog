@@ -11,9 +11,15 @@
   "devDependencies": {
     "@astrojs/svelte": "^0.0.2",
     "astro": "^1.0.0-beta.5",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "github-slugger": "^1.4.0",
+    "js-yaml": "^4.1.0",
+    "mime": "^3.0.0",
     "prettier": "^2.6.2",
     "prettier-plugin-astro": "^0.0.12",
     "prettier-plugin-svelte": "^2.7.0",
+    "sharp": "^0.30.3",
     "svelte": "^3.46.4",
     "vite": "^2.9.1"
   }

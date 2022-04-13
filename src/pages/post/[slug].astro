@@ -1,0 +1,19 @@
+---
+import dataPromise from '../../../data'
+export async function getStaticPaths() {
+    const {posts} = await dataPromise
+    return posts.map(post => ({
+        params: {
+            slug: post.slug
+        },
+        props: {
+            post
+        }
+    }))
+}
+
+const {post} = Astro.props
+---
+<body set:html={post.body}>
+
+</body>
