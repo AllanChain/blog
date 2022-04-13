@@ -1,4 +1,4 @@
-query(
+query (
   $repo: String!
   $owner: String!
   $postCount: Int!
@@ -68,7 +68,7 @@ query(
       bodyText
     }
     labels(first: $labelCount) {
-      nodes {
+      nodes{
         name
         color
         description

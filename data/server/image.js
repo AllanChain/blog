@@ -7,13 +7,13 @@ import { getExtension } from 'mime'
 import sharp from 'sharp'
 
 const imageCacheDir = _resolve(import.meta.env.DATA_DIR, '.cache/images')
-const isGitHubImageAbbr = s => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
+const isGitHubImageAbbr = (s) => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s, userId) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
-const isInternetImage = s => s.startsWith('http')
-const resolveDest = filename => join(imageCacheDir, filename)
+const isInternetImage = (s) => s.startsWith('http')
+const resolveDest = (filename) => join(imageCacheDir, filename)
 
-const guessUnknownFilename = hash => {
+const guessUnknownFilename = (hash) => {
   for (const file of readdirSync(imageCacheDir)) {
     if (file.startsWith(hash)) return file
   }
@@ -25,9 +25,7 @@ const getImageDownloadLocation = async (url) => {
   hasher.update(url)
   const hash = hasher.digest('hex').slice(0, 8)
   const ext = extname(url)
-  const filename = ext
-    ? `${hash}${ext}`
-    : guessUnknownFilename(hash)
+  const filename = ext ? `${hash}${ext}` : guessUnknownFilename(hash)
 
   if (filename) {
     const dest = resolveDest(filename)
@@ -47,7 +45,7 @@ const getImageDownloadLocation = async (url) => {
     const response = await axios({
       method: 'GET',
       url: url,
-      responseType: 'stream'
+      responseType: 'stream',
     })
     // note mime returns ext without dot
     let ext = getExtension(response.headers['content-type'])
@@ -77,7 +75,7 @@ const getImageInfo = async (url) => {
 
     return {
       lazySrc: data.toString('base64'),
-      src: process.env.GRIDSOME_BASE_URL + 'img/' + filename
+      src: process.env.GRIDSOME_BASE_URL + 'img/' + filename,
     }
   } catch (err) {
     throw new Error(`Cannot process ${dest}: ${err.message}`)
@@ -90,9 +88,7 @@ export const useCachedLabelLogo = async (userId, label) => {
   let imageInfo
 
   if (isGitHubImageAbbr(label.logo)) {
-    imageInfo = await getImageInfo(
-      expandGitHubImageAbbr(label.logo, userId)
-    )
+    imageInfo = await getImageInfo(expandGitHubImageAbbr(label.logo, userId))
   } else if (isInternetImage(label.logo)) {
     imageInfo = await getImageInfo(label.logo)
   } // else do nothing, backward capability
@@ -101,7 +97,7 @@ export const useCachedLabelLogo = async (userId, label) => {
   label.logoLazy = imageInfo.lazySrc
 }
 
-export const useCachedPostImage = async post => {
+export const useCachedPostImage = async (post) => {
   if (!post.image) return
   const imageInfo = await getImageInfo(post.image)
   post.image = imageInfo.src

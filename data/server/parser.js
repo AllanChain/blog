@@ -8,7 +8,7 @@ const patterns = {
   // summary contains HTML, normally <p>
   // s means "dot all"
   summary: /<blockquote>(.*?)<\/blockquote>/s,
-  image: /<img src="(.*?)"/
+  image: /<img src="(.*?)"/,
 }
 
 // const includedLabelTypes = ['blog', 'tag', 'series']
@@ -17,7 +17,7 @@ const patterns = {
  * Add slug to HTML headers
  * @param {string} html html to add slug
  */
-const processSlug = html => {
+const processSlug = (html) => {
   const slugger = new GithubSlugger()
   const headings = []
   return {
@@ -28,11 +28,11 @@ const processSlug = html => {
       <a id="article-${slug}" class="anchor-hover hash-link" href="#${slug}">
       #</a> ${content}</h${level}>`
     }),
-    serializedHeadings: JSON.stringify(headings)
+    serializedHeadings: JSON.stringify(headings),
   }
 }
 
-const parseBody = text => {
+const parseBody = (text) => {
   const result = {}
   result.body = text.split('<hr>').slice(1).join('<hr>')
   text = text.split('<hr>', 1)[0]
@@ -57,7 +57,7 @@ const parseBody = text => {
   return result
 }
 
-export const isGoodLabel = label => {
+export const isGoodLabel = (label) => {
   const result = label.name.split(': ')
   // const { includedLabelTypes } = require('../.cache/extra.json')
   return result.length === 2 // && includedLabelTypes.includes(result[0])
@@ -72,34 +72,34 @@ const parseReactionGroups = (reactionGroups) => {
     LAUGH: '😄',
     ROCKET: '🚀',
     THUMBS_DOWN: '👎',
-    THUMBS_UP: '👍'
+    THUMBS_UP: '👍',
   }
   return reactionGroups
-    .filter(group => group.users.totalCount)
-    .map(group => ({
+    .filter((group) => group.users.totalCount)
+    .map((group) => ({
       ID: group.content,
       emoji: emojis[group.content],
       count: group.users.totalCount,
-      users: group.users.nodes.map(node => node.login)
+      users: group.users.nodes.map((node) => node.login),
     }))
 }
 
-const parseComment = node => {
+const parseComment = (node) => {
   const { reactionGroups, createdAt, ...rest } = node
-  return ({
+  return {
     ...rest,
     createdAt: new Date(createdAt),
-    reactions: parseReactionGroups(reactionGroups)
-  })
+    reactions: parseReactionGroups(reactionGroups),
+  }
 }
 
-export const parseLabel = label => {
+export const parseLabel = (label) => {
   const [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-export const parsePost = node => {
+export const parsePost = (node) => {
   try {
     return {
       id: node.number,
@@ -109,9 +109,9 @@ export const parsePost = node => {
       lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
       title: node.title,
       ...parseBody(node.bodyHTML),
-      labels: node.labels.nodes.filter(isGoodLabel).map(label => label.name),
+      labels: node.labels.nodes.filter(isGoodLabel).map((label) => label.name),
       reactions: parseReactionGroups(node.reactionGroups),
-      comments: node.comments.nodes.map(parseComment)
+      comments: node.comments.nodes.map(parseComment),
     }
   } catch (err) {
     const message = `Issue ${node.number}: ${err.message}`

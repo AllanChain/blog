@@ -12,7 +12,7 @@ export const gqlVar = {
   // display this number of user on one reaction
   reactionCount: 5,
   // issue number for extra data
-  extraDataNumber: 148
+  extraDataNumber: 148,
 }
 export const repoQuery = `user:${owner} repo:${repo}`
 export const repoUrl = `https://github.com/${owner}/${repo}`

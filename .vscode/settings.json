@@ -1,0 +1,17 @@
+{
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[graphql]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    }
+}

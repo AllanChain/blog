@@ -4,7 +4,7 @@ import path from 'path'
 import yaml from 'js-yaml'
 import axios from 'axios'
 
-import {gqlVar} from '../config'
+import { gqlVar } from '../config'
 import { isGoodLabel, parseLabel, parsePost } from './parser'
 import { useCachedLabelLogo, useCachedPostImage } from './image'
 
@@ -25,8 +25,8 @@ const serverData = async (variables) => {
       url: 'https://api.github.com/graphql',
       data: { query, variables },
       headers: {
-        Authorization: `bearer ${import.meta.env.GITHUB_TOKEN}`
-      }
+        Authorization: `bearer ${import.meta.env.GITHUB_TOKEN}`,
+      },
     })
   } catch (error) {
     if (error.response) {
@@ -76,9 +76,9 @@ export default async () => {
   const labels = repo.labels.nodes.filter(isGoodLabel).map(parseLabel)
 
   console.log('  Fetching label logos...')
-  await Promise.all(labels.map(
-    useCachedLabelLogo.bind(null, repo.owner.databaseId)
-  ))
+  await Promise.all(
+    labels.map(useCachedLabelLogo.bind(null, repo.owner.databaseId))
+  )
 
   console.log('  Fetching post images...')
   await Promise.all(posts.map(useCachedPostImage))

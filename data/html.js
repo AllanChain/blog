@@ -1,7 +1,7 @@
-export function ChainHTML (html) {
+export function ChainHTML(html) {
   this.html = html
 
-  this.use = plugin => {
+  this.use = (plugin) => {
     this.html = plugin(this.html)
     return this
   }
@@ -9,9 +9,9 @@ export function ChainHTML (html) {
 }
 
 // Core plugins are used both server side (post) and client side (comment)
-export const
-  htmlPlugins= {
-    codeLang: html => html.replace(
+export const htmlPlugins = {
+  codeLang: (html) =>
+    html.replace(
       // `g`: match all occurence; `[^]` to match all characters
       /<div.+?(highlight-(?:source|text)-(.+?))\b[^]+?><pre>([^]+?)<\/pre>/g,
       `<div class="highlight $1">
@@ -20,12 +20,14 @@ export const
       <span class="code-lang">$2</span>
       </div><pre><code>$3</code></pre>`
     ),
-    trimIssue: html => html.replace(
+  trimIssue: (html) =>
+    html.replace(
       /<a class="issue-link js-issue-link" .*? href/g,
       '<a class="issue-link" href'
     ),
-    issueLink: html => html.replace(
+  issueLink: (html) =>
+    html.replace(
       /<a href="\d+">(.*?)(#.*?)?<\/a>/g,
       `<a class="post-link" href="${process.env.GRIDSOME_BASE_URL}post/$1$2">$1$2</a>`
-    )
-  }
+    ),
+}
