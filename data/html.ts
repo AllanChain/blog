@@ -30,6 +30,6 @@ export const htmlPlugins: Record<string, HTMLPlugin> = {
   issueLink: (html) =>
     html.replace(
       /<a href="\d+">(.*?)(#.*?)?<\/a>/g,
-      `<a class="post-link" href="${process.env.GRIDSOME_BASE_URL}post/$1$2">$1$2</a>`
+      `<a class="post-link" href="${import.meta.env.BASE_URL}post/$1$2">$1$2</a>`
     ),
 }

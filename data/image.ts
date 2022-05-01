@@ -1,12 +1,12 @@
 import { readdirSync, stat, createWriteStream } from 'fs'
-import { resolve as _resolve, join, extname } from 'path'
+import { resolve as resolvePath, join, extname } from 'path'
 import { promisify } from 'util'
 import { createHash } from 'crypto'
 import axios from 'axios'
 import { getExtension } from 'mime'
 import sharp from 'sharp'
 
-const imageCacheDir = _resolve(import.meta.env.DATA_DIR, '.cache/images')
+const imageCacheDir = resolvePath(process.cwd(), 'data/.cache/images')
 const isGitHubImageAbbr = (s: string) =>
   /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s: string, userId: string) =>

@@ -1,16 +1,16 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { resolve } from 'path'
+import { resolve as resolvePath } from 'path'
 
+import { GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 
 import { gqlVar } from './config'
 import { isGoodLabel, parseLabel, parsePost } from './parser'
 import { useCachedLabelLogo, useCachedPostImage } from './image'
 import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
-import { GraphQLClient } from 'graphql-request'
 
-const cacheDir = resolve(import.meta.env.DATA_DIR, '.cache')
-const imageCacheDir = resolve(cacheDir, 'images')
+const cacheDir = resolvePath(process.cwd(), 'data/.cache')
+const imageCacheDir = resolvePath(cacheDir, 'images')
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
@@ -33,7 +33,7 @@ const serverData = async (variables: Partial<BlogsQueryVariables> = {}) => {
 }
 
 const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
-  const cacheFile = resolve(cacheDir, 'data.json')
+  const cacheFile = resolvePath(cacheDir, 'data.json')
 
   if (process.env.NODE_ENV === 'development' && existsSync(cacheFile)) {
     return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
@@ -44,7 +44,7 @@ const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
 }
 
 const writeExtraData = (extraData) => {
-  writeFileSync(resolve(cacheDir, 'extra.json'), JSON.stringify(extraData), {
+  writeFileSync(resolvePath(cacheDir, 'extra.json'), JSON.stringify(extraData), {
     encoding: 'utf-8',
   })
 }

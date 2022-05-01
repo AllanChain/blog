@@ -95,7 +95,6 @@ const parseBody = (text: string): BodyParseResult => {
 }
 
 export const isGoodLabel = (labelName: string) => {
-  console.log(labelName)
   const result = labelName.split(': ')
   // const { includedLabelTypes } = require('../.cache/extra.json')
   return result.length === 2 // && includedLabelTypes.includes(result[0])
