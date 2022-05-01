@@ -1,1 +1,4 @@
 pnpm-lock.yaml
+sdk.ts
+data/
+.vscode/

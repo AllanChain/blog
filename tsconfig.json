@@ -11,6 +11,6 @@
     "isolatedModules": true,
     // Add Astro-specific type definitions.
     "types": ["astro/env"],
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   }
 }

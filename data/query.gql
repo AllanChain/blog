@@ -1,4 +1,4 @@
-query blogs (
+query blogs(
   $repo: String!
   $owner: String!
   $postCount: Int!
@@ -68,7 +68,7 @@ query blogs (
       bodyText
     }
     labels(first: $labelCount) {
-      nodes{
+      nodes {
         name
         color
         description
