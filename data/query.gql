@@ -1,4 +1,4 @@
-query (
+query blogs (
   $repo: String!
   $owner: String!
   $postCount: Int!

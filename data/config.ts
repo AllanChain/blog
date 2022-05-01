@@ -1,7 +1,9 @@
+import { BlogsQueryVariables } from './sdk'
+
 const repo = 'blog'
 const owner = 'AllanChain'
 
-export const gqlVar = {
+export const gqlVar: BlogsQueryVariables = {
   repo,
   owner,
   postCount: 100,

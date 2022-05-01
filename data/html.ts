@@ -1,7 +1,9 @@
-export function ChainHTML(html) {
+export type HTMLPlugin = (html: string) => string
+
+export function ChainHTML(html: string) {
   this.html = html
 
-  this.use = (plugin) => {
+  this.use = (plugin: HTMLPlugin) => {
     this.html = plugin(this.html)
     return this
   }
@@ -9,7 +11,7 @@ export function ChainHTML(html) {
 }
 
 // Core plugins are used both server side (post) and client side (comment)
-export const htmlPlugins = {
+export const htmlPlugins: Record<string, HTMLPlugin> = {
   codeLang: (html) =>
     html.replace(
       // `g`: match all occurence; `[^]` to match all characters

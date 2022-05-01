@@ -7,20 +7,23 @@ import { getExtension } from 'mime'
 import sharp from 'sharp'
 
 const imageCacheDir = _resolve(import.meta.env.DATA_DIR, '.cache/images')
-const isGitHubImageAbbr = (s) => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
-const expandGitHubImageAbbr = (s, userId) =>
+const isGitHubImageAbbr = (s: string) =>
+  /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
+const expandGitHubImageAbbr = (s: string, userId: string) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
-const isInternetImage = (s) => s.startsWith('http')
-const resolveDest = (filename) => join(imageCacheDir, filename)
+const isInternetImage = (s: string) => s.startsWith('http')
+const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
-const guessUnknownFilename = (hash) => {
+const guessUnknownFilename = (hash: string) => {
   for (const file of readdirSync(imageCacheDir)) {
     if (file.startsWith(hash)) return file
   }
   return null
 }
 
-const getImageDownloadLocation = async (url) => {
+const getImageDownloadLocation = async (
+  url: string
+): Promise<{ filename: string; dest: string }> => {
   const hasher = createHash('sha256')
   hasher.update(url)
   const hash = hasher.digest('hex').slice(0, 8)
@@ -64,7 +67,7 @@ const getImageDownloadLocation = async (url) => {
   }
 }
 
-const getImageInfo = async (url) => {
+const getImageInfo = async (url: string) => {
   const { filename, dest } = await getImageDownloadLocation(url)
 
   try {
@@ -82,11 +85,12 @@ const getImageInfo = async (url) => {
   }
 }
 
-export const useCachedLabelLogo = async (userId, label) => {
+export const useCachedLabelLogo = async (userId: string, label) => {
   if (!label.logo) return
 
   let imageInfo
 
+  console.log(`    Checking cache for label ${label.name}`)
   if (isGitHubImageAbbr(label.logo)) {
     imageInfo = await getImageInfo(expandGitHubImageAbbr(label.logo, userId))
   } else if (isInternetImage(label.logo)) {
@@ -99,6 +103,7 @@ export const useCachedLabelLogo = async (userId, label) => {
 
 export const useCachedPostImage = async (post) => {
   if (!post.image) return
+  console.log(`    Checking cache for label ${post.id}`)
   const imageInfo = await getImageInfo(post.image)
   post.image = imageInfo.src
   post.imageLazy = imageInfo.lazySrc

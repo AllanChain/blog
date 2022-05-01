@@ -1,0 +1,8 @@
+schema: https://docs.github.com/public/schema.docs.graphql
+documents: 'data/query.gql'
+generates:
+  data/sdk.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
