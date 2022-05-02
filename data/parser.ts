@@ -3,7 +3,7 @@ import GithubSlugger from 'github-slugger'
 import { htmlPlugins, ChainHTML } from './html'
 import { BlogComment, BlogIssue, BlogLabel, ReactionGroup } from './query-types'
 import type { ReactionContent } from './sdk'
-interface BodyParseResult {
+export interface BodyParseResult {
   body: string
   slug: string
   serializedHeadings: string
@@ -12,24 +12,24 @@ interface BodyParseResult {
   createdAt?: Date
 }
 
-interface ParsedReactionGroup {
+export interface ParsedReactionGroup {
   ID: ReactionContent
   emoji: string
   count: number
   users: string[]
 }
 
-type ParsedComment = Omit<BlogComment, 'reactionGroups'> & {
+export type ParsedComment = Omit<BlogComment, 'reactionGroups'> & {
   reactions: ParsedReactionGroup[]
 }
 
-interface ParsedLabel extends BlogLabel {
+export interface ParsedLabel extends BlogLabel {
   id: string
   type: string
   logo: string
 }
 
-interface PartsedPost extends BodyParseResult {
+export interface ParsedPost extends BodyParseResult {
   id: number
   createdAt: Date
   lastEditedAt: Date
@@ -137,7 +137,7 @@ export const parseLabel = (label: BlogLabel): ParsedLabel => {
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-export const parsePost = (node: BlogIssue): PartsedPost => {
+export const parsePost = (node: BlogIssue): ParsedPost => {
   try {
     return {
       id: node.number,

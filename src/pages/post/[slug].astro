@@ -1,19 +1,30 @@
 ---
-import dataPromise from '../../../data'
-export async function getStaticPaths() {
-    const {posts} = await dataPromise
-    return posts.map(post => ({
-        params: {
-            slug: post.slug
-        },
-        props: {
-            post
-        }
-    }))
+import dataPromise from '@data/index'
+import type { ParsedPost } from '@data/parser'
+import '../../styles/article.scss'
+
+export interface Props {
+  post: ParsedPost
 }
 
-const {post} = Astro.props
----
-<body set:html={post.body}>
+export async function getStaticPaths() {
+  const { posts } = await dataPromise
+  return posts.map((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: {
+      post,
+    },
+  }))
+}
 
+const { post } = Astro.props as Props
+---
+
+<title>{post.title}</title>
+<body>
+  <main>
+    <article class="article-main markdown-body" set:html={post.body}></article>
+  </main>
 </body>
