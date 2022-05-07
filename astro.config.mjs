@@ -1,6 +1,15 @@
 import { defineConfig } from 'astro/config'
 import svelte from '@astrojs/svelte'
-// https://astro.build/config
+import Unocss from 'unocss/vite'
+import { presetUno, presetAttributify } from 'unocss'
+
 export default defineConfig({
   integrations: [svelte()],
+  vite: {
+    plugins: [
+      Unocss({
+        presets: [presetUno(), presetAttributify()],
+      }),
+    ],
+  },
 })
