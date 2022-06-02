@@ -5,6 +5,7 @@ import { createHash } from 'crypto'
 import axios from 'axios'
 import { getExtension } from 'mime'
 import sharp from 'sharp'
+import { ParsedPost } from './parser'
 
 const imageCacheDir = resolvePath(process.cwd(), 'data/.cache/images')
 const isGitHubImageAbbr = (s: string) =>
@@ -22,7 +23,8 @@ const guessUnknownFilename = (hash: string) => {
 }
 
 const getImageDownloadLocation = async (
-  url: string
+  url: string,
+  hint?: string
 ): Promise<{ filename: string; dest: string }> => {
   const hasher = createHash('sha256')
   hasher.update(url)
@@ -42,7 +44,7 @@ const getImageDownloadLocation = async (
     }
   }
 
-  console.log(`    Downloading ${filename || hash} (${url})`)
+  console.log(`    [${hint}] Downloading ${filename || hash} (${url})`)
 
   try {
     const response = await axios({
@@ -62,13 +64,13 @@ const getImageDownloadLocation = async (
       writer.on('error', reject)
     })
   } catch (err) {
-    console.error(`::error:: Cannot fetch ${url} : ${err}`)
+    console.error(`::error:: [${hint}] Cannot fetch ${url} : ${err}`)
     throw err
   }
 }
 
-const getImageInfo = async (url: string) => {
-  const { filename, dest } = await getImageDownloadLocation(url)
+const getImageInfo = async (url: string, hint?: string) => {
+  const { filename, dest } = await getImageDownloadLocation(url, hint)
 
   try {
     const { data } = await sharp(dest)
@@ -81,7 +83,9 @@ const getImageInfo = async (url: string) => {
       src: process.env.GRIDSOME_BASE_URL + 'img/' + filename,
     }
   } catch (err) {
-    throw new Error(`Cannot process ${dest}: ${err.message}`)
+    throw new Error(
+      `::error:: [${hint}] Cannot process ${dest}: ${err.message}`
+    )
   }
 }
 
@@ -90,7 +94,6 @@ export const useCachedLabelLogo = async (userId: string, label) => {
 
   let imageInfo
 
-  console.log(`    Checking cache for label ${label.name}`)
   if (isGitHubImageAbbr(label.logo)) {
     imageInfo = await getImageInfo(expandGitHubImageAbbr(label.logo, userId))
   } else if (isInternetImage(label.logo)) {
@@ -101,10 +104,9 @@ export const useCachedLabelLogo = async (userId: string, label) => {
   label.logoLazy = imageInfo.lazySrc
 }
 
-export const useCachedPostImage = async (post) => {
+export const useCachedPostImage = async (post: ParsedPost) => {
   if (!post.image) return
-  console.log(`    Checking cache for label ${post.id}`)
-  const imageInfo = await getImageInfo(post.image)
+  const imageInfo = await getImageInfo(post.image, post.slug)
   post.image = imageInfo.src
   post.imageLazy = imageInfo.lazySrc
 }

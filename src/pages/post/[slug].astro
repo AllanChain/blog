@@ -2,8 +2,10 @@
 import dataPromise from '@data/index'
 import type { ParsedPost } from '@data/parser'
 
-import '../../styles/article.scss'
-import 'uno.css'
+import 'highlight.js/styles/atom-one-dark.css'
+
+// import '../../styles/article.scss'
+// import 'uno.css'
 
 export interface Props {
   post: ParsedPost
@@ -26,7 +28,142 @@ const { post } = Astro.props as Props
 
 <title>{post.title}</title>
 <body>
-  <main>
-    <article class="article-main markdown-body" set:html={post.body}></article>
-  </main>
+  <article class="article-main markdown-body" set:html="post.body">
+  </article>
 </body>
+
+
+<style lang="scss" is:global>
+// @import "primer-markdown/index.scss";
+// @import 'github-syntax-dark/lib/github-dark.css';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend headings !optional;
+}
+$font-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+
+@mixin full-width($margin) {
+  @media (max-width: 500px) {
+    margin-left: $margin;
+    margin-right: $margin;
+    border-radius: 0;
+    pre {
+      border-radius: 0;
+    }
+  }
+}
+article.article-main.markdown-body {
+  max-width: 800px;
+  margin: auto;
+  mjx-container[display='true'] {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  // Code styles
+  & :not(pre) > code {
+    color: #476582;
+    padding: 0.25rem 0.5rem;
+    margin: 0;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+  }
+  pre,
+  .highlight pre {
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    background-color: #282c34;
+    border-radius: 3px;
+    font-size: 95%;
+    code {
+      color: #eee8d5;
+      font-weight: normal;
+      font-family: $font-mono;
+      &.hljs {
+        padding: 0; // Reset padding from theme
+      }
+    }
+  }
+  .highlight {
+    position: relative;
+    font-family: $font-mono;
+    .code-bar {
+      position: absolute;
+      top: 0.2em;
+      right: 0.6em;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      .mdi-content-copy:hover {
+        color: white;
+      }
+    }
+    @include full-width(-20px);
+  }
+  & :not(.highlight) > pre {
+    @include full-width(-20px);
+  }
+  // Heading styles
+  headings {
+    .anchor-hover {
+      text-decoration: none;
+      margin-left: -15px;
+      opacity: 0; // not hidden to receive hover;
+    }
+    &:hover .anchor-hover {
+      opacity: 1;
+    }
+  }
+  blockquote {
+    border-left: .25em solid #a1abc0;
+    padding-left: 1em;
+  }
+  .article-summary a {
+    color: white;
+  }
+  a {
+    word-break: break-word;
+  }
+  img {
+    background: transparent;
+  }
+}
+.theme--dark article.article-main.markdown-body {
+  :not(pre) > code {
+    color: #eee8d5;
+    background-color: #282c34;
+  }
+  pre > code {
+    background-color: transparent;
+  }
+  blockquote {
+    color: #bec1c5;
+  }
+  table tr {
+    background-color: transparent;
+  }
+}
+.article-all {
+  @media (min-width: 1000px) {
+    max-width: 75vw;
+  }
+}
+.toc-wrapper {
+  display: none;
+  @media (min-width: 1000px) {
+    display: block;
+    position: absolute;
+    height: 100%;
+    left: calc(75vw + 10px);
+    width: calc(25vw - 55px);
+  }
+  .toc {
+    position: sticky;
+    top: 70px;
+  }
+}
+</style>

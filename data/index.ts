@@ -44,9 +44,13 @@ const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
 }
 
 const writeExtraData = (extraData) => {
-  writeFileSync(resolvePath(cacheDir, 'extra.json'), JSON.stringify(extraData), {
-    encoding: 'utf-8',
-  })
+  writeFileSync(
+    resolvePath(cacheDir, 'extra.json'),
+    JSON.stringify(extraData),
+    {
+      encoding: 'utf-8',
+    }
+  )
 }
 
 export default (async () => {
@@ -57,7 +61,8 @@ export default (async () => {
   const repo = await getCacheFirstData()
   const extraData = loadYAML(repo.extraData.bodyText)
   writeExtraData(extraData)
-  const posts = repo.issues.nodes.map(parsePost)
+  console.log('  Processing posts...')
+  const posts = await Promise.all(repo.issues.nodes.map(parsePost))
   const labels = repo.labels.nodes
     .filter((label) => isGoodLabel(label.name))
     .map(parseLabel)
@@ -69,5 +74,6 @@ export default (async () => {
 
   console.log('  Fetching post images...')
   await Promise.all(posts.map(useCachedPostImage))
+  console.log('Done!')
   return { posts, labels }
 })()

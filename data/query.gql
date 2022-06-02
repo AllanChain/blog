@@ -23,7 +23,7 @@ query blogs(
       nodes {
         number
         title
-        bodyHTML
+        body
         createdAt
         includesCreatedEdit
         lastEditedAt
@@ -49,7 +49,7 @@ query blogs(
               avatarUrl(size: 64)
               id: login
             }
-            bodyHTML
+            body
             createdAt
             reactionGroups {
               content
