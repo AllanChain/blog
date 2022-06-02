@@ -5,7 +5,13 @@ import { GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 
 import { gqlVar } from './config'
-import { isGoodLabel, parseLabel, parsePost } from './parser'
+import {
+  isGoodLabel,
+  ParsedLabel,
+  ParsedPost,
+  parseLabel,
+  parsePost,
+} from './parser'
 import { useCachedLabelLogo, useCachedPostImage } from './image'
 import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
 
@@ -53,6 +59,14 @@ const writeExtraData = (extraData) => {
   )
 }
 
+export interface BlogPost extends ParsedPost {
+  imageLazy?: string
+}
+
+export interface BlogLabel extends ParsedLabel {
+  logoLazy?: string
+}
+
 export default (async () => {
   console.log('Preparing blog data...')
   mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
@@ -63,14 +77,19 @@ export default (async () => {
   writeExtraData(extraData)
   console.log('  Processing posts...')
   const posts = await Promise.all(repo.issues.nodes.map(parsePost))
-  const labels = repo.labels.nodes
-    .filter((label) => isGoodLabel(label.name))
-    .map(parseLabel)
+  const labels: Record<string, ParsedLabel> = {}
 
   console.log('  Fetching label logos...')
   if (!('databaseId' in repo.owner)) throw new Error('Owner is not a user')
-  const userDatabaseId = repo.owner.databaseId
-  await Promise.all(labels.map(useCachedLabelLogo.bind(null, userDatabaseId)))
+  const userDatabaseId = String(repo.owner.databaseId)
+  for (const label of repo.labels.nodes) {
+    if (isGoodLabel(label.name)) {
+      labels[label.name] = await useCachedLabelLogo(
+        userDatabaseId,
+        parseLabel(label)
+      )
+    }
+  }
 
   console.log('  Fetching post images...')
   await Promise.all(posts.map(useCachedPostImage))

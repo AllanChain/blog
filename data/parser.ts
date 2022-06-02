@@ -6,6 +6,8 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import emoji from 'remark-emoji'
 import rehypeSanitize from 'rehype-sanitize'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import { visit, EXIT, CONTINUE } from 'unist-util-visit'
 
@@ -18,7 +20,6 @@ export interface BodyParseResult {
   serializedHeadings: string
   summary?: string
   image?: string
-  imageLazy?: string
   createdAt?: Date
 }
 
@@ -54,8 +55,10 @@ export interface ParsedPost extends BodyParseResult {
 const markdownRenderer = unified()
   .use(remarkParse)
   .use(emoji)
+  .use(remarkMath)
   .use(remarkGfm)
   .use(remarkRehype)
+  .use(rehypeKatex)
   // .use(rehypeSanitize)
   .use(rehypeHighlight, { ignoreMissing: true, subset: false })
   .use(rehypeStringify)
@@ -63,7 +66,7 @@ const markdownRenderer = unified()
 const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
 
-  const nodes = unified().use(remarkParse).parse(text)
+  const nodes = markdownRenderer.parse(text)
   const hrIndex = nodes.children.findIndex(
     (node) => node.type === 'thematicBreak'
   )
@@ -104,8 +107,8 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   let summaryNode: Root
   visit(frontNodes, 'blockquote', (node) => {
     summaryNode = {
-      ...node,
       type: 'root',
+      children: node.children,
     }
   })
   if (summaryNode) {

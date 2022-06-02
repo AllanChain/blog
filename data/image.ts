@@ -3,9 +3,11 @@ import { resolve as resolvePath, join, extname } from 'path'
 import { promisify } from 'util'
 import { createHash } from 'crypto'
 import axios from 'axios'
-import { getExtension } from 'mime'
+import mime from 'mime'
+const { getExtension } = mime
 import sharp from 'sharp'
-import { ParsedPost } from './parser'
+
+import { ParsedLabel, ParsedPost } from './parser'
 
 const imageCacheDir = resolvePath(process.cwd(), 'data/.cache/images')
 const isGitHubImageAbbr = (s: string) =>
@@ -69,7 +71,12 @@ const getImageDownloadLocation = async (
   }
 }
 
-const getImageInfo = async (url: string, hint?: string) => {
+interface ImageInfo {
+  lazySrc: string
+  src: string
+}
+
+const getImageInfo = async (url: string, hint?: string): Promise<ImageInfo> => {
   const { filename, dest } = await getImageDownloadLocation(url, hint)
 
   try {
@@ -80,7 +87,7 @@ const getImageInfo = async (url: string, hint?: string) => {
 
     return {
       lazySrc: data.toString('base64'),
-      src: process.env.GRIDSOME_BASE_URL + 'img/' + filename,
+      src: import.meta.env.BASE_URL + 'img/' + filename,
     }
   } catch (err) {
     throw new Error(
@@ -89,10 +96,13 @@ const getImageInfo = async (url: string, hint?: string) => {
   }
 }
 
-export const useCachedLabelLogo = async (userId: string, label) => {
-  if (!label.logo) return
+export const useCachedLabelLogo = async (
+  userId: string,
+  label: ParsedLabel
+): Promise<ParsedLabel & { logoLazy?: string }> => {
+  if (!label.logo) return label
 
-  let imageInfo
+  let imageInfo: ImageInfo
 
   if (isGitHubImageAbbr(label.logo)) {
     imageInfo = await getImageInfo(expandGitHubImageAbbr(label.logo, userId))
@@ -100,8 +110,11 @@ export const useCachedLabelLogo = async (userId: string, label) => {
     imageInfo = await getImageInfo(label.logo)
   } // else do nothing, backward capability
 
-  label.logo = imageInfo.src
-  label.logoLazy = imageInfo.lazySrc
+  return {
+    ...label,
+    logoLazy: imageInfo.lazySrc,
+    logo: imageInfo.src,
+  }
 }
 
 export const useCachedPostImage = async (post: ParsedPost) => {
