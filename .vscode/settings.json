@@ -6,12 +6,12 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[astro]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "astro-build.astro-vscode",
     },
     "[graphql]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[svelte]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "svelte.svelte-vscode",
     }
 }
