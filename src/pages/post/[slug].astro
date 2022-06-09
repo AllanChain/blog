@@ -2,6 +2,7 @@
   import dataPromise from '@data/index'
   import type { BlogPost, BlogLabel } from '@data/index'
   import 'highlight.js/styles/atom-one-dark.css'
+  import 'uno.css'
 
   export interface Props {
     post: BlogPost
@@ -34,7 +35,7 @@
 }
 
 <body>
-  <main>
+  <main class="max-w-2xl mx-auto px-2">
     <h1>{post.title}</h1>
     {post.labels.map(label => <div>{labels[label].name}</div>)}
     {!!post.image && <img src={post.image} alt="Header" /> }
@@ -48,11 +49,6 @@
 <style lang="scss" is:global>
   // @import "primer-markdown/index.scss";
   // @import 'github-syntax-dark/lib/github-dark.css';
-
-  main {
-    max-width: 800px;
-    margin: auto;
-  }
 
   h1,
   h2,
