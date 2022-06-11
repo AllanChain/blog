@@ -5,7 +5,6 @@ import '../styles/home.css'
 // Component Imports
 import Tour from '../components/Tour.astro'
 // You can import components from any supported Framework here!
-import SvelteCounter from '../components/SvelteCounter.svelte'
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -17,46 +16,36 @@ let title = 'My Astro Site'
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
+<html lang='en'>
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width' />
+  <title>{title}</title>
 
-    <style>
-      header {
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
-        max-width: min(100%, 68ch);
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <header>
-        <div>
-          <img width="60" height="80" src="/assets/logo.svg" alt="Astro logo" />
-          <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
-        </div>
-      </header>
+  <link rel='icon' type='image/x-icon' href='/favicon.ico' />
 
-      <Tour />
+  <style>
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      max-width: min(100%, 68ch);
+    }
+  </style>
+</head>
 
-      <!--
+<body>
+  <main>
+    <header>
+      <div>
+        <img width='60' height='80' src='/assets/logo.svg' alt='Astro logo' />
+        <h1>Welcome to <a href='https://astro.build/'>Astro</a></h1>
+      </div>
+    </header>
 
-		You can also use imported framework components directly in your markup!
-		
-		Note: by default, these components are NOT interactive on the client.
-		The `:visible` directive tells Astro to make it interactive.
-		
-		See https://docs.astro.build/core-concepts/component-hydration/ 
+    <Tour />
+  </main>
+</body>
 
-		-->
-
-      <SvelteCounter client:visible />
-    </main>
-  </body>
 </html>

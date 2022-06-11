@@ -1,4 +1,6 @@
 {
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": true,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
@@ -13,5 +15,7 @@
     },
     "[svelte]": {
         "editor.defaultFormatter": "svelte.svelte-vscode",
-    }
+    },
+    "astro.format.indentFrontmatter": false,
+    "typescript.format.semicolons": "remove",
 }
