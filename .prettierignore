@@ -3,3 +3,4 @@ sdk.ts
 data/.cache/
 data/sdk.ts
 .vscode/
+dist/
