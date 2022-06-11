@@ -12,17 +12,17 @@ defineProps<{
   <main class="max-w-2xl mx-auto px-2">
     <h1>{{ post.title }}</h1>
 
-    <div>
+    <div my-1>
       <PostLabel v-for="label in labels" :label="label" :key="label.id" />
     </div>
 
-    <img v-if="post.image" :src="post.image" alt="Header" max-w-full my-3 />
+    <img v-if="post.image" :src="post.image" alt="Header" max-w-full my-2 />
     <div
       class="markdown-body"
       v-html="post.summary"
       bg="gray-100"
-      border="2 dashed gray-300 rounded-md"
-      px-3
+      border="2 dashed gray-400 rounded-md"
+      px-3 my-2
     />
     <article class="article-main markdown-body" v-html="post.body"></article>
   </main>
