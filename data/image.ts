@@ -9,7 +9,7 @@ import sharp from 'sharp'
 
 import { ParsedLabel, ParsedPost } from './parser'
 
-const imageCacheDir = resolvePath(process.cwd(), 'data/.cache/images')
+const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const isGitHubImageAbbr = (s: string) =>
   /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s: string, userId: string) =>
