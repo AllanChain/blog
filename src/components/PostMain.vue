@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { BlogPost, BlogLabel } from '@data'
+import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from './PostLabel.vue'
 
 defineProps<{
@@ -9,11 +10,28 @@ defineProps<{
 </script>
 
 <template>
-  <main class="max-w-2xl mx-auto px-2">
+  <main class="max-w-2xl mx-auto px-5">
     <h1>{{ post.title }}</h1>
 
-    <div my-1>
+    <div text-center my-1>
       <PostLabel v-for="label in labels" :label="label" :key="label.id" />
+    </div>
+
+    <div text-center my-1 text-gray-800 select-none>
+      <div
+        class="inline-flex items-center text-center mx-1"
+        :title="formatLocalDate(post.createdAt)"
+      >
+        <div class="i-carbon-calendar mx-1"></div>
+        <div>{{ formatDate(post.createdAt) }}</div>
+      </div>
+      <div
+        class="inline-flex items-center text-center mx-1"
+        :title="formatLocalDate(post.lastEditedAt)"
+      >
+        <div class="i-carbon-edit mx-1"></div>
+        <div>{{ formatDate(post.lastEditedAt) }}</div>
+      </div>
     </div>
 
     <img v-if="post.image" :src="post.image" alt="Header" max-w-full my-2 />
@@ -22,7 +40,8 @@ defineProps<{
       v-html="post.summary"
       bg="gray-100"
       border="2 dashed gray-400 rounded-md"
-      px-3 my-2
+      px-3
+      my-2
     />
     <article class="article-main markdown-body" v-html="post.body"></article>
   </main>

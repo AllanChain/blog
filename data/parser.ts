@@ -144,7 +144,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
       type: 'element',
       tagName: 'a',
       properties: {
-        href: `#${slug}`,
+        href: `#article-${slug}`,
         id: `article-${slug}`,
         class: 'anchor-hover hash-link',
       },

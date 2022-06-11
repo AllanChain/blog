@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { BlogLabel } from '@data'
+import { isDarkColor } from '@/utils'
 
 defineProps<{
   label: BlogLabel
@@ -8,14 +9,19 @@ defineProps<{
 
 <template>
   <div
-    :style="{ 'background-color': `#${label.color}` }"
-    class="inline-flex items-center px-1 mx-1"
-    cursor="pointer"
-    select="none"
-    text="sm"
-    hover="opacity-90"
-    border="rounded-full"
-    shadow="sm"
+    :style="
+      label.type === 'series'
+        ? { 'border-color': `#${label.color}`, color: `#${label.color}` }
+        : { 'background-color': `#${label.color}` }
+    "
+    class="post-label px-1 mx-1 text-xs shadow-sm"
+    :class="{
+      'text-gray-100': isDarkColor(label.color),
+      'text-gray-900': !isDarkColor(label.color),
+      'rounded-full': ['tag', 'series'].includes(label.type),
+      'rounded-md': ['blog'].includes(label.type),
+      'border-1': ['series'].includes(label.type),
+    }"
   >
     <div
       :class="{
@@ -24,6 +30,33 @@ defineProps<{
         'i-carbon-bookmark': label.type === 'series',
       }"
     ></div>
-    <div class="px-1 pb-0.5 pt-0.2">{{ label.name }}</div>
+    <div class="px-1 py-0.5">{{ label.name }}</div>
   </div>
 </template>
+
+<style>
+.post-label {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  font-weight: bold;
+  align-items: center;
+}
+/* Making a slight color change on hover, inspired by Vuetify */
+.post-label::before {
+  background-color: currentColor;
+  border-radius: inherit;
+  bottom: 0;
+  content: '';
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.post-label:hover::before {
+  opacity: 0.1;
+}
+</style>
