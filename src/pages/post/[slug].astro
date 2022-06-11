@@ -1,10 +1,9 @@
 ---
 import 'highlight.js/styles/atom-one-dark.css'
 import 'normalize.css'
-import 'uno.css'
+import 'uno.css?workaround=astro&type=style'
 import dataPromise from '@data/index'
 import type { BlogPost, BlogLabel } from '@data/index'
-import PostLabel from '@components/PostLabel.vue'
 import PostMain from '@components/PostMain.vue'
 
 export interface Props {
