@@ -4,7 +4,6 @@ export const isDarkColor = (color: string, threshold = 50) => {
   const g = (rgb >> 8) & 0xff
   const b = (rgb >> 0) & 0xff
   const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b // per ITU-R BT.709
-  console.log(color, luma)
   return luma < threshold
 }
 

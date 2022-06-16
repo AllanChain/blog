@@ -10,6 +10,16 @@ export default defineConfig({
     plugins: [
       Unocss({
         presets: [presetUno(), presetAttributify(), presetIcons()],
+        shortcuts: [
+          [
+            'icon-btn',
+            'text-current cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100',
+          ],
+          [
+            'dash-divider',
+            'border-t-2 border-gray-400 border-t-dashed flex-grow h-0 mx-2',
+          ],
+        ],
       }),
     ],
   },

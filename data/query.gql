@@ -22,6 +22,7 @@ query blogs(
     ) {
       nodes {
         number
+        url
         title
         body
         createdAt

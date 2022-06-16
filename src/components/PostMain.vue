@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <main class="max-w-2xl mx-auto px-5">
-    <h1>{{ post.title }}</h1>
+    <h1 text-center>{{ post.title }}</h1>
 
     <div text-center my-1>
       <PostLabel v-for="label in labels" :label="label" :key="label.id" />
@@ -44,13 +44,49 @@ defineProps<{
       my-2
     />
     <article class="article-main markdown-body" v-html="post.body"></article>
+    <div flex items-center text-gray-800>
+      <div dash-divider />
+      <div>Comment on</div>
+      <a :href="`${post.url}#new_comment_field`" text-current>
+        <div mx-1 icon-btn i-carbon-logo-github></div>
+      </a>
+      <div dash-divider />
+    </div>
+    <div>
+      <div
+        v-for="comment in post.comments"
+        :key="comment.id"
+        border="b-2 b-dashed gray-200"
+        px-3
+        my-2
+      >
+        <div flex items-center>
+          <img
+            :src="comment.author?.avatarUrl"
+            :alt="comment.author?.id"
+            :title="comment.author?.id"
+            width="30"
+            rounded-full
+            mr-2
+          />
+          <div text="gray-700 sm" font-bold>{{ comment.author.id }}</div>
+          <div flex-1></div>
+          <div
+            text="gray-700 sm"
+            select-none
+            :title="formatLocalDate(post.lastEditedAt)"
+          >
+            {{ formatDate(comment.createdAt) }}
+          </div>
+        </div>
+
+        <div v-html="comment.body"></div>
+      </div>
+    </div>
   </main>
 </template>
 
-<style lang="scss" is:global>
-// @import "primer-markdown/index.scss";
-// @import 'github-syntax-dark/lib/github-dark.css';
-
+<style lang="scss">
 h1,
 h2,
 h3,
@@ -138,8 +174,9 @@ article.article-main.markdown-body {
   // Heading styles
   headings {
     .anchor-hover {
+      color: rgb(55, 102, 245);
       text-decoration: none;
-      margin-left: -15px;
+      margin-left: -0.5em;
       opacity: 0; // not hidden to receive hover;
     }
     &:hover .anchor-hover {

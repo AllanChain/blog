@@ -15,8 +15,8 @@ import { BlogComment, BlogIssue, BlogLabel, ReactionGroup } from './query-types'
 import type { ReactionContent } from './sdk'
 import type { Root } from 'remark-parse/lib'
 export interface BodyParseResult {
-  body: string
   slug: string
+  body: string
   serializedHeadings: string
   summary?: string
   image?: string
@@ -42,6 +42,7 @@ export interface ParsedLabel extends BlogLabel {
 
 export interface ParsedPost extends BodyParseResult {
   id: number
+  url: string
   createdAt: Date
   lastEditedAt: Date
   title: string
@@ -62,6 +63,14 @@ const markdownRenderer = unified()
   // .use(rehypeSanitize)
   .use(rehypeHighlight, { ignoreMissing: true, subset: false })
   .use(rehypeStringify)
+
+const transformIssueLink = (htmlNodes) => {
+  visit(htmlNodes, 'element', (node) => {
+    if (node.tagName === 'a' && node.properties.href.match(/^\d+$/)) {
+      node.properties.href = `../${node.children[0].value}`
+    }
+  })
+}
 
 const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
@@ -144,8 +153,8 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
       type: 'element',
       tagName: 'a',
       properties: {
-        href: `#article-${slug}`,
-        id: `article-${slug}`,
+        href: `#${slug}`,
+        id: `${slug}`,
         class: 'anchor-hover hash-link',
       },
       children: [
@@ -157,6 +166,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     })
   })
 
+  transformIssueLink(htmlNodes)
   result.body = markdownRenderer.stringify(htmlNodes)
   // result.body = new ChainHTML(result.body)
   //   .use(htmlPlugins.codeLang)
@@ -196,10 +206,14 @@ const parseReactionGroups = (
     }))
 }
 
-const parseComment = (node: BlogComment): ParsedComment => {
-  const { reactionGroups, ...rest } = node
+const parseComment = async (node: BlogComment): Promise<ParsedComment> => {
+  const { body, createdAt, reactionGroups, ...rest } = node
+  const htmlNodes = await markdownRenderer.run(markdownRenderer.parse(body))
+  transformIssueLink(htmlNodes)
   return {
     ...rest,
+    createdAt: new Date(createdAt),
+    body: markdownRenderer.stringify(htmlNodes),
     reactions: parseReactionGroups(reactionGroups),
   }
 }
@@ -214,6 +228,7 @@ export const parsePost = async (node: BlogIssue): Promise<ParsedPost> => {
   try {
     return {
       id: node.number,
+      url: node.url,
       // Will overwrite in `parseBody` spread
       createdAt: new Date(node.createdAt),
       // Fall back to create time if not edited
@@ -224,7 +239,7 @@ export const parsePost = async (node: BlogIssue): Promise<ParsedPost> => {
         .filter((label) => isGoodLabel(label.name))
         .map((label) => label.name),
       reactions: parseReactionGroups(node.reactionGroups),
-      comments: node.comments.nodes.map(parseComment),
+      comments: await Promise.all(node.comments.nodes.map(parseComment)),
     }
   } catch (err) {
     const message = `Issue ${node.number}: ${err.message}`
