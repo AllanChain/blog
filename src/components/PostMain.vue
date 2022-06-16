@@ -46,7 +46,7 @@ defineProps<{
     <article class="article-main markdown-body" v-html="post.body"></article>
     <div flex items-center text-gray-800>
       <div dash-divider />
-      <div>Comment on</div>
+      <div>More comments on</div>
       <a :href="`${post.url}#new_comment_field`" text-current>
         <div mx-1 icon-btn i-carbon-logo-github></div>
       </a>

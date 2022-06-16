@@ -8,7 +8,8 @@ defineProps<{
 </script>
 
 <template>
-  <div
+  <a
+    :href="`/label/${label.id.replace(': ', '-')}`"
     :style="
       label.type === 'series'
         ? { 'border-color': `#${label.color}`, color: `#${label.color}` }
@@ -31,13 +32,15 @@ defineProps<{
       }"
     ></div>
     <div class="px-1 py-0.5">{{ label.name }}</div>
-  </div>
+  </a>
 </template>
 
 <style>
 .post-label {
   display: inline-flex;
   position: relative;
+  color: current;
+  text-decoration: none;
   cursor: pointer;
   user-select: none;
   font-weight: bold;

@@ -1,0 +1,29 @@
+---
+import dataPromise from '@data'
+import type { BlogPost, BlogLabel } from '@data'
+
+export interface Props {
+  label: BlogLabel
+  posts: BlogPost[]
+}
+
+export async function getStaticPaths() {
+  const { posts, labels } = await dataPromise
+  return Object.entries(labels).map(([id, label]) => ({
+    params: { name: id.replace(': ', '-') },
+    props: {
+      label,
+      posts: posts.filter(({ labels: postLabels }) =>
+        postLabels.includes(label.id)
+      ),
+    },
+  }))
+}
+
+const { label, posts } = Astro.props as Props
+---
+
+<title>{label.name}</title>
+{posts.map(post => post.title)}
+
+<body>{label.name}</body>
