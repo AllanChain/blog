@@ -9,7 +9,11 @@
     "preview": "astro preview",
     "format": "prettier -w **/*.{js,json,ts,svelte,vue,astro}",
     "gql-codegen": "graphql-codegen",
-    "postinstall": "pnpm gql-codegen"
+    "postinstall": "pnpm gql-codegen",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,json,ts,svelte,vue,astro}": "prettier --write"
   },
   "devDependencies": {
     "@astrojs/svelte": "^0.1.4",
@@ -30,7 +34,9 @@
     "graphql-request": "^4.3.0",
     "graphql-tag": "^2.12.6",
     "highlight.js": "^11.5.1",
+    "husky": "^8.0.1",
     "js-yaml": "^4.1.0",
+    "lint-staged": "^13.0.1",
     "mime": "^3.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "0.0.12",
