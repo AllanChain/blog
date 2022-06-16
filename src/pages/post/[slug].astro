@@ -2,8 +2,8 @@
 import 'highlight.js/styles/atom-one-dark.css'
 import 'normalize.css'
 import 'uno.css?workaround=astro&type=style'
-import dataPromise from '@data/index'
-import type { BlogPost, BlogLabel } from '@data/index'
+import dataPromise from '@data'
+import type { BlogPost, BlogLabel } from '@data'
 import PostMain from '@components/PostMain.vue'
 
 export interface Props {
@@ -29,8 +29,12 @@ const { post, labels } = Astro.props as Props
 
 <title>{post.title}</title>
 {post.body.includes('katex') && (
-<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
-  integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin="anonymous" />
+  <link
+    rel="stylesheet"
+    href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
+    integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="
+    crossorigin="anonymous"
+  />
 )}
 
 <body>
