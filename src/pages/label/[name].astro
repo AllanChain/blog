@@ -24,6 +24,6 @@ const { label, posts } = Astro.props as Props
 ---
 
 <title>{label.name}</title>
-{posts.map(post => post.title)}
+{posts.map((post) => post.title)}
 
 <body>{label.name}</body>

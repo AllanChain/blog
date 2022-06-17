@@ -11,44 +11,26 @@ import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import { visit, EXIT, CONTINUE } from 'unist-util-visit'
 
-import { BlogComment, BlogIssue, BlogLabel, ReactionGroup } from './query-types'
-import type { ReactionContent } from './sdk'
+import {
+  QueryComment,
+  QueryIssue,
+  QueryLabel,
+  QueryReactionGroup,
+  Comment,
+  BlogLabel,
+  BlogPost,
+  ReactionGroup,
+  UnimagedBlogPost,
+  UnimagedBlogLabel,
+} from './types'
 import type { Root } from 'remark-parse/lib'
-export interface BodyParseResult {
+interface BodyParseResult {
   slug: string
   body: string
   serializedHeadings: string
   summary?: string
   image?: string
   createdAt?: Date
-}
-
-export interface ParsedReactionGroup {
-  ID: ReactionContent
-  emoji: string
-  count: number
-  users: string[]
-}
-
-export type ParsedComment = Omit<BlogComment, 'reactionGroups'> & {
-  reactions: ParsedReactionGroup[]
-}
-
-export interface ParsedLabel extends BlogLabel {
-  id: string
-  type: string
-  logo: string
-}
-
-export interface ParsedPost extends BodyParseResult {
-  id: number
-  url: string
-  createdAt: Date
-  lastEditedAt: Date
-  title: string
-  labels: string[]
-  reactions: ParsedReactionGroup[]
-  comments: ParsedComment[]
 }
 
 // const includedLabelTypes = ['blog', 'tag', 'series']
@@ -184,8 +166,8 @@ export const isGoodLabel = (labelName: string) => {
 }
 
 const parseReactionGroups = (
-  reactionGroups: ReactionGroup[]
-): ParsedReactionGroup[] => {
+  reactionGroups: QueryReactionGroup[]
+): ReactionGroup[] => {
   const emojis = {
     CONFUSED: '😕',
     EYES: '👀',
@@ -206,7 +188,7 @@ const parseReactionGroups = (
     }))
 }
 
-const parseComment = async (node: BlogComment): Promise<ParsedComment> => {
+const parseComment = async (node: QueryComment): Promise<Comment> => {
   const { body, createdAt, reactionGroups, ...rest } = node
   const htmlNodes = await markdownRenderer.run(markdownRenderer.parse(body))
   transformIssueLink(htmlNodes)
@@ -218,13 +200,15 @@ const parseComment = async (node: BlogComment): Promise<ParsedComment> => {
   }
 }
 
-export const parseLabel = (label: BlogLabel): ParsedLabel => {
+export const parseLabel = (label: QueryLabel): UnimagedBlogLabel => {
   const [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-export const parsePost = async (node: BlogIssue): Promise<ParsedPost> => {
+export const parsePost = async (
+  node: QueryIssue
+): Promise<UnimagedBlogPost> => {
   try {
     return {
       id: node.number,

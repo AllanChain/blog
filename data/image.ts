@@ -7,7 +7,13 @@ import mime from 'mime'
 const { getExtension } = mime
 import sharp from 'sharp'
 
-import { ParsedLabel, ParsedPost } from './parser'
+import type {
+  BlogLabel,
+  BlogPost,
+  Image,
+  UnimagedBlogLabel,
+  UnimagedBlogPost,
+} from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const isGitHubImageAbbr = (s: string) =>
@@ -15,6 +21,8 @@ const isGitHubImageAbbr = (s: string) =>
 const expandGitHubImageAbbr = (s: string, userId: string) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = (s: string) => s.startsWith('http')
+const isGitHubHostedImage = (s: string) =>
+  /user-images.githubusercontent.com/.test(s)
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const guessUnknownFilename = (hash: string) => {
@@ -71,23 +79,30 @@ const getImageDownloadLocation = async (
   }
 }
 
-interface ImageInfo {
-  lazySrc: string
-  src: string
-}
-
-const getImageInfo = async (url: string, hint?: string): Promise<ImageInfo> => {
+const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
+  if (!isGitHubHostedImage(url)) {
+    console.warn(`::warn:: [${hint}] ${url} is not a GitHub hosted image`)
+  }
   const { filename, dest } = await getImageDownloadLocation(url, hint)
 
   try {
-    const { data } = await sharp(dest)
-      .jpeg({ quality: 10 })
-      .resize(9)
-      .toBuffer({ resolveWithObject: true })
+    const { width, height } = await sharp(dest).metadata()
+    const origExt = extname(filename)
+    // The quality of PNG outperforms JPEG when both in 500 B.
+    const ext = 'png'
+    const lazyDest = dest.replace(origExt, `.low-res.${ext}`)
+    const lazyFilename = filename.replace(origExt, `.low-res.${ext}`)
+    await sharp(dest)
+      .resize(12)
+      .toFormat(ext, { quality: 10, compressionLevel: 9 })
+      .toFile(lazyDest)
 
+    const urlPrefix = import.meta.env.BASE_URL + 'img/'
     return {
-      lazySrc: data.toString('base64'),
-      src: import.meta.env.BASE_URL + 'img/' + filename,
+      lazySrc: urlPrefix + lazyFilename,
+      src: urlPrefix + filename,
+      width,
+      height,
     }
   } catch (err) {
     throw new Error(
@@ -98,28 +113,27 @@ const getImageInfo = async (url: string, hint?: string): Promise<ImageInfo> => {
 
 export const useCachedLabelLogo = async (
   userId: string,
-  label: ParsedLabel
-): Promise<ParsedLabel & { logoLazy?: string }> => {
-  if (!label.logo) return label
-
-  let imageInfo: ImageInfo
-
-  if (isGitHubImageAbbr(label.logo)) {
-    imageInfo = await getImageInfo(expandGitHubImageAbbr(label.logo, userId))
-  } else if (isInternetImage(label.logo)) {
-    imageInfo = await getImageInfo(label.logo)
-  } // else do nothing, backward capability
-
+  label: UnimagedBlogLabel
+): Promise<BlogLabel> => {
+  const hint = label.id
   return {
     ...label,
-    logoLazy: imageInfo.lazySrc,
-    logo: imageInfo.src,
+    logo:
+      label.logo === undefined
+        ? undefined
+        : isGitHubImageAbbr(label.logo)
+        ? await getImageInfo(expandGitHubImageAbbr(label.logo, userId), hint)
+        : isInternetImage(label.logo)
+        ? await getImageInfo(label.logo, hint)
+        : undefined,
   }
 }
 
-export const useCachedPostImage = async (post: ParsedPost) => {
-  if (!post.image) return
-  const imageInfo = await getImageInfo(post.image, post.slug)
-  post.image = imageInfo.src
-  post.imageLazy = imageInfo.lazySrc
+export const useCachedPostImage = async (
+  post: UnimagedBlogPost
+): Promise<BlogPost> => {
+  return {
+    ...post,
+    image: post.image ? await getImageInfo(post.image, post.slug) : undefined,
+  }
 }

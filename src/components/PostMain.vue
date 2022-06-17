@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BlogPost, BlogLabel } from '@data'
+import { BlogPost, BlogLabel } from '@data/types'
 import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from './PostLabel.vue'
 
@@ -40,7 +40,7 @@ defineProps<{
       </div>
     </div>
 
-    <img v-if="post.image" :src="post.image" alt="Header" max-w-full my-2 />
+    <img v-if="post.image" :src="post.image.lazySrc" alt="Header" w-full my-2 />
     <div
       class="markdown-body"
       v-html="post.summary"

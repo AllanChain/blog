@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { BlogLabel } from '@data'
+import { BlogLabel } from '@data/types'
 import { isDarkColor } from '@/utils'
 
 defineProps<{

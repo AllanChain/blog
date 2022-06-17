@@ -5,13 +5,8 @@ import { GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 
 import { gqlVar } from './config'
-import {
-  isGoodLabel,
-  ParsedLabel,
-  ParsedPost,
-  parseLabel,
-  parsePost,
-} from './parser'
+import { isGoodLabel, parseLabel, parsePost } from './parser'
+import type { BlogLabel, BlogPost } from './types'
 import { useCachedLabelLogo, useCachedPostImage } from './image'
 import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
 
@@ -59,15 +54,10 @@ const writeExtraData = (extraData) => {
   )
 }
 
-export interface BlogPost extends ParsedPost {
-  imageLazy?: string
-}
-
-export interface BlogLabel extends ParsedLabel {
-  logoLazy?: string
-}
-
-export default (async () => {
+export default (async (): Promise<{
+  posts: BlogPost[]
+  labels: Record<string, BlogLabel>
+}> => {
   console.log('Preparing blog data...')
   mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
 
@@ -77,7 +67,7 @@ export default (async () => {
   writeExtraData(extraData)
   console.log('  Processing posts...')
   const posts = await Promise.all(repo.issues.nodes.map(parsePost))
-  const labels: Record<string, ParsedLabel> = {}
+  const labels: Record<string, BlogLabel> = {}
 
   console.log('  Fetching label logos...')
   if (!('databaseId' in repo.owner)) throw new Error('Owner is not a user')
@@ -92,7 +82,7 @@ export default (async () => {
   }
 
   console.log('  Fetching post images...')
-  await Promise.all(posts.map(useCachedPostImage))
+  const processedPosts = await Promise.all(posts.map(useCachedPostImage))
   console.log('Done!')
-  return { posts, labels }
+  return { posts: processedPosts, labels }
 })()
