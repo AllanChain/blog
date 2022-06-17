@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <main class="max-w-2xl mx-auto px-5">
+  <main max-w-3xl mx-auto px-5>
     <h1 text-center>{{ post.title }}</h1>
 
     <div text-center my-1>
@@ -19,17 +19,23 @@ defineProps<{
 
     <div text-center my-1 text-gray-800 select-none>
       <div
-        class="inline-flex items-center text-center mx-1"
         :title="formatLocalDate(post.createdAt)"
+        inline-flex
+        items-center
+        text-center
+        mx-1
       >
-        <div class="i-carbon-calendar mx-1"></div>
+        <div i-carbon-calendar mx-1></div>
         <div>{{ formatDate(post.createdAt) }}</div>
       </div>
       <div
-        class="inline-flex items-center text-center mx-1"
         :title="formatLocalDate(post.lastEditedAt)"
+        inline-flex
+        items-center
+        text-center
+        mx-1
       >
-        <div class="i-carbon-edit mx-1"></div>
+        <div i-carbon-edit mx-1></div>
         <div>{{ formatDate(post.lastEditedAt) }}</div>
       </div>
     </div>
