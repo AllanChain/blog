@@ -2,6 +2,7 @@
 import { BlogPost, BlogLabel } from '@data/types'
 import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from './PostLabel.vue'
+import LQIP from './LQIP.vue'
 
 defineProps<{
   post: BlogPost
@@ -40,7 +41,15 @@ defineProps<{
       </div>
     </div>
 
-    <img v-if="post.image" :src="post.image.lazySrc" alt="Header" w-full my-2 />
+    <LQIP
+      v-if="post.image"
+      :src="post.image.src"
+      :lazy-src="post.image.lazySrc"
+      :width="post.image.width"
+      :height="post.image.height"
+      alt="Header"
+      class="w-full my-2"
+    />
     <div
       class="markdown-body"
       v-html="post.summary"
