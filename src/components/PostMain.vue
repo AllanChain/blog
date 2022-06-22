@@ -3,6 +3,7 @@ import { BlogPost, BlogLabel } from '@data/types'
 import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from './PostLabel.vue'
 import LQIP from './LQIP.vue'
+import PostDate from './PostDate.vue'
 
 defineProps<{
   post: BlogPost
@@ -18,28 +19,11 @@ defineProps<{
       <PostLabel v-for="label in labels" :label="label" :key="label.id" />
     </div>
 
-    <div text-center my-1 text-gray-800 select-none>
-      <div
-        :title="formatLocalDate(post.createdAt)"
-        inline-flex
-        items-center
-        text-center
-        mx-1
-      >
-        <div i-carbon-calendar mx-1></div>
-        <div>{{ formatDate(post.createdAt) }}</div>
-      </div>
-      <div
-        :title="formatLocalDate(post.lastEditedAt)"
-        inline-flex
-        items-center
-        text-center
-        mx-1
-      >
-        <div i-carbon-edit mx-1></div>
-        <div>{{ formatDate(post.lastEditedAt) }}</div>
-      </div>
-    </div>
+    <PostDate
+      :created-at="post.createdAt"
+      :last-edited-at="post.lastEditedAt"
+      class="text-center"
+    />
 
     <LQIP
       v-if="post.image"
