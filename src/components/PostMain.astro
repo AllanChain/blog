@@ -79,7 +79,7 @@ const { post } = Astro.props as Props
           </div>
         </div>
 
-        <div set:html={comment.body} />
+        <div class="markdown-body" set:html={comment.body} />
       </div>
     ))}
   </div>
@@ -115,6 +115,25 @@ const { post } = Astro.props as Props
       line-height: 1.5;
     }
 
+    blockquote {
+      border-left: 0.25em solid #a1abc0;
+      padding-left: 1em;
+    }
+
+    a {
+      word-break: break-word;
+    }
+
+    img {
+      background: transparent;
+      max-width: 100%;
+      &:only-child {
+        display: block;
+        margin: auto;
+      }
+    }
+
+    // Code styles
     & :not(pre) > code {
       color: #476582;
       padding: 0.15rem 0.35rem;
@@ -122,34 +141,19 @@ const { post } = Astro.props as Props
       background-color: rgba(27, 31, 35, 0.05);
       border-radius: 3px;
     }
+    pre {
+      overflow: auto;
+      line-height: 1.5;
+      border-radius: 3px;
+      code {
+        color: #eee8d5;
+        font-family: $font-mono;
+        padding: 16px;
+      }
+    }
   }
 
   article.article-main.markdown-body {
-    mjx-container[display='true'] {
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
-
-    // Code styles
-
-    pre,
-    .highlight pre {
-      padding: 16px;
-      overflow: auto;
-      line-height: 1.45;
-      background-color: #282c34;
-      border-radius: 3px;
-      font-size: 95%;
-      code {
-        color: #eee8d5;
-        font-weight: normal;
-        font-family: $font-mono;
-
-        &.hljs {
-          padding: 0; // Reset padding from theme
-        }
-      }
-    }
     .highlight {
       position: relative;
       font-family: $font-mono;
@@ -166,8 +170,8 @@ const { post } = Astro.props as Props
       }
       @include full-width(-20px);
     }
-    & :not(.highlight) > pre {
-      @include full-width(-20px);
+    & > pre {
+      @include full-width(-1.25rem);
     }
 
     // Heading styles
@@ -180,24 +184,6 @@ const { post } = Astro.props as Props
       }
       &:hover .anchor-hover {
         opacity: 1;
-      }
-    }
-
-    blockquote {
-      border-left: 0.25em solid #a1abc0;
-      padding-left: 1em;
-    }
-
-    a {
-      word-break: break-word;
-    }
-
-    img {
-      background: transparent;
-      max-width: 100%;
-      &:only-child {
-        display: block;
-        margin: auto;
       }
     }
   }
