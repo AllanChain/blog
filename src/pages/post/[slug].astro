@@ -2,14 +2,12 @@
 import 'highlight.js/styles/atom-one-dark.css'
 import 'normalize.css'
 import 'unocss-hmr-fix'
-import '@/styles/lqip.css'
 import dataPromise from '@data'
-import type { BlogPost, BlogLabel } from '@data/types'
-import PostMain from '@components/PostMain.vue'
+import type { BlogPost } from '@data/types'
+import PostMain from '@components/PostMain.astro'
 
 export interface Props {
   post: BlogPost
-  labels: BlogLabel[]
 }
 
 export async function getStaticPaths() {
@@ -20,12 +18,11 @@ export async function getStaticPaths() {
     },
     props: {
       post,
-      labels: post.labels.map((name) => labels[name]),
     },
   }))
 }
 
-const { post, labels } = Astro.props as Props
+const { post } = Astro.props as Props
 ---
 
 <title>{post.title}</title>
@@ -39,5 +36,5 @@ const { post, labels } = Astro.props as Props
 )}
 
 <body>
-  <PostMain post={post} labels={labels} />
+  <PostMain post={post} />
 </body>

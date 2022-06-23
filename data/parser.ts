@@ -18,12 +18,11 @@ import {
   QueryReactionGroup,
   Comment,
   BlogLabel,
-  BlogPost,
   ReactionGroup,
-  UnimagedBlogPost,
-  UnimagedBlogLabel,
+  BlogPost,
 } from './types'
 import type { Root } from 'remark-parse/lib'
+
 interface BodyParseResult {
   slug: string
   body: string
@@ -33,6 +32,11 @@ interface BodyParseResult {
   createdAt?: Date
 }
 
+type LabelParseReslt = Omit<BlogLabel, 'logo' | 'reference'> & { logo?: string }
+type PostParseResult = Omit<BlogPost, 'image' | 'labels'> & {
+  image?: string
+  labels: string[]
+}
 // const includedLabelTypes = ['blog', 'tag', 'series']
 
 const markdownRenderer = unified()
@@ -200,15 +204,13 @@ const parseComment = async (node: QueryComment): Promise<Comment> => {
   }
 }
 
-export const parseLabel = (label: QueryLabel): UnimagedBlogLabel => {
+export const parseLabel = (label: QueryLabel): LabelParseReslt => {
   const [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
-export const parsePost = async (
-  node: QueryIssue
-): Promise<UnimagedBlogPost> => {
+export const parsePost = async (node: QueryIssue): Promise<PostParseResult> => {
   try {
     return {
       id: node.number,

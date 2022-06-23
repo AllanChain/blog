@@ -7,13 +7,7 @@ import mime from 'mime'
 const { getExtension } = mime
 import sharp from 'sharp'
 
-import type {
-  BlogLabel,
-  BlogPost,
-  Image,
-  UnimagedBlogLabel,
-  UnimagedBlogPost,
-} from './types'
+import type { BlogPost, Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const isGitHubImageAbbr = (s: string) =>
@@ -27,7 +21,7 @@ const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const guessUnknownFilename = (hash: string) => {
   for (const file of readdirSync(imageCacheDir)) {
-    if (file.startsWith(hash)) return file
+    if (file.startsWith(hash) && file.length === hash.length + 4) return file
   }
   return null
 }
@@ -111,10 +105,12 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
   }
 }
 
-export const useCachedLabelLogo = async (
+export const transformLabelLogo = async <
+  T extends { id: string; logo?: string }
+>(
   userId: string,
-  label: UnimagedBlogLabel
-): Promise<BlogLabel> => {
+  label: T
+): Promise<Omit<T, 'logo'> & { logo: Image }> => {
   const hint = label.id
   return {
     ...label,
@@ -129,9 +125,11 @@ export const useCachedLabelLogo = async (
   }
 }
 
-export const useCachedPostImage = async (
-  post: UnimagedBlogPost
-): Promise<BlogPost> => {
+export const transformPostImage = async <
+  T extends { image?: string; slug: string }
+>(
+  post: T
+): Promise<Omit<T, 'image'> & { image: Image }> => {
   return {
     ...post,
     image: post.image ? await getImageInfo(post.image, post.slug) : undefined,

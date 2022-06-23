@@ -13,19 +13,18 @@ defineProps<{
       inline-flex
       items-center
       text-center
-      mx-1
     >
-      <div i-carbon-calendar mx-1></div>
+      <div i-carbon-calendar mr-1></div>
       <div>{{ formatDate(createdAt) }}</div>
     </div>
+    <div inline-block w-3></div>
     <div
       :title="formatLocalDate(lastEditedAt)"
       inline-flex
       items-center
       text-center
-      mx-1
     >
-      <div i-carbon-edit mx-1></div>
+      <div i-carbon-edit mr-1></div>
       <div>{{ formatDate(lastEditedAt) }}</div>
     </div>
   </div>

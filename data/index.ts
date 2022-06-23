@@ -7,7 +7,7 @@ import { load as loadYAML } from 'js-yaml'
 import { gqlVar } from './config'
 import { isGoodLabel, parseLabel, parsePost } from './parser'
 import type { BlogLabel, BlogPost } from './types'
-import { useCachedLabelLogo, useCachedPostImage } from './image'
+import { transformLabelLogo, transformPostImage } from './image'
 import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
 
 const cacheDir = resolvePath(process.cwd(), 'data/.cache')
@@ -66,7 +66,9 @@ export default (async (): Promise<{
   const extraData = loadYAML(repo.extraData.bodyText)
   writeExtraData(extraData)
   console.log('  Processing posts...')
-  const posts = await Promise.all(repo.issues.nodes.map(parsePost))
+  const parsedPosts = (
+    await Promise.all(repo.issues.nodes.map(parsePost))
+  ).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
   const labels: Record<string, BlogLabel> = {}
 
   console.log('  Fetching label logos...')
@@ -74,15 +76,29 @@ export default (async (): Promise<{
   const userDatabaseId = String(repo.owner.databaseId)
   for (const label of repo.labels.nodes) {
     if (isGoodLabel(label.name)) {
-      labels[label.name] = await useCachedLabelLogo(
-        userDatabaseId,
-        parseLabel(label)
-      )
+      labels[label.name] = await transformLabelLogo(userDatabaseId, {
+        ...parseLabel(label),
+        reference: 0,
+      })
     }
   }
+  const posts = await Promise.all(
+    parsedPosts
+      .map((post) => ({
+        ...post,
+        labels: Object.values(labels).filter((label) =>
+          post.labels.includes(label.id)
+        ),
+      }))
+      .map(transformPostImage)
+  )
+  posts.forEach((post) => {
+    post.labels.forEach((label) => {
+      label.reference += 1
+    })
+  })
 
   console.log('  Fetching post images...')
-  const processedPosts = await Promise.all(posts.map(useCachedPostImage))
   console.log('Done!')
-  return { posts: processedPosts, labels }
+  return { posts, labels }
 })()

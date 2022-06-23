@@ -25,9 +25,10 @@ export type Comment = Omit<QueryComment, 'reactionGroups'> & {
 export interface BlogLabel extends QueryLabel {
   id: string
   type: string
-  logo: Image
+  reference: number
+  logo?: Image
 }
-export type UnimagedBlogLabel = Omit<BlogLabel, 'logo'> & { logo?: string }
+// export type UnimagedBlogLabel = Omit<BlogLabel, 'logo'> & { logo?: string }
 
 export interface BlogPost {
   id: number
@@ -40,9 +41,12 @@ export interface BlogPost {
   createdAt: Date
   lastEditedAt: Date
   title: string
-  labels: string[]
+  labels: BlogLabel[]
   reactions: ReactionGroup[]
   comments: Comment[]
 }
 
-export type UnimagedBlogPost = Omit<BlogPost, 'image'> & { image?: string }
+// export type UnimagedBlogPost = Omit<BlogPost, 'image'> & { image?: string }
+// export type UnimagedUnlabeledBlogPost = Omit<UnimagedBlogPost, 'labels'> & {
+//   labels?: string[]
+// }

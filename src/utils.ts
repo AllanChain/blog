@@ -1,4 +1,4 @@
-export const isDarkColor = (color: string, threshold = 50) => {
+export const isDarkColor = (color: string, threshold = 101) => {
   const rgb = parseInt(color, 16) // convert rrggbb to decimal
   const r = (rgb >> 16) & 0xff
   const g = (rgb >> 8) & 0xff
@@ -13,4 +13,8 @@ export const formatDate = (date: Date) => {
 
 export const formatLocalDate = (date: Date) => {
   return date.toLocaleString()
+}
+
+export const postLink = (slug: string) => {
+  return `${import.meta.env.BASE_URL}post/${slug}`
 }
