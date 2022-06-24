@@ -10,6 +10,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import { visit, EXIT, CONTINUE } from 'unist-util-visit'
+import type { HastRoot, MdastRoot } from 'remark-rehype/lib'
 
 import {
   QueryComment,
@@ -21,7 +22,6 @@ import {
   ReactionGroup,
   BlogPost,
 } from './types'
-import type { Root } from 'remark-parse/lib'
 
 interface BodyParseResult {
   slug: string
@@ -39,6 +39,52 @@ type PostParseResult = Omit<BlogPost, 'image' | 'labels'> & {
 }
 // const includedLabelTypes = ['blog', 'tag', 'series']
 
+const transformIssueLink = () => (htmlNodes: HastRoot) => {
+  visit(htmlNodes, 'element', (node) => {
+    if (
+      node.tagName === 'a' &&
+      typeof node.properties.href === 'string' &&
+      node.properties.href.match(/^\d+$/) &&
+      node.children[0].type === 'text'
+    ) {
+      node.properties.href = `../${node.children[0].value}`
+    }
+  })
+}
+
+const enhanceCodeBlock = () => (htmlNodes: HastRoot) => {
+  visit(htmlNodes, 'element', (node) => {
+    if (
+      node.tagName === 'pre' &&
+      node.children[0].type === 'element' &&
+      node.children[0].tagName === 'code'
+    ) {
+      const codeElement = node.children[0]
+      if (codeElement.properties.className) {
+        const classNames = codeElement.properties.className as string[]
+        const language = classNames
+          .find((className) => className.startsWith('language-'))
+          .slice('language-'.length)
+        node.children.push({
+          type: 'element',
+          tagName: 'div',
+          properties: {
+            className: ['code-lang'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: language,
+            },
+          ],
+        })
+      } else {
+        codeElement.properties.className = ['hljs']
+      }
+    }
+  })
+}
+
 const markdownRenderer = unified()
   .use(remarkParse)
   .use(emoji)
@@ -48,15 +94,9 @@ const markdownRenderer = unified()
   .use(rehypeKatex)
   // .use(rehypeSanitize)
   .use(rehypeHighlight, { ignoreMissing: true, subset: false })
+  .use(transformIssueLink)
+  .use(enhanceCodeBlock)
   .use(rehypeStringify)
-
-const transformIssueLink = (htmlNodes) => {
-  visit(htmlNodes, 'element', (node) => {
-    if (node.tagName === 'a' && node.properties.href.match(/^\d+$/)) {
-      node.properties.href = `../${node.children[0].value}`
-    }
-  })
-}
 
 const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
@@ -66,7 +106,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     (node) => node.type === 'thematicBreak'
   )
   if (hrIndex === -1) throw new Error('Post need <hr>')
-  const frontNodes: Root = {
+  const frontNodes: MdastRoot = {
     type: 'root',
     children: nodes.children.slice(0, hrIndex),
   }
@@ -99,7 +139,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     }
   })
 
-  let summaryNode: Root
+  let summaryNode: MdastRoot
   visit(frontNodes, 'blockquote', (node) => {
     summaryNode = {
       type: 'root',
@@ -152,7 +192,6 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     })
   })
 
-  transformIssueLink(htmlNodes)
   result.body = markdownRenderer.stringify(htmlNodes)
   // result.body = new ChainHTML(result.body)
   //   .use(htmlPlugins.codeLang)
@@ -194,12 +233,10 @@ const parseReactionGroups = (
 
 const parseComment = async (node: QueryComment): Promise<Comment> => {
   const { body, createdAt, reactionGroups, ...rest } = node
-  const htmlNodes = await markdownRenderer.run(markdownRenderer.parse(body))
-  transformIssueLink(htmlNodes)
   return {
     ...rest,
     createdAt: new Date(createdAt),
-    body: markdownRenderer.stringify(htmlNodes),
+    body: String(await markdownRenderer.process(body)),
     reactions: parseReactionGroups(reactionGroups),
   }
 }
