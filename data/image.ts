@@ -1,13 +1,12 @@
-import { readdirSync, stat, createWriteStream } from 'fs'
+import { readdirSync, createWriteStream } from 'fs'
+import { stat } from 'fs/promises'
 import { resolve as resolvePath, join, extname } from 'path'
-import { promisify } from 'util'
 import { createHash } from 'crypto'
 import axios from 'axios'
 import mime from 'mime'
-const { getExtension } = mime
 import sharp from 'sharp'
 
-import type { BlogPost, Image } from './types'
+import type { Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const isGitHubImageAbbr = (s: string) =>
@@ -40,7 +39,7 @@ const getImageDownloadLocation = async (
     const dest = resolveDest(filename)
 
     try {
-      const stats = await promisify(stat)(dest)
+      const stats = await stat(dest)
       if (stats.size > 100) return { filename, dest }
       console.log(`    ${dest} too small`)
     } catch (err) {
@@ -57,7 +56,7 @@ const getImageDownloadLocation = async (
       responseType: 'stream',
     })
     // note mime returns ext without dot
-    let ext = getExtension(response.headers['content-type'])
+    let ext = mime.getExtension(response.headers['content-type'])
     if (ext === 'jpeg') ext = 'jpg' // prefer jpg extension
     const filename = `${hash}.${ext}`
     const dest = resolveDest(filename)
@@ -86,11 +85,13 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
     const ext = 'png'
     const lazyDest = dest.replace(origExt, `.low-res.${ext}`)
     const lazyFilename = filename.replace(origExt, `.low-res.${ext}`)
-    await sharp(dest)
-      .resize(12)
-      .toFormat(ext, { quality: 10, compressionLevel: 9 })
-      .toFile(lazyDest)
-
+    const stats = await stat(dest)
+    if (stats.size < 100) {
+      await sharp(dest)
+        .resize(12)
+        .toFormat(ext, { quality: 10, compressionLevel: 9 })
+        .toFile(lazyDest)
+    }
     const urlPrefix = import.meta.env.BASE_URL + 'img/'
     return {
       lazySrc: urlPrefix + lazyFilename,
