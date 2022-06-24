@@ -8,6 +8,7 @@ specifiers:
   '@graphql-codegen/typescript-graphql-request': ^4.4.10
   '@graphql-codegen/typescript-operations': ^2.4.2
   '@iconify-json/carbon': ^1.1.5
+  '@iconify-json/mdi': ^1.1.22
   '@types/github-slugger': ^1.3.0
   '@types/remark-prism': ^1.3.3
   '@types/sharp': ^0.30.4
@@ -60,6 +61,7 @@ devDependencies:
   '@graphql-codegen/typescript-graphql-request': 4.4.10_omgwevvbyntsqorgwjvjoz6aaq
   '@graphql-codegen/typescript-operations': 2.4.2_graphql@16.5.0
   '@iconify-json/carbon': 1.1.5
+  '@iconify-json/mdi': 1.1.22
   '@types/github-slugger': 1.3.0
   '@types/remark-prism': 1.3.3
   '@types/sharp': 0.30.4
@@ -1335,6 +1337,12 @@ packages:
 
   /@iconify-json/carbon/1.1.5:
     resolution: {integrity: sha512-ENl8CIEo+7JcRzpJ/58i+dDc3fkNOO7gyNGg4S4JN5cAiVpvltYTVO86Oei7rpl8bKypJ0vk3B0BbzzTw7DclA==}
+    dependencies:
+      '@iconify/types': 1.1.0
+    dev: true
+
+  /@iconify-json/mdi/1.1.22:
+    resolution: {integrity: sha512-nRc6M2i47uPDLgpP8ADBdPYTomGivULEigBLF7WhmEh4gh7ZHh8GpW9lcYei/GuWpsJc0RwlEWxxERwsNk5oDA==}
     dependencies:
       '@iconify/types': 1.1.0
     dev: true

@@ -1,0 +1,14 @@
+---
+import dataPromise from '@data'
+import type { BlogPost, BlogLabel } from '@data/types'
+import 'unocss-hmr-fix'
+import PostCards from '@components/PostCards.astro'
+
+const { posts, labels } = await dataPromise
+---
+
+<title>All</title>
+
+<body class='bg-gray-100'>
+  <PostCards posts={posts} />
+</body>

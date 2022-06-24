@@ -19,7 +19,9 @@ export default defineConfig({
           'dash-divider',
           'border-t-2 border-gray-400 border-t-dashed flex-grow h-0 mx-2',
         ],
+        ['icon', 'inline-block'],
       ],
+      rules: [[/^grow-([\d.]+)$/, ([, d]) => ({ 'flex-grow': d })]],
     }),
   ],
 })

@@ -1,4 +1,9 @@
 ---
+import 'unocss-hmr-fix'
+import dataPromise from '@data'
+import PostCards from '@components/PostCards.astro'
+
+const { posts } = await dataPromise
 ---
 
 <html lang='en'>
@@ -10,5 +15,63 @@
     <link rel='icon' type='image/x-icon' href='/favicon.ico' />
   </head>
 
-  <body> Index page</body>
+  <body class='px-2'>
+    <div flex flex-wrap justify-evenly items-center>
+      <img
+        src='/avatar/300.jpg'
+        alt='Avatar'
+        width='200'
+        height='200'
+        rounded-full
+        mx-8
+      />
+
+      <div w-md class='grow-0.3'>
+        <h3>👋 Hi!</h3>
+        <p>I'm Allan Chain. Thanks for your interest in my blog!</p>
+        <p>
+          I'm a programming hobbyist and open source lover. My primary
+          programming languages are Python <i icon i-mdi-language-python></i> and
+          JavaScript <i icon i-mdi-language-javascript></i>. I'm also having (or
+          had) "fun" with
+          <i icon i-mdi-docker></i>
+          <i icon i-mdi-manjaro></i>
+          <i icon i-mdi-raspberry-pi></i>
+          <i icon i-mdi-minecraft></i>
+          <i icon i-mdi-language-java></i>
+          <i icon i-mdi-language-go></i>
+          <i icon i-mdi-language-rust></i>
+        </p>
+        <p>
+          This blog mainly hosts my notes when programming, as well as some
+          other interesting bits.
+        </p>
+      </div>
+    </div>
+    <div
+      text-amber-600
+      border='1 amber-500 rounded-md l-10'
+      p='y-2 x-4'
+      mx-auto
+      max-w-2xl
+    >
+      <i icon i-mdi-gold text-xl mr-2></i>
+      We will glow in the dark turning dust to gold.
+      <div float-right text-blue-500>
+        <i icon i-mdi-video></i>
+        <a
+          text-current
+          decoration-none
+          href='https://www.bilibili.com/video/bv14h411R7iL'
+        >
+          Dream It Possible
+        </a>
+      </div>
+      <div clear-both></div>
+    </div>
+    <div>Here are some recent blogs</div>
+    <div>
+      <PostCards posts={posts.slice(0, 6)} />
+    </div>
+  </body>
 </html>

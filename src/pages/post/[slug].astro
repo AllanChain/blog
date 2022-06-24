@@ -11,7 +11,7 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const { posts, labels } = await dataPromise
+  const { posts } = await dataPromise
   return posts.map((post) => ({
     params: {
       slug: post.slug,
@@ -25,16 +25,23 @@ export async function getStaticPaths() {
 const { post } = Astro.props as Props
 ---
 
-<title>{post.title}</title>
-{post.body.includes('katex') && (
-  <link
-    rel="stylesheet"
-    href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
-    integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="
-    crossorigin="anonymous"
-  />
-)}
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
 
-<body>
-  <PostMain post={post} />
-</body>
+    <title>{post.title}</title>
+    {post.body.includes('katex') && (
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
+        integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="
+        crossorigin="anonymous"
+      />
+    )}
+  </head>
+
+  <body>
+    <PostMain post={post} />
+  </body>
+</html>

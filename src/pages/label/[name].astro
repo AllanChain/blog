@@ -1,8 +1,8 @@
 ---
 import dataPromise from '@data'
 import type { BlogPost, BlogLabel } from '@data/types'
-import PostCard from '@/components/PostCard.astro'
 import 'unocss-hmr-fix'
+import PostCards from '@components/PostCards.astro'
 
 export interface Props {
   label: BlogLabel
@@ -29,13 +29,5 @@ const { label, posts } = Astro.props as Props
 
 <body class='bg-gray-100'>
   <h1>All posts with label `{label.id}`</h1>
-  <div class='flex flex-wrap items-center justify-evenly'>
-    {posts.map((post) => (
-      <div class="m-1 w-xs" style="flex-grow: 0.3;">
-        <PostCard post={post} />
-      </div>
-    ))}
-    <!-- Dummy elements to take space -->
-    {[0, 1, 2].map(() => <div class="m-1 w-xs" style="flex-grow: 0.3;" />)}
-  </div>
+  <PostCards posts={posts} />
 </body>

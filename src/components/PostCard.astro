@@ -11,14 +11,18 @@ export interface Props {
 
 const { post } = Astro.props as Props
 
-const uncommonLabel = post.labels.reduce((previous, current) =>
-  current.logo && previous.reference > current.reference ? current : previous
-)
+const uncommonLabel = post.labels.length
+  ? post.labels.reduce((previous, current) =>
+      current.logo && previous.reference > current.reference
+        ? current
+        : previous
+    )
+  : undefined
 ---
 
-<div overflow-hidden border='rounded-md' shadow-md bg-white>
+<div overflow-hidden border='rounded-md' shadow-md bg-white m-1 w-xs>
   {post.image && (
-    <div>
+    <div max-h-40 overflow-hidden flex items-center>
       <LQIP
         client:visible
         src={post.image.src}
@@ -36,7 +40,7 @@ const uncommonLabel = post.labels.reduce((previous, current) =>
     </h3>
     <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
 
-    {!post.image && uncommonLabel && (
+    {!post.image && uncommonLabel?.logo && (
       <div
         w-15
         h-15

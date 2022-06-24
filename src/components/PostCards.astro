@@ -1,0 +1,20 @@
+---
+import { BlogPost } from '@data/types'
+import PostCard from './PostCard.astro'
+
+export interface Props {
+  posts: BlogPost[]
+}
+
+const { posts } = Astro.props as Props
+---
+
+<div class='flex flex-wrap items-center justify-evenly'>
+  {posts.map((post) => (
+    <div class="m-1 w-xs" style="flex-grow: 0.3;">
+      <PostCard post={post} />
+    </div>
+  ))}
+  <!-- Dummy elements to take space -->
+  {[0, 1, 2].map(() => <div class="m-1 w-xs" style="flex-grow: 0.3;" />)}
+</div>
