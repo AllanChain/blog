@@ -79,7 +79,7 @@ const { post } = Astro.props as Props
           </div>
         </div>
 
-        <div class="markdown-body" set:html={comment.body} />
+        <div class="comment markdown-body" set:html={comment.body} />
       </div>
     ))}
   </div>
@@ -118,6 +118,7 @@ const { post } = Astro.props as Props
     blockquote {
       border-left: 0.25em solid #a1abc0;
       padding-left: 1em;
+      margin: 1rem;
     }
 
     a {
@@ -145,36 +146,33 @@ const { post } = Astro.props as Props
       overflow: auto;
       line-height: 1.5;
       border-radius: 3px;
-      code {
-        color: #eee8d5;
-        font-family: $font-mono;
-        padding: 16px;
-      }
-    }
-  }
-
-  article.article-main.markdown-body {
-    .highlight {
       position: relative;
       font-family: $font-mono;
-      .code-bar {
+      .code-lang {
         position: absolute;
         top: 0.2em;
         right: 0.6em;
         font-size: 0.75rem;
         color: rgba(255, 255, 255, 0.6);
-
-        .mdi-content-copy:hover {
-          color: white;
-        }
       }
-      @include full-width(-20px);
+      code {
+        color: #eee8d5;
+        padding: 16px;
+      }
     }
+  }
+
+  .article-main.markdown-body {
     & > pre {
       @include full-width(-1.25rem);
     }
-
-    // Heading styles
+  }
+  .comment.markdown-body {
+    & > pre {
+      @include full-width(-2rem);
+    }
+  }
+  article.article-main.markdown-body {
     headings {
       .anchor-hover {
         color: rgb(55, 102, 245);
@@ -204,12 +202,6 @@ const { post } = Astro.props as Props
 
     table tr {
       background-color: transparent;
-    }
-  }
-
-  .article-all {
-    @media (min-width: 1000px) {
-      max-width: 75vw;
     }
   }
 
