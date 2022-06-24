@@ -13,7 +13,7 @@ specifiers:
   '@types/remark-prism': ^1.3.3
   '@types/sharp': ^0.30.4
   astro: 1.0.0-beta.53
-  astro-uno: ^0.1.1
+  astro-uno: ^0.1.2
   axios: ^0.27.2
   dotenv: ^16.0.1
   github-slugger: ^1.4.0
@@ -66,7 +66,7 @@ devDependencies:
   '@types/remark-prism': 1.3.3
   '@types/sharp': 0.30.4
   astro: 1.0.0-beta.53_sass@1.52.3
-  astro-uno: 0.1.1_f3socbqghu6xbz735qr3k7pkoa
+  astro-uno: 0.1.2_f3socbqghu6xbz735qr3k7pkoa
   axios: 0.27.2
   dotenv: 16.0.1
   github-slugger: 1.4.0
@@ -2078,8 +2078,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /astro-uno/0.1.1_f3socbqghu6xbz735qr3k7pkoa:
-    resolution: {integrity: sha512-pgO2zVMKKWXN6+Sf+Z8necgT+bQteBS4taRddcrxAIADMBf7HlXB1HNJ6v6P3DM2F+t93avNq1800Ly+OHCXjg==}
+  /astro-uno/0.1.2_f3socbqghu6xbz735qr3k7pkoa:
+    resolution: {integrity: sha512-GSDbTkqYbwFNnwV23DPttyKka8EB7rIlB6MNpkNi4xAKpJqlVifDfPQXtikbZPonvC5SNnae/G28PF9kLaZ2eA==}
     peerDependencies:
       astro: ^1.0.0-beta.42
       unocss: '*'
