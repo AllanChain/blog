@@ -1,0 +1,26 @@
+---
+import 'unocss-hmr-fix'
+
+export interface Props {
+  title?: string
+}
+
+const { title } = Astro.props as Props
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <title>{title}</title>
+    <link
+      rel='icon'
+      type='image/x-icon'
+      href={`${import.meta.env.BASE_URL}/favicon.ico`}
+    />
+    <slot name='head'></slot>
+  </head>
+  <body>
+    <slot></slot>
+  </body>
+</html>

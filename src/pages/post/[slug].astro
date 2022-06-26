@@ -5,6 +5,7 @@ import 'unocss-hmr-fix'
 import dataPromise from '@data'
 import type { BlogPost } from '@data/types'
 import PostMain from '@components/PostMain.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export interface Props {
   post: BlogPost
@@ -25,12 +26,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props as Props
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
-
-    <title>{post.title}</title>
+<BaseLayout title={post.title}>
+  <Fragment slot='head'>
     {post.body.includes('katex') && (
       <link
         rel="stylesheet"
@@ -39,9 +36,6 @@ const { post } = Astro.props as Props
         crossorigin="anonymous"
       />
     )}
-  </head>
-
-  <body>
-    <PostMain post={post} />
-  </body>
-</html>
+  </Fragment>
+  <PostMain post={post} />
+</BaseLayout>
