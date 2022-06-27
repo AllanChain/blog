@@ -40,6 +40,9 @@ const uncommonLabel = post.labels.length
     </h3>
     <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
 
+    <div>
+      {post.labels.map((label) => <PostLabel label={label} />)}
+    </div>
     {!post.image && uncommonLabel?.logo && (
       <div
         w-15
@@ -64,9 +67,6 @@ const uncommonLabel = post.labels.length
         />
       </div>
     )}
-    <div>
-      {post.labels.map((label) => <PostLabel label={label} />)}
-    </div>
     {post.summary ? (
       <div class="markdown-body" set:html="post.summary" text="sm gray-800" />
     ) : (

@@ -15,7 +15,7 @@ defineProps<{
         ? { 'border-color': `#${label.color}`, color: `#${label.color}` }
         : { 'background-color': `#${label.color}` }
     "
-    class="post-label px-1 mx-1 text-xs shadow-sm"
+    class="post-label px-1 mx-1 my-0.5 text-xs shadow-sm"
     :class="{
       'text-gray-100': isDarkColor(label.color),
       'text-gray-900': !isDarkColor(label.color),
