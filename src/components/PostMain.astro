@@ -5,6 +5,7 @@ import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from './PostLabel.vue'
 import PostDate from './PostDate.vue'
 import LQIP from './LQIP.svelte'
+import Reactions from './Reactions.astro'
 
 export interface Props {
   post: BlogPost
@@ -48,6 +49,7 @@ const { post } = Astro.props as Props
   )}
 
   <article class='article-main markdown-body' set:html={post.body}></article>
+  <Reactions reactions={post.reactions} />
   <div flex items-center text-gray-800>
     <div dash-divider></div>
     <div>More comments on</div>
@@ -82,6 +84,7 @@ const { post } = Astro.props as Props
         </div>
 
         <div class="comment markdown-body" set:html={comment.body} />
+        <Reactions reactions={comment.reactions} />
       </div>
     ))}
   </div>
