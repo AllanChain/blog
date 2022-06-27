@@ -23,6 +23,12 @@ export default defineConfig({
           'border-t-2 border-gray-400 border-t-dashed flex-grow h-0 mx-2',
         ],
         ['icon', 'inline-block relative top-0.18em'],
+        ['card-container', 'flex flex-wrap items-center justify-evenly'],
+        ['card-item', 'm-1 w-xs grow-0.3'],
+        [
+          'theme-link',
+          'text-current decoration-none hover:decoration-dashed hover:decoration-underline',
+        ],
       ],
       rules: [[/^grow-([\d.]+)$/, ([, d]) => ({ 'flex-grow': d })]],
     }),

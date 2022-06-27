@@ -1,9 +1,10 @@
 ---
 import dataPromise from '@data'
-import PostCards from '@components/PostCards.astro'
+import PostCards from '@components/card/PostCards.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import FriendCard from '@components/card/FriendCard.astro'
 
-const { posts } = await dataPromise
+const { posts, extraData } = await dataPromise
 ---
 
 <BaseLayout title='Index'>
@@ -60,8 +61,30 @@ const { posts } = await dataPromise
     </div>
     <div clear-both></div>
   </div>
-  <div>Here are some recent blogs</div>
+  <div flex items-center my-2>
+    <div dash-divider></div>
+    <div font-bold text-xl>Recent Blogs</div>
+    <div dash-divider></div>
+  </div>
   <div>
     <PostCards posts={posts.slice(0, 6)} />
+  </div>
+  <div text-right mb-4>
+    <a theme-link text-blue-800 href='/posts/'> View more &gt;&gt;&gt;</a>
+  </div>
+  <div flex items-center my-2>
+    <div dash-divider></div>
+    <div font-bold text-xl>Friends</div>
+    <div dash-divider></div>
+  </div>
+
+  <div class='card-container'>
+    {extraData.friends.map((friend) => (
+      <div class="card-item">
+        <FriendCard friend={friend} />
+      </div>
+    ))}
+    <!-- Dummy elements to take space -->
+    {[0, 1, 2].map(() => <div class="card-item" />)}
   </div>
 </BaseLayout>

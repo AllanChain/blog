@@ -57,6 +57,7 @@ const writeExtraData = (extraData) => {
 export default (async (): Promise<{
   posts: BlogPost[]
   labels: Record<string, BlogLabel>
+  extraData: ExtraData
 }> => {
   console.log('Preparing blog data...')
   mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
@@ -108,5 +109,5 @@ export default (async (): Promise<{
 
   console.log('  Fetching post images...')
   console.log('Done!')
-  return { posts, labels }
+  return { posts, labels, extraData }
 })()
