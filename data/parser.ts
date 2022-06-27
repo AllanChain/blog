@@ -201,12 +201,6 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   return result as BodyParseResult
 }
 
-export const isGoodLabel = (labelName: string) => {
-  const result = labelName.split(': ')
-  // const { includedLabelTypes } = require('../.cache/extra.json')
-  return result.length === 2 // && includedLabelTypes.includes(result[0])
-}
-
 const parseReactionGroups = (
   reactionGroups: QueryReactionGroup[]
 ): ReactionGroup[] => {
@@ -257,9 +251,7 @@ export const parsePost = async (node: QueryIssue): Promise<PostParseResult> => {
       lastEditedAt: new Date(node.lastEditedAt || node.createdAt),
       title: node.title,
       ...(await parseBody(node.body)),
-      labels: node.labels.nodes
-        .filter((label) => isGoodLabel(label.name))
-        .map((label) => label.name),
+      labels: node.labels.nodes.map((label) => label.name),
       reactions: parseReactionGroups(node.reactionGroups),
       comments: await Promise.all(node.comments.nodes.map(parseComment)),
     }

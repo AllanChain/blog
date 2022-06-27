@@ -28,7 +28,6 @@ export interface BlogLabel extends QueryLabel {
   reference: number
   logo?: Image
 }
-// export type UnimagedBlogLabel = Omit<BlogLabel, 'logo'> & { logo?: string }
 
 export interface BlogPost {
   id: number
@@ -46,7 +45,14 @@ export interface BlogPost {
   comments: Comment[]
 }
 
-// export type UnimagedBlogPost = Omit<BlogPost, 'image'> & { image?: string }
-// export type UnimagedUnlabeledBlogPost = Omit<UnimagedBlogPost, 'labels'> & {
-//   labels?: string[]
-// }
+export interface Friend {
+  name: string
+  blog: string
+  avatar: string
+  moto: string
+}
+
+export interface ExtraData {
+  includedLabelTypes: string[]
+  friends: Friend[]
+}

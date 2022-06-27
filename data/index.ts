@@ -5,8 +5,8 @@ import { GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 
 import { gqlVar } from './config'
-import { isGoodLabel, parseLabel, parsePost } from './parser'
-import type { BlogLabel, BlogPost } from './types'
+import { parseLabel, parsePost } from './parser'
+import type { BlogLabel, BlogPost, ExtraData } from './types'
 import { transformLabelLogo, transformPostImage } from './image'
 import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
 
@@ -63,7 +63,7 @@ export default (async (): Promise<{
 
   console.log('  Fetching GitHub GraphQL data...')
   const repo = await getCacheFirstData()
-  const extraData = loadYAML(repo.extraData.bodyText)
+  const extraData = loadYAML(repo.extraData.bodyText) as ExtraData
   writeExtraData(extraData)
   console.log('  Processing posts...')
   const parsedPosts = (
@@ -72,8 +72,16 @@ export default (async (): Promise<{
   const labels: Record<string, BlogLabel> = {}
 
   console.log('  Fetching label logos...')
+
+  const isGoodLabel = (labelName: string) => {
+    const result = labelName.split(': ')
+    const { includedLabelTypes } = extraData
+    return result.length === 2 && includedLabelTypes.includes(result[0])
+  }
+
   if (!('databaseId' in repo.owner)) throw new Error('Owner is not a user')
   const userDatabaseId = String(repo.owner.databaseId)
+
   for (const label of repo.labels.nodes) {
     if (isGoodLabel(label.name)) {
       labels[label.name] = await transformLabelLogo(userDatabaseId, {
