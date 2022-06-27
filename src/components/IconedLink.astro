@@ -1,0 +1,14 @@
+---
+export interface Props {
+  icon: string
+  name: string
+  url: string
+}
+
+const { icon, name, url } = Astro.props as Props
+---
+
+<a href={url} inline-block text-current decoration-none mx-1>
+  <i icon class={icon}></i>
+  <span text-sm>{name}</span>
+</a>
