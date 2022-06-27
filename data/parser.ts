@@ -47,7 +47,11 @@ const transformIssueLink = () => (htmlNodes: HastRoot) => {
       node.properties.href.match(/^\d+$/) &&
       node.children[0].type === 'text'
     ) {
-      node.properties.href = `../${node.children[0].value}`
+      const rawUrl = node.children[0].value
+      const url = rawUrl.includes('#')
+        ? rawUrl.replace('#', '/#')
+        : rawUrl + '/'
+      node.properties.href = `${import.meta.env.BASE_URL}post/${url}`
     }
   })
 }
@@ -175,7 +179,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
 
     headings.push({ level: headingLevel, slug, content })
 
-    node.children.unshift({
+    node.children.push({
       type: 'element',
       tagName: 'a',
       properties: {
@@ -193,11 +197,6 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   })
 
   result.body = markdownRenderer.stringify(htmlNodes)
-  // result.body = new ChainHTML(result.body)
-  //   .use(htmlPlugins.codeLang)
-  //   .use(htmlPlugins.issueLink)
-  //   .use(htmlPlugins.trimIssue)
-  //   .end()
   result.serializedHeadings = JSON.stringify(headings)
   return result as BodyParseResult
 }
