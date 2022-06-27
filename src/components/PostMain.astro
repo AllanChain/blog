@@ -36,15 +36,17 @@ const { post } = Astro.props as Props
       my-2
     />
   )}
-  <div
-    class='markdown-body'
-    set:html={post.summary}
-    bg='gray-100'
-    border='2 dashed gray-400 rounded-md'
-    px-3
-    my-2
-  >
-  </div>
+  {post.summary && (
+    <div
+      class="markdown-body"
+      set:html={post.summary}
+      bg="gray-100"
+      border="2 dashed gray-400 rounded-md"
+      px-3
+      my-2
+    />
+  )}
+
   <article class='article-main markdown-body' set:html={post.body}></article>
   <div flex items-center text-gray-800>
     <div dash-divider></div>
