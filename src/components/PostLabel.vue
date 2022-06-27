@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <a
-    :href="`/label/${label.id.replace(': ', '-')}`"
+    :href="`/label/${label.id.replace(': ', '-')}/`"
     :style="
       label.type === 'series'
         ? { 'border-color': `#${label.color}`, color: `#${label.color}` }

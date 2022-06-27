@@ -5,6 +5,9 @@ import uno from 'astro-uno'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
+  site: 'https://allanchain.github.io',
+  // base: '/blog',
+  trailingSlash: 'always',
   integrations: [
     svelte(),
     vue(),
@@ -19,7 +22,7 @@ export default defineConfig({
           'dash-divider',
           'border-t-2 border-gray-400 border-t-dashed flex-grow h-0 mx-2',
         ],
-        ['icon', 'inline-block'],
+        ['icon', 'inline-block relative top-0.18em'],
       ],
       rules: [[/^grow-([\d.]+)$/, ([, d]) => ({ 'flex-grow': d })]],
     }),

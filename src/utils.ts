@@ -16,5 +16,5 @@ export const formatLocalDate = (date: Date) => {
 }
 
 export const postLink = (slug: string) => {
-  return `${import.meta.env.BASE_URL}post/${slug}`
+  return `${import.meta.env.BASE_URL}post/${slug}/`
 }
