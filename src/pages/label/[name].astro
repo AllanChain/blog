@@ -3,6 +3,7 @@ import dataPromise from '@data'
 import type { BlogPost, BlogLabel } from '@data/types'
 import 'unocss-hmr-fix'
 import PostCards from '@components/PostCards.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export interface Props {
   label: BlogLabel
@@ -25,9 +26,7 @@ export async function getStaticPaths() {
 const { label, posts } = Astro.props as Props
 ---
 
-<title>{label.id}</title>
-
-<body class='bg-gray-100'>
+<BaseLayout title={label.id}>
   <h1>All posts with label `{label.id}`</h1>
   <PostCards posts={posts} />
-</body>
+</BaseLayout>
