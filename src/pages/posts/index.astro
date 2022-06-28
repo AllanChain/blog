@@ -6,6 +6,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 const { posts } = await dataPromise
 ---
 
-<BaseLayout title='All'>
+<BaseLayout title='All Posts'>
+  <h1 text-center>All Posts</h1>
   <PostCards posts={posts} />
 </BaseLayout>
