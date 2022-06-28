@@ -2,8 +2,9 @@
 import dataPromise from '@data'
 import type { BlogPost, BlogLabel } from '@data/types'
 import 'unocss-hmr-fix'
-import PostCards from '@components/PostCards.astro'
+import PostCards from '@components/card/PostCards.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import PostLabel from '@components/PostLabel.vue'
 
 export interface Props {
   label: BlogLabel
@@ -27,6 +28,9 @@ const { label, posts } = Astro.props as Props
 ---
 
 <BaseLayout title={label.id}>
-  <h1>All posts with label `{label.id}`</h1>
+  <h1>
+    All posts with label
+    <PostLabel label={label} class='text-xl!' />
+  </h1>
   <PostCards posts={posts} />
 </BaseLayout>

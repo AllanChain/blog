@@ -4,24 +4,28 @@ import { isDarkColor } from '@/utils'
 
 defineProps<{
   label: BlogLabel
+  size?: number
+  showRef?: boolean
 }>()
 </script>
 
 <template>
   <a
     :href="`/label/${label.id.replace(': ', '-')}/`"
-    :style="
-      label.type === 'series'
-        ? { 'border-color': `#${label.color}`, color: `#${label.color}` }
-        : { 'background-color': `#${label.color}` }
-    "
-    class="post-label px-1 mx-1 my-0.5 text-xs shadow-sm"
+    :style="[
+      { 'background-color': `#${label.color}` },
+      {
+        'font-size': `${size ?? 0.75}rem`,
+        'line-height': '1.5em',
+      },
+    ]"
+    class="post-label px-0.3em mx-0.3em my-0.3em text-xs shadow-sm rounded-md"
     :class="{
       'text-gray-100': isDarkColor(label.color),
       'text-gray-900': !isDarkColor(label.color),
-      'rounded-full': ['tag', 'series'].includes(label.type),
-      'rounded-md': ['blog'].includes(label.type),
-      'border-1': ['series'].includes(label.type),
+      // 'rounded-full': ['tag', 'series'].includes(label.type),
+      // 'rounded-md': ['blog'].includes(label.type),
+      // 'border-1': ['series'].includes(label.type),
     }"
   >
     <div
@@ -31,7 +35,21 @@ defineProps<{
         'i-carbon-bookmark': label.type === 'series',
       }"
     ></div>
-    <div class="px-1 py-0.5">{{ label.name }}</div>
+    <div class="px-1 py-0.5">
+      <span>{{ label.name }}</span>
+    </div>
+    <div
+      v-if="showRef"
+      position="absolute top--0.7em right--0.7em"
+      class="min-w-1.5em h-1.5em"
+      border="rounded-full 2 white"
+      flex
+      items-center
+      justify-evenly
+      :style="{ 'background-color': `#${label.color}`, 'font-size': `0.75em` }"
+    >
+      {{ label.reference }}
+    </div>
   </a>
 </template>
 

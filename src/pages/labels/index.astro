@@ -3,9 +3,26 @@ import dataPromise from '@data'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import PostLabel from '@components/PostLabel.vue'
 
-const { labels } = await dataPromise
+const { labels, extraData } = await dataPromise
 ---
 
-<BaseLayout title='All'>
-  {Object.values(labels).map((label) => <PostLabel label={label} />)}
+<BaseLayout title='All Labels'>
+  <h1 text-center>All Labels</h1>
+  {extraData.includedLabelTypes.map((labelType) => (
+    <>
+      <h2 text-center>{labelType}</h2>
+      <div>
+        {Object.values(labels)
+          .filter((label) => label.type === labelType)
+          .sort((a, b) => b.reference - a.reference)
+          .map((label) => (
+            <PostLabel
+              label={label}
+              showRef={true}
+              size={0.75 + Math.log10(label.reference) / 3}
+            />
+          ))}
+      </div>
+    </>
+  ))}
 </BaseLayout>
