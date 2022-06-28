@@ -6,7 +6,7 @@ import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
   site: 'https://allanchain.github.io',
-  // base: '/blog',
+  base: '/blog/',
   trailingSlash: 'always',
   integrations: [
     svelte(),
@@ -33,4 +33,9 @@ export default defineConfig({
       rules: [[/^grow-([\d.]+)$/, ([, d]) => ({ 'flex-grow': d })]],
     }),
   ],
+  vite: {
+    define: {
+      'import.meta.env.BASE_URL': '"/blog/"',
+    },
+  },
 })

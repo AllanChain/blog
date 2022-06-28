@@ -3,6 +3,7 @@ import dataPromise from '@data'
 import PostCards from '@components/card/PostCards.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import FriendCard from '@components/card/FriendCard.astro'
+import { prefixLink } from '@/utils'
 
 const { posts, extraData } = await dataPromise
 ---
@@ -72,7 +73,9 @@ const { posts, extraData } = await dataPromise
     <PostCards posts={posts.slice(0, 6)} />
   </div>
   <div text-right mb-4>
-    <a theme-link text-blue-800 href='/posts/'> View more &gt;&gt;&gt;</a>
+    <a theme-link text-blue-800 href={prefixLink('posts/')}>
+      View more &gt;&gt;&gt;
+    </a>
   </div>
   <div flex items-center my-2>
     <div dash-divider></div>

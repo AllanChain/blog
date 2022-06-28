@@ -22,6 +22,7 @@ import {
   ReactionGroup,
   BlogPost,
 } from './types'
+import { prefixLink } from '@/utils'
 
 interface BodyParseResult {
   slug: string
@@ -51,7 +52,7 @@ const transformIssueLink = () => (htmlNodes: HastRoot) => {
       const url = rawUrl.includes('#')
         ? rawUrl.replace('#', '/#')
         : rawUrl + '/'
-      node.properties.href = `${import.meta.env.BASE_URL}post/${url}`
+      node.properties.href = prefixLink(`post/${url}`)
     }
   })
 }

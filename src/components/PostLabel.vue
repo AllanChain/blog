@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { BlogLabel } from '@data/types'
-import { isDarkColor } from '@/utils'
+import { isDarkColor, prefixLink } from '@/utils'
 
 defineProps<{
   label: BlogLabel
@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <a
-    :href="`/label/${label.id.replace(': ', '-')}/`"
+    :href="prefixLink(`label/${label.id.replace(': ', '-')}/`)"
     :style="[
       { 'background-color': `#${label.color}` },
       {

@@ -15,6 +15,8 @@ export const formatLocalDate = (date: Date) => {
   return date.toLocaleString()
 }
 
+export const prefixLink = (link: string) => import.meta.env.BASE_URL + link
+
 export const postLink = (slug: string) => {
-  return `${import.meta.env.BASE_URL}post/${slug}/`
+  return prefixLink(`post/${slug}/`)
 }
