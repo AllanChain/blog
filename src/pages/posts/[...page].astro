@@ -1,0 +1,25 @@
+---
+import dataPromise from '@data'
+import PostCards from '@components/card/PostCards.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { BlogPost } from '@data/types'
+import { GetStaticPathsOptions, Page } from 'astro'
+import PaginateMenu from '@components/PaginateMenu.astro'
+
+export interface Props {
+  page: Page<BlogPost>
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const { posts } = await dataPromise
+  return paginate(posts, { pageSize: 12 })
+}
+
+const { page } = Astro.props as Props
+---
+
+<BaseLayout title='All Posts'>
+  <h1 text-center>All Posts</h1>
+  <PostCards posts={page.data} />
+  <PaginateMenu page={page} />
+</BaseLayout>

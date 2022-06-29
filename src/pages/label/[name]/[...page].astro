@@ -1,0 +1,42 @@
+---
+import dataPromise from '@data'
+import type { BlogPost, BlogLabel } from '@data/types'
+import 'unocss-hmr-fix'
+import PostCards from '@components/card/PostCards.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PostLabel from '@components/PostLabel.vue'
+import { GetStaticPathsOptions, Page } from 'astro'
+import PaginateMenu from '@components/PaginateMenu.astro'
+
+export interface Props {
+  page: Page<BlogPost>
+  label: BlogLabel
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const { posts, labels } = await dataPromise
+  return Object.entries(labels).map(([id, label]) =>
+    paginate(
+      posts.filter(({ labels: postLabels }) => postLabels.includes(label)),
+      {
+        params: { name: id.replace(': ', '-') },
+        props: { label },
+        pageSize: 12,
+      }
+    )
+  )
+}
+
+console.log(Astro.props)
+
+const { label, page } = Astro.props as Props
+---
+
+<BaseLayout title={label.id}>
+  <h1>
+    All posts with label
+    <PostLabel label={label} class='text-xl!' />
+  </h1>
+  <PostCards posts={page.data} />
+  <PaginateMenu page={page} />
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import { Page } from 'astro'
+import { prefixLink } from '@/utils'
+
+export interface Props {
+  page: Page
+}
+
+const { page } = Astro.props as Props
+
+const fixUrl = (url: string) => {
+  return url ? prefixLink(url.slice(1)) : 'javascript:void(0)'
+}
+---
+
+<div flex items-center justify-center mb-4>
+  <div>
+    <a
+      href={fixUrl(page.url.prev)}
+      class:list={[!page.url.prev && 'text-gray-300', 'theme-link']}
+    >
+      <i icon i-mdi-chevron-double-left></i>
+    </a>
+  </div>
+  <div>
+    {page.currentPage} of {page.lastPage}
+  </div>
+  <div>
+    <a
+      href={fixUrl(page.url.next)}
+      class:list={[!page.url.next && 'text-gray-300', 'theme-link']}
+    >
+      <i icon i-mdi-chevron-double-right></i>
+    </a>
+  </div>
+</div>
