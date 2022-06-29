@@ -115,6 +115,7 @@ const { post } = Astro.props as Props
   }
 
   .markdown-body {
+    word-wrap: break-word;
     li,
     p {
       line-height: 1.5;
@@ -127,7 +128,11 @@ const { post } = Astro.props as Props
     }
 
     a {
-      word-break: break-word;
+      color: rgb(13, 93, 185);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     img {
@@ -137,6 +142,32 @@ const { post } = Astro.props as Props
         display: block;
         margin: auto;
       }
+    }
+
+    table {
+      display: block;
+      overflow-x: auto;
+      border-collapse: collapse;
+      td,
+      th {
+        border: 2px solid #c9d2d9;
+        padding: 0.5em 0.75em;
+      }
+      tr:nth-child(2n) {
+        background-color: #f1f3f7;
+      }
+    }
+
+    kbd {
+      font-size: 0.8em;
+      background-color: #e6e8ed;
+      border: 1px solid #c9d2d9;
+      border-radius: 5px;
+      padding: 2px 5px;
+    }
+
+    hr {
+      border-style: dashed;
     }
 
     // Code styles
@@ -180,7 +211,6 @@ const { post } = Astro.props as Props
   article.article-main.markdown-body {
     headings {
       .anchor-hover {
-        color: rgb(55, 102, 245);
         text-decoration: none;
         margin-left: 0.25em;
         opacity: 0; // not hidden to receive hover;
