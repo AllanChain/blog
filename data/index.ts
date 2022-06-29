@@ -40,14 +40,14 @@ const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
     return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
   }
   const repo = (await serverData()).repository
-  writeFileSync(cacheFile, JSON.stringify(repo), { encoding: 'utf-8' })
+  writeFileSync(cacheFile, JSON.stringify(repo, null, 2), { encoding: 'utf-8' })
   return repo
 }
 
 const writeExtraData = (extraData) => {
   writeFileSync(
     resolvePath(cacheDir, 'extra.json'),
-    JSON.stringify(extraData),
+    JSON.stringify(extraData, null, 2),
     {
       encoding: 'utf-8',
     }

@@ -5,7 +5,8 @@ import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import emoji from 'remark-emoji'
-import rehypeSanitize from 'rehype-sanitize'
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
+import rehypeRaw from 'rehype-raw'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
@@ -95,9 +96,20 @@ const markdownRenderer = unified()
   .use(emoji)
   .use(remarkMath)
   .use(remarkGfm)
-  .use(remarkRehype)
+  .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeRaw)
+  .use(rehypeSanitize, {
+    ...defaultSchema,
+    attributes: {
+      ...defaultSchema.attributes,
+      div: [
+        ...defaultSchema.attributes.div,
+        ['className', 'math', 'math-display'],
+      ],
+      span: [['className', 'math', 'math-inline']],
+    },
+  })
   .use(rehypeKatex)
-  // .use(rehypeSanitize)
   .use(rehypeHighlight, { ignoreMissing: true, subset: false })
   .use(transformIssueLink)
   .use(enhanceCodeBlock)
