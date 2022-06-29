@@ -2,10 +2,10 @@
 import 'unocss-hmr-fix'
 import { BlogPost } from '@data/types'
 import { formatDate, formatLocalDate } from '@/utils'
-import PostLabel from './PostLabel.vue'
-import PostDate from './PostDate.vue'
-import LQIP from './LQIP.svelte'
-import Reactions from './Reactions.astro'
+import PostLabel from '@components/PostLabel.vue'
+import PostDate from '@components/PostDate.vue'
+import LQIP from '@components/LQIP.svelte'
+import Reactions from '@components/Reactions.astro'
 
 export interface Props {
   post: BlogPost
@@ -27,7 +27,7 @@ const { post } = Astro.props as Props
 
   {post.image && (
     <LQIP
-      client:load={import.meta.env.DEV}
+      client:load
       src={post.image.src}
       lazySrc={post.image.lazySrc}
       width={post.image.width}
