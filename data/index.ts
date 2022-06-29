@@ -36,7 +36,7 @@ const serverData = async (variables: Partial<BlogsQueryVariables> = {}) => {
 const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
   const cacheFile = resolvePath(cacheDir, 'data.json')
 
-  if (process.env.NODE_ENV === 'development' && existsSync(cacheFile)) {
+  if (existsSync(cacheFile)) {
     return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
   }
   const repo = (await serverData()).repository
