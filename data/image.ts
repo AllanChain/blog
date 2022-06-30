@@ -1,4 +1,4 @@
-import { readdirSync, createWriteStream, existsSync } from 'fs'
+import { readdirSync, createWriteStream, existsSync, mkdirSync } from 'fs'
 import { stat } from 'fs/promises'
 import { resolve as resolvePath, join, extname } from 'path'
 import { createHash } from 'crypto'
@@ -9,6 +9,10 @@ import sharp from 'sharp'
 import type { Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
+if (!existsSync(imageCacheDir)) {
+  mkdirSync(imageCacheDir)
+}
+
 const isGitHubImageAbbr = (s: string) =>
   /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s: string, userId: string) =>
