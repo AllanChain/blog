@@ -26,6 +26,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.4.0
+          run_install: true
       - name: Build App
         run: pnpm build
         env:
