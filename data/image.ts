@@ -86,10 +86,15 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
     const lazyDest = dest.replace(origExt, `.low-res.${ext}`)
     const lazyFilename = filename.replace(origExt, `.low-res.${ext}`)
     if (!existsSync(lazyDest)) {
-      await sharp(dest)
-        .resize(12)
-        .toFormat(ext, { quality: 10, compressionLevel: 9 })
-        .toFile(lazyDest)
+      try {
+        await sharp(dest)
+          .resize(12)
+          .toFormat(ext, { quality: 10, compressionLevel: 9 })
+          .toFile(lazyDest)
+      } catch (err) {
+        console.error(`Failed to write ${lazyDest}. Probably race condition`)
+        console.error(err)
+      }
     }
     const urlPrefix = import.meta.env.BASE_URL + 'img/'
     return {
