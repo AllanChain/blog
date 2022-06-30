@@ -1,43 +1,19 @@
-# Welcome to [Astro](https://astro.build)
+<h1 align="center"><a href="https://allanchain.github.io/blog/">AC Dustbin</a></h1>
+<p align="center">
+  <img alt="total posts" src="https://img.shields.io/github/issues/AllanChain/blog/@post?color=41b883">
+</p>
+<p align="center">
+  <img alt="source code license" src="https://img.shields.io/badge/source_code_license-MIT-green">
+  <img alt="blog posts license" src="https://img.shields.io/badge/blog_posts_license-by--nc--sa-blue">
+</p>
+<p align="center">
+  <img alt="made with Astro" src="https://img.shields.io/badge/made_with-Astro-31274a">
+  <img alt="powered by github" src="https://img.shields.io/badge/powered_by-GitHub-black">
+</p>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/starter)
+This repo contains source code of the blog. And blog posts are in [issues](https://github.com/AllanChain/blog/issues)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Quick Links
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   ├── robots.txt
-│   └── favicon.ico
-├── src/
-│   ├── components/
-│   │   └── Tour.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://github.com/withastro/astro) or jump into our [Discord server](https://astro.build/chat).
+- [About This Blog](https://allanchain.github.io/blog/post/about/)
+- [Request Friends Link](https://github.com/AllanChain/blog/issues/148)
