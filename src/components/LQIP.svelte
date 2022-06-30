@@ -11,7 +11,17 @@
   let blur = true
 
   onMount(() => {
-    if (image.complete) blur = false
+    if (image.complete) {
+      blur = false
+    } else {
+      // The blur removal works fine when serve from local
+      // even if setting network throttles.
+      // But it doesn't work fine in production page.
+      // Let's double check it here.
+      setTimeout(() => {
+        if (image.complete) blur = false
+      }, 1000)
+    }
   })
 
   if (import.meta.env.DEV) {
