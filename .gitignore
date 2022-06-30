@@ -20,6 +20,5 @@ pnpm-debug.log*
 .directory
 
 .cache/
-public/img/
 
 data/sdk.ts
