@@ -1,0 +1,59 @@
+name: Build and Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - astro
+    tags-ignore:
+      - "**"
+  issues:
+    types: [opened, edited]
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    if: >
+      (contains(github.event.issue.labels.*.name, '@post') &&
+      github.event.sender.login == 'AllanChain') ||
+      github.event.pusher.name == 'AllanChain'
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.4.0
+      - name: Build App
+        run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Determine Commit message
+        id: msg
+        shell: node {0}
+        run: |
+          const event = JSON.parse(process.env.GITHUB_EVENT)
+          if (event.pusher && event.pusher.name === 'AllanChain') {
+            console.log('::set-output name=msg::' +
+              `${event.head_commit.message.split('\n', 1)[0]}` +
+              ` (${process.env.GITHUB_SHA.slice(0, 7)})`
+            )
+          } else {
+            console.log('::set-output name=msg::' +
+              (event.action === 'edited' ? 'Edit' : 'Create') +
+              ` "${event.issue.title}" (#${event.issue.number})`
+            )
+          }
+        env:
+          GITHUB_EVENT: ${{ toJson(github.event) }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          full_commit_message: ${{ steps.msg.outputs.msg }}
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
