@@ -1,10 +1,17 @@
-// It just unregisters the old one
+// Just a self-destroying service worker
+// From https://github.com/NekR/self-destroying-sw
 
-self.registration
-  .unregister({ immediate: true })
-  .then(function () {
-    return self.clients.matchAll()
-  })
-  .then(function (clients) {
-    clients.forEach((client) => client.navigate(client.url))
-  })
+self.addEventListener('install', function (e) {
+  self.skipWaiting()
+})
+
+self.addEventListener('activate', function (e) {
+  self.registration
+    .unregister()
+    .then(function () {
+      return self.clients.matchAll()
+    })
+    .then(function (clients) {
+      clients.forEach((client) => client.navigate(client.url))
+    })
+})
