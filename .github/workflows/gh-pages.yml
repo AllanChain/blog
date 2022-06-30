@@ -28,7 +28,9 @@ jobs:
           version: 7.4.0
           run_install: true
       - name: Build App
-        run: pnpm build
+        run: |
+          pnpm build
+          rm dist/img/.gitignore
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Determine Commit message
