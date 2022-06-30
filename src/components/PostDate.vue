@@ -14,7 +14,7 @@ defineProps<{
       items-center
       text-center
     >
-      <div i-carbon-calendar mr-1></div>
+      <div i-mdi-calendar-month mr-1></div>
       <div>{{ formatDate(createdAt) }}</div>
     </div>
     <div inline-block w-3></div>
@@ -24,7 +24,7 @@ defineProps<{
       items-center
       text-center
     >
-      <div i-carbon-edit mr-1></div>
+      <div i-mdi-calendar-edit mr-1></div>
       <div>{{ formatDate(lastEditedAt) }}</div>
     </div>
   </div>
