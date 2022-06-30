@@ -28,7 +28,7 @@
     "@types/remark-prism": "^1.3.3",
     "@types/sharp": "^0.30.4",
     "astro": "1.0.0-beta.58",
-    "astro-uno": "^0.1.3",
+    "astro-uno": "^0.1.4",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "github-slugger": "^1.4.0",
