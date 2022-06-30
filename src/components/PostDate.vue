@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div my-1 text-gray-800 select-none>
+  <div my-1 text-gray-800 dark:text-gray-300 select-none>
     <div
       :title="formatLocalDate(createdAt)"
       inline-flex

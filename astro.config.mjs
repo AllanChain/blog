@@ -12,7 +12,11 @@ export default defineConfig({
     svelte(),
     vue(),
     uno({
-      presets: [presetUno(), presetAttributify(), presetIcons()],
+      presets: [
+        presetUno({ dark: 'media' }),
+        presetAttributify(),
+        presetIcons(),
+      ],
       shortcuts: [
         [
           'icon-btn',
@@ -20,7 +24,7 @@ export default defineConfig({
         ],
         [
           'dash-divider',
-          'border-t-2 border-gray-400 border-t-dashed flex-grow h-0 mx-2',
+          'border-t-2 border-gray-400 dark:border-gray-600 border-t-dashed flex-grow h-0 mx-2',
         ],
         ['icon', 'inline-block relative top-0.18em'],
         ['card-container', 'flex flex-wrap items-center justify-evenly'],

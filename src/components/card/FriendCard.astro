@@ -8,9 +8,17 @@ export interface Props {
 const { friend } = Astro.props as Props
 ---
 
-<div overflow-hidden border='rounded-md' shadow-md bg-white m-1 w-xs>
+<div
+  overflow-hidden
+  border='rounded-md'
+  shadow-md
+  bg-white
+  dark:bg-gray-800
+  m-1
+  w-xs
+>
   <div px-4>
-    <h3 my-2 py-1 text-sky-900>
+    <h3 my-2 py-1 text-sky-900 dark:text-sky-500>
       <a class='theme-link' href={friend.blog}>{friend.name}</a>
     </h3>
     <img
@@ -23,7 +31,7 @@ const { friend } = Astro.props as Props
       float-right
       rounded-full
     />
-    <div text='sm gray-800'>{friend.moto}</div>
+    <div text='sm gray-800 dark:gray-200'>{friend.moto}</div>
     <div clear-both></div>
   </div>
 </div>

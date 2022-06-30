@@ -41,7 +41,7 @@ const { post } = Astro.props as Props
     <div
       class="markdown-body"
       set:html={post.summary}
-      bg="gray-200"
+      bg="gray-200 dark:gray-800"
       border="2 dashed gray-400 rounded-md"
       px-3
       my-2
@@ -50,7 +50,7 @@ const { post } = Astro.props as Props
 
   <article class='article-main markdown-body' set:html={post.body}></article>
   <Reactions reactions={post.reactions} />
-  <div flex items-center text-gray-800>
+  <div flex items-center text-gray-800 dark:text-gray-300>
     <div dash-divider></div>
     <div>More comments on</div>
     <a href={`${post.url}#new_comment_field`} text-current>
@@ -60,7 +60,7 @@ const { post } = Astro.props as Props
   </div>
   <div>
     {post.comments.map((comment) => (
-      <div border="b-2 b-dashed gray-200" px-3 my-2>
+      <div border="b-2 b-dashed gray-200 dark:gray-700" px-3 my-2>
         <div flex items-center>
           <img
             src={comment.author?.avatarUrl}
@@ -70,12 +70,12 @@ const { post } = Astro.props as Props
             rounded-full
             mr-2
           />
-          <div text="gray-700 sm" font-bold>
+          <div text="gray-700 dark:gray-300 sm" font-bold>
             {comment.author.id}
           </div>
           <div flex-1 />
           <div
-            text="gray-700 sm"
+            text="gray-700 dark:gray-300 sm"
             select-none
             title={formatLocalDate(post.lastEditedAt)}
           >
@@ -198,6 +198,42 @@ const { post } = Astro.props as Props
     }
   }
 
+  @media (prefers-color-scheme: dark) {
+    .markdown-body {
+      :not(pre) > code {
+        color: #eee8d5;
+        background-color: #282c34;
+      }
+
+      blockquote {
+        color: #cad0d7;
+        border-color: #363c49;
+      }
+      a {
+        color: #539bf5;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      table {
+        td,
+        th {
+          border: 2px solid #222222;
+        }
+        tr:nth-child(2n) {
+          background-color: #1e2633;
+        }
+      }
+
+      kbd {
+        background-color: #1e2633;
+        border: 1px solid #222222;
+      }
+    }
+  }
+
   .article-main.markdown-body {
     & > pre {
       @include full-width(-1.25rem);
@@ -218,25 +254,6 @@ const { post } = Astro.props as Props
       &:hover .anchor-hover {
         opacity: 1;
       }
-    }
-  }
-
-  .theme--dark article.article-main.markdown-body {
-    :not(pre) > code {
-      color: #eee8d5;
-      background-color: #282c34;
-    }
-
-    pre > code {
-      background-color: transparent;
-    }
-
-    blockquote {
-      color: #bec1c5;
-    }
-
-    table tr {
-      background-color: transparent;
     }
   }
 

@@ -11,14 +11,16 @@ const { page } = Astro.props as Props
 const fixUrl = (url: string) => {
   return url ? prefixLink(url.slice(1)) : 'javascript:void(0)'
 }
+
+const classList = (url: string) => [
+  !url && ['text-gray-300', 'dark:text-gray-600'],
+  'theme-link',
+]
 ---
 
 <div flex items-center justify-center mb-4>
   <div>
-    <a
-      href={fixUrl(page.url.prev)}
-      class:list={[!page.url.prev && 'text-gray-300', 'theme-link']}
-    >
+    <a href={fixUrl(page.url.prev)} class:list={classList(page.url.prev)}>
       <i icon i-mdi-chevron-double-left></i>
     </a>
   </div>
@@ -26,10 +28,7 @@ const fixUrl = (url: string) => {
     {page.currentPage} of {page.lastPage}
   </div>
   <div>
-    <a
-      href={fixUrl(page.url.next)}
-      class:list={[!page.url.next && 'text-gray-300', 'theme-link']}
-    >
+    <a href={fixUrl(page.url.next)} class:list={classList(page.url.next)}>
       <i icon i-mdi-chevron-double-right></i>
     </a>
   </div>

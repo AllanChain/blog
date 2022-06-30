@@ -42,7 +42,7 @@ defineProps<{
       v-if="showRef"
       position="absolute top--0.7em right--0.7em"
       class="min-w-1.5em h-1.5em"
-      border="rounded-full 2 white"
+      border="rounded-full 2 gray-100 dark:gray-900"
       flex
       items-center
       justify-evenly

@@ -19,7 +19,7 @@ const { posts, extraData } = await dataPromise
       mx-8
     />
 
-    <div w-md class='grow-0.3'>
+    <div w-md text-base class='grow-0.3'>
       <h3>👋 Hi!</h3>
       <p>I'm Allan Chain. Thanks for your interest in my blog!</p>
       <p>
@@ -42,7 +42,7 @@ const { posts, extraData } = await dataPromise
     </div>
   </div>
   <div
-    text-amber-600
+    text='amber-600 dark:amber-400'
     border='1 amber-500 rounded-md l-10'
     p='y-2 x-4'
     mx-auto
@@ -52,7 +52,7 @@ const { posts, extraData } = await dataPromise
   >
     <i icon i-mdi-gold text-xl mr-2></i>
     We will glow in the dark turning dust to gold.
-    <div float-right text-blue-500>
+    <div float-right text-blue-500 dark:text-blue-400>
       <i icon i-mdi-video></i>
       <a
         text-current
@@ -73,7 +73,7 @@ const { posts, extraData } = await dataPromise
     <PostCards posts={posts.slice(0, 6)} />
   </div>
   <div text-right mb-4>
-    <a theme-link text-blue-800 href={prefixLink('posts/')}>
+    <a theme-link text-blue-800 dark:text-blue-400 href={prefixLink('posts/')}>
       View more &gt;&gt;&gt;
     </a>
   </div>
