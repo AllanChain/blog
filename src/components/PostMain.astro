@@ -27,7 +27,7 @@ const { post } = Astro.props as Props
 
   {post.image && (
     <LQIP
-      client:load
+      client:load={import.meta.env.DEV}
       src={post.image.src}
       lazySrc={post.image.lazySrc}
       width={post.image.width}

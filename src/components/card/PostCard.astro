@@ -31,7 +31,7 @@ const uncommonLabel = post.labels.length
   {post.image && (
     <div max-h-40 overflow-hidden flex items-center>
       <LQIP
-        client:visible
+        client:load={import.meta.env.DEV}
         src={post.image.src}
         lazySrc={post.image.lazySrc}
         width={post.image.width}
@@ -65,7 +65,7 @@ const uncommonLabel = post.labels.length
         style={`border-color: #${uncommonLabel.color}`}
       >
         <LQIP
-          client:visible
+          client:load={import.meta.env.DEV}
           src={uncommonLabel.logo.src}
           lazySrc={uncommonLabel.logo.lazySrc}
           width={uncommonLabel.logo.width}

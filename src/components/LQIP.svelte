@@ -10,17 +10,11 @@
   let image: HTMLImageElement
   let blur = true
 
+  const onload: any = "this.parentNode.classList.remove('blur')"
+
   onMount(() => {
     if (image.complete) {
       blur = false
-    } else {
-      // The blur removal works fine when serve from local
-      // even if setting network throttles.
-      // But it doesn't work fine in production page.
-      // Let's double check it here.
-      setTimeout(() => {
-        if (image.complete) blur = false
-      }, 1000)
     }
   })
 
@@ -40,16 +34,7 @@
   style:aspect-ratio={`${width} / ${height}`}
   {...$$props}
 >
-  <img
-    {src}
-    {alt}
-    {width}
-    {height}
-    bind:this={image}
-    onload={() => {
-      blur = false
-    }}
-  />
+  <img {src} {alt} {width} {height} bind:this={image} {onload} />
 </div>
 
 <style>
