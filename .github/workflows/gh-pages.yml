@@ -31,7 +31,6 @@ jobs:
         run: |
           pnpm build
           rm dist/img/.gitignore
-          echo 'self.registration.unregister({immediate: true})' > dist/service-worker.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Determine Commit message
