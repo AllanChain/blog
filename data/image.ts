@@ -1,4 +1,4 @@
-import { readdirSync, createWriteStream } from 'fs'
+import { readdirSync, createWriteStream, existsSync } from 'fs'
 import { stat } from 'fs/promises'
 import { resolve as resolvePath, join, extname } from 'path'
 import { createHash } from 'crypto'
@@ -85,8 +85,7 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
     const ext = 'png'
     const lazyDest = dest.replace(origExt, `.low-res.${ext}`)
     const lazyFilename = filename.replace(origExt, `.low-res.${ext}`)
-    const stats = await stat(dest)
-    if (stats.size < 100) {
+    if (!existsSync(lazyDest)) {
       await sharp(dest)
         .resize(12)
         .toFormat(ext, { quality: 10, compressionLevel: 9 })
