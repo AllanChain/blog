@@ -34,6 +34,7 @@ const { post } = Astro.props as Props
         crossorigin="anonymous"
       />
     )}
+    <meta name='description' content={post.summary} />
   </Fragment>
   <PostMain post={post} />
 </BaseLayout>
