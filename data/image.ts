@@ -19,7 +19,7 @@ const expandGitHubImageAbbr = (s: string, userId: string) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = (s: string) => s.startsWith('http')
 const isGitHubHostedImage = (s: string) =>
-  /user-images.githubusercontent.com/.test(s)
+  /^https:\/\/user-images.githubusercontent.com/.test(s)
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const guessUnknownFilename = (hash: string) => {
