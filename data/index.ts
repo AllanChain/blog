@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
 import { resolve as resolvePath } from 'path'
 
-import { GraphQLClient } from 'graphql-request'
+import { gql, GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 
 import { gqlVar } from './config'
@@ -20,8 +20,8 @@ const client = new GraphQLClient('https://api.github.com/graphql', {
 })
 const sdk = getSdk(client)
 
-const serverData = async (variables: Partial<BlogsQueryVariables> = {}) => {
-  const data = await sdk.blogs({ ...gqlVar, ...variables }).catch((error) => {
+const wrapFetchError = <T>(p: Promise<T>): Promise<T> =>
+  p.catch((error) => {
     if (error.response) {
       console.error('::error::', error.response.data)
     } else {
@@ -30,16 +30,26 @@ const serverData = async (variables: Partial<BlogsQueryVariables> = {}) => {
     throw error
   })
 
-  return data
-}
-
 const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
   const cacheFile = resolvePath(cacheDir, 'data.json')
 
   if (existsSync(cacheFile)) {
     return JSON.parse(readFileSync(cacheFile, { encoding: 'utf-8' }))
   }
-  const repo = (await serverData()).repository
+  const repo = (await wrapFetchError(sdk.blogs(gqlVar))).repository
+  let pageInfo = repo.issues.pageInfo
+  while (pageInfo.hasNextPage) {
+    const morePosts = (
+      await wrapFetchError(
+        sdk.morePosts({
+          ...gqlVar,
+          afterPost: pageInfo.endCursor,
+        })
+      )
+    ).repository.issues
+    pageInfo = morePosts.pageInfo
+    repo.issues.nodes.push(...morePosts.nodes)
+  }
   writeFileSync(cacheFile, JSON.stringify(repo, null, 2), { encoding: 'utf-8' })
   return repo
 }

@@ -1,3 +1,48 @@
+fragment issueInfo on Issue {
+  number
+  url
+  title
+  body
+  createdAt
+  includesCreatedEdit
+  lastEditedAt
+  labels(first: $postLabelCount) {
+    nodes {
+      name
+    }
+  }
+  reactionGroups {
+    content
+    users(first: $reactionCount) {
+      totalCount
+      nodes {
+        login
+      }
+    }
+  }
+  comments(first: $commentCount) {
+    nodes {
+      id
+      resourcePath
+      author {
+        avatarUrl(size: 64)
+        id: login
+      }
+      body
+      createdAt
+      reactionGroups {
+        content
+        users(first: $reactionCount) {
+          totalCount
+          nodes {
+            login
+          }
+        }
+      }
+    }
+  }
+}
+
 query blogs(
   $repo: String!
   $owner: String!
@@ -20,59 +65,53 @@ query blogs(
       labels: $postLabels
       filterBy: { createdBy: $owner }
     ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
       nodes {
-        number
-        url
-        title
-        body
-        createdAt
-        includesCreatedEdit
-        lastEditedAt
-        labels(first: $postLabelCount) {
-          nodes {
-            name
-          }
-        }
-        reactionGroups {
-          content
-          users(first: $reactionCount) {
-            totalCount
-            nodes {
-              login
-            }
-          }
-        }
-        comments(first: $commentCount) {
-          nodes {
-            id
-            resourcePath
-            author {
-              avatarUrl(size: 64)
-              id: login
-            }
-            body
-            createdAt
-            reactionGroups {
-              content
-              users(first: $reactionCount) {
-                totalCount
-                nodes {
-                  login
-                }
-              }
-            }
-          }
-        }
+        ...issueInfo
       }
     }
     extraData: issue(number: $extraDataNumber) {
       bodyText
     }
     labels(first: $labelCount) {
+      pageInfo {
+        hasNextPage
+      }
       nodes {
         name
         color
         description
+      }
+    }
+  }
+}
+
+query morePosts(
+  $repo: String!
+  $owner: String!
+  $postCount: Int!
+  $postLabels: [String!]
+  $postLabelCount: Int!
+  $commentCount: Int!
+  $reactionCount: Int!
+  $afterPost: String!
+) {
+  repository(name: $repo, owner: $owner) {
+    issues(
+      first: $postCount
+      labels: $postLabels
+      filterBy: { createdBy: $owner }
+      after: $afterPost
+    ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      nodes {
+        ...issueInfo
       }
     }
   }
