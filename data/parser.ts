@@ -107,6 +107,7 @@ const markdownRenderer = unified()
         ['className', 'math', 'math-display'],
       ],
       span: [['className', 'math', 'math-inline']],
+      code: ['className'],
     },
   })
   .use(rehypeKatex)
