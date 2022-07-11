@@ -1,9 +1,8 @@
-import { readdirSync, createWriteStream, existsSync, mkdirSync } from 'fs'
+import { readdirSync, existsSync, mkdirSync } from 'fs'
 import { stat } from 'fs/promises'
-import { resolve as resolvePath, join, extname } from 'path'
+import { resolve as resolvePath, join } from 'path'
 import { createHash } from 'crypto'
 import axios from 'axios'
-import mime from 'mime'
 import sharp from 'sharp'
 
 import type { Image } from './types'
@@ -22,36 +21,52 @@ const isGitHubHostedImage = (s: string) =>
   /^https:\/\/user-images\.githubusercontent\.com/.test(s)
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
-const guessUnknownFilename = (hash: string) => {
+const getFileInfo = (hash: string) => {
+  const filePattern = /[0-9a-f]{8}_(?<width>\d+)x(?<height>\d+)\.low-res\.png/
   for (const file of readdirSync(imageCacheDir)) {
-    if (file.startsWith(hash) && file.length === hash.length + 4) return file
+    if (!file.startsWith(hash)) continue
+    const match = file.match(filePattern)
+    if (match === null) continue
+    return {
+      filename: file,
+      width: parseInt(match.groups.width, 10),
+      height: parseInt(match.groups.height, 10),
+    }
   }
   return null
 }
 
-const getImageDownloadLocation = async (
-  url: string,
-  hint?: string
-): Promise<{ filename: string; dest: string }> => {
+const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
+  if (!isGitHubHostedImage(url)) {
+    console.warn(`::warn:: [${hint}] ${url} is not a GitHub hosted image`)
+  }
+  const urlPrefix = import.meta.env.BASE_URL + 'img/'
   const hasher = createHash('sha256')
   hasher.update(url)
   const hash = hasher.digest('hex').slice(0, 8)
-  const ext = extname(url)
-  const filename = ext ? `${hash}${ext}` : guessUnknownFilename(hash)
+  const fileInfo = getFileInfo(hash)
 
-  if (filename) {
-    const dest = resolveDest(filename)
+  if (fileInfo) {
+    const dest = resolveDest(fileInfo.filename)
 
     try {
       const stats = await stat(dest)
-      if (stats.size > 100) return { filename, dest }
+      if (stats.size > 100)
+        return {
+          src: url,
+          lazySrc: urlPrefix + fileInfo.filename,
+          width: fileInfo.width,
+          height: fileInfo.height,
+        }
       console.log(`    ${dest} too small`)
     } catch (err) {
       if (err.code !== 'ENOENT') throw err
     }
   }
 
-  console.log(`    [${hint}] Downloading ${filename || hash} (${url})`)
+  console.log(
+    `    [${hint}] Downloading ${fileInfo?.filename || hash} (${url})`
+  )
 
   try {
     const response = await axios({
@@ -59,58 +74,24 @@ const getImageDownloadLocation = async (
       url: url,
       responseType: 'stream',
     })
-    // note mime returns ext without dot
-    let ext = mime.getExtension(response.headers['content-type'])
-    if (ext === 'jpeg') ext = 'jpg' // prefer jpg extension
-    const filename = `${hash}.${ext}`
-    const dest = resolveDest(filename)
-    const writer = createWriteStream(dest)
-    response.data.pipe(writer)
-    return new Promise((resolve, reject) => {
-      writer.on('finish', () => resolve({ filename, dest }))
-      writer.on('error', reject)
-    })
-  } catch (err) {
-    console.error(`::error:: [${hint}] Cannot fetch ${url} : ${err}`)
-    throw err
-  }
-}
+    const pipeline = sharp()
+    response.data.pipe(pipeline)
+    const { height, width } = await pipeline.metadata()
+    const filename = `${hash}_${width}x${height}.low-res.png`
+    await pipeline
+      .resize(12)
+      .png({ quality: 10, compressionLevel: 9 })
+      .toFile(resolveDest(filename))
 
-const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
-  if (!isGitHubHostedImage(url)) {
-    console.warn(`::warn:: [${hint}] ${url} is not a GitHub hosted image`)
-  }
-  const { filename, dest } = await getImageDownloadLocation(url, hint)
-
-  try {
-    const { width, height } = await sharp(dest).metadata()
-    const origExt = extname(filename)
-    // The quality of PNG outperforms JPEG when both in 500 B.
-    const ext = 'png'
-    const lazyDest = dest.replace(origExt, `.low-res.${ext}`)
-    const lazyFilename = filename.replace(origExt, `.low-res.${ext}`)
-    if (!existsSync(lazyDest)) {
-      try {
-        await sharp(dest)
-          .resize(12)
-          .toFormat(ext, { quality: 10, compressionLevel: 9 })
-          .toFile(lazyDest)
-      } catch (err) {
-        console.error(`Failed to write ${lazyDest}. Probably race condition`)
-        console.error(err)
-      }
-    }
-    const urlPrefix = import.meta.env.BASE_URL + 'img/'
     return {
-      lazySrc: urlPrefix + lazyFilename,
-      src: urlPrefix + filename,
       width,
       height,
+      src: url,
+      lazySrc: urlPrefix + filename,
     }
   } catch (err) {
-    throw new Error(
-      `::error:: [${hint}] Cannot process ${dest}: ${err.message}`
-    )
+    console.error(`::error:: [${hint}] Cannot process ${url} : ${err}`)
+    throw err
   }
 }
 

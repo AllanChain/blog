@@ -39,7 +39,6 @@
     "husky": "^8.0.1",
     "js-yaml": "^4.1.0",
     "lint-staged": "^13.0.3",
-    "mime": "^3.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "0.1.0-next.5",
     "prettier-plugin-svelte": "^2.7.0",
