@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import svelte from '@astrojs/svelte'
 import vue from '@astrojs/vue'
+import sitemap from '@astrojs/sitemap'
 import uno from 'astro-uno'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
@@ -11,6 +12,7 @@ export default defineConfig({
   integrations: [
     svelte(),
     vue(),
+    sitemap(),
     uno({
       presets: [
         presetUno({ dark: 'media' }),

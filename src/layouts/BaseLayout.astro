@@ -18,6 +18,7 @@ const { title } = Astro.props as Props
     <meta name='viewport' content='width=device-width' />
     <title>{title}</title>
     <link rel='icon' type='image/x-icon' href={prefixLink('favicon.ico')} />
+    <link rel='sitemap' href={prefixLink('sitemap-index.xml')} />
     <slot name='head'></slot>
     <script
       data-host='https://microanalytics.io'
