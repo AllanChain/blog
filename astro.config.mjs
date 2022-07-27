@@ -40,8 +40,8 @@ export default defineConfig({
     }),
   ],
   vite: {
-    define: {
-      'import.meta.env.BASE_URL': '"/blog/"',
+    ssr: {
+      noExternal: ['normalize.css'],
     },
   },
 })
