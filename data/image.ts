@@ -1,4 +1,4 @@
-import { readdirSync, existsSync, mkdirSync } from 'fs'
+import { readdirSync } from 'fs'
 import { stat } from 'fs/promises'
 import { resolve as resolvePath, join } from 'path'
 import { createHash } from 'crypto'
@@ -8,9 +8,6 @@ import sharp from 'sharp'
 import type { Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
-if (!existsSync(imageCacheDir)) {
-  mkdirSync(imageCacheDir)
-}
 
 const isGitHubImageAbbr = (s: string) =>
   /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)

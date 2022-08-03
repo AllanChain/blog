@@ -8,10 +8,10 @@ import { gqlVar } from './config'
 import { parseLabel, parsePost } from './parser'
 import type { BlogLabel, BlogPost, ExtraData } from './types'
 import { transformLabelLogo, transformPostImage } from './image'
-import { getSdk, BlogsQueryVariables, BlogsQuery } from './sdk'
+import { getSdk, BlogsQuery } from './sdk'
 
 const cacheDir = resolvePath(process.cwd(), 'data/.cache')
-const imageCacheDir = resolvePath(cacheDir, 'images')
+const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 
 const client = new GraphQLClient('https://api.github.com/graphql', {
   headers: {
@@ -54,7 +54,7 @@ const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
   return repo
 }
 
-const writeExtraData = (extraData) => {
+const writeExtraData = (extraData: ExtraData) => {
   writeFileSync(
     resolvePath(cacheDir, 'extra.json'),
     JSON.stringify(extraData, null, 2),

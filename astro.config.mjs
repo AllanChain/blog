@@ -3,6 +3,7 @@ import svelte from '@astrojs/svelte'
 import vue from '@astrojs/vue'
 import sitemap from '@astrojs/sitemap'
 import uno from 'astro-uno'
+import copyImg from './astro-copy-img.mjs'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
     svelte(),
     vue(),
     sitemap(),
+    copyImg(),
     uno({
       presets: [
         presetUno({ dark: 'media' }),
