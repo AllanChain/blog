@@ -26,10 +26,10 @@ jobs:
   build:
     name: Build the Pages
     runs-on: ubuntu-latest
+    # The sender must be me. And if it's an issue, must contain such label.
     if: >
-      (contains(github.event.issue.labels.*.name, '@post') &&
-      github.event.sender.login == 'AllanChain') ||
-      github.event.pusher.name == 'AllanChain'
+      github.event.sender.login == 'AllanChain' &&
+      (!github.event.issue || contains(github.event.issue.labels.*.name, '@post'))
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js
