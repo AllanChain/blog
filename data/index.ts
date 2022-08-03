@@ -71,6 +71,7 @@ export default (async (): Promise<{
 }> => {
   console.log('Preparing blog data...')
   mkdirSync(imageCacheDir, { recursive: true }) // ignore already exists
+  mkdirSync(cacheDir, { recursive: true }) // ignore already exists
 
   console.log('  Fetching GitHub GraphQL data...')
   const repo = await getCacheFirstData()
