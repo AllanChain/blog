@@ -8,18 +8,24 @@ import { prefixLink } from '@/utils'
 const { posts, extraData } = await dataPromise
 ---
 
-<BaseLayout title='Index'>
+<BaseLayout title="Blog Home">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="The index page of this blog (AC Dustbin). Contains recent posts and friends."
+    />
+  </Fragment>
   <div flex flex-wrap justify-evenly items-center>
     <img
       src={prefixLink('avatar/300.jpg')}
-      alt='Avatar'
-      width='200'
-      height='200'
+      alt="Avatar"
+      width="200"
+      height="200"
       rounded-full
       mx-8
     />
 
-    <div w-md text-base class='grow-0.3'>
+    <div w-md text-base class="grow-0.3">
       <h3>👋 Hi!</h3>
       <p>I'm Allan Chain. Thanks for your interest in my blog!</p>
       <p>
@@ -42,9 +48,9 @@ const { posts, extraData } = await dataPromise
     </div>
   </div>
   <div
-    text='amber-700 dark:amber-400'
-    border='1 amber-500 rounded-md l-10'
-    p='y-2 x-4'
+    text="amber-700 dark:amber-400"
+    border="1 amber-500 rounded-md l-10"
+    p="y-2 x-4"
     mx-auto
     mt-4
     mb-8
@@ -57,7 +63,7 @@ const { posts, extraData } = await dataPromise
       <a
         text-current
         decoration-none
-        href='https://www.bilibili.com/video/bv14h411R7iL'
+        href="https://www.bilibili.com/video/bv14h411R7iL"
       >
         Dream It Possible
       </a>
@@ -83,7 +89,7 @@ const { posts, extraData } = await dataPromise
     <div dash-divider></div>
   </div>
 
-  <div class='card-container'>
+  <div class="card-container">
     {extraData.friends.map((friend) => (
       <div class="card-item">
         <FriendCard friend={friend} />

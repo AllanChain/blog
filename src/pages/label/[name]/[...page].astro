@@ -31,9 +31,15 @@ const { label, page } = Astro.props as Props
 ---
 
 <BaseLayout title={label.id}>
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content={`All posts with label "${label.id}" in AC Dustbin.`}
+    />
+  </Fragment>
   <h1>
     All posts with label
-    <PostLabel label={label} class='text-xl!' />
+    <PostLabel label={label} class="text-xl!" />
   </h1>
   <PostCards posts={page.data} />
   <PaginateMenu page={page} />

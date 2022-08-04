@@ -25,7 +25,7 @@ const classList = (url: string) => [
     </a>
   </div>
   <div>
-    {page.currentPage} of {page.lastPage}
+    Page {page.currentPage} of {page.lastPage}
   </div>
   <div>
     <a href={fixUrl(page.url.next)} class:list={classList(page.url.next)}>

@@ -6,7 +6,10 @@ import PostLabel from '@components/PostLabel.vue'
 const { labels, extraData } = await dataPromise
 ---
 
-<BaseLayout title='All Labels'>
+<BaseLayout title="All Labels">
+  <Fragment slot="head">
+    <meta name="description" content="All labels for posts in AC Dustbin." />
+  </Fragment>
   <h1 text-center>All Labels</h1>
   {extraData.includedLabelTypes.map((labelType) => (
     <>

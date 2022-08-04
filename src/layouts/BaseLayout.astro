@@ -12,26 +12,27 @@ export interface Props {
 const { title } = Astro.props as Props
 ---
 
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>{title} - AC Dustbin</title>
-    <link rel='icon' type='image/x-icon' href={prefixLink('favicon.ico')} />
-    <link rel='sitemap' href={prefixLink('sitemap-index.xml')} />
-    <slot name='head'></slot>
+    <link rel="icon" type="image/x-icon" href={prefixLink('favicon.ico')} />
+    <link rel="sitemap" href={prefixLink('sitemap-index.xml')} />
+    <slot name="head" />
     <script
-      data-host='https://microanalytics.io'
-      data-dnt='false'
-      src='https://microanalytics.io/js/script.js'
-      id='ZwSg9rf6GA'
+      data-host="https://microanalytics.io"
+      data-dnt="false"
+      src="https://microanalytics.io/js/script.js"
+      id="ZwSg9rf6GA"
       async
       defer
     >
 
     </script>
+    <meta name="generator" content="astro" />
   </head>
-  <body class='px-4 bg-gray-100 dark:bg-gray-900 dark:text-gray-200'>
+  <body class="px-4 bg-gray-100 dark:bg-gray-900 dark:text-gray-200">
     <nav flex flex-wrap items-center justify-end py-2>
       <a
         href={prefixLink('')}
@@ -43,9 +44,9 @@ const { title } = Astro.props as Props
       >
         <img
           src={prefixLink('avatar/37.png')}
-          alt='avatar'
-          width='37'
-          height='37'
+          alt="avatar"
+          width="37"
+          height="37"
           rounded-full
           overflow-hidden
         />
@@ -56,58 +57,58 @@ const { title } = Astro.props as Props
       <div flex-1></div>
       <div>
         <IconedLink
-          icon='i-mdi-book-open-variant'
-          name='Posts'
+          icon="i-mdi-book-open-variant"
+          name="Posts"
           url={prefixLink('posts/')}
         />
         <IconedLink
-          icon='i-mdi-label-multiple-outline'
-          name='Labels'
+          icon="i-mdi-label-multiple-outline"
+          name="Labels"
           url={prefixLink('labels/')}
         />
         <IconedLink
-          icon='i-mdi-information-outline'
-          name='About'
+          icon="i-mdi-information-outline"
+          name="About"
           url={prefixLink('post/about/')}
         />
-        <IconedLink icon='i-mdi-github' name='Me' url={profileUrl} />
+        <IconedLink icon="i-mdi-github" name="Me" url={profileUrl} />
       </div>
     </nav>
-    <div border='0 b-2 dotted gray-500' m='b-4 x--4'></div>
-    <slot></slot>
+    <div border="0 b-2 dotted gray-500" m="b-4 x--4"></div>
+    <slot />
     <footer
-      text='center sm'
-      m='y-4 x--4'
-      border='0 t-2 dotted gray-300 dark:gray-700'
+      text="center sm"
+      m="y-4 x--4"
+      border="0 t-2 dotted gray-300 dark:gray-700"
     >
       <p>
         <i icon i-mdi-creative-commons></i>
         <a
-          href='https://creativecommons.org/licenses/by-nc-sa/4.0/'
-          title='Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License'
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          title="Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"
           theme-link
         >
           BY-NC-SA
         </a>
         for the
-        <a href='https://github.com/AllanChain/blog/issues' theme-link
+        <a href="https://github.com/AllanChain/blog/issues" theme-link
           >posts
         </a>;
         <i icon i-mdi-license></i>
         <a
-          href='https://github.com/AllanChain/blog/blob/astro/LICENSE'
+          href="https://github.com/AllanChain/blog/blob/astro/LICENSE"
           theme-link
         >
           MIT
         </a>
         for the
-        <a href='https://github.com/AllanChain/blog' theme-link>code</a>.
+        <a href="https://github.com/AllanChain/blog" theme-link>code</a>.
       </p>
       <p>
-        Made by <a href='https://github.com/AllanChain' theme-link
+        Made by <a href="https://github.com/AllanChain" theme-link
           >Allan Chain
-        </a>. Coded with <a href='https://astro.build/' theme-link>Astro</a>.
-        Powered by <a href='https://github.com/' theme-link>GitHub</a>.
+        </a>. Coded with <a href="https://astro.build/" theme-link>Astro</a>.
+        Powered by <a href="https://github.com/" theme-link>GitHub</a>.
       </p>
     </footer>
   </body>

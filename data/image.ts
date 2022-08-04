@@ -35,7 +35,7 @@ const getFileInfo = (hash: string) => {
 
 const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
   if (!isGitHubHostedImage(url)) {
-    console.warn(`::warn:: [${hint}] ${url} is not a GitHub hosted image`)
+    console.warn(`::warning:: [${hint}] ${url} is not a GitHub hosted image`)
   }
   const urlPrefix = import.meta.env.BASE_URL + 'img/'
   const hasher = createHash('sha256')

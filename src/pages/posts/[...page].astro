@@ -18,8 +18,17 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props as Props
 ---
 
-<BaseLayout title='All Posts'>
-  <h1 text-center>All Posts</h1>
+<BaseLayout title="All Posts">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content={`Page ${page.currentPage} of all posts in AC Dustbin.`}
+    />
+  </Fragment>
+  <div text-center>
+    <h1>All Posts</h1>
+    <PaginateMenu page={page} />
+  </div>
   <PostCards posts={page.data} />
   <PaginateMenu page={page} />
 </BaseLayout>
