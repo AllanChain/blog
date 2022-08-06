@@ -1,5 +1,4 @@
 ---
-import 'unocss-hmr-fix'
 import { BlogPost } from '@data/types'
 import { formatDate, formatLocalDate } from '@/utils'
 import PostLabel from '@components/PostLabel.vue'
@@ -48,7 +47,7 @@ const { post } = Astro.props as Props
     />
   )}
 
-  <article class='article-main markdown-body' set:html={post.body}></article>
+  <article class="article-main markdown-body" set:html={post.body}></article>
   <Reactions reactions={post.reactions} />
   <div flex items-center text-gray-800 dark:text-gray-300>
     <div dash-divider></div>
@@ -91,7 +90,7 @@ const { post } = Astro.props as Props
   </div>
 </main>
 
-<style lang='scss' is:global>
+<style lang="scss" is:global>
   h1,
   h2,
   h3,
