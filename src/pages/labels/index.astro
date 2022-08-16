@@ -11,21 +11,25 @@ const { labels, extraData } = await dataPromise
     <meta name="description" content="All labels for posts in AC Dustbin." />
   </Fragment>
   <h1 text-center>All Labels</h1>
-  {extraData.includedLabelTypes.map((labelType) => (
-    <>
-      <h2 text-center>{labelType}</h2>
-      <div>
-        {Object.values(labels)
-          .filter((label) => label.type === labelType)
-          .sort((a, b) => b.reference - a.reference)
-          .map((label) => (
-            <PostLabel
-              label={label}
-              showRef={true}
-              size={0.75 + Math.log10(label.reference) / 3}
-            />
-          ))}
-      </div>
-    </>
-  ))}
+  <main text-center mx-auto max-w-3xl>
+    {
+      extraData.includedLabelTypes.map((labelType) => (
+        <>
+          <h2 case-capital>{labelType}</h2>
+          <div>
+            {Object.values(labels)
+              .filter((label) => label.type === labelType)
+              .sort((a, b) => b.reference - a.reference)
+              .map((label) => (
+                <PostLabel
+                  label={label}
+                  showRef={true}
+                  size={0.75 + Math.log10(label.reference) / 3}
+                />
+              ))}
+          </div>
+        </>
+      ))
+    }
+  </main>
 </BaseLayout>
