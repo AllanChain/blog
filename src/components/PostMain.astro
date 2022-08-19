@@ -24,28 +24,32 @@ const { post } = Astro.props as Props
     <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
   </div>
 
-  {post.image && (
-    <LQIP
-      client:load={import.meta.env.DEV}
-      src={post.image.src}
-      lazySrc={post.image.lazySrc}
-      width={post.image.width}
-      height={post.image.height}
-      alt="Header"
-      w-full
-      my-2
-    />
-  )}
-  {post.summary && (
-    <div
-      class="markdown-body"
-      set:html={post.summary}
-      bg="gray-200 dark:gray-800"
-      border="2 dashed gray-400 rounded-md"
-      px-3
-      my-2
-    />
-  )}
+  {
+    post.image && (
+      <LQIP
+        client:load={import.meta.env.DEV}
+        src={post.image.src}
+        lazySrc={post.image.lazySrc}
+        width={post.image.width}
+        height={post.image.height}
+        alt="Header"
+        w-full
+        my-2
+      />
+    )
+  }
+  {
+    post.summary && (
+      <div
+        class="markdown-body"
+        set:html={post.summary}
+        bg="gray-200 dark:gray-800"
+        border="2 dashed gray-400 rounded-md"
+        px-3
+        my-2
+      />
+    )
+  }
 
   <article class="article-main markdown-body" set:html={post.body}></article>
   <Reactions reactions={post.reactions} />
@@ -58,35 +62,37 @@ const { post } = Astro.props as Props
     <div dash-divider></div>
   </div>
   <div>
-    {post.comments.map((comment) => (
-      <div border="b-2 b-dashed gray-200 dark:gray-700" px-3 my-2>
-        <div flex items-center>
-          <img
-            src={comment.author?.avatarUrl}
-            alt={comment.author?.id}
-            title={comment.author?.id}
-            width="30"
-            rounded-full
-            overflow-hidden
-            mr-2
-          />
-          <div text="gray-700 dark:gray-300 sm" font-bold>
-            {comment.author.id}
+    {
+      post.comments.map((comment) => (
+        <div border="b-2 b-dashed gray-200 dark:gray-700" px-3 my-2>
+          <div flex items-center>
+            <img
+              src={comment.author?.avatarUrl}
+              alt={comment.author?.id}
+              title={comment.author?.id}
+              width="30"
+              rounded-full
+              overflow-hidden
+              mr-2
+            />
+            <div text="gray-700 dark:gray-300 sm" font-bold>
+              {comment.author.id}
+            </div>
+            <div flex-1 />
+            <div
+              text="gray-700 dark:gray-300 sm"
+              select-none
+              title={formatLocalDate(post.lastEditedAt)}
+            >
+              {formatDate(comment.createdAt)}
+            </div>
           </div>
-          <div flex-1 />
-          <div
-            text="gray-700 dark:gray-300 sm"
-            select-none
-            title={formatLocalDate(post.lastEditedAt)}
-          >
-            {formatDate(comment.createdAt)}
-          </div>
-        </div>
 
-        <div class="comment markdown-body" set:html={comment.body} />
-        <Reactions reactions={comment.reactions} />
-      </div>
-    ))}
+          <div class="comment markdown-body" set:html={comment.body} />
+          <Reactions reactions={comment.reactions} />
+        </div>
+      ))
+    }
   </div>
 </main>
 
@@ -138,6 +144,10 @@ const { post } = Astro.props as Props
       text-decoration: none;
       &:hover {
         text-decoration: underline;
+      }
+
+      &:visited {
+        color: #4f0db9;
       }
     }
 
@@ -221,8 +231,8 @@ const { post } = Astro.props as Props
       a {
         color: #539bf5;
         text-decoration: none;
-        &:hover {
-          text-decoration: underline;
+        &:visited {
+          color: #ab78fd;
         }
       }
 
