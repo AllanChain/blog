@@ -106,9 +106,17 @@ export default (async (): Promise<{
     parsedPosts
       .map((post) => ({
         ...post,
-        labels: Object.values(labels).filter((label) =>
-          post.labels.includes(label.id)
-        ),
+        labels: Object.values(labels)
+          .filter((label) => post.labels.includes(label.id))
+          .sort((a, b) => {
+            if (a.id > b.id) {
+              return 1
+            }
+            if (a.id < b.id) {
+              return -1
+            }
+            return 0
+          }),
       }))
       .map(transformPostImage)
   )
