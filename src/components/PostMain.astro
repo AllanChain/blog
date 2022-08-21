@@ -11,9 +11,14 @@ export interface Props {
 }
 
 const { post } = Astro.props as Props
+const lang =
+  Array.from(post.body).filter((c) => '\u4e00' <= c && c <= '\u9fa5').length >
+  30
+    ? 'zh-CN'
+    : 'en'
 ---
 
-<main max-w-3xl mx-auto px-2>
+<main lang={lang} max-w-3xl mx-auto px-2>
   <h1 text-center>{post.title}</h1>
 
   <div text-center my-1>
