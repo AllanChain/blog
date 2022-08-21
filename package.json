@@ -7,7 +7,7 @@
     "start": "astro dev --experimental-integrations",
     "build": "astro build --experimental-integrations",
     "preview": "astro preview --experimental-integrations",
-    "format": "prettier -w **/*.{js,json,ts,svelte,vue,astro}",
+    "format": "prettier -w **/*.{js,json,ts,svelte,astro}",
     "gql-codegen": "graphql-codegen",
     "postinstall": "pnpm gql-codegen",
     "prepare": "husky install"
@@ -19,7 +19,6 @@
     "@astrojs/rss": "^1.0.0",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/svelte": "^1.0.0",
-    "@astrojs/vue": "^1.0.0",
     "@graphql-codegen/cli": "^2.11.6",
     "@graphql-codegen/typescript": "^2.7.3",
     "@graphql-codegen/typescript-graphql-request": "^4.5.2",
@@ -64,8 +63,7 @@
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0",
     "unocss": "^0.45.8",
-    "vite": "^3.0.9",
-    "vue": "^3.2.37"
+    "vite": "^3.0.9"
   },
   "dependencies": {
     "normalize.css": "^8.0.1"

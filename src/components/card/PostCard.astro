@@ -1,8 +1,8 @@
 ---
 import { BlogPost } from '@data/types'
 import LQIP from '@components/LQIP.svelte'
-import PostLabel from '@components/PostLabel.vue'
-import PostDate from '@components/PostDate.vue'
+import PostLabel from '@components/PostLabel.astro'
+import PostDate from '@components/PostDate.astro'
 import { postLink } from '@/utils'
 
 export interface Props {
@@ -22,75 +22,82 @@ const uncommonLabel = post.labels.length
 
 <div
   overflow-hidden
-  border='rounded-md'
+  border="rounded-md"
   shadow-md
   bg-white
   dark:bg-gray-800
   m-1
 >
-  {post.image && (
-    <div max-h-40 overflow-hidden flex items-center>
-      <LQIP
-        client:load={import.meta.env.DEV}
-        src={post.image.src}
-        lazySrc={post.image.lazySrc}
-        width={post.image.width}
-        height={post.image.height}
-        alt="Header"
-        w-full
-      />
-    </div>
-  )}
+  {
+    post.image && (
+      <div max-h-40 overflow-hidden flex items-center>
+        <LQIP
+          client:load={import.meta.env.DEV}
+          src={post.image.src}
+          lazySrc={post.image.lazySrc}
+          width={post.image.width}
+          height={post.image.height}
+          alt="Header"
+          w-full
+        />
+      </div>
+    )
+  }
   <div px-4>
-    <h3 class='post-card-title my-2 py-1 text-sky-900 dark:text-sky-500'>
-      <a class='theme-link' href={postLink(post.slug)}> {post.title}</a>
+    <h3 class="post-card-title my-2 py-1 text-sky-900 dark:text-sky-500">
+      <a class="theme-link" href={postLink(post.slug)}> {post.title}</a>
     </h3>
     <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
 
     <div>
       {post.labels.map((label) => <PostLabel label={label} />)}
     </div>
-    {!post.image && uncommonLabel?.logo && (
-      <div
-        w-15
-        h-15
-        p-1
-        m-2
-        float-right
-        border-2
-        overflow-hidden
-        rounded-full
-        flex
-        items-center
-        style={`border-color: #${uncommonLabel.color}`}
-      >
-        <LQIP
-          client:load={import.meta.env.DEV}
-          src={uncommonLabel.logo.src}
-          lazySrc={uncommonLabel.logo.lazySrc}
-          width={uncommonLabel.logo.width}
-          height={uncommonLabel.logo.height}
-          alt="Label Image"
+    {
+      !post.image &&
+      uncommonLabel?.logo && (
+        <div
+          w-15
+          h-15
+          p-1
+          m-2
+          float-right
+          border-2
+          overflow-hidden
+          rounded-full
+          flex
+          items-center
+          style={`border-color: #${uncommonLabel.color}`}
+        >
+          <LQIP
+            client:load={import.meta.env.DEV}
+            src={uncommonLabel.logo.src}
+            lazySrc={uncommonLabel.logo.lazySrc}
+            width={uncommonLabel.logo.width}
+            height={uncommonLabel.logo.height}
+            alt="Label Image"
+          />
+        </div>
+      )
+    }
+    {
+      post.summary ? (
+        <div
+          class="markdown-body"
+          set:html="post.summary"
+          text="sm gray-800 dark:gray-200"
         />
-      </div>
-    )}
-    {post.summary ? (
-      <div
-        class="markdown-body"
-        set:html="post.summary"
-        text="sm gray-800 dark:gray-200"
-      />
-    ) : (
-      <div v-else text="sm gray-600 dark:gray-300">
-        <p>
-          <i>There is no summary for this post.</i>
-        </p>
-      </div>
-    )}
+      ) : (
+        <div v-else text="sm gray-600 dark:gray-300">
+          <p>
+            <i>There is no summary for this post.</i>
+          </p>
+        </div>
+      )
+    }
   </div>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   .post-card-title {
     display: -webkit-box;
     overflow: hidden;

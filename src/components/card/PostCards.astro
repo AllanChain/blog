@@ -9,12 +9,14 @@ export interface Props {
 const { posts } = Astro.props as Props
 ---
 
-<div class='card-container'>
-  {posts.map((post) => (
-    <div class="card-item">
-      <PostCard post={post} />
-    </div>
-  ))}
+<div class="card-container">
+  {
+    posts.map((post) => (
+      <div class="card-item">
+        <PostCard post={post} />
+      </div>
+    ))
+  }
   <!-- Dummy elements to take space -->
   {[0, 1, 2].map(() => <div class="card-item" />)}
 </div>

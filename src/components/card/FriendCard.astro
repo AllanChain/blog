@@ -10,7 +10,7 @@ const { friend } = Astro.props as Props
 
 <div
   overflow-hidden
-  border='rounded-md'
+  border="rounded-md"
   shadow-md
   bg-white
   dark:bg-gray-800
@@ -18,19 +18,19 @@ const { friend } = Astro.props as Props
 >
   <div px-4>
     <h3 my-2 py-1 text-sky-900 dark:text-sky-500>
-      <a class='theme-link' href={friend.blog}>{friend.name}</a>
+      <a class="theme-link" href={friend.blog}>{friend.name}</a>
     </h3>
     <img
       src={friend.avatar}
-      alt='Avatar'
-      height='80'
-      width='80'
+      alt="Avatar"
+      height="80"
+      width="80"
       p-1
       m-2
       float-right
       rounded-full
     />
-    <div text='sm gray-800 dark:gray-200'>{friend.moto}</div>
+    <div text="sm gray-800 dark:gray-200">{friend.moto}</div>
     <div clear-both></div>
   </div>
 </div>

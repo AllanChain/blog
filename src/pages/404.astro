@@ -3,26 +3,26 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 import { prefixLink } from '@/utils'
 ---
 
-<BaseLayout title='Not Found'>
+<BaseLayout title="Not Found">
   <div
-    bg='sky-100 dark:gray-800'
-    border='2 dashed sky-300 dark:gray-600 rounded-lg'
-    max-w='lg'
-    m='x-auto y-4'
-    p='x-4 y-2'
-    text='base'
+    bg="sky-100 dark:gray-800"
+    border="2 dashed sky-300 dark:gray-600 rounded-lg"
+    max-w="lg"
+    m="x-auto y-4"
+    p="x-4 y-2"
+    text="base"
   >
     <p>
       The page you are requesting is not found. Either the link leading you here
       is incorrect, or I have moved that page to another location.
     </p>
-    <p></p><ul class='text-blue-800 dark:text-blue-400 leading-8'>
+    <p></p><ul class="text-blue-800 dark:text-blue-400 leading-8">
       <li>
         <a href={prefixLink('')} theme-link>Take me to the homepage</a>
       </li>
       <li>
         <a
-          href='https://github.com/AllanChain/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%40post'
+          href="https://github.com/AllanChain/blog/issues?q=is%3Aissue+is%3Aopen+label%3A%40post"
           theme-link
         >
           Search the post you want on GitHub

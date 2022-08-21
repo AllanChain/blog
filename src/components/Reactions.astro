@@ -9,21 +9,23 @@ const { reactions } = Astro.props as Props
 ---
 
 <div>
-  {reactions.map((reaction) => (
-    <div
-      inline-flex
-      items-center
-      select-none
-      border="1 blue-500 rounded-full"
-      m="x-1 y-1"
-      p="y-0.5 x-0.5"
-    >
-      <div mx-1 text-xs>
-        {reaction.emoji}
+  {
+    reactions.map((reaction) => (
+      <div
+        inline-flex
+        items-center
+        select-none
+        border="1 blue-500 rounded-full"
+        m="x-1 y-1"
+        p="y-0.5 x-0.5"
+      >
+        <div mx-1 text-xs>
+          {reaction.emoji}
+        </div>
+        <div mx-1 text-blue-800 dark:text-blue-400>
+          {reaction.count}
+        </div>
       </div>
-      <div mx-1 text-blue-800 dark:text-blue-400>
-        {reaction.count}
-      </div>
-    </div>
-  ))}
+    ))
+  }
 </div>

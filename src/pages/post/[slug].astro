@@ -25,16 +25,18 @@ const { post } = Astro.props as Props
 ---
 
 <BaseLayout title={post.title}>
-  <Fragment slot='head'>
-    {post.body.includes('katex') && (
-      <link
-        rel="stylesheet"
-        href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
-        integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="
-        crossorigin="anonymous"
-      />
-    )}
-    <meta name='description' content={post.summary} />
+  <Fragment slot="head">
+    {
+      post.body.includes('katex') && (
+        <link
+          rel="stylesheet"
+          href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"
+          integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="
+          crossorigin="anonymous"
+        />
+      )
+    }
+    <meta name="description" content={post.summary} />
   </Fragment>
   <PostMain post={post} />
 </BaseLayout>

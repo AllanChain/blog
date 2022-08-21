@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import svelte from '@astrojs/svelte'
-import vue from '@astrojs/vue'
 import sitemap from '@astrojs/sitemap'
 import uno from 'astro-uno'
 import copyImg from './astro-copy-img.mjs'
@@ -12,7 +11,6 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     svelte(),
-    vue(),
     sitemap(),
     copyImg(),
     uno({

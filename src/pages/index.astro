@@ -90,11 +90,13 @@ const { posts, extraData } = await dataPromise
   </div>
 
   <div class="card-container">
-    {extraData.friends.map((friend) => (
-      <div class="card-item">
-        <FriendCard friend={friend} />
-      </div>
-    ))}
+    {
+      extraData.friends.map((friend) => (
+        <div class="card-item">
+          <FriendCard friend={friend} />
+        </div>
+      ))
+    }
     <!-- Dummy elements to take space -->
     {[0, 1, 2].map(() => <div class="card-item" />)}
   </div>
