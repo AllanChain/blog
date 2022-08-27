@@ -35,6 +35,7 @@ export interface BlogPost {
   body: string
   serializedHeadings: string
   summary?: string
+  summaryText?: string
   image?: Image
   url: string
   createdAt: Date

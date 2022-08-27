@@ -8,6 +8,8 @@ import emoji from 'remark-emoji'
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
 import rehypeRaw from 'rehype-raw'
 import remarkMath from 'remark-math'
+import remarkStringify from 'remark-stringify'
+import strip from 'strip-markdown'
 import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import { visit, EXIT, CONTINUE } from 'unist-util-visit'
@@ -30,6 +32,7 @@ interface BodyParseResult {
   body: string
   serializedHeadings: string
   summary?: string
+  summaryText?: string
   image?: string
   createdAt?: Date
 }
@@ -116,6 +119,8 @@ const markdownRenderer = unified()
   .use(enhanceCodeBlock)
   .use(rehypeStringify)
 
+const markdownTexter = unified().use(strip).use(remarkStringify)
+
 const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
 
@@ -167,6 +172,9 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   if (summaryNode) {
     result.summary = markdownRenderer.stringify(
       await markdownRenderer.run(summaryNode)
+    )
+    result.summaryText = markdownTexter.stringify(
+      await markdownTexter.run(summaryNode)
     )
   }
 
