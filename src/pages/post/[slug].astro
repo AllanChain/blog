@@ -37,6 +37,18 @@ const { post } = Astro.props as Props
       )
     }
     <meta name="description" content={post.summary} />
+    <meta name="issue-url" content={post.url} />
   </Fragment>
   <PostMain post={post} />
 </BaseLayout>
+
+<script>
+  document.addEventListener('keypress', (e) => {
+    if (e.key === 'e') {
+      const metaTag = document.querySelector(
+        'meta[name="issue-url"]'
+      ) as HTMLMetaElement
+      location.href = metaTag.content
+    }
+  })
+</script>
