@@ -83,9 +83,11 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     result.summary = markdownRenderer.stringify(
       await markdownRenderer.run(summaryNode)
     )
-    result.summaryText = markdownTexter.stringify(
-      await markdownTexter.run(summaryNode)
-    )
+    result.summaryText = markdownTexter
+      .stringify(await markdownTexter.run(summaryNode))
+      // https://stackoverflow.com/a/46548738/8810271
+      .replace(/(?: *[\n\r])+ */g, ' ')
+      .trim()
   }
 
   visit(frontNodes, 'image', (node) => {
