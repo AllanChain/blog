@@ -38,6 +38,9 @@ const { post } = Astro.props as Props
     }
     <meta name="description" content={post.summaryText} />
     <meta name="issue-url" content={post.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    {post.image && <meta property="og:image" content={post.image.src} />}
   </Fragment>
   <PostMain post={post} />
 </BaseLayout>
