@@ -27,7 +27,6 @@ const { page } = Astro.props as Props
   </Fragment>
   <div text-center>
     <h1>All Posts</h1>
-    <PaginateMenu page={page} />
   </div>
   <PostCards posts={page.data} />
   <PaginateMenu page={page} />
