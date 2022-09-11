@@ -14,6 +14,7 @@ export default defineConfig({
     sitemap(),
     copyImg(),
     uno({
+      astro: { autoImport: true },
       presets: [
         presetUno({ dark: 'media' }),
         presetAttributify(),
@@ -42,6 +43,6 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['normalize.css'],
-    },
+    }
   },
 })
