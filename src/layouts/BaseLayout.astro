@@ -108,5 +108,13 @@ const { title } = Astro.props as Props
         Powered by <a href="https://github.com/" theme-link>GitHub</a>.
       </p>
     </footer>
+    <style is:global>
+      @media (prefers-color-scheme: dark) {
+        div[alt*='in light theme'],
+        img[alt*='in light theme'] {
+          filter: brightness(0.8) contrast(1.2);
+        }
+      }
+    </style>
   </body>
 </html>

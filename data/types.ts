@@ -37,6 +37,7 @@ export interface BlogPost {
   summary?: string
   summaryText?: string
   image?: Image
+  imageAlt?: string
   url: string
   createdAt: Date
   lastEditedAt: Date

@@ -21,6 +21,7 @@ interface BodyParseResult {
   summary?: string
   summaryText?: string
   image?: string
+  imageAlt?: string
   createdAt?: Date
 }
 
@@ -92,6 +93,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
 
   visit(frontNodes, 'image', (node) => {
     result.image = node.url
+    result.imageAlt = node.alt
     return EXIT
   })
 

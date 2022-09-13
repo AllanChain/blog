@@ -37,7 +37,7 @@ const uncommonLabel = post.labels.length
           lazySrc={post.image.lazySrc}
           width={post.image.width}
           height={post.image.height}
-          alt="Header"
+          alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
           w-full
         />
       </div>
