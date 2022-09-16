@@ -11,7 +11,9 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     svelte(),
-    sitemap(),
+    sitemap({
+      filter: (page) => page.includes('/post/') || page.endsWith('/blog/'),
+    }),
     copyImg(),
     uno({
       astro: { autoImport: true },
@@ -43,6 +45,6 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['normalize.css'],
-    }
+    },
   },
 })
