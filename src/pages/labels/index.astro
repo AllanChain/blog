@@ -8,7 +8,12 @@ const { labels, extraData } = await dataPromise
 
 <BaseLayout title="All Labels">
   <Fragment slot="head">
-    <meta name="description" content="All labels for posts in AC Dustbin." />
+    <meta
+      name="description"
+      content={'All labels for posts in AC Dustbin. ' +
+        'AC Dustbin is a place where Allan Chain writes his blogs ' +
+        'about programming, software, and many more.'}
+    />
   </Fragment>
   <h1 text-center>All Labels</h1>
   <main text-center mx-auto max-w-3xl>

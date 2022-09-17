@@ -33,7 +33,8 @@ const { label, page } = Astro.props as Props
   <Fragment slot="head">
     <meta
       name="description"
-      content={`All posts with label "${label.id}" in AC Dustbin.`}
+      content={`Page ${page.currentPage} of posts with label "${label.id}" in AC Dustbin. ` +
+        'AC Dustbin is a place where Allan Chain writes his blogs.'}
     />
   </Fragment>
   <h1>
