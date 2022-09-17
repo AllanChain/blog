@@ -13,7 +13,7 @@ const { label, size, showRef } = Astro.props
 <a
   href={prefixLink(`label/${label.id.replace(': ', '-')}/`)}
   style={`background-color: #${label.color}; ` +
-  `font-size: ${size ?? 0.75}rem; line-height: 1.5em`}
+    `font-size: ${size ?? 0.75}rem; line-height: 1.5em`}
   class:list={[
     'post-label px-0.5em py-0.2em mx-0.3em my-0.3em text-xs shadow-sm rounded-md',
     {

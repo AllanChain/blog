@@ -53,8 +53,7 @@ const uncommonLabel = post.labels.length
       {post.labels.map((label) => <PostLabel label={label} />)}
     </div>
     {
-      !post.image &&
-      uncommonLabel?.logo && (
+      !post.image && uncommonLabel?.logo && (
         <div
           w-15
           h-15
