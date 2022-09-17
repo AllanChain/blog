@@ -4,6 +4,7 @@ import dataPromise from '@data'
 import type { BlogPost } from '@data/types'
 import PostMain from '@components/PostMain.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { prefixLink } from '@/utils'
 
 export interface Props {
   post: BlogPost
@@ -41,7 +42,11 @@ const { post } = Astro.props as Props
     <meta property="og:title" content={post.title} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
-    {post.image && <meta property="og:image" content={post.image.src} />}
+    <meta
+      property="og:image"
+      content={post.image?.src ??
+        new URL(prefixLink('og-large.png'), Astro.url)}
+    />
   </Fragment>
   <PostMain post={post} />
 </BaseLayout>
