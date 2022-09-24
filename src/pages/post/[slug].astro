@@ -25,7 +25,9 @@ export async function getStaticPaths() {
 const { post } = Astro.props as Props
 ---
 
-<BaseLayout title={post.title}>
+<BaseLayout
+  title={post.title.length > 50 ? post.title : `${post.title} - AC Dustbin`}
+>
   <Fragment slot="head">
     {
       post.body.includes('katex') && (

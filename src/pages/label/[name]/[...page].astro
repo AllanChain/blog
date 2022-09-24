@@ -29,7 +29,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { label, page } = Astro.props as Props
 ---
 
-<BaseLayout title={label.id}>
+<BaseLayout title={`${label.id} in AC Dustbin`}>
   <Fragment slot="head">
     <meta
       name="description"
