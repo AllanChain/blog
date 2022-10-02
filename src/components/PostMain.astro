@@ -1,6 +1,6 @@
 ---
 import { BlogPost } from '@data/types'
-import { formatDate, formatLocalDate } from '@/utils'
+import { formatDate, formatLocalDate, lang } from '@/utils'
 import PostLabel from '@components/PostLabel.astro'
 import PostDate from '@components/PostDate.astro'
 import LQIP from '@components/LQIP.svelte'
@@ -11,15 +11,10 @@ export interface Props {
 }
 
 const { post } = Astro.props as Props
-const lang =
-  Array.from(post.body).filter((c) => '\u4e00' <= c && c <= '\u9fa5').length >
-  30
-    ? 'zh-CN'
-    : 'en'
 ---
 
 <main max-w-3xl mx-auto px-2>
-  <h1 text-center>{post.title}</h1>
+  <h1 text-center lang={lang(post.title)}>{post.title}</h1>
 
   <div text-center my-1>
     {post.labels.map((label) => <PostLabel label={label} />)}
@@ -47,6 +42,7 @@ const lang =
     post.summary && (
       <div
         class="markdown-body"
+        lang={lang(post.summary)}
         set:html={post.summary}
         bg="gray-200 dark:gray-800"
         border="2 dashed gray-400 rounded-md"
@@ -56,7 +52,12 @@ const lang =
     )
   }
 
-  <article class="article-main markdown-body" set:html={post.body}></article>
+  <article
+    class="article-main markdown-body"
+    lang={lang(post.body)}
+    set:html={post.body}
+  >
+  </article>
   <Reactions reactions={post.reactions} />
   <div flex items-center text-gray-800 dark:text-gray-300>
     <div dash-divider></div>
@@ -93,7 +94,11 @@ const lang =
             </div>
           </div>
 
-          <div class="comment markdown-body" set:html={comment.body} />
+          <div
+            class="comment markdown-body"
+            lang={lang(comment.body)}
+            set:html={comment.body}
+          />
           <Reactions reactions={comment.reactions} />
         </div>
       ))

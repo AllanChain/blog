@@ -3,7 +3,7 @@ import { BlogPost } from '@data/types'
 import LQIP from '@components/LQIP.svelte'
 import PostLabel from '@components/PostLabel.astro'
 import PostDate from '@components/PostDate.astro'
-import { postLink } from '@/utils'
+import { postLink, lang } from '@/utils'
 
 export interface Props {
   post: BlogPost
@@ -44,8 +44,11 @@ const uncommonLabel = post.labels.length
     )
   }
   <div px-4>
-    <h3 class="post-card-title my-2 py-1 text-sky-900 dark:text-sky-500">
-      <a class="theme-link" href={postLink(post.slug)}> {post.title}</a>
+    <h3
+      class="post-card-title my-2 py-1 text-sky-900 dark:text-sky-500"
+      lang={lang(post.title)}
+    >
+      <a class="theme-link" href={postLink(post.slug)}>{post.title}</a>
     </h3>
     <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
 
@@ -82,6 +85,7 @@ const uncommonLabel = post.labels.length
       post.summary ? (
         <div
           class="markdown-body"
+          lang={lang(post.summary)}
           set:html="post.summary"
           text="sm gray-800 dark:gray-200"
         />

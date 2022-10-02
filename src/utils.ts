@@ -20,3 +20,18 @@ export const prefixLink = (link: string) => import.meta.env.BASE_URL + link
 export const postLink = (slug: string) => {
   return prefixLink(`post/${slug}/`)
 }
+
+export const charIsZH = (c: string) => '\u4e00' <= c && c <= '\u9fa5'
+
+export const lang = (text: string) => {
+  text = text
+    .replace(/<code.*?>.*?<\/code>/g, '')
+    .replace(/\<.*?\>/g, '')
+    .replace(/[ \n\r，。？！；、（）,\.\?!;\(\)]/g, '')
+  const zhChars = Array.from(text).filter(charIsZH).length
+  if (text.length > 200) {
+    return zhChars > text.length * 0.1 ? 'zh-CN' : 'en'
+  } else {
+    return zhChars > 0 ? 'zh-CN' : 'en'
+  }
+}
