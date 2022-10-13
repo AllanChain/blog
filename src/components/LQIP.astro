@@ -14,8 +14,7 @@ const { src, lazySrc, width, height, alt } = props
 
 <div
   class={`blur ${props.class}`}
-  style:background-image={`url(${lazySrc})`}
-  style:aspect-ratio={`${width} / ${height}`}
+  style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazySrc})`}
 >
   <img
     src={src}
