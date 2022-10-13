@@ -3,7 +3,7 @@ import { BlogPost } from '@data/types'
 import { formatDate, formatLocalDate, lang } from '@/utils'
 import PostLabel from '@components/PostLabel.astro'
 import PostDate from '@components/PostDate.astro'
-import LQIP from '@components/LQIP.svelte'
+import LQIP from '@components/LQIP.astro'
 import Reactions from '@components/Reactions.astro'
 
 export interface Props {
@@ -27,14 +27,12 @@ const { post } = Astro.props as Props
   {
     post.image && (
       <LQIP
-        client:load={import.meta.env.DEV}
         src={post.image.src}
         lazySrc={post.image.lazySrc}
         width={post.image.width}
         height={post.image.height}
         alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
-        w-full
-        my-2
+        class="w-full my-2"
       />
     )
   }

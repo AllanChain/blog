@@ -1,6 +1,6 @@
 ---
 import { BlogPost } from '@data/types'
-import LQIP from '@components/LQIP.svelte'
+import LQIP from '@components/LQIP.astro'
 import PostLabel from '@components/PostLabel.astro'
 import PostDate from '@components/PostDate.astro'
 import { postLink, lang } from '@/utils'
@@ -32,13 +32,12 @@ const uncommonLabel = post.labels.length
     post.image && (
       <div max-h-40 overflow-hidden flex items-center>
         <LQIP
-          client:load={import.meta.env.DEV}
           src={post.image.src}
           lazySrc={post.image.lazySrc}
           width={post.image.width}
           height={post.image.height}
           alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
-          w-full
+          class="w-full"
         />
       </div>
     )
@@ -71,7 +70,6 @@ const uncommonLabel = post.labels.length
           style={`border-color: #${uncommonLabel.color}`}
         >
           <LQIP
-            client:load={import.meta.env.DEV}
             src={uncommonLabel.logo.src}
             lazySrc={uncommonLabel.logo.lazySrc}
             width={uncommonLabel.logo.width}

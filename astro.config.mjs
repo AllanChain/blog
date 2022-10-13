@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config'
-import svelte from '@astrojs/svelte'
 import sitemap from '@astrojs/sitemap'
 import uno from 'astro-uno'
 import copyImg from './astro-copy-img.mjs'
@@ -10,7 +9,6 @@ export default defineConfig({
   base: '/blog/',
   trailingSlash: 'always',
   integrations: [
-    svelte(),
     sitemap({
       filter: (page) => page.includes('/post/') || page.endsWith('/blog/'),
     }),
