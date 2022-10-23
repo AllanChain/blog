@@ -57,14 +57,7 @@ const { post } = Astro.props as Props
   >
   </article>
   <Reactions reactions={post.reactions} />
-  <div flex items-center text-gray-800 dark:text-gray-300>
-    <div dash-divider></div>
-    <div>More comments on</div>
-    <a href={`${post.url}#new_comment_field`} text-current>
-      <div mx-1 icon icon-btn i-mdi-github></div>
-    </a>
-    <div dash-divider></div>
-  </div>
+  <div dash-divider></div>
   <div>
     {
       post.comments.map((comment) => (
@@ -101,6 +94,17 @@ const { post } = Astro.props as Props
         </div>
       ))
     }
+    <div text-center text-sm text-gray-700 dark:text-gray-300 mt-2>
+      Leave your comments and reactions on
+      <a
+        class="theme-link"
+        href={`${post.url}#new_comment_field`}
+        text-black
+        dark:text-white
+      >
+        GitHub
+      </a>
+    </div>
   </div>
 </main>
 
