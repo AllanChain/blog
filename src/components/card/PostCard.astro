@@ -13,21 +13,12 @@ const { post } = Astro.props as Props
 
 const uncommonLabel = post.labels.length
   ? post.labels.reduce((previous, current) =>
-      current.logo && previous.reference > current.reference
-        ? current
-        : previous
+      current.logo && previous.reference > current.reference ? current : previous
     )
   : undefined
 ---
 
-<div
-  overflow-hidden
-  border="rounded-md"
-  shadow-md
-  bg-white
-  dark:bg-gray-800
-  m-1
->
+<div overflow-hidden border="rounded-md" shadow-md bg-white dark:bg-gray-800 m-1>
   {
     post.image && (
       <div max-h-40 overflow-hidden flex items-center>

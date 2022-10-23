@@ -25,9 +25,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props as Props
 ---
 
-<BaseLayout
-  title={post.title.length > 50 ? post.title : `${post.title} - AC Dustbin`}
->
+<BaseLayout title={post.title.length > 50 ? post.title : `${post.title} - AC Dustbin`}>
   <Fragment slot="head">
     {
       post.body.includes('katex') && (
@@ -46,8 +44,7 @@ const { post } = Astro.props as Props
     <meta property="og:url" content={Astro.url} />
     <meta
       property="og:image"
-      content={post.image?.src ??
-        new URL(prefixLink('og-large.png'), Astro.url)}
+      content={post.image?.src ?? new URL(prefixLink('og-large.png'), Astro.url)}
     />
   </Fragment>
   <PostMain post={post} />

@@ -47,9 +47,7 @@ const { title } = Astro.props as Props
           rounded-full
           overflow-hidden
         />
-        <div mx-2 font-bold text-lg text-sky-900 dark:text-sky-500>
-          AC Dustbin
-        </div>
+        <div mx-2 font-bold text-lg text-sky-900 dark:text-sky-500>AC Dustbin</div>
       </a>
       <div flex-1></div>
       <div>
@@ -73,11 +71,7 @@ const { title } = Astro.props as Props
     </nav>
     <div border="0 b-2 dotted gray-500" m="b-4 x--4"></div>
     <slot />
-    <footer
-      text="center sm"
-      m="y-4 x--4"
-      border="0 t-2 dotted gray-300 dark:gray-700"
-    >
+    <footer text="center sm" m="y-4 x--4" border="0 t-2 dotted gray-300 dark:gray-700">
       <p my-1>
         <i icon i-mdi-creative-commons></i>
         <a
@@ -88,26 +82,21 @@ const { title } = Astro.props as Props
           BY-NC-SA
         </a>
         for the
-        <a href="https://github.com/AllanChain/blog/issues" theme-link>posts</a
-        >.
+        <a href="https://github.com/AllanChain/blog/issues" theme-link>posts</a>.
         <i icon i-mdi-license></i>
-        <a
-          href="https://github.com/AllanChain/blog/blob/astro/LICENSE"
-          theme-link
-        >
+        <a href="https://github.com/AllanChain/blog/blob/astro/LICENSE" theme-link>
           MIT
         </a>
         for the
         <a href="https://github.com/AllanChain/blog" theme-link>code</a>.
       </p>
       <p my-1 inline-block>
-        Made by <a href="https://github.com/AllanChain" theme-link
-          >Allan Chain</a
-        >. Coded with <a href="https://astro.build/" theme-link>Astro</a>.
+        Made by <a href="https://github.com/AllanChain" theme-link>Allan Chain</a>.
+        Coded with <a href="https://astro.build/" theme-link>Astro</a>.
       </p>
       <p my-1 inline-block>
-        Powered by <a href="https://github.com/" theme-link>GitHub</a>.
-        Presented to you.
+        Powered by <a href="https://github.com/" theme-link>GitHub</a>. Presented to
+        you.
       </p>
     </footer>
     <style is:global>
@@ -118,8 +107,8 @@ const { title } = Astro.props as Props
         }
       }
       html {
-        font-family: -apple-system, BlinkMacSystemFont, PingFang SC,
-          Hiragino Sans GB, Microsoft Yahei, Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,
+          Microsoft Yahei, Arial, sans-serif;
       }
     </style>
   </body>

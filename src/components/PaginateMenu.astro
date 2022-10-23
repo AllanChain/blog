@@ -41,9 +41,7 @@ const pageItems: { pagenum?: number; active: boolean }[] = showingPages.map(
     {
       pageItems.map(({ pagenum, active }) =>
         pagenum === undefined || active ? (
-          <span class="mx-2 text-gray-400 dark:text-gray-500">
-            {pagenum || '...'}
-          </span>
+          <span class="mx-2 text-gray-400 dark:text-gray-500">{pagenum || '...'}</span>
         ) : (
           <a
             href={

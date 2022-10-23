@@ -14,12 +14,7 @@ const { createdAt, lastEditedAt } = Astro.props
     <div>{formatDate(createdAt)}</div>
   </div>
   <div inline-block w-3></div>
-  <div
-    title={formatLocalDate(lastEditedAt)}
-    inline-flex
-    items-center
-    text-center
-  >
+  <div title={formatLocalDate(lastEditedAt)} inline-flex items-center text-center>
     <div i-mdi-calendar-edit mr-1></div>
     <div>{formatDate(lastEditedAt)}</div>
   </div>
