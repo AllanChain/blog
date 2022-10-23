@@ -78,7 +78,7 @@ const { title } = Astro.props as Props
       m="y-4 x--4"
       border="0 t-2 dotted gray-300 dark:gray-700"
     >
-      <p>
+      <p my-1>
         <i icon i-mdi-creative-commons></i>
         <a
           href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
@@ -88,9 +88,8 @@ const { title } = Astro.props as Props
           BY-NC-SA
         </a>
         for the
-        <a href="https://github.com/AllanChain/blog/issues" theme-link
-          >posts
-        </a>;
+        <a href="https://github.com/AllanChain/blog/issues" theme-link>posts</a
+        >.
         <i icon i-mdi-license></i>
         <a
           href="https://github.com/AllanChain/blog/blob/astro/LICENSE"
@@ -101,11 +100,14 @@ const { title } = Astro.props as Props
         for the
         <a href="https://github.com/AllanChain/blog" theme-link>code</a>.
       </p>
-      <p>
+      <p my-1 inline-block>
         Made by <a href="https://github.com/AllanChain" theme-link
-          >Allan Chain
-        </a>. Coded with <a href="https://astro.build/" theme-link>Astro</a>.
+          >Allan Chain</a
+        >. Coded with <a href="https://astro.build/" theme-link>Astro</a>.
+      </p>
+      <p my-1 inline-block>
         Powered by <a href="https://github.com/" theme-link>GitHub</a>.
+        Presented to you.
       </p>
     </footer>
     <style is:global>
