@@ -9,6 +9,8 @@ on:
   issues:
     types: [opened, edited]
   workflow_dispatch:
+  schedule:
+    - cron: "30 11 * * 5"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
