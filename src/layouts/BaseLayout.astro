@@ -28,6 +28,14 @@ const { title } = Astro.props as Props
       defer
     ></script>
     <meta name="generator" content="astro" />
+    <script>
+      // Replace server-rendered date title to those with client's locale
+      for (const el of document.querySelectorAll<HTMLDivElement>('[data-date]')) {
+        el.title = new Date(el.dataset.date).toLocaleString(undefined, {
+          timeZone: 'Asia/Shanghai',
+        })
+      }
+    </script>
   </head>
   <body class="px-4 bg-gray-100 dark:bg-gray-900 dark:text-gray-200">
     <nav flex flex-wrap items-center justify-end py-2>

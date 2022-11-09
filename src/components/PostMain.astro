@@ -54,8 +54,7 @@ const { post } = Astro.props as Props
     class="article-main markdown-body"
     lang={lang(post.body)}
     set:html={post.body}
-  >
-  </article>
+  />
   <Reactions reactions={post.reactions} />
   <div dash-divider></div>
   <div>
@@ -79,7 +78,8 @@ const { post } = Astro.props as Props
             <div
               text="gray-700 dark:gray-300 sm"
               select-none
-              title={formatLocalDate(post.lastEditedAt)}
+              data-date={comment.createdAt}
+              title={formatLocalDate(comment.createdAt)}
             >
               {formatDate(comment.createdAt)}
             </div>
