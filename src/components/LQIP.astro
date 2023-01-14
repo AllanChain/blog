@@ -13,7 +13,7 @@ const { src, lazySrc, width, height, alt } = props
 ---
 
 <div
-  class={`blur ${props.class}`}
+  class={`lqip blur ${props.class}`}
   style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazySrc})`}
 >
   <img
@@ -39,8 +39,8 @@ const { src, lazySrc, width, height, alt } = props
   }
 </script>
 
-<style>
-  div {
+<style is:global>
+  div.lqip {
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -50,7 +50,7 @@ const { src, lazySrc, width, height, alt } = props
     transition: opacity 1s ease-in-out;
   }
 
-  div::after {
+  div.lqip::after {
     content: '';
     display: block;
     position: absolute;
@@ -66,15 +66,15 @@ const { src, lazySrc, width, height, alt } = props
     background-repeat: no-repeat;
   }
 
-  .blur::after {
+  .lqip.blur::after {
     opacity: 1;
   }
 
-  .blur img {
+  .lqip.blur img {
     opacity: 0;
   }
 
-  img {
+  .lqip img {
     transition: inherit;
     display: block;
     width: 100%;
