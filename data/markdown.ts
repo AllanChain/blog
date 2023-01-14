@@ -31,6 +31,49 @@ const transformIssueLink = () => (htmlNodes: HastRoot) => {
   })
 }
 
+const createVideo = () => (htmlNodes: HastRoot) => {
+  visit(htmlNodes, 'element', (node) => {
+    if (
+      node.tagName === 'a' &&
+      typeof node.properties.href === 'string' &&
+      node.properties.href.match(/\.mp4$/) &&
+      node.children.length === 1 &&
+      node.children[0].type === 'text' &&
+      node.children[0].value === node.properties.href
+    ) {
+      node.tagName = 'video'
+      const videoSource = node.properties.href
+      node.properties = {
+        controls: true,
+      }
+      node.children = [
+        {
+          type: 'element',
+          tagName: 'source',
+          properties: {
+            src: videoSource,
+            type: 'video/mp4',
+          },
+          children: [],
+        },
+        {
+          type: 'element',
+          tagName: 'a',
+          properties: {
+            href: videoSource,
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'This is a MP4 video.',
+            },
+          ],
+        },
+      ]
+    }
+  })
+}
+
 const enhanceCodeBlock = () => (htmlNodes: HastRoot) => {
   visit(htmlNodes, 'element', (node) => {
     if (
@@ -84,6 +127,7 @@ export const markdownRenderer = unified()
   .use(rehypeHighlight, { ignoreMissing: true, subset: [] })
   .use(transformIssueLink)
   .use(enhanceCodeBlock)
+  .use(createVideo)
   .use(rehypeStringify)
 
 export const markdownTexter = unified().use(strip).use(remarkStringify)
