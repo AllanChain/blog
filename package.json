@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier -w **/*.{js,json,ts,svelte,astro}",
+    "format": "prettier -w **/*.{js,json,ts,astro}",
     "gql-codegen": "graphql-codegen",
     "postinstall": "pnpm gql-codegen",
     "prepare": "husky install"

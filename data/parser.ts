@@ -36,9 +36,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
 
   const nodes = markdownRenderer.parse(text)
-  const hrIndex = nodes.children.findIndex(
-    (node) => node.type === 'thematicBreak'
-  )
+  const hrIndex = nodes.children.findIndex((node) => node.type === 'thematicBreak')
   if (hrIndex === -1) throw new Error('Post need <hr>')
   const frontNodes: MdastRoot = {
     type: 'root',
@@ -81,9 +79,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     }
   })
   if (summaryNode) {
-    result.summary = markdownRenderer.stringify(
-      await markdownRenderer.run(summaryNode)
-    )
+    result.summary = markdownRenderer.stringify(await markdownRenderer.run(summaryNode))
     result.summaryText = markdownTexter
       .stringify(await markdownTexter.run(summaryNode))
       // https://stackoverflow.com/a/46548738/8810271
@@ -137,9 +133,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   return result as BodyParseResult
 }
 
-const parseReactionGroups = (
-  reactionGroups: QueryReactionGroup[]
-): ReactionGroup[] => {
+const parseReactionGroups = (reactionGroups: QueryReactionGroup[]): ReactionGroup[] => {
   const emojis = {
     CONFUSED: '😕',
     EYES: '👀',

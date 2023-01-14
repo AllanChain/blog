@@ -78,9 +78,9 @@ export default (async (): Promise<{
   const extraData = loadYAML(repo.extraData.bodyText) as ExtraData
   writeExtraData(extraData)
   console.log('  Processing posts...')
-  const parsedPosts = (
-    await Promise.all(repo.issues.nodes.map(parsePost))
-  ).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+  const parsedPosts = (await Promise.all(repo.issues.nodes.map(parsePost))).sort(
+    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+  )
   const labels: Record<string, BlogLabel> = {}
 
   console.log('  Fetching label logos...')

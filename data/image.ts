@@ -9,8 +9,7 @@ import type { Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 
-const isGitHubImageAbbr = (s: string) =>
-  /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
+const isGitHubImageAbbr = (s: string) => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
 const expandGitHubImageAbbr = (s: string, userId: string) =>
   `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = (s: string) => s.startsWith('http')
@@ -61,9 +60,7 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
     }
   }
 
-  console.log(
-    `    [${hint}] Downloading ${fileInfo?.filename || hash} (${url})`
-  )
+  console.log(`    [${hint}] Downloading ${fileInfo?.filename || hash} (${url})`)
 
   try {
     const response = await axios({
@@ -92,9 +89,7 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
   }
 }
 
-export const transformLabelLogo = async <
-  T extends { id: string; logo?: string }
->(
+export const transformLabelLogo = async <T extends { id: string; logo?: string }>(
   userId: string,
   label: T
 ): Promise<Omit<T, 'logo'> & { logo: Image }> => {
@@ -112,9 +107,7 @@ export const transformLabelLogo = async <
   }
 }
 
-export const transformPostImage = async <
-  T extends { image?: string; slug: string }
->(
+export const transformPostImage = async <T extends { image?: string; slug: string }>(
   post: T
 ): Promise<Omit<T, 'image'> & { image: Image }> => {
   return {

@@ -25,9 +25,7 @@ const transformIssueLink = () => (htmlNodes: HastRoot) => {
       node.children[0].type === 'text'
     ) {
       const rawUrl = node.children[0].value
-      const url = rawUrl.includes('#')
-        ? rawUrl.replace('#', '/#')
-        : rawUrl + '/'
+      const url = rawUrl.includes('#') ? rawUrl.replace('#', '/#') : rawUrl + '/'
       node.properties.href = prefixLink(`post/${url}`)
     }
   })
@@ -77,10 +75,7 @@ export const markdownRenderer = unified()
     ...defaultSchema,
     attributes: {
       ...defaultSchema.attributes,
-      div: [
-        ...defaultSchema.attributes.div,
-        ['className', 'math', 'math-display'],
-      ],
+      div: [...defaultSchema.attributes.div, ['className', 'math', 'math-display']],
       span: [['className', 'math', 'math-inline']],
       code: ['className'],
     },
