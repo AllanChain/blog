@@ -81,7 +81,7 @@ export const markdownRenderer = unified()
     },
   })
   .use(rehypeKatex)
-  .use(rehypeHighlight, { ignoreMissing: true, subset: false })
+  .use(rehypeHighlight, { ignoreMissing: true, subset: [] })
   .use(transformIssueLink)
   .use(enhanceCodeBlock)
   .use(rehypeStringify)
