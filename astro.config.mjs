@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 import uno from 'astro-uno'
-import copyImg from './astro-copy-img.mjs'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
@@ -12,14 +11,9 @@ export default defineConfig({
     sitemap({
       filter: (page) => page.includes('/post/') || page.endsWith('/blog/'),
     }),
-    copyImg(),
     uno({
       astro: { autoImport: true },
-      presets: [
-        presetUno({ dark: 'media' }),
-        presetAttributify(),
-        presetIcons(),
-      ],
+      presets: [presetUno({ dark: 'media' }), presetAttributify(), presetIcons()],
       shortcuts: [
         [
           'icon-btn',
