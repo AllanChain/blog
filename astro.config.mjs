@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
-import UnoCSS from '@unocss/astro'
+import UnoCSS from 'unocss/astro'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
