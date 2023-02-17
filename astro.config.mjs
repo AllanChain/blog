@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
-import uno from 'astro-uno'
+import UnoCSS from '@unocss/astro'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 
 export default defineConfig({
@@ -11,8 +11,8 @@ export default defineConfig({
     sitemap({
       filter: (page) => page.includes('/post/') || page.endsWith('/blog/'),
     }),
-    uno({
-      astro: { autoImport: true },
+    UnoCSS({
+      injectReset: 'normalize.css',
       presets: [presetUno({ dark: 'media' }), presetAttributify(), presetIcons()],
       shortcuts: [
         [
