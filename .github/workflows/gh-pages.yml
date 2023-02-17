@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     # The sender must be me. And if it's an issue, must contain such label.
     if: >
+      github.event_name == 'schedule' ||
       github.event.sender.login == 'AllanChain' &&
       (!github.event.issue || contains(github.event.issue.labels.*.name, '@post'))
     steps:
