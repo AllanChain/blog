@@ -55,12 +55,14 @@ const { post } = Astro.props as Props
     lang={lang(post.body)}
     set:html={post.body}
   />
-  <Reactions reactions={post.reactions} />
-  <div dash-divider></div>
+  <div mt-10 mb-3 h-2em>
+    <Reactions reactions={post.reactions} />
+  </div>
+  <div border="t-2 t-dashed gray-500" mx--5 flex-grow></div>
   <div>
     {
       post.comments.map((comment) => (
-        <div border="b-2 b-dashed gray-200 dark:gray-700" px-3 my-2>
+        <div border="b-2 b-dashed gray-400 dark:gray-600" px-3 py-1 my-2>
           <div flex items-center>
             <img
               src={comment.author?.avatarUrl}
