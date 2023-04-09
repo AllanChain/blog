@@ -11,6 +11,8 @@ export interface Props {
 }
 
 const { post } = Astro.props as Props
+
+const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 ---
 
 <main max-w-3xl mx-auto px-2>
@@ -34,6 +36,26 @@ const { post } = Astro.props as Props
         alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
         class="w-full my-2"
       />
+    )
+  }
+  {
+    new Date().getTime() - post.createdAt.getTime() > oldPostThreshold && (
+      <div
+        class="markdown-body"
+        lang="en"
+        bg="teal-500 dark:teal-800"
+        border="0 l-10 teal-700 dark:teal-600 solid rounded-md"
+        px-3
+        flex
+        items-center
+      >
+        <div icon i-mdi-information-slab-circle-outline w-12 h-12 mr-5 />
+        <p>
+          This article is a bit old and the content may be outdated, so please refer to
+          it with caution and remember to check the latest official materials (such as
+          documentation, etc.)
+        </p>
+      </div>
     )
   }
   {
