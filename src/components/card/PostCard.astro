@@ -74,7 +74,7 @@ const uncommonLabel = post.labels.length
         <div
           class="markdown-body"
           lang={lang(post.summary)}
-          set:html="post.summary"
+          set:html={post.summary}
           text="sm gray-800 dark:gray-200"
         />
       ) : (
