@@ -30,6 +30,9 @@ devDependencies:
   '@iconify-json/mdi':
     specifier: ^1.1.50
     version: 1.1.50
+  '@iconify-json/simple-icons':
+    specifier: ^1.1.48
+    version: 1.1.48
   '@types/node':
     specifier: ^18.15.11
     version: 18.15.11
@@ -1679,6 +1682,12 @@ packages:
 
   /@iconify-json/mdi@1.1.50:
     resolution: {integrity: sha512-SgbT5w5eHCdOG74ZWPz7HlTGk6VsifIJhNi6lAsxj/5Nlqt6Cz4LlQmSa9eecU9p075Jub2aAx/o7YI+GCahRQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/simple-icons@1.1.48:
+    resolution: {integrity: sha512-haFEPmTPriak+bcmhJawCTW2N2KxcaNNpS3z5hofBUBlCzwRhjM+vU0eImJ6i51HNFlSozt8sxVOZtT7NsWZJg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
