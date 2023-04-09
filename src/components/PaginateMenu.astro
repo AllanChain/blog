@@ -30,10 +30,10 @@ const pageItems: { pagenum?: number; active: boolean }[] = showingPages.map(
     {
       page.url.prev ? (
         <a href={prefixLink(page.url.prev.slice(1))} class="theme-link">
-          <i icon i-mdi-chevron-double-left />
+          <i i-mdi-chevron-double-left />
         </a>
       ) : (
-        <i class="icon i-mdi-chevron-double-left text-gray-300 dark:text-gray-600" />
+        <i class="i-mdi-chevron-double-left text-gray-300 dark:text-gray-600" />
       )
     }
   </div>
@@ -63,10 +63,10 @@ const pageItems: { pagenum?: number; active: boolean }[] = showingPages.map(
     {
       page.url.next ? (
         <a href={prefixLink(page.url.next.slice(1))} class="theme-link">
-          <i icon i-mdi-chevron-double-right />
+          <i i-mdi-chevron-double-right />
         </a>
       ) : (
-        <i class="icon i-mdi-chevron-double-right text-gray-300 dark:text-gray-600" />
+        <i class="i-mdi-chevron-double-right text-gray-300 dark:text-gray-600" />
       )
     }
   </div>
