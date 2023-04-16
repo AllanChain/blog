@@ -13,12 +13,16 @@ export default defineConfig({
     }),
     UnoCSS({
       injectReset: 'normalize.css',
-      presets: [presetUno({ dark: 'media' }), presetAttributify(), presetIcons({
-        extraProperties: {
-          display: 'inline-block',
-          'vertical-align': 'sub'
-        }
-      })],
+      presets: [
+        presetUno({ dark: 'media' }),
+        presetAttributify(),
+        presetIcons({
+          extraProperties: {
+            display: 'inline-block',
+            'vertical-align': 'sub',
+          },
+        }),
+      ],
       shortcuts: [
         [
           'icon-btn',
