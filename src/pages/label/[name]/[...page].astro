@@ -37,10 +37,12 @@ const { label, page } = Astro.props as Props
         'AC Dustbin is a place where Allan Chain writes his blogs.'}
     />
   </Fragment>
-  <h1>
-    All posts with label
-    <PostLabel label={label} size={1.5} />
-  </h1>
-  <PostCards posts={page.data} />
+  <div class="max-w-7xl mx-auto">
+    <h1>
+      All posts with label
+      <PostLabel label={label} size={1.5} />
+    </h1>
+    <PostCards posts={page.data} />
+  </div>
   <PaginateMenu page={page} />
 </BaseLayout>

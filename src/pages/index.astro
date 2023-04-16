@@ -17,7 +17,7 @@ const { posts, extraData } = await dataPromise
         'Here are some recent posts and friends.'}
     />
   </Fragment>
-  <div flex flex-wrap justify-evenly items-center>
+  <div flex flex-wrap justify-evenly items-center max-w-7xl mx-auto>
     <img
       src={prefixLink('avatar/300.jpg')}
       alt="Avatar"
@@ -81,13 +81,13 @@ const { posts, extraData } = await dataPromise
     <div font-bold text-xl>Recent Blogs</div>
     <div dash-divider></div>
   </div>
-  <div>
+  <div class="max-w-7xl mx-auto">
     <PostCards posts={posts.slice(0, 6)} />
-  </div>
-  <div text-right mb-4>
-    <a theme-link text-blue-800 dark:text-blue-400 href={prefixLink('posts/')}>
-      View more &gt;&gt;&gt;
-    </a>
+    <div text-right mb-4>
+      <a theme-link text-blue-800 dark:text-blue-400 href={prefixLink('posts/')}>
+        View more &gt;&gt;&gt;
+      </a>
+    </div>
   </div>
   <div flex items-center my-2>
     <div dash-divider></div>
@@ -95,7 +95,7 @@ const { posts, extraData } = await dataPromise
     <div dash-divider></div>
   </div>
 
-  <div class="card-container">
+  <div class="card-container max-w-7xl mx-auto">
     {
       extraData.friends.map((friend) => (
         <div class="card-item">
