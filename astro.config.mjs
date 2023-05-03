@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 import UnoCSS from 'unocss/astro'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
+import { colors } from 'unocss/preset-mini'
+import sass from 'sass'
 
 export default defineConfig({
   site: 'https://allanchain.github.io',
@@ -45,6 +47,39 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['normalize.css'],
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          functions: {
+            'theme-color($color, $shade)': function (color, shade) {
+              if (!(color instanceof sass.types.String)) {
+                throw '$color: Expected a string.'
+              }
+              if (!(shade instanceof sass.types.Number)) {
+                throw '$shade: Expected a number.'
+              }
+              if (shade.getUnit()) {
+                throw '$shade: Expected a unitless number.'
+              }
+              const colorName = color.getValue()
+              if (!(colorName in colors)) {
+                throw `$color: ${colorName} not found.`
+              }
+              const colorShades = colors[colorName]
+              if (!colorShades || typeof colorShades !== 'object') {
+                throw `$color: ${colorName} not supported.`
+              }
+              const shadeValue = shade.getValue()
+              if (!(shadeValue in colorShades)) {
+                throw `$shade: shade ${shadeValue} not supported in ${colorName}`
+              }
+              const colorByte = parseInt(colorShades[shadeValue].slice(1), 16)
+              return new sass.types.Color(colorByte + 0xff000000)
+            },
+          },
+        },
+      },
     },
   },
 })
