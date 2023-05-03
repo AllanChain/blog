@@ -34,6 +34,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^6.0.0",
     "graphql-tag": "^2.12.6",
+    "hastscript": "^7.2.0",
     "highlight.js": "^11.8.0",
     "husky": "^8.0.3",
     "js-yaml": "^4.1.0",

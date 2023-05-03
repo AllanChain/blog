@@ -12,6 +12,7 @@ import strip from 'strip-markdown'
 import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 
+import { h } from 'hastscript'
 import { visit } from 'unist-util-visit'
 import type { HastRoot } from 'remark-rehype/lib'
 import { prefixLink } from '@/utils'
@@ -43,32 +44,10 @@ const createVideo = () => (htmlNodes: HastRoot) => {
     ) {
       node.tagName = 'video'
       const videoSource = node.properties.href
-      node.properties = {
-        controls: true,
-      }
+      node.properties = { controls: true }
       node.children = [
-        {
-          type: 'element',
-          tagName: 'source',
-          properties: {
-            src: videoSource,
-            type: 'video/mp4',
-          },
-          children: [],
-        },
-        {
-          type: 'element',
-          tagName: 'a',
-          properties: {
-            href: videoSource,
-          },
-          children: [
-            {
-              type: 'text',
-              value: 'This is a MP4 video.',
-            },
-          ],
-        },
+        h('source', { src: videoSource, type: 'video/mp4' }),
+        h('a', { href: videoSource }, 'This is a MP4 video.'),
       ]
     }
   })
@@ -87,19 +66,7 @@ const enhanceCodeBlock = () => (htmlNodes: HastRoot) => {
         const language = classNames
           .find((className) => className.startsWith('language-'))
           .slice('language-'.length)
-        node.children.push({
-          type: 'element',
-          tagName: 'div',
-          properties: {
-            className: ['code-lang'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: language,
-            },
-          ],
-        })
+        node.children.push(h('div.code-lang', language))
       } else {
         codeElement.properties.className = ['hljs']
       }
