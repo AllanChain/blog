@@ -169,6 +169,46 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
       margin: 1rem;
     }
 
+    div.custom-block {
+      border-radius: 20px;
+      margin: 20px 10px;
+
+      &::before {
+        border-color: inherit;
+        border-style: inherit;
+        border-width: 0;
+        border-bottom-width: 1px;
+        font-weight: bold;
+        padding: 5px 15px;
+        display: block;
+      }
+
+      p {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      &.note-block {
+        border: 2px solid #89a5c5;
+        background-color: #e9f0f7;
+        color: #010f1f;
+        &::before {
+          content: 'Note';
+          color: #032852;
+        }
+      }
+
+      &.warning-block {
+        border: 2px solid #c5ae89;
+        background-color: #fff8cf;
+        color: #1f1601;
+        &::before {
+          content: 'Warning';
+          color: #895f03;
+        }
+      }
+    }
+
     details {
       background-color: #f9f6f0;
       border-radius: 0.5rem;
@@ -267,6 +307,26 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
         color: #cad0d7;
         border-color: #363c49;
       }
+
+      div.custom-block {
+        &.note-block {
+          border: 2px solid #011023;
+          background-color: #011d3a;
+          color: #dde4ed;
+          &::before {
+            color: #5f8bbe;
+          }
+        }
+        &.warning-block {
+          border: 2px solid #231c01;
+          background-color: #57480f;
+          color: #ede9dd;
+          &::before {
+            color: #beb15f;
+          }
+        }
+      }
+
       details {
         background-color: #19202d;
       }

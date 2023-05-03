@@ -53,6 +53,39 @@ const createVideo = () => (htmlNodes: HastRoot) => {
   })
 }
 
+const transformNoteBlock = () => (htmlNodes: HastRoot) => {
+  const supportedBlocks = ['note', 'warning']
+  visit(htmlNodes, 'element', (node) => {
+    if (node.tagName !== 'blockquote') {
+      return
+    }
+    for (const paraElement of node.children) {
+      // Find first <p>
+      if (paraElement.type !== 'element' || paraElement.tagName !== 'p') {
+        continue
+      }
+      // Find first <strong> in that <p>
+      for (const child of paraElement.children) {
+        if (
+          child.type !== 'element' ||
+          child.tagName !== 'strong' ||
+          child.children[0].type !== 'text'
+        ) {
+          continue
+        }
+        // ...that should be the block type
+        const blockType = child.children[0].value.toLowerCase()
+        if (!supportedBlocks.includes(blockType)) return
+        node.tagName = 'div'
+        node.properties.className = ['custom-block', `${blockType}-block`]
+        paraElement.children.splice(paraElement.children.indexOf(child), 1)
+        break // Don't consider other <strong>
+      }
+      break // Don't consider other <p>
+    }
+  })
+}
+
 const enhanceCodeBlock = () => (htmlNodes: HastRoot) => {
   visit(htmlNodes, 'element', (node) => {
     if (
@@ -93,6 +126,7 @@ export const markdownRenderer = unified()
   .use(rehypeKatex)
   .use(rehypeHighlight, { ignoreMissing: true, subset: [] })
   .use(transformIssueLink)
+  .use(transformNoteBlock)
   .use(enhanceCodeBlock)
   .use(createVideo)
   .use(rehypeStringify)
