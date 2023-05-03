@@ -15,6 +15,9 @@
   "lint-staged": {
     "*.{js,json,css,ts,svelte,vue,astro}": "prettier --write"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@astrojs/rss": "^2.4.1",
     "@astrojs/sitemap": "^1.2.2",
