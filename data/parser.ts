@@ -1,6 +1,6 @@
 import GithubSlugger from 'github-slugger'
-import { visit, EXIT, CONTINUE } from 'unist-util-visit'
 import type { MdastRoot } from 'remark-rehype/lib'
+import { visit, EXIT, CONTINUE } from 'unist-util-visit'
 
 import { markdownTexter, markdownRenderer } from './markdown'
 import type {

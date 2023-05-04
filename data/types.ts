@@ -1,4 +1,5 @@
 import type { BlogsQuery, ReactionContent } from './sdk'
+
 export type QueryIssue = BlogsQuery['repository']['issues']['nodes'][0]
 export type QueryLabel = BlogsQuery['repository']['labels']['nodes'][0]
 export type QueryComment = QueryIssue['comments']['nodes'][0]

@@ -1,10 +1,11 @@
 ---
-import dataPromise from '@data'
-import PostCards from '@components/card/PostCards.astro'
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import { BlogPost } from '@data/types'
 import { GetStaticPathsOptions, Page } from 'astro'
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
 import PaginateMenu from '@components/PaginateMenu.astro'
+import PostCards from '@components/card/PostCards.astro'
+import dataPromise from '@data'
+import { BlogPost } from '@data/types'
 
 export interface Props {
   page: Page<BlogPost>

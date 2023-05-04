@@ -1,14 +1,13 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { resolve as resolvePath } from 'path'
-
 import { gql, GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
+import { resolve as resolvePath } from 'path'
 
 import { gqlVar } from './config'
-import { parseLabel, parsePost } from './parser'
-import type { BlogLabel, BlogPost, ExtraData } from './types'
 import { transformLabelLogo, transformPostImage } from './image'
+import { parseLabel, parsePost } from './parser'
 import { getSdk, BlogsQuery } from './sdk'
+import type { BlogLabel, BlogPost, ExtraData } from './types'
 
 const cacheDir = resolvePath(process.cwd(), 'data/.cache')
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')

@@ -1,8 +1,8 @@
+import axios from 'axios'
+import { createHash } from 'crypto'
 import { readdirSync } from 'fs'
 import { stat } from 'fs/promises'
 import { resolve as resolvePath, join } from 'path'
-import { createHash } from 'crypto'
-import axios from 'axios'
 import sharp from 'sharp'
 
 import type { Image } from './types'

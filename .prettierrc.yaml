@@ -2,3 +2,9 @@ singleQuote: true
 semi: false
 pluginSearchDirs:
   - "."
+plugins:
+  - "@trivago/prettier-plugin-sort-imports"
+importOrder:
+  - "^@(.*)$"
+  - "^[./]"
+importOrderSeparation: true

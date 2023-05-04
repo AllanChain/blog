@@ -1,10 +1,10 @@
 ---
-import { BlogPost } from '@data/types'
 import { formatDate, formatLocalDate, lang } from '@/utils'
-import PostLabel from '@components/PostLabel.astro'
-import PostDate from '@components/PostDate.astro'
 import LQIP from '@components/LQIP.astro'
+import PostDate from '@components/PostDate.astro'
+import PostLabel from '@components/PostLabel.astro'
 import Reactions from '@components/Reactions.astro'
+import { BlogPost } from '@data/types'
 
 export interface Props {
   post: BlogPost

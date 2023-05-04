@@ -1,10 +1,11 @@
 ---
 import 'highlight.js/styles/atom-one-dark.css'
-import dataPromise from '@data'
-import type { BlogPost } from '@data/types'
-import PostMain from '@components/PostMain.astro'
+
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { prefixLink } from '@/utils'
+import PostMain from '@components/PostMain.astro'
+import dataPromise from '@data'
+import type { BlogPost } from '@data/types'
 
 export interface Props {
   post: BlogPost
