@@ -107,6 +107,19 @@ const enhanceCodeBlock = () => (htmlNodes: HastRoot) => {
   })
 }
 
+const fixFootnote = () => (htmlNodes: HastRoot) => {
+  // See https://github.com/rehypejs/rehype-sanitize#example-headings-dom-clobbering
+  // rehype-sanitize has a bug (?) to append `user-content-` twice.
+  visit(htmlNodes, 'element', (node) => {
+    if (
+      typeof node.properties.id === 'string' &&
+      node.properties.id.startsWith('user-content-user-content')
+    ) {
+      node.properties.id = node.properties.id.slice('user-content-'.length)
+    }
+  })
+}
+
 export const markdownRenderer = unified()
   .use(remarkParse)
   .use(emoji)
@@ -129,6 +142,7 @@ export const markdownRenderer = unified()
   .use(transformNoteBlock)
   .use(enhanceCodeBlock)
   .use(createVideo)
+  .use(fixFootnote)
   .use(rehypeStringify)
 
 export const markdownTexter = unified().use(strip).use(remarkStringify)
