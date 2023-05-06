@@ -1,30 +1,23 @@
 ---
 import { ReactionGroup } from '@data/types'
 
+import AddReaction from './AddReaction.astro'
+
 export interface Props {
   reactions: ReactionGroup[]
+  url: string
 }
 
-const { reactions } = Astro.props as Props
+const { reactions, url } = Astro.props as Props
 ---
 
-<div>
+<div inline-block px-1 my-2>
+  <AddReaction url={url} />
   {
     reactions.map((reaction) => (
-      <div
-        inline-flex
-        items-center
-        select-none
-        border="1 solid blue-500 rounded-full"
-        m="x-1 y-1"
-        p="y-0.5 x-0.5"
-      >
-        <div mx-1 text-xs>
-          {reaction.emoji}
-        </div>
-        <div mx-1 text-blue-800 dark:text-blue-400>
-          {reaction.count}
-        </div>
+      <div inline-flex items-center select-none m="x-1 y-1" p="y-0.5 x-0.5">
+        <div mx-1>{reaction.emoji}</div>
+        <div mr-1>{reaction.count}</div>
       </div>
     ))
   }

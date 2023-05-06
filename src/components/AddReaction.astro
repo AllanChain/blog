@@ -1,0 +1,22 @@
+---
+export interface Props {
+  url: string
+}
+
+const { url } = Astro.props as Props
+---
+
+<div
+  m-2
+  p-1
+  inline-block
+  border="1 rounded-full dark:slate-500 slate-700"
+  bg="gray-200 dark:gray-800"
+>
+  <a
+    href={url}
+    i-mdi-emoticon-excited-outline
+    icon-btn
+    text-xl
+    text="dark:slate-500 slate-700"></a>
+</div>

@@ -107,8 +107,8 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
     lang={lang(post.body)}
     set:html={post.body}
   />
-  <div mt-10 mb-3 h-2em>
-    <Reactions reactions={post.reactions} />
+  <div mt-10 mb-3 h-3em>
+    <Reactions reactions={post.reactions} url={post.url} />
   </div>
   <div border="t-2 t-dashed gray-500" mx--5 flex-grow></div>
   <div>
@@ -144,7 +144,10 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
             lang={lang(comment.body)}
             set:html={comment.body}
           />
-          <Reactions reactions={comment.reactions} />
+          <Reactions
+            reactions={comment.reactions}
+            url={`https://github.com${comment.resourcePath}`}
+          />
         </div>
       ))
     }
