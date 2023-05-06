@@ -9,21 +9,29 @@ import type { BlogPost } from '@data/types'
 
 export interface Props {
   post: BlogPost
+  seriesPosts: BlogPost[]
 }
 
 export async function getStaticPaths() {
   const { posts } = await dataPromise
-  return posts.map((post) => ({
-    params: {
-      slug: post.slug,
-    },
-    props: {
-      post,
-    },
-  }))
+  return posts.map((post) => {
+    const seriesLabelId = post.labels.find((label) => label.type === 'series')?.id
+
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+        seriesPosts: posts
+          .filter((p) => p.labels.findIndex((l) => l.id === seriesLabelId) !== -1)
+          .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime()),
+      } as Props,
+    }
+  })
 }
 
-const { post } = Astro.props as Props
+const { post, seriesPosts } = Astro.props as Props
 ---
 
 <BaseLayout title={post.title.length > 50 ? post.title : `${post.title} - AC Dustbin`}>
@@ -48,7 +56,7 @@ const { post } = Astro.props as Props
       content={post.image?.src ?? new URL(prefixLink('og-large.png'), Astro.url)}
     />
   </Fragment>
-  <PostMain post={post} />
+  <PostMain post={post} seriesPosts={seriesPosts} />
 </BaseLayout>
 
 <script>

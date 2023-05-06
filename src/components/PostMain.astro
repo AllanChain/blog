@@ -1,5 +1,5 @@
 ---
-import { formatDate, formatLocalDate, lang } from '@/utils'
+import { formatDate, formatLocalDate, lang, postLink } from '@/utils'
 import LQIP from '@components/LQIP.astro'
 import PostDate from '@components/PostDate.astro'
 import PostLabel from '@components/PostLabel.astro'
@@ -8,9 +8,10 @@ import { BlogPost } from '@data/types'
 
 export interface Props {
   post: BlogPost
+  seriesPosts: BlogPost[]
 }
 
-const { post } = Astro.props as Props
+const { post, seriesPosts } = Astro.props as Props
 
 const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 ---
@@ -69,6 +70,35 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
         px-3
         my-2
       />
+    )
+  }
+  {
+    seriesPosts.length > 0 && (
+      <div
+        class="markdown-body"
+        lang="en"
+        bg="slate-200 dark:slate-800"
+        border="rounded-md"
+        px-4
+        py-1px
+        m-2
+      >
+        <p>This series contains the following posts:</p>
+        <ul>
+          {seriesPosts.map((p) =>
+            p.id === post.id ? (
+              <li>
+                {p.title}
+                <span text="gray-700 dark:gray-400">(This post)</span>
+              </li>
+            ) : (
+              <li>
+                <a href={postLink(p.slug)}>{p.title}</a>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
     )
   }
 
