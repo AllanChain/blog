@@ -5,16 +5,19 @@ import { stat } from 'fs/promises'
 import { resolve as resolvePath, join } from 'path'
 import sharp from 'sharp'
 
+import { repoUrl } from './config'
 import type { Image } from './types'
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 
-const isGitHubImageAbbr = (s: string) => /^[\da-f-]+\.(png|jpe?g|gif|webp)$/.test(s)
+const isGitHubImageAbbr = (s: string) => /^[\da-f-]+(\.(png|jpe?g|gif|webp))?$/.test(s)
 const expandGitHubImageAbbr = (s: string, userId: string) =>
-  `https://user-images.githubusercontent.com/${userId}/${s}`
+  /^[\da-f-]+$/.test(s)
+    ? `${repoUrl}/assets/${userId}/${s}`
+    : `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = (s: string) => s.startsWith('http')
 const isGitHubHostedImage = (s: string) =>
-  /^https:\/\/user-images\.githubusercontent\.com/.test(s)
+  /^https:\/\/(user-images\.)?github(usercontent)?\.com/.test(s)
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const getFileInfo = (hash: string) => {
