@@ -15,15 +15,15 @@ export interface Props {
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const { posts, labels } = await dataPromise
-  return Object.entries(labels).map(([id, label]) =>
+  return Object.entries(labels).flatMap(([id, label]) =>
     paginate(
       posts.filter(({ labels: postLabels }) => postLabels.includes(label)),
       {
         params: { name: id.replace(': ', '-') },
         props: { label },
         pageSize: 12,
-      }
-    )
+      },
+    ),
   )
 }
 

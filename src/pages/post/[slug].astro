@@ -14,7 +14,7 @@ export interface Props {
 
 export async function getStaticPaths() {
   const { posts } = await dataPromise
-  return posts.map((post) => {
+  return posts.flatMap((post) => {
     const seriesLabelId = post.labels.find((label) => label.type === 'series')?.id
 
     return {
@@ -63,7 +63,7 @@ const { post, seriesPosts } = Astro.props as Props
   document.addEventListener('keypress', (e) => {
     if (e.key === 'e') {
       const metaTag = document.querySelector(
-        'meta[name="issue-url"]'
+        'meta[name="issue-url"]',
       ) as HTMLMetaElement
       location.href = metaTag.content
     }

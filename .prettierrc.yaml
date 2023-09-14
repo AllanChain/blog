@@ -1,8 +1,7 @@
 singleQuote: true
 semi: false
-pluginSearchDirs:
-  - "."
 plugins:
+  - "prettier-plugin-astro"
   - "@trivago/prettier-plugin-sort-imports"
 importOrder:
   - "^@(.*)$"

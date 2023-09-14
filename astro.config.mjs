@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap'
 import UnoCSS from 'unocss/astro'
 import { presetUno, presetAttributify, presetIcons } from 'unocss'
 import { colors } from 'unocss/preset-mini'
-import sass from 'sass'
+import * as sass from 'sass'
 
 export default defineConfig({
   site: 'https://allanchain.github.io',
