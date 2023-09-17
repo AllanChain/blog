@@ -1,3 +1,5 @@
+import axios from 'axios'
+import { selectAll } from 'hast-util-select'
 import { h } from 'hastscript'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeKatex from 'rehype-katex'
@@ -120,6 +122,23 @@ const fixFootnote = () => (htmlNodes: HastRoot) => {
   })
 }
 
+const transformNewGitHubImage = () => async (htmlNodes: HastRoot) => {
+  for (const node of selectAll('img[src^="https://github.com/"]', htmlNodes)) {
+    const url = node.properties.src as string
+    if (/https:\/\/github.com\/.*\/assets/.test(url)) {
+      try {
+        const resp = await axios.get(url, {
+          maxRedirects: 0,
+          validateStatus: (s) => s === 302,
+        })
+        node.properties.src = resp.headers.location
+      } catch {
+        console.warn(`${node.properties.src} can't be processed`)
+      }
+    }
+  }
+}
+
 export const markdownRenderer = unified()
   .use(remarkParse)
   .use(emoji)
@@ -143,6 +162,7 @@ export const markdownRenderer = unified()
   .use(enhanceCodeBlock)
   .use(createVideo)
   .use(fixFootnote)
+  .use(transformNewGitHubImage)
   .use(rehypeStringify)
 
 export const markdownTexter = unified().use(strip).use(remarkStringify)

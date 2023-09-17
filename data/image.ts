@@ -16,8 +16,9 @@ const expandGitHubImageAbbr = (s: string, userId: string) =>
     ? `${repoUrl}/assets/${userId}/${s}`
     : `https://user-images.githubusercontent.com/${userId}/${s}`
 const isInternetImage = (s: string) => s.startsWith('http')
-const isGitHubHostedImage = (s: string) =>
-  /^https:\/\/(user-images\.)?github(usercontent)?\.com/.test(s)
+const isOldStyleGitHubImage = (s: string) =>
+  /^https:\/\/user-images\.githubusercontent\.com/.test(s)
+const isNewStyleGitHubImage = (s: string) => /^https:\/\/github.com\/.*\/assets/.test(s)
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const getFileInfo = (hash: string) => {
@@ -36,7 +37,17 @@ const getFileInfo = (hash: string) => {
 }
 
 const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
-  if (!isGitHubHostedImage(url)) {
+  if (isNewStyleGitHubImage(url)) {
+    try {
+      const resp = await axios.get(url, {
+        maxRedirects: 0,
+        validateStatus: (s) => s === 302,
+      })
+      url = resp.headers.location
+    } catch {
+      console.warn(`::warning:: [${hint}] ${url} can't be processed`)
+    }
+  } else if (!isOldStyleGitHubImage(url)) {
     console.warn(`::warning:: [${hint}] ${url} is not a GitHub hosted image`)
   }
   const urlPrefix = import.meta.env.BASE_URL + 'img/'
@@ -94,7 +105,7 @@ const getImageInfo = async (url: string, hint?: string): Promise<Image> => {
 
 export const transformLabelLogo = async <T extends { id: string; logo?: string }>(
   userId: string,
-  label: T
+  label: T,
 ): Promise<Omit<T, 'logo'> & { logo: Image }> => {
   const hint = label.id
   return {
@@ -111,7 +122,7 @@ export const transformLabelLogo = async <T extends { id: string; logo?: string }
 }
 
 export const transformPostImage = async <T extends { image?: string; slug: string }>(
-  post: T
+  post: T,
 ): Promise<Omit<T, 'image'> & { image: Image }> => {
   return {
     ...post,
