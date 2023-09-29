@@ -7,7 +7,13 @@ h6 {
   @extend headings !optional;
 }
 
-$font-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+$font-mono:
+  source-code-pro,
+  Menlo,
+  Monaco,
+  Consolas,
+  Courier New,
+  monospace;
 $dark: '(prefers-color-scheme: dark)';
 
 .markdown-body {
@@ -30,40 +36,33 @@ $dark: '(prefers-color-scheme: dark)';
   }
 
   div.custom-block {
-    border-radius: 20px;
-    border-width: 2px;
-    border-style: solid;
     margin: 20px 10px;
+    border-left-width: 5px;
+    border-left-style: solid;
 
     &::before {
-      border-color: inherit;
-      border-style: inherit;
-      border-width: 0;
-      border-bottom-width: 1px;
       font-weight: bold;
       padding: 5px 15px;
       display: block;
     }
 
     p {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding: 5px 15px;
+      margin: 0;
     }
 
     &.note-block {
       border-color: theme-color('blue', 200);
-      background-color: theme-color('blue', 50);
-      color: mix(theme-color('blue', 900), black, 50%);
       &::before {
         content: 'Note';
+        background-color: theme-color('blue', 200);
         color: theme-color('blue', 900);
       }
 
       @media #{$dark} {
-        border-color: mix(theme-color('blue', 900), black, 80%);
-        background-color: mix(theme-color('blue', 900), theme-color('gray', 900), 50%);
-        color: #dde4ed;
+        border-color: theme-color('blue', 900);
         &::before {
+          background-color: theme-color('blue', 900);
           color: theme-color('blue', 200);
         }
       }
@@ -71,22 +70,16 @@ $dark: '(prefers-color-scheme: dark)';
 
     &.warning-block {
       border-color: theme-color('amber', 300);
-      background-color: theme-color('yellow', 100);
-      color: mix(theme-color('yellow', 900), black, 50%);
       &::before {
+        background-color: theme-color('amber', 300);
         content: 'Warning';
         color: theme-color('yellow', 700);
       }
 
       @media #{$dark} {
-        border-color: mix(theme-color('yellow', 500), black, 25%);
-        background-color: mix(
-          theme-color('yellow', 900),
-          theme-color('lime', 900),
-          70%
-        );
-        color: theme-color('yellow', 50);
+        border-color: theme-color('yellow', 900);
         &::before {
+          background-color: theme-color('yellow', 900);
           color: theme-color('yellow', 500);
         }
       }
