@@ -34,7 +34,7 @@ const { posts, extraData } = await dataPromise
         I'm a programming hobbyist and open source lover. My primary programming
         languages are Python
         <i i-simple-icons-python></i>
-        and JavaScript
+         and JavaScript
         <i i-simple-icons-javascript></i>. I'm also having (or had) "fun" with
         <i i-simple-icons-latex></i>
         <i i-simple-icons-docker></i>
@@ -48,23 +48,30 @@ const { posts, extraData } = await dataPromise
         <a theme-link text-blue-800 dark:text-blue-400 href={prefixLink('rss.xml')}>
           RSS link
         </a>
-        to subscribe.
+         to subscribe.
       </p>
     </div>
   </div>
   <div
     text="amber-700 dark:amber-50"
-    bg="amber-200 dark:amber-600"
+    bg="amber-200 dark:amber-600/80"
     border="0 solid amber-400 dark:amber-500 rounded-md l-10"
     p="y-3 x-4"
-    mx-auto
-    mt-4
-    mb-8
+    m="x-auto t-4 b-8"
     max-w-2xl
   >
-    <i i-mdi-gold text-xl mr-2></i>
-    We will glow in the dark turning dust to gold.
-    <div float-right>
+    <span my-1>
+      <i i-mdi-gold text-xl mr-2></i>
+       We will glow in the dark turning dust to gold.
+    </span>
+    <div
+      float-right
+      mt-1
+      py-1
+      px-2
+      border="rounded"
+      bg="amber-100/50 dark:amber-500/50"
+    >
       <i i-mdi-video></i>
       <a
         text-current
