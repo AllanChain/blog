@@ -59,6 +59,7 @@ jobs:
         run: |
           pnpm install
           pnpm build
+          cp -r public/img dist/img
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
