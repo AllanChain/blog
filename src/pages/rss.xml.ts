@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss'
 import dataPromise from '@data'
 
-export const get = async () => {
+export const GET = async () => {
   const { posts } = await dataPromise
   return rss({
     title: 'AC Dustbin',
