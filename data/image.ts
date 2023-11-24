@@ -114,10 +114,10 @@ export const transformLabelLogo = async <T extends { id: string; logo?: string }
       label.logo === undefined
         ? undefined
         : isGitHubImageAbbr(label.logo)
-        ? await getImageInfo(expandGitHubImageAbbr(label.logo, userId), hint)
-        : isInternetImage(label.logo)
-        ? await getImageInfo(label.logo, hint)
-        : undefined,
+          ? await getImageInfo(expandGitHubImageAbbr(label.logo, userId), hint)
+          : isInternetImage(label.logo)
+            ? await getImageInfo(label.logo, hint)
+            : undefined,
   }
 }
 

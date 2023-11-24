@@ -59,7 +59,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
   visit(frontNodes, 'emphasis', (node) => {
     if (node.children.length === 1 && node.children[0].type === 'text') {
       const match = node.children[0].value.match(
-        /This post was originally created at (.*)/
+        /This post was originally created at (.*)/,
       )
       if (match !== null) {
         const createdAt = new Date(match[1])

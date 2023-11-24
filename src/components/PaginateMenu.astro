@@ -22,7 +22,7 @@ if (page.lastPage <= 7) {
   showingPages.push(1, undefined, cp - 1, cp, cp + 1, undefined, page.lastPage)
 }
 const pageItems: { pagenum?: number; active: boolean }[] = showingPages.map(
-  (value) => ({ pagenum: value, active: value === page.currentPage })
+  (value) => ({ pagenum: value, active: value === page.currentPage }),
 )
 ---
 
@@ -49,14 +49,14 @@ const pageItems: { pagenum?: number; active: boolean }[] = showingPages.map(
               pagenum === 1
                 ? '..'
                 : page.currentPage === 1
-                ? `${pagenum}/`
-                : `../${pagenum}/`
+                  ? `${pagenum}/`
+                  : `../${pagenum}/`
             }
             class="mx-2 decoration-none text-current"
           >
             {pagenum}
           </a>
-        )
+        ),
       )
     }
   </div>

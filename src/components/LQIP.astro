@@ -29,7 +29,7 @@ const { src, lazySrc, width, height, alt } = props
   if (import.meta.env.DEV) {
     setInterval(() => {
       for (const image of document.querySelectorAll<HTMLImageElement>(
-        'div.blur > img'
+        'div.blur > img',
       )) {
         if (image.complete) {
           image.parentElement.classList.remove('blur')

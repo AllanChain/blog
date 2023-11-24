@@ -13,7 +13,7 @@ const { post } = Astro.props as Props
 
 const uncommonLabel = post.labels.length
   ? post.labels.reduce((previous, current) =>
-      current.logo && previous.reference > current.reference ? current : previous
+      current.logo && previous.reference > current.reference ? current : previous,
     )
   : undefined
 ---

@@ -43,7 +43,7 @@ const getCacheFirstData = async (): Promise<BlogsQuery['repository']> => {
         sdk.morePosts({
           ...gqlVar,
           afterPost: pageInfo.endCursor,
-        })
+        }),
       )
     ).repository.issues
     pageInfo = morePosts.pageInfo
@@ -59,7 +59,7 @@ const writeExtraData = (extraData: ExtraData) => {
     JSON.stringify(extraData, null, 2),
     {
       encoding: 'utf-8',
-    }
+    },
   )
 }
 
@@ -78,7 +78,7 @@ export default (async (): Promise<{
   writeExtraData(extraData)
   console.log('  Processing posts...')
   const parsedPosts = (await Promise.all(repo.issues.nodes.map(parsePost))).sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
   )
   const labels: Record<string, BlogLabel> = {}
 
@@ -117,7 +117,7 @@ export default (async (): Promise<{
             return 0
           }),
       }))
-      .map(transformPostImage)
+      .map(transformPostImage),
   )
   posts.forEach((post) => {
     post.labels.forEach((label) => {
