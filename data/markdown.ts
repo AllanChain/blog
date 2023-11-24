@@ -156,7 +156,7 @@ export const markdownRenderer = unified()
     },
   })
   .use(rehypeKatex)
-  .use(rehypeHighlight, { ignoreMissing: true, subset: [] })
+  .use(rehypeHighlight)
   .use(transformIssueLink)
   .use(transformNoteBlock)
   .use(enhanceCodeBlock)
