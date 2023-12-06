@@ -69,7 +69,7 @@
     "unified": "^11.0.4",
     "unist-util-visit": "^5.0.0",
     "unocss": "^0.57.7",
-    "vite": "^5.0.2"
+    "vite": "^5.0.5"
   },
   "dependencies": {
     "normalize.css": "^8.0.1"
