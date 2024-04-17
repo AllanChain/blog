@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "format": "prettier -w **/*.{js,json,ts,astro}",
-    "gql-codegen": "graphql-codegen",
+    "gql-codegen": "graphql-codegen --require dotenv/config",
     "postinstall": "pnpm gql-codegen",
     "prepare": "husky install"
   },
