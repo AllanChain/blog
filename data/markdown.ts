@@ -1,4 +1,5 @@
 import { h } from 'hastscript'
+import { all as allLanguages } from 'lowlight'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
@@ -137,7 +138,9 @@ export const markdownRenderer = unified()
     },
   })
   .use(rehypeKatex)
-  .use(rehypeHighlight)
+  .use(rehypeHighlight, {
+    languages: allLanguages,
+  })
   .use(transformIssueLink)
   .use(transformNoteBlock)
   .use(enhanceCodeBlock)
