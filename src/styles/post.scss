@@ -201,6 +201,29 @@ $dark: '(prefers-color-scheme: dark)';
   }
 }
 
+.markdown-body.abstract {
+  p {
+    margin-top: 0.5em;
+  }
+  &[lang^='zh'] {
+    p {
+      font-size: 0.9em;
+    }
+    h4::before {
+      content: '内容提要';
+    }
+  }
+  &[lang^='en'] {
+    p {
+      font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+      font-style: italic;
+    }
+    h4::before {
+      content: 'Summary of Content';
+    }
+  }
+}
+
 @mixin full-width($margin) {
   @media (max-width: 500px) {
     margin-left: $margin;

@@ -62,14 +62,15 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
   {
     post.summary && (
       <div
-        class="markdown-body"
+        class="markdown-body abstract"
         lang={lang(post.summary)}
-        set:html={post.summary}
-        bg="gray-200 dark:gray-800"
-        border="2 dashed gray-400 rounded-md"
-        px-3
-        my-2
-      />
+        max-w-2xl
+        px-8
+        mx-auto
+      >
+        <h4 text-center mb-0 />
+        <div set:html={post.summary} />
+      </div>
     )
   }
   {
