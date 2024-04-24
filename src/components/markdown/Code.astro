@@ -1,0 +1,25 @@
+---
+import { Code as AstroCode } from 'astro:components'
+
+export interface Props {
+  code: string
+  lang?: string
+}
+
+const { code } = Astro.props
+let { lang } = Astro.props
+
+const aliasMap = new Map([
+  ['systemd', 'ini'],
+  ['mathematica', 'wolfram'],
+  ['django', 'jinja'],
+  ['patch', 'diff'],
+  ['gradle', 'groovy'],
+])
+
+if (aliasMap.has(lang)) {
+  lang = aliasMap.get(lang)
+}
+---
+
+<AstroCode code={code} lang={lang as any} />

@@ -4,6 +4,7 @@ import LQIP from '@components/LQIP.astro'
 import PostDate from '@components/PostDate.astro'
 import PostLabel from '@components/PostLabel.astro'
 import Reactions from '@components/Reactions.astro'
+import Markdown from '@components/markdown/Markdown.astro'
 import { BlogPost } from '@data/types'
 
 export interface Props {
@@ -69,7 +70,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
         mx-auto
       >
         <h4 text-center mb-0 />
-        <div set:html={post.summary} />
+        <Markdown content={post.summary} />
       </div>
     )
   }
@@ -103,11 +104,9 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
     )
   }
 
-  <article
-    class="article-main markdown-body"
-    lang={lang(post.body)}
-    set:html={post.body}
-  />
+  <article class="article-main markdown-body" lang={lang(post.body)}>
+    <Markdown content={post.body} isRoot={true} />
+  </article>
   <div mt-10 mb-3 h-3em>
     <Reactions reactions={post.reactions} url={post.url} />
   </div>
@@ -140,11 +139,9 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
             </div>
           </div>
 
-          <div
-            class="comment markdown-body"
-            lang={lang(comment.body)}
-            set:html={comment.body}
-          />
+          <div class="comment markdown-body" lang={lang(comment.body)}>
+            <Markdown content={comment.body} />
+          </div>
           <Reactions
             reactions={comment.reactions}
             url={`https://github.com${comment.resourcePath}`}

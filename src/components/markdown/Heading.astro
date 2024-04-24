@@ -1,0 +1,34 @@
+---
+import GithubSlugger from 'github-slugger'
+import type { Heading } from 'mdast'
+import { visit } from 'unist-util-visit'
+
+export interface Props {
+  node: Heading
+  slugger?: GithubSlugger
+}
+
+const { node, slugger } = Astro.props
+
+const Element = `h${node.depth}`
+let slug: string | null = null
+if (slugger) {
+  const childrenText = []
+  visit(node, 'text', (child) => {
+    childrenText.push(child.value)
+  })
+  const content = childrenText.join(' ').trim().replace(/ +/g, ' ')
+  slug = slugger.slug(content)
+}
+---
+
+<Element>
+  <slot />
+  {
+    slug && (
+      <a href={`#${slug}`} id={slug} class="anchor-hover hash-link">
+        #
+      </a>
+    )
+  }
+</Element>

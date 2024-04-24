@@ -37,7 +37,7 @@ const { post, seriesPosts } = Astro.props as Props
 <BaseLayout title={post.title.length > 50 ? post.title : `${post.title} - AC Dustbin`}>
   <Fragment slot="head">
     {
-      post.body.includes('katex') && (
+      post.body.includes('$') && (
         <link
           rel="stylesheet"
           href="https://fastly.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"

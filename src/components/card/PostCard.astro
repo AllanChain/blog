@@ -1,5 +1,6 @@
 ---
 import { postLink, lang } from '@/utils'
+import Markdown from '@components/markdown/Markdown.astro'
 import LQIP from '@components/LQIP.astro'
 import PostDate from '@components/PostDate.astro'
 import PostLabel from '@components/PostLabel.astro'
@@ -74,9 +75,10 @@ const uncommonLabel = post.labels.length
         <div
           class="markdown-body"
           lang={lang(post.summary)}
-          set:html={post.summary}
           text="sm gray-800 dark:gray-200"
-        />
+        >
+          <Markdown content={post.summary} />
+        </div>
       ) : (
         <div v-else text="sm gray-600 dark:gray-300">
           <p>

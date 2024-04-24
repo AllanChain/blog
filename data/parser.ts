@@ -1,8 +1,10 @@
-import GithubSlugger from 'github-slugger'
+import remarkParse from 'remark-parse'
 import type { MdastRoot } from 'remark-rehype/lib'
-import { visit, EXIT, CONTINUE } from 'unist-util-visit'
+import remarkStringify from 'remark-stringify'
+import strip from 'strip-markdown'
+import { unified } from 'unified'
+import { visit, EXIT } from 'unist-util-visit'
 
-import { markdownTexter, markdownRenderer } from './markdown'
 import type {
   QueryComment,
   QueryIssue,
@@ -31,18 +33,19 @@ type PostParseResult = Omit<BlogPost, 'image' | 'labels'> & {
   labels: string[]
 }
 // const includedLabelTypes = ['blog', 'tag', 'series']
+const markdownParser = unified().use(remarkParse).use(remarkStringify)
+const markdownTexter = unified().use(strip).use(remarkStringify)
 
 const parseBody = async (text: string): Promise<BodyParseResult> => {
   const result: Partial<BodyParseResult> = {}
 
-  const nodes = markdownRenderer.parse(text)
+  const nodes = markdownParser.parse(text)
   const hrIndex = nodes.children.findIndex((node) => node.type === 'thematicBreak')
   if (hrIndex === -1) throw new Error('Post need <hr>')
   const frontNodes: MdastRoot = {
     type: 'root',
-    children: nodes.children.slice(0, hrIndex),
+    children: nodes.children.splice(0, hrIndex),
   }
-  nodes.children.splice(0, hrIndex + 1)
 
   visit(frontNodes, 'link', (node) => {
     if (
@@ -79,7 +82,7 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     }
   })
   if (summaryNode) {
-    result.summary = markdownRenderer.stringify(await markdownRenderer.run(summaryNode))
+    result.summary = markdownTexter.stringify(summaryNode)
     result.summaryText = markdownTexter
       .stringify(await markdownTexter.run(summaryNode))
       // https://stackoverflow.com/a/46548738/8810271
@@ -93,43 +96,10 @@ const parseBody = async (text: string): Promise<BodyParseResult> => {
     return EXIT
   })
 
-  const htmlNodes = await markdownRenderer.run(nodes)
-
-  const headings = []
-  const slugger = new GithubSlugger()
-  visit(htmlNodes, 'element', (node) => {
-    const match = node.tagName.match(/^h(\d)$/)
-    if (match === null) return CONTINUE
-    const headingLevel = parseInt(match[1], 10)
-
-    const childrenText = []
-    visit(node, 'text', (child) => {
-      childrenText.push(child.value)
-    })
-    const content = childrenText.join(' ').trim().replace(/ +/g, ' ')
-    const slug = slugger.slug(content)
-
-    headings.push({ level: headingLevel, slug, content })
-
-    node.children.push({
-      type: 'element',
-      tagName: 'a',
-      properties: {
-        href: `#${slug}`,
-        id: `${slug}`,
-        class: 'anchor-hover hash-link',
-      },
-      children: [
-        {
-          type: 'text',
-          value: '#',
-        },
-      ],
-    })
-  })
-
-  result.body = markdownRenderer.stringify(htmlNodes)
-  result.serializedHeadings = JSON.stringify(headings)
+  // The first child now is hr
+  result.body = text.slice(nodes.children[0].position.end.offset)
+  result.serializedHeadings = '[]'
+  // result.serializedHeadings = JSON.stringify(headings)
   return result as BodyParseResult
 }
 
@@ -155,11 +125,10 @@ const parseReactionGroups = (reactionGroups: QueryReactionGroup[]): ReactionGrou
 }
 
 const parseComment = async (node: QueryComment): Promise<Comment> => {
-  const { body, createdAt, reactionGroups, ...rest } = node
+  const { createdAt, reactionGroups, ...rest } = node
   return {
     ...rest,
     createdAt: new Date(createdAt),
-    body: String(await markdownRenderer.process(body)),
     reactions: parseReactionGroups(reactionGroups),
   }
 }

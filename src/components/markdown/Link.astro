@@ -1,0 +1,35 @@
+---
+import { prefixLink } from '@/utils'
+import type { Link } from 'mdast'
+
+export interface Props {
+  node: Link
+}
+
+const { node } = Astro.props
+
+function transformIssueLink() {
+  const textNode = node.children[0]
+  if (textNode.type !== 'text') return node.url
+  const url = textNode.value
+  const rawUrl = url.includes('#') ? url.replace('#', '/#') : url + '/'
+  return prefixLink(`post/${rawUrl}`)
+}
+---
+
+{
+  node.url.match(/\.mp4$/) ? (
+    <video controls>
+      <source src={node.url} type="video/mp4" />
+      <a href={node.url}>This is a MP4 video</a>
+    </video>
+  ) : node.url.match(/^\d+$/) ? (
+    <a href={transformIssueLink()}>
+      <slot />
+    </a>
+  ) : (
+    <a href={node.url}>
+      <slot />
+    </a>
+  )
+}

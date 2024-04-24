@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets'
+import Code from '@components/markdown/Code.astro'
+import Heading from '@components/markdown/Heading.astro'
+import Link from '@components/markdown/Link.astro'
+import type { RootContent } from 'mdast'
+import { mdastToHTML } from './renderer'
+import type GithubSlugger from 'github-slugger'
+import katex from 'katex'
+
+export interface Props {
+  node: RootContent | RootContent[]
+  slugger?: GithubSlugger
+}
+
+const { node, slugger } = Astro.props
+---
+
+{
+  Array.isArray(node) ? (
+    node.map((node) => <Astro.self node={node} />)
+  ) : node.type === 'paragraph' ? (
+    <p>
+      <Astro.self node={node.children} />
+    </p>
+  ) : node.type === 'blockquote' ? (
+    <blockquote>
+      <Astro.self node={node.children} />
+    </blockquote>
+  ) : node.type === 'strong' ? (
+    <b>
+      <Astro.self node={node.children} />
+    </b>
+  ) : node.type === 'emphasis' ? (
+    <em>
+      <Astro.self node={node.children} />
+    </em>
+  ) : node.type === 'delete' ? (
+    <del>
+      <Astro.self node={node.children} />
+    </del>
+  ) : node.type === 'break' ? (
+    <br />
+  ) : node.type === 'thematicBreak' ? (
+    <hr />
+  ) : node.type === 'list' ? (
+    node.ordered ? (
+      <ol>
+        <Astro.self node={node.children} />
+      </ol>
+    ) : (
+      <ul>
+        <Astro.self node={node.children} />
+      </ul>
+    )
+  ) : node.type === 'listItem' ? (
+    <li>
+      <Astro.self
+        node={
+          node.children.length == 1 && node.children[0].type == 'paragraph'
+            ? node.children[0].children
+            : node.children
+        }
+      />
+    </li>
+  ) : node.type === 'heading' ? (
+    <Heading node={node} slugger={slugger}>
+      <Astro.self node={node.children} />
+    </Heading>
+  ) : node.type === 'link' ? (
+    <Link node={node}>
+      <Astro.self node={node.children} />
+    </Link>
+  ) : node.type === 'image' ? (
+    import.meta.env.DEV ? (
+      <img src={node.url} alt={node.alt} />
+    ) : (
+      <Image src={node.url} alt={node.alt} inferSize={true} />
+    )
+  ) : node.type === 'inlineCode' ? (
+    <code>{node.value}</code>
+  ) : node.type === 'code' ? (
+    <div class="code-block">
+      <Code code={node.value} lang={node.lang?.toLowerCase() ?? 'plaintext'} />
+      <div class="code-lang">{node.lang ?? 'text'}</div>
+    </div>
+  ) : node.type === 'inlineMath' ? (
+    <Fragment set:html={katex.renderToString(node.value)} />
+  ) : node.type === 'math' ? (
+    <Fragment set:html={katex.renderToString(node.value, { displayMode: true })} />
+  ) : node.type === 'footnoteReference' ? (
+    <sup>
+      <a href={`#footdef-${node.identifier}`} id={`footref-${node.identifier}`}>
+        {node.label ?? node.identifier}
+      </a>
+    </sup>
+  ) : node.type === 'footnoteDefinition' ? (
+    <li>
+      <Astro.self
+        node={
+          node.children.length == 1 && node.children[0].type == 'paragraph'
+            ? node.children[0].children
+            : node.children
+        }
+      />
+      <a href={`#footref-${node.identifier}`} id={`footdef-${node.identifier}`}>
+        ↩
+      </a>
+    </li>
+  ) : node.type === 'table' ? (
+    <table>
+      <thead>
+        <tr>
+          {node.children[0].children.map((thNode, idx) => (
+            <th align={node.align?.[idx] ?? 'left'}>
+              <Astro.self node={thNode.children} />
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {node.children.slice(1).map((trNode) => (
+          <tr>
+            {trNode.children.map((tdNode, idx) => (
+              <td align={node.align?.[idx] ?? 'left'}>
+                <Astro.self node={tdNode.children} />
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : node.type === 'text' ? (
+    node.value
+  ) : node.type === 'html' ? (
+    <Fragment set:html={node.value} />
+  ) : (
+    <Fragment set:html={mdastToHTML([node])} />
+  )
+}
