@@ -1,9 +1,16 @@
 import { defineConfig } from 'astro/config'
-import sitemap from '@astrojs/sitemap'
-import UnoCSS from 'unocss/astro'
-import { presetUno, presetAttributify, presetIcons } from 'unocss'
-import { colors } from 'unocss/preset-mini'
 import * as sass from 'sass'
+import { setGlobalDispatcher, ProxyAgent } from 'undici'
+import { presetUno, presetAttributify, presetIcons } from 'unocss'
+import UnoCSS from 'unocss/astro'
+import { colors } from 'unocss/preset-mini'
+
+import sitemap from '@astrojs/sitemap'
+
+if (process.env.https_proxy) {
+  const dispatcher = new ProxyAgent({ uri: process.env.https_proxy })
+  globalThis[Symbol.for('undici.globalDispatcher.1')] = dispatcher
+}
 
 export default defineConfig({
   site: 'https://allanchain.github.io',

@@ -159,6 +159,9 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
+      undici:
+        specifier: ^6.14.1
+        version: 6.14.1
       unified:
         specifier: ^11.0.4
         version: 11.0.4
@@ -3855,6 +3858,10 @@ packages:
 
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
+  undici@6.14.1:
+    resolution: {integrity: sha512-mAel3i4BsYhkeVPXeIPXVGPJKeBzqCieZYoFsbWfUzd68JmHByhc1Plit5WlylxXFaGpgkZB8mExlxnt+Q1p7A==}
+    engines: {node: '>=18.17'}
 
   unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
@@ -8738,6 +8745,8 @@ snapshots:
       jiti: 1.21.0
 
   undici-types@5.26.5: {}
+
+  undici@6.14.1: {}
 
   unherit@3.0.1: {}
 
