@@ -1,4 +1,5 @@
 ---
+import { formatDate, formatLocalDate } from '@/utils'
 import { postLink, lang } from '@/utils'
 import Markdown from '@components/markdown/Markdown.astro'
 import LQIP from '@components/LQIP.astro'
@@ -41,10 +42,20 @@ const uncommonLabel = post.labels.length
     >
       <a class="theme-link" href={postLink(post.slug)}>{post.title}</a>
     </h3>
-    <PostDate createdAt={post.createdAt} lastEditedAt={post.lastEditedAt} />
 
-    <div>
+    <div flex="~ wrap justify-end" items-center>
       {post.labels.map((label) => <PostLabel label={label} />)}
+      <div flex-1></div>
+      <div
+        title={formatLocalDate(post.createdAt)}
+        data-date={post.createdAt}
+        text="sm gray-800 dark:gray-300"
+        mt-2
+        inline-block
+        select-none
+      >
+        {formatDate(post.createdAt)}
+      </div>
     </div>
     {
       !post.image && uncommonLabel?.logo && (
