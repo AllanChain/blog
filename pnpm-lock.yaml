@@ -102,6 +102,9 @@ importers:
       lowlight:
         specifier: ^3.1.0
         version: 3.1.0
+      mime:
+        specifier: ^4.0.3
+        version: 4.0.3
       path-browserify:
         specifier: ^1.0.1
         version: 1.0.1
@@ -3021,6 +3024,11 @@ packages:
   mime@3.0.0:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
     engines: {node: '>=10.0.0'}
+    hasBin: true
+
+  mime@4.0.3:
+    resolution: {integrity: sha512-KgUb15Oorc0NEKPbvfa0wRU+PItIEZmiv+pyAO2i0oTIVTJhlzMclU7w4RXWQrSOVH5ax/p/CkIO7KI4OyFJTQ==}
+    engines: {node: '>=16'}
     hasBin: true
 
   mimic-fn@2.1.0:
@@ -7760,6 +7768,8 @@ snapshots:
       mime-db: 1.52.0
 
   mime@3.0.0: {}
+
+  mime@4.0.3: {}
 
   mimic-fn@2.1.0: {}
 

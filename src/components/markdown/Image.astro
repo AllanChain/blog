@@ -1,8 +1,8 @@
 ---
+import mime from 'mime'
 import axios from 'axios'
 import { createHash } from 'crypto'
-import { readdirSync } from 'fs'
-import { stat } from 'fs/promises'
+import { readdirSync, existsSync } from 'fs'
 import { resolve as resolvePath, join } from 'path'
 import sharp from 'sharp'
 
@@ -18,14 +18,15 @@ const { src, alt } = props
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
-const getFileInfo = (hash: string) => {
-  const filePattern = /[0-9a-f]{8}_(?<width>\d+)x(?<height>\d+)\.low-res\.png/
+const getLowResFileInfo = (hash: string) => {
+  const filePattern = /[0-9a-f]{8}_(?<width>\d+)x(?<height>\d+)/
   for (const file of readdirSync(imageCacheDir)) {
-    if (!file.startsWith(hash)) continue
+    if (!file.startsWith(hash) || file.includes('low-res')) continue
     const match = file.match(filePattern)
     if (match === null) continue
     return {
-      filename: file,
+      file,
+      lazyfile: `${match[0]}.low-res.png`,
       width: parseInt(match.groups.width, 10),
       height: parseInt(match.groups.height, 10),
     }
@@ -42,26 +43,23 @@ const getImageInfo = async () => {
   const hasher = createHash('sha256')
   hasher.update(src)
   const hash = hasher.digest('hex').slice(0, 8)
-  const fileInfo = getFileInfo(hash)
+  const fileInfo = getLowResFileInfo(hash)
 
   if (fileInfo) {
-    const dest = resolveDest(fileInfo.filename)
-
-    try {
-      const stats = await stat(dest)
-      if (stats.size > 100)
-        return {
-          lazySrc: urlPrefix + fileInfo.filename,
-          width: fileInfo.width,
-          height: fileInfo.height,
-        }
-      console.log(`    ${dest} too small`)
-    } catch (err) {
-      if (err.code !== 'ENOENT') throw err
+    if (!existsSync(resolveDest(fileInfo.lazyfile))) {
+      await sharp(resolveDest(fileInfo.file))
+        .resize(12)
+        .png({ quality: 10, compressionLevel: 9 })
+        .toFile(resolveDest(fileInfo.lazyfile))
+    }
+    return {
+      localSrc: urlPrefix + fileInfo.file,
+      lazySrc: urlPrefix + fileInfo.lazyfile,
+      width: fileInfo.width,
+      height: fileInfo.height,
     }
   }
-
-  console.log(`    Downloading ${fileInfo?.filename || hash} (${src})`)
+  console.log(`    Downloading ${hash} (${src})`)
 
   try {
     const response = await axios({
@@ -69,23 +67,31 @@ const getImageInfo = async () => {
       url: src,
       responseType: 'stream',
     })
+    const ext = mime.getExtension(response.headers['content-type'])
     const pipeline = sharp()
     response.data.pipe(pipeline)
     const { height, width } = await pipeline.metadata()
+    const localSrc = `${hash}_${width}x${height}.${ext}`
+    await pipeline.toFile(resolveDest(localSrc))
     const filename = `${hash}_${width}x${height}.low-res.png`
-    await pipeline
+    await sharp(resolveDest(localSrc))
       .resize(12)
       .png({ quality: 10, compressionLevel: 9 })
       .toFile(resolveDest(filename))
 
-    return { width, height, lazySrc: urlPrefix + filename }
+    return {
+      localSrc: urlPrefix + localSrc,
+      lazySrc: urlPrefix + filename,
+      width,
+      height,
+    }
   } catch (err) {
     console.error(`::error:: Cannot process ${src} : ${err}`)
     throw err
   }
 }
 
-const { width, height, lazySrc } = await getImageInfo()
+const { width, height, lazySrc, localSrc } = await getImageInfo()
 ---
 
 <div
@@ -93,7 +99,7 @@ const { width, height, lazySrc } = await getImageInfo()
   style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazySrc})`}
 >
   <img
-    src={src}
+    src={localSrc}
     alt={alt}
     width={width}
     height={height}

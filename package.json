@@ -48,6 +48,7 @@
     "katex": "^0.16.10",
     "lint-staged": "^15.2.2",
     "lowlight": "^3.1.0",
+    "mime": "^4.0.3",
     "path-browserify": "^1.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
