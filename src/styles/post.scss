@@ -200,6 +200,7 @@ $dark: '(prefers-color-scheme: dark)';
       font-family: $font-mono;
     }
     pre {
+      max-height: 500px;
       overflow: auto;
       line-height: 1.6;
       border-radius: 3px;
