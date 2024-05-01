@@ -137,9 +137,10 @@ const parseComment = async (node: QueryComment): Promise<Comment> => {
 export const parseLabel = (label: QueryLabel, userId: string): LabelParseReslt => {
   let [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
-  logo = /^[\da-f-]+$/.test(logo)
-    ? `${repoUrl}/assets/${userId}/${logo}`
-    : `https://user-images.githubusercontent.com/${userId}/${logo}`
+  if (logo !== undefined)
+    logo = /^[\da-f-]+$/.test(logo)
+      ? `${repoUrl}/assets/${userId}/${logo}`
+      : `https://user-images.githubusercontent.com/${userId}/${logo}`
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 
