@@ -1,10 +1,9 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { gql, GraphQLClient } from 'graphql-request'
+import { GraphQLClient } from 'graphql-request'
 import { load as loadYAML } from 'js-yaml'
 import { resolve as resolvePath } from 'path'
 
 import { gqlVar } from './config'
-import { transformLabelLogo, transformPostImage } from './image'
 import { parseLabel, parsePost } from './parser'
 import { getSdk, BlogsQuery } from './sdk'
 import type { BlogLabel, BlogPost, ExtraData } from './types'
@@ -95,29 +94,27 @@ export default (async (): Promise<{
 
   for (const label of repo.labels.nodes) {
     if (isGoodLabel(label.name)) {
-      labels[label.name] = await transformLabelLogo(userDatabaseId, {
-        ...parseLabel(label),
+      labels[label.name] = {
+        ...parseLabel(label, userDatabaseId),
         reference: 0,
-      })
+      }
     }
   }
   const posts = await Promise.all(
-    parsedPosts
-      .map((post) => ({
-        ...post,
-        labels: Object.values(labels)
-          .filter((label) => post.labels.includes(label.id))
-          .sort((a, b) => {
-            if (a.id > b.id) {
-              return 1
-            }
-            if (a.id < b.id) {
-              return -1
-            }
-            return 0
-          }),
-      }))
-      .map(transformPostImage),
+    parsedPosts.map((post) => ({
+      ...post,
+      labels: Object.values(labels)
+        .filter((label) => post.labels.includes(label.id))
+        .sort((a, b) => {
+          if (a.id > b.id) {
+            return 1
+          }
+          if (a.id < b.id) {
+            return -1
+          }
+          return 0
+        }),
+    })),
   )
   posts.forEach((post) => {
     post.labels.forEach((label) => {

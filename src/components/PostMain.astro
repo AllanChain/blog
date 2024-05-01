@@ -1,6 +1,6 @@
 ---
 import { formatDate, formatLocalDate, lang, postLink } from '@/utils'
-import LQIP from '@components/LQIP.astro'
+import Image from '@components/markdown/Image.astro'
 import PostLabel from '@components/PostLabel.astro'
 import Reactions from '@components/Reactions.astro'
 import Markdown from '@components/markdown/Markdown.astro'
@@ -37,11 +37,8 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 
   {
     post.image && (
-      <LQIP
-        src={post.image.src}
-        lazySrc={post.image.lazySrc}
-        width={post.image.width}
-        height={post.image.height}
+      <Image
+        src={post.image}
         alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
         class="w-full my-2"
       />

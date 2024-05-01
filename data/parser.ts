@@ -5,6 +5,7 @@ import strip from 'strip-markdown'
 import { unified } from 'unified'
 import { visit, EXIT } from 'unist-util-visit'
 
+import { repoUrl } from './config'
 import type {
   QueryComment,
   QueryIssue,
@@ -133,9 +134,12 @@ const parseComment = async (node: QueryComment): Promise<Comment> => {
   }
 }
 
-export const parseLabel = (label: QueryLabel): LabelParseReslt => {
-  const [description, logo] = label.description.split('|')
+export const parseLabel = (label: QueryLabel, userId: string): LabelParseReslt => {
+  let [description, logo] = label.description.split('|')
   const [type, name] = label.name.split(': ')
+  logo = /^[\da-f-]+$/.test(logo)
+    ? `${repoUrl}/assets/${userId}/${logo}`
+    : `https://user-images.githubusercontent.com/${userId}/${logo}`
   return { description, logo, id: label.name, color: label.color, type, name }
 }
 

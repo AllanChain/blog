@@ -2,7 +2,7 @@
 import { formatDate, formatLocalDate } from '@/utils'
 import { postLink, lang } from '@/utils'
 import Markdown from '@components/markdown/Markdown.astro'
-import LQIP from '@components/LQIP.astro'
+import Image from '@components/markdown/Image.astro'
 import PostLabel from '@components/PostLabel.astro'
 import { BlogPost } from '@data/types'
 
@@ -23,11 +23,8 @@ const uncommonLabel = post.labels.length
   {
     post.image && (
       <div max-h-50 overflow-hidden flex items-center>
-        <LQIP
-          src={post.image.src}
-          lazySrc={post.image.lazySrc}
-          width={post.image.width}
-          height={post.image.height}
+        <Image
+          src={post.image}
           alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
           class="w-full"
         />
@@ -70,13 +67,7 @@ const uncommonLabel = post.labels.length
           items-center
           style={`border-color: #${uncommonLabel.color}`}
         >
-          <LQIP
-            src={uncommonLabel.logo.src}
-            lazySrc={uncommonLabel.logo.lazySrc}
-            width={uncommonLabel.logo.width}
-            height={uncommonLabel.logo.height}
-            alt="Label Image"
-          />
+          <Image src={uncommonLabel.logo} alt="Label Image" />
         </div>
       )
     }

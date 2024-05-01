@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import Image from '@components/markdown/Image.astro'
 import Code from '@components/markdown/Code.astro'
 import Heading from '@components/markdown/Heading.astro'
 import Link from '@components/markdown/Link.astro'
@@ -72,11 +72,7 @@ const { node, slugger } = Astro.props
       <Astro.self node={node.children} />
     </Link>
   ) : node.type === 'image' ? (
-    import.meta.env.DEV ? (
-      <img src={node.url} alt={node.alt} />
-    ) : (
-      <Image src={node.url} alt={node.alt} inferSize={true} />
-    )
+    <Image src={node.url} alt={node.alt} />
   ) : node.type === 'inlineCode' ? (
     <code>{node.value}</code>
   ) : node.type === 'code' ? (

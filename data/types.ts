@@ -5,13 +5,6 @@ export type QueryLabel = BlogsQuery['repository']['labels']['nodes'][0]
 export type QueryComment = QueryIssue['comments']['nodes'][0]
 export type QueryReactionGroup = QueryComment['reactionGroups'][0]
 
-export interface Image {
-  lazySrc: string
-  src: string
-  width: number
-  height: number
-}
-
 export interface ReactionGroup {
   ID: ReactionContent
   emoji: string
@@ -27,7 +20,7 @@ export interface BlogLabel extends QueryLabel {
   id: string
   type: string
   reference: number
-  logo?: Image
+  logo?: string
 }
 
 export interface BlogPost {
@@ -37,7 +30,7 @@ export interface BlogPost {
   serializedHeadings: string
   summary?: string
   summaryText?: string
-  image?: Image
+  image?: string
   imageAlt?: string
   url: string
   createdAt: Date
