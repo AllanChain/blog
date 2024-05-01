@@ -18,13 +18,7 @@ const { title } = Astro.props as Props
     <link rel="icon" type="image/x-icon" href={prefixLink('favicon.ico')} />
     <link rel="sitemap" href={prefixLink('sitemap-index.xml')} />
     <slot name="head" />
-    <script
-      data-host="https://microanalytics.io"
-      data-dnt="false"
-      src="https://microanalytics.io/js/script.js"
-      id="ZwSg9rf6GA"
-      async
-      defer></script>
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <meta name="generator" content="astro" />
     <script>
       // Replace server-rendered date title to those with client's locale
