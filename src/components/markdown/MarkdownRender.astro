@@ -8,20 +8,25 @@ import { mdastToHTML } from './renderer'
 import type GithubSlugger from 'github-slugger'
 import katex from 'katex'
 
+export interface Context {
+  type: 'post' | 'summary' | 'comment'
+}
+
 export interface Props {
   node: RootContent | RootContent[]
+  context: Context
   slugger?: GithubSlugger
 }
 
-const { node, slugger } = Astro.props
+const { node, context, slugger } = Astro.props
 ---
 
 {
   Array.isArray(node) ? (
-    node.map((node) => <Astro.self node={node} />)
+    node.map((node) => <Astro.self node={node} context={context} />)
   ) : node.type === 'paragraph' ? (
     <p>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </p>
   ) : node.type === 'blockquote' ? (
     node.children[0].type === 'paragraph' &&
@@ -32,25 +37,25 @@ const { node, slugger } = Astro.props
         data-type={node.children[0].children[0].value.slice(2, -1)}
       >
         <div class="content">
-          <Astro.self node={node.children.slice(1)} />
+          <Astro.self node={node.children.slice(1)} context={context} />
         </div>
       </div>
     ) : (
       <blockquote>
-        <Astro.self node={node.children} />
+        <Astro.self node={node.children} context={context} />
       </blockquote>
     )
   ) : node.type === 'strong' ? (
     <b>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </b>
   ) : node.type === 'emphasis' ? (
     <em>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </em>
   ) : node.type === 'delete' ? (
     <del>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </del>
   ) : node.type === 'break' ? (
     <br />
@@ -59,11 +64,11 @@ const { node, slugger } = Astro.props
   ) : node.type === 'list' ? (
     node.ordered ? (
       <ol>
-        <Astro.self node={node.children} />
+        <Astro.self node={node.children} context={context} />
       </ol>
     ) : (
       <ul>
-        <Astro.self node={node.children} />
+        <Astro.self node={node.children} context={context} />
       </ul>
     )
   ) : node.type === 'listItem' ? (
@@ -74,18 +79,23 @@ const { node, slugger } = Astro.props
             ? node.children[0].children
             : node.children
         }
+        context={context}
       />
     </li>
   ) : node.type === 'heading' ? (
     <Heading node={node} slugger={slugger}>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </Heading>
   ) : node.type === 'link' ? (
     <Link node={node}>
-      <Astro.self node={node.children} />
+      <Astro.self node={node.children} context={context} />
     </Link>
   ) : node.type === 'image' ? (
-    <Image src={node.url} alt={node.alt} />
+    context.type === 'comment' ? (
+      <img src={node.url} alt={node.alt} />
+    ) : (
+      <Image src={node.url} alt={node.alt} />
+    )
   ) : node.type === 'inlineCode' ? (
     <code>{node.value}</code>
   ) : node.type === 'code' ? (
@@ -111,6 +121,7 @@ const { node, slugger } = Astro.props
             ? node.children[0].children
             : node.children
         }
+        context={context}
       />
       <a href={`#footref-${node.identifier}`} id={`footdef-${node.identifier}`}>
         ↩
@@ -122,7 +133,7 @@ const { node, slugger } = Astro.props
         <tr>
           {node.children[0].children.map((thNode, idx) => (
             <th align={node.align?.[idx] ?? 'left'}>
-              <Astro.self node={thNode.children} />
+              <Astro.self node={thNode.children} context={context} />
             </th>
           ))}
         </tr>
@@ -132,7 +143,7 @@ const { node, slugger } = Astro.props
           <tr>
             {trNode.children.map((tdNode, idx) => (
               <td align={node.align?.[idx] ?? 'left'}>
-                <Astro.self node={tdNode.children} />
+                <Astro.self node={tdNode.children} context={context} />
               </td>
             ))}
           </tr>

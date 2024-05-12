@@ -74,7 +74,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
         mx-auto
       >
         <h4 text-center mb-0 />
-        <Markdown content={post.summary} />
+        <Markdown content={post.summary} context={{ type: 'summary' }} />
       </div>
     )
   }
@@ -109,7 +109,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
   }
 
   <article class="article-main markdown-body" lang={lang(post.body)}>
-    <Markdown content={post.body} isRoot={true} />
+    <Markdown content={post.body} isRoot={true} context={{ type: 'post' }} />
   </article>
   <div mt-10 mb-3 h-3em>
     <Reactions reactions={post.reactions} url={post.url} />
@@ -144,7 +144,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
           </div>
 
           <div class="comment markdown-body" lang={lang(comment.body)}>
-            <Markdown content={comment.body} />
+            <Markdown content={comment.body} context={{ type: 'comment' }} />
           </div>
           <Reactions
             reactions={comment.reactions}

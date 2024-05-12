@@ -1,15 +1,16 @@
 ---
 import { parseMarkdownWithAddon } from './renderer'
-import MarkdownRenderer from './MarkdownRender.astro'
+import MarkdownRenderer, { Context } from './MarkdownRender.astro'
 import GithubSlugger from 'github-slugger'
 import type { FootnoteDefinition } from 'mdast'
 
 export interface Props {
   content: string
+  context: Context
   isRoot?: boolean
 }
 
-const { content, isRoot } = Astro.props
+const { content, context, isRoot } = Astro.props
 
 const nodes = parseMarkdownWithAddon(content).children
 const normalNodes = nodes.filter((node) => node.type !== 'footnoteDefinition')
@@ -20,18 +21,24 @@ const footnote = nodes.filter(
 
 {
   normalNodes.map((node) => (
-    <MarkdownRenderer node={node} slugger={isRoot ? new GithubSlugger() : undefined} />
+    <MarkdownRenderer
+      node={node}
+      context={context}
+      slugger={isRoot ? new GithubSlugger() : undefined}
+    />
   ))
 }
 {
   !!footnote.length && (
-    <hr>
-    <section class="footnote">
-      <ol class="text-sm">
-        {footnote.map((node) => (
-          <MarkdownRenderer node={node} />
-        ))}
-      </ol>
-    </section>
+    <>
+      <hr />
+      <section class="footnote">
+        <ol class="text-sm">
+          {footnote.map((node) => (
+            <MarkdownRenderer node={node} />
+          ))}
+        </ol>
+      </section>
+    </>
   )
 }
