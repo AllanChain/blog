@@ -2,6 +2,7 @@
 import { formatDate, formatLocalDate, lang, postLink } from '@/utils'
 import Image from '@components/markdown/Image.astro'
 import PostLabel from '@components/PostLabel.astro'
+import PostDate from '@components/PostDate.astro'
 import Reactions from '@components/Reactions.astro'
 import Markdown from '@components/markdown/Markdown.astro'
 import { BlogPost } from '@data/types'
@@ -19,19 +20,8 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 <main max-w-4xl mx-auto px-2>
   <h1 text-center lang={lang(post.title)} mb-3>{post.title}</h1>
 
-  <div text-center>
-    <div
-      title={formatLocalDate(post.createdAt)}
-      data-date={post.createdAt}
-      text="gray-800 dark:gray-300"
-      inline-block
-      select-none
-    >
-      {formatDate(post.createdAt)}
-    </div>
-  </div>
-
   <div text-center my-1>
+    <PostDate date={post.createdAt} />
     {post.labels.map((label) => <PostLabel label={label} />)}
   </div>
 

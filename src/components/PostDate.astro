@@ -1,0 +1,29 @@
+---
+import { formatDate, formatLocalDate } from '@/utils'
+export interface Props {
+  date: Date
+}
+const { date } = Astro.props
+---
+
+<div class="bg-teal-500 text-gray-900" title={formatLocalDate(date)}>
+  <i mr-1 i-mdi-calendar-month></i>
+  <span>
+    {formatDate(date)}
+  </span>
+</div>
+
+<style>
+  div {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    margin: 0.3em;
+    font-size: 0.75rem;
+    line-height: 1.5em;
+    position: relative;
+    color: current;
+    text-decoration: none;
+    user-select: none;
+    font-weight: bold;
+  }
+</style>

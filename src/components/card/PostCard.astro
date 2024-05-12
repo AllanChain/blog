@@ -1,9 +1,9 @@
 ---
-import { formatDate, formatLocalDate } from '@/utils'
 import { postLink, lang } from '@/utils'
 import Markdown from '@components/markdown/Markdown.astro'
 import Image from '@components/markdown/Image.astro'
 import PostLabel from '@components/PostLabel.astro'
+import PostDate from '@components/PostDate.astro'
 import { BlogPost } from '@data/types'
 
 export interface Props {
@@ -39,19 +39,9 @@ const uncommonLabel = post.labels.length
       <a class="theme-link" href={postLink(post.slug)}>{post.title}</a>
     </h3>
 
-    <div flex="~ wrap justify-end" items-center>
+    <div>
+      <PostDate date={post.createdAt} />
       {post.labels.map((label) => <PostLabel label={label} />)}
-      <div flex-1></div>
-      <div
-        title={formatLocalDate(post.createdAt)}
-        data-date={post.createdAt}
-        text="sm gray-800 dark:gray-300"
-        mt-2
-        inline-block
-        select-none
-      >
-        {formatDate(post.createdAt)}
-      </div>
     </div>
     {
       !post.image && uncommonLabel?.logo && (
@@ -78,7 +68,7 @@ const uncommonLabel = post.labels.length
           lang={lang(post.summary)}
           text="sm gray-800 dark:gray-200"
         >
-          <Markdown content={post.summary} />
+          <Markdown content={post.summary} context={{ type: 'summary' }} />
         </div>
       ) : (
         <div v-else text="sm gray-600 dark:gray-300">
