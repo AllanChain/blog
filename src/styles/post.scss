@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 h1,
 h2,
 h3,
@@ -15,6 +17,7 @@ $font-mono:
   Courier New,
   monospace;
 $dark: '(prefers-color-scheme: dark)';
+$light: '(prefers-color-scheme: light)';
 
 .markdown-body {
   word-wrap: break-word;
@@ -36,50 +39,62 @@ $dark: '(prefers-color-scheme: dark)';
   }
 
   div.custom-block {
-    margin: 20px 10px;
-    border-left-width: 5px;
+    margin: 20px 20px;
+    border-radius: 5px;
+    border-left-width: 7px;
     border-left-style: solid;
+
+    @media #{$light} {
+      box-shadow: 5px 5px 5px theme-color('gray', 300);
+    }
+    @media #{$dark} {
+      background-color: theme-color('gray', 800);
+    }
 
     &::before {
       font-weight: bold;
-      padding: 5px 15px;
+      padding: 8px 15px;
       display: block;
     }
 
+    .content {
+      padding: 5px 10px;
+    }
+
     p {
-      padding: 5px 15px;
+      padding: 7px 15px;
       margin: 0;
     }
 
-    &.note-block {
-      border-color: theme-color('blue', 200);
+    &[data-type~='Note' i] {
+      border-color: theme-color('blue', 400);
       &::before {
         content: 'Note';
-        background-color: theme-color('blue', 200);
+        background-color: theme-color('blue', 100);
         color: theme-color('blue', 900);
       }
 
       @media #{$dark} {
         border-color: theme-color('blue', 900);
         &::before {
-          background-color: theme-color('blue', 900);
-          color: theme-color('blue', 200);
+          background-color: color.adjust(theme-color('blue', 900), $alpha: -0.7);
+          color: theme-color('blue', 400);
         }
       }
     }
 
-    &.warning-block {
-      border-color: theme-color('amber', 300);
+    &[data-type~='Warning' i] {
+      border-color: theme-color('amber', 400);
       &::before {
-        background-color: theme-color('amber', 300);
         content: 'Warning';
+        background-color: theme-color('yellow', 100);
         color: theme-color('yellow', 700);
       }
 
       @media #{$dark} {
         border-color: theme-color('yellow', 900);
         &::before {
-          background-color: theme-color('yellow', 900);
+          background-color: color.adjust(theme-color('yellow', 900), $alpha: -0.6);
           color: theme-color('yellow', 500);
         }
       }

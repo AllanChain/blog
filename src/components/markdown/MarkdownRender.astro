@@ -24,9 +24,22 @@ const { node, slugger } = Astro.props
       <Astro.self node={node.children} />
     </p>
   ) : node.type === 'blockquote' ? (
-    <blockquote>
-      <Astro.self node={node.children} />
-    </blockquote>
+    node.children[0].type === 'paragraph' &&
+    node.children[0].children[0].type === 'text' &&
+    node.children[0].children[0].value.match(/^\[!(.*)\]$/) ? (
+      <div
+        class="custom-block"
+        data-type={node.children[0].children[0].value.slice(2, -1)}
+      >
+        <div class="content">
+          <Astro.self node={node.children.slice(1)} />
+        </div>
+      </div>
+    ) : (
+      <blockquote>
+        <Astro.self node={node.children} />
+      </blockquote>
+    )
   ) : node.type === 'strong' ? (
     <b>
       <Astro.self node={node.children} />
