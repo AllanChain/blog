@@ -137,6 +137,8 @@ $light: '(prefers-color-scheme: light)';
     height: 100%;
     &:only-child {
       display: block;
+      max-height: 500px;
+      object-fit: contain;
       margin: auto;
     }
   }
