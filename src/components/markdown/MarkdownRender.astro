@@ -29,8 +29,8 @@ const { node, context, slugger } = Astro.props
       <Astro.self node={node.children} context={context} />
     </p>
   ) : node.type === 'blockquote' ? (
-    node.children[0].type === 'paragraph' &&
-    node.children[0].children[0].type === 'text' &&
+    node.children[0]?.type === 'paragraph' &&
+    node.children[0].children[0]?.type === 'text' &&
     node.children[0].children[0].value.match(/^\[!(.*)\]$/) ? (
       <div
         class="custom-block"
