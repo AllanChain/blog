@@ -12,13 +12,22 @@ export interface Props {
   class?: string
 }
 
+interface FileInfo {
+  file: string
+  lazyfile: string
+  width: number
+  height: number
+}
+
 const props = Astro.props
 const { src, alt } = props
 
 const imageCacheDir = resolvePath(process.cwd(), 'public/img')
 const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
-const getLowResFileInfo = (hash: string) => {
+const downloadTasks = new Map<string, Promise<FileInfo>>()
+
+const getLowResFileInfo = (hash: string): FileInfo | null => {
   const filePattern = /[0-9a-f]{8}_(?<width>\d+)x(?<height>\d+)/
   for (const file of readdirSync(imageCacheDir)) {
     if (!file.startsWith(hash) || file.includes('low-res')) continue
@@ -32,6 +41,26 @@ const getLowResFileInfo = (hash: string) => {
     }
   }
   return null
+}
+
+const downloadImage = async (hash: string): Promise<FileInfo> => {
+  const response = await axios({
+    method: 'GET',
+    url: src,
+    responseType: 'stream',
+  })
+  const ext = mime.getExtension(response.headers['content-type'])
+  const pipeline = sharp()
+  response.data.pipe(pipeline)
+  const { width, height } = await pipeline.metadata()
+  const file = `${hash}_${width}x${height}.${ext}`
+  await pipeline.toFile(resolveDest(file))
+  const lazyfile = `${hash}_${width}x${height}.low-res.png`
+  await sharp(resolveDest(file))
+    .resize(12)
+    .png({ quality: 10, compressionLevel: 9 })
+    .toFile(resolveDest(lazyfile))
+  return { file, lazyfile, height, width }
 }
 
 const getImageInfo = async () => {
@@ -62,28 +91,12 @@ const getImageInfo = async () => {
   console.log(`    Downloading ${hash} (${src})`)
 
   try {
-    const response = await axios({
-      method: 'GET',
-      url: src,
-      responseType: 'stream',
-    })
-    const ext = mime.getExtension(response.headers['content-type'])
-    const pipeline = sharp()
-    response.data.pipe(pipeline)
-    const { height, width } = await pipeline.metadata()
-    const localSrc = `${hash}_${width}x${height}.${ext}`
-    await pipeline.toFile(resolveDest(localSrc))
-    const filename = `${hash}_${width}x${height}.low-res.png`
-    await sharp(resolveDest(localSrc))
-      .resize(12)
-      .png({ quality: 10, compressionLevel: 9 })
-      .toFile(resolveDest(filename))
-
+    const fileInfo = await (downloadTasks.get(hash) || downloadImage(hash))
     return {
-      localSrc: urlPrefix + localSrc,
-      lazySrc: urlPrefix + filename,
-      width,
-      height,
+      localSrc: urlPrefix + fileInfo.file,
+      lazySrc: urlPrefix + fileInfo.lazyfile,
+      width: fileInfo.width,
+      height: fileInfo.height,
     }
   } catch (err) {
     console.error(`::error:: Cannot process ${src} : ${err}`)
@@ -91,12 +104,12 @@ const getImageInfo = async () => {
   }
 }
 
-const { width, height, lazySrc, localSrc } = await getImageInfo()
+const { width, height, lazySrc: lazyfile, localSrc } = await getImageInfo()
 ---
 
 <div
   class={`lqip blur ${props.class}`}
-  style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazySrc})`}
+  style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazyfile})`}
 >
   <img
     src={localSrc}
