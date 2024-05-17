@@ -58,6 +58,7 @@ jobs:
         run: |
           pnpm install
           pnpm build
+          mkdir -p dist/img
           cp public/img/* dist/img
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
