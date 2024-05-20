@@ -267,12 +267,12 @@ $light: '(prefers-color-scheme: light)';
 }
 
 .article-main.markdown-body {
-  & > pre {
+  & > .code-block {
     @include full-width(-1.25rem);
   }
 }
 .comment.markdown-body {
-  & > pre {
+  & > .code-block {
     @include full-width(-2rem);
   }
 }
