@@ -53,7 +53,7 @@ const { post, seriesPosts } = Astro.props as Props
     <meta property="og:url" content={Astro.url} />
     <meta
       property="og:image"
-      content={post.image?.src ?? new URL(prefixLink('og-large.png'), Astro.url)}
+      content={post.image ?? new URL(prefixLink('og-large.png'), Astro.url)}
     />
   </Fragment>
   <PostMain post={post} seriesPosts={seriesPosts} />
