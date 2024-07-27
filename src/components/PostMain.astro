@@ -18,56 +18,32 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 ---
 
 <main max-w-4xl mx-auto px-2>
-  <h1 text-center lang={lang(post.title)} mb-3>{post.title}</h1>
-
-  <div text-center my-1>
-    <PostDate date={post.createdAt} />
-    {post.labels.map((label) => <PostLabel label={label} />)}
-  </div>
-
   {
     post.image && (
       <Image
         src={post.image}
         alt={post.imageAlt ? `Header: ${post.imageAlt}` : 'Header'}
-        class="w-full my-2"
+        class="w-full my-2 rounded-xl"
       />
     )
   }
-  {
-    new Date().getTime() - post.createdAt.getTime() > oldPostThreshold && (
-      <div
-        class="markdown-body"
-        lang="en"
-        bg="teal-500 dark:teal-800"
-        border="0 l-10 teal-700 dark:teal-600 solid rounded-md"
-        px-3
-        flex
-        items-center
-      >
-        <div i-mdi-information-slab-circle-outline w-12 h-12 mr-5 />
-        <p>
-          This article is a bit old and the content may be outdated, so please refer to
-          it with caution and remember to check the latest official materials (such as
-          documentation, etc.)
-        </p>
-      </div>
-    )
-  }
+
+  <h1 lang={lang(post.title)}>{post.title}</h1>
+
+  <div my-1>
+    <PostDate date={post.createdAt} checkOld={true} />
+    {post.labels.map((label) => <PostLabel label={label} />)}
+  </div>
+
   {
     post.summary && (
-      <div
-        class="markdown-body abstract"
-        lang={lang(post.summary)}
-        max-w-2xl
-        px-8
-        mx-auto
-      >
-        <h4 text-center mb-0 />
+      <div class="markdown-body abstract" lang={lang(post.summary)}>
+        <i i-mdi-format-quote-open min-w-10 min-h-10 text-gray-500 />
         <Markdown content={post.summary} context={{ type: 'summary' }} />
       </div>
     )
   }
+
   {
     seriesPosts.length > 0 && (
       <div
@@ -97,6 +73,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
       </div>
     )
   }
+  <div m="y-3">&nbsp;</div>
 
   <article class="article-main markdown-body" lang={lang(post.body)}>
     <Markdown content={post.body} isRoot={true} context={{ type: 'post' }} />
@@ -126,7 +103,6 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
             <div
               text="gray-700 dark:gray-300 sm"
               select-none
-              data-date={comment.createdAt}
               title={formatLocalDate(comment.createdAt)}
             >
               {formatDate(comment.createdAt)}

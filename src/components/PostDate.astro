@@ -1,17 +1,36 @@
 ---
 import { formatDate, formatLocalDate } from '@/utils'
+
 export interface Props {
   date: Date
+  checkOld?: Boolean
 }
-const { date } = Astro.props
+
+const { date, checkOld = false } = Astro.props
+const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
+const isTooOld = checkOld && new Date().getTime() - date.getTime() > oldPostThreshold
+let title = ''
+
+if (isTooOld) {
+  title +=
+    'This article is a bit old and the content may be outdated, so please refer ' +
+    'to it with caution and remember to check the latest official materials.'
+}
 ---
 
-<div class="bg-teal-500 text-gray-900" title={formatLocalDate(date)}>
-  <i mr-1 i-mdi-calendar-month></i>
-  <span>
-    {formatDate(date)}
-  </span>
-</div>
+{
+  isTooOld ? (
+    <div class="bg-orange-500 text-gray-900" title={title}>
+      <i mr-1 i-mdi-alert />
+      <span>{formatDate(date)}</span>
+    </div>
+  ) : (
+    <div class="bg-teal-500 text-gray-900" title={title}>
+      <i mr-1 i-mdi-calendar-month />
+      <span>{formatDate(date)}</span>
+    </div>
+  )
+}
 
 <style>
   div {
