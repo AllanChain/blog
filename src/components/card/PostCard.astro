@@ -19,7 +19,11 @@ const uncommonLabel = post.labels.length
   : undefined
 ---
 
-<div class="post-card rounded-lg shadow-md bg-white dark:bg-gray-800">
+<div
+  class="post-card shadow-md rounded-lg bg-white dark:bg-gray-800"
+  dark:border="2 solid rounded-lg gray-800"
+  hover="shadow-lg dark:border-gray-700"
+>
   {
     post.image && (
       <Image
