@@ -113,18 +113,19 @@ const uncommonLabel = post.labels.length
 
     .cover-logo {
       @media only screen and (min-width: 740px) {
+        width: 70px;
+        height: 70px;
         position: absolute;
-        top: 20%;
+        top: calc(50% - 30px);
         right: 2rem;
-        aspect-ratio: 1 / 1;
-        height: 60%;
       }
       @media only screen and (max-width: 740px) {
         width: 60px;
         height: 60px;
         float: right;
         padding: 4px;
-        margin: 4px;
+        margin: 8px;
+        overflow: hidden;
         border-width: 2px;
         border-radius: 50% 50%;
         border-style: solid;
