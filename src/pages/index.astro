@@ -102,15 +102,9 @@ const { posts, extraData } = await dataPromise
     <div dash-divider></div>
   </div>
 
-  <div class="card-container max-w-7xl mx-auto">
-    {
-      extraData.friends.map((friend) => (
-        <div class="card-item">
-          <FriendCard friend={friend} />
-        </div>
-      ))
-    }
+  <div class="flex flex-wrap items-center justify-evenly max-w-7xl mx-auto">
+    {extraData.friends.map((friend) => <FriendCard friend={friend} />)}
     <!-- Dummy elements to take space -->
-    {[0, 1, 2].map(() => <div class="card-item" />)}
+    {[0, 1, 2].map(() => <div class="w-xs m-1 grow-0.3" />)}
   </div>
 </BaseLayout>

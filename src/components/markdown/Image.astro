@@ -107,17 +107,19 @@ const getImageInfo = async () => {
 const { width, height, lazySrc: lazyfile, localSrc } = await getImageInfo()
 ---
 
-<div
-  class={`lqip blur ${props.class}`}
-  style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazyfile})`}
->
-  <img
-    src={localSrc}
-    alt={alt}
-    width={width}
-    height={height}
-    onload="this.parentNode.classList.remove('blur')"
-  />
+<div style={`aspect-ratio: ${width} / ${height}`} class={props.class}>
+  <div
+    class="lqip blur"
+    style={`aspect-ratio: ${width} / ${height}; background-image: url(${lazyfile})`}
+  >
+    <img
+      src={localSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      onload="this.parentNode.classList.remove('blur')"
+    />
+  </div>
 </div>
 
 <script>
