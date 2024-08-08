@@ -25,9 +25,14 @@ const { node, context, slugger } = Astro.props
   Array.isArray(node) ? (
     node.map((node) => <Astro.self node={node} context={context} />)
   ) : node.type === 'paragraph' ? (
-    <p>
+    // Avoid referencing Image directly since we have extra logics for image
+    node.children.length === 1 && node.children[0].type === 'image' ? (
       <Astro.self node={node.children} context={context} />
-    </p>
+    ) : (
+      <p>
+        <Astro.self node={node.children} context={context} />
+      </p>
+    )
   ) : node.type === 'blockquote' ? (
     node.children[0]?.type === 'paragraph' &&
     node.children[0].children[0]?.type === 'text' &&
