@@ -37,7 +37,7 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
 
   {
     post.summary && (
-      <div class="markdown-body abstract" lang={lang(post.summary)}>
+      <div class="markdown-body abstract md:mr-10" lang={lang(post.summary)}>
         <i i-mdi-format-quote-open min-w-10 min-h-10 text-gray-500 />
         <Markdown content={post.summary} context={{ type: 'summary' }} />
       </div>
