@@ -80,10 +80,10 @@ const uncommonLabel = post.labels.length
 
     .post-card-text {
       padding: 0.5rem 1rem 0 1rem;
-      position: relative;
-      z-index: 2;
 
       .post-card-title {
+        position: relative;
+        z-index: 2;
         font-size: 1.2em;
         display: -webkit-box;
         overflow: hidden;
@@ -95,6 +95,8 @@ const uncommonLabel = post.labels.length
       }
 
       .markdown-body {
+        position: relative;
+        z-index: 2;
         @media only screen and (min-width: 740px) {
           width: 60%;
         }
@@ -119,10 +121,10 @@ const uncommonLabel = post.labels.length
 
     .cover-logo {
       @media only screen and (min-width: 740px) {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
         position: absolute;
-        top: calc(50% - 30px);
+        top: calc(50% - 50px);
         right: 2rem;
       }
       @media only screen and (max-width: 740px) {
