@@ -56,31 +56,27 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           functions: {
-            'theme-color($color, $shade)': function (color, shade) {
-              if (!(color instanceof sass.types.String)) {
-                throw '$color: Expected a string.'
+            'theme-color($color, $shade)': function (args: sass.SassArgumentList[]) {
+              const color = args[0].assertString()
+              const shade = args[1].assertNumber().assertNoUnits()
+              if (!(color.text in colors)) {
+                throw `$color: ${color.text} not found.`
               }
-              if (!(shade instanceof sass.types.Number)) {
-                throw '$shade: Expected a number.'
-              }
-              if (shade.getUnit()) {
-                throw '$shade: Expected a unitless number.'
-              }
-              const colorName = color.getValue()
-              if (!(colorName in colors)) {
-                throw `$color: ${colorName} not found.`
-              }
-              const colorShades = colors[colorName]
+              const colorShades = colors[color.text]
               if (!colorShades || typeof colorShades !== 'object') {
-                throw `$color: ${colorName} not supported.`
+                throw `$color: ${color.text} not supported.`
               }
-              const shadeValue = shade.getValue()
-              if (!(shadeValue in colorShades)) {
-                throw `$shade: shade ${shadeValue} not supported in ${colorName}`
+              if (!(shade.value in colorShades)) {
+                throw `$shade: shade ${shade.value} not supported in ${color.text}`
               }
-              const colorByte = parseInt(colorShades[shadeValue].slice(1), 16)
-              return new sass.types.Color(colorByte + 0xff000000)
+              const colorByte = parseInt(colorShades[shade.value].slice(1), 16)
+              return new sass.SassColor({
+                red: (colorByte >> 16) & 255,
+                green: (colorByte >> 8) & 255,
+                blue: colorByte & 255,
+              })
             },
           },
         },
