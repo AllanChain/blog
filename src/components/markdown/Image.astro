@@ -27,7 +27,7 @@ const resolveDest = (filename: string) => join(imageCacheDir, filename)
 
 const downloadTasks = new Map<string, Promise<FileInfo>>()
 
-const getLowResFileInfo = (hash: string): FileInfo | null => {
+const getFileInfo = (hash: string): FileInfo | null => {
   const filePattern = /[0-9a-f]{8}_(?<width>\d+)x(?<height>\d+)/
   for (const file of readdirSync(imageCacheDir)) {
     if (!file.startsWith(hash) || file.includes('low-res')) continue
@@ -41,6 +41,28 @@ const getLowResFileInfo = (hash: string): FileInfo | null => {
     }
   }
   return null
+}
+
+const imageBrightness = async (imageFile: string) => {
+  const { data } = await sharp(resolveDest(imageFile))
+    .resize(100)
+    .raw()
+    .ensureAlpha()
+    .toBuffer({ resolveWithObject: true })
+
+  const threshold = 128
+  let brights = 0,
+    darks = 0
+
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i + 4] < 100) continue
+    const luminance = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
+    luminance > threshold ? brights++ : darks++
+  }
+
+  if (brights <= darks) return 0 // do nothing if image is dark
+  const score = (brights ** 2 - darks ** 2) / (brights ** 2 + darks ** 2)
+  return Math.round(100 * score) / 100
 }
 
 const downloadImage = async (hash: string): Promise<FileInfo> => {
@@ -68,11 +90,10 @@ const getImageInfo = async () => {
   if (!isGitHubImage) {
     console.warn(`::warning:: ${src} is not a GitHub hosted image`)
   }
-  const urlPrefix = import.meta.env.BASE_URL + 'img/'
   const hasher = createHash('sha256')
   hasher.update(src)
   const hash = hasher.digest('hex').slice(0, 8)
-  const fileInfo = getLowResFileInfo(hash)
+  const fileInfo = getFileInfo(hash)
 
   if (fileInfo) {
     if (!existsSync(resolveDest(fileInfo.lazyfile))) {
@@ -81,30 +102,21 @@ const getImageInfo = async () => {
         .png({ quality: 10, compressionLevel: 9 })
         .toFile(resolveDest(fileInfo.lazyfile))
     }
-    return {
-      localSrc: urlPrefix + fileInfo.file,
-      lazySrc: urlPrefix + fileInfo.lazyfile,
-      width: fileInfo.width,
-      height: fileInfo.height,
-    }
+    return { ...fileInfo, brightness: await imageBrightness(fileInfo.file) }
   }
   console.log(`    Downloading ${hash} (${src})`)
 
   try {
     const fileInfo = await (downloadTasks.get(hash) || downloadImage(hash))
-    return {
-      localSrc: urlPrefix + fileInfo.file,
-      lazySrc: urlPrefix + fileInfo.lazyfile,
-      width: fileInfo.width,
-      height: fileInfo.height,
-    }
+    return { ...fileInfo, brightness: await imageBrightness(fileInfo.file) }
   } catch (err) {
     console.error(`::error:: Cannot process ${src} : ${err}`)
     throw err
   }
 }
 
-const { width, height, lazySrc: lazyfile, localSrc } = await getImageInfo()
+const urlPrefix = import.meta.env.BASE_URL + 'img/'
+const { width, height, lazyfile, file, brightness } = await getImageInfo()
 ---
 
 <div
@@ -112,11 +124,12 @@ const { width, height, lazySrc: lazyfile, localSrc } = await getImageInfo()
   class:list={['lqip blur', props.class]}
   style={{
     aspectRatio: `${width} / ${height}`,
-    backgroundImage: `url(${lazyfile})`,
+    backgroundImage: `url(${urlPrefix + lazyfile})`,
+    filter: `brightness(${1 - brightness * 0.2}) contrast(${1 + brightness * 0.2})`,
   }}
 >
   <img
-    src={localSrc}
+    src={urlPrefix + file}
     alt={alt}
     width={width}
     height={height}

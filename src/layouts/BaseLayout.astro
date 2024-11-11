@@ -92,12 +92,6 @@ const { title } = Astro.props as Props
       </p>
     </footer>
     <style is:global>
-      @media (prefers-color-scheme: dark) {
-        div[alt*='in light theme'],
-        img[alt*='in light theme'] {
-          filter: brightness(0.8) contrast(1.2);
-        }
-      }
       html {
         font-family:
           -apple-system,
