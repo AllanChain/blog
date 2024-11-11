@@ -10,7 +10,7 @@
     "format": "prettier -w **/*.{js,json,ts,astro}",
     "gql-codegen": "graphql-codegen --require dotenv/config",
     "postinstall": "pnpm gql-codegen",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,json,css,ts,svelte,vue,astro}": "prettier --write"
