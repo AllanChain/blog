@@ -164,6 +164,12 @@ const { width, height, lazyfile, file, brightness } = await getImageInfo()
     transition: opacity 1s ease-in-out;
   }
 
+  @media (prefers-color-scheme: light) {
+    div.lqip {
+      filter: brightness(1) contrast(1) !important;
+    }
+  }
+
   div.lqip::after {
     content: '';
     display: block;
