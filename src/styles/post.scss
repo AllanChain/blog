@@ -28,13 +28,13 @@ $light: '(prefers-color-scheme: light)';
 
   blockquote {
     border-left: 0.25em solid
-      mix(theme-color('slate', 300), theme-color('stone', 400), 50%);
+      color.mix(theme-color('slate', 300), theme-color('stone', 400), 50%);
     padding-left: 1em;
     margin: 1rem;
 
     @media #{$dark} {
       color: theme-color('gray', 300);
-      border-color: mix(theme-color('slate', 600), theme-color('stone', 800), 60%);
+      border-color: color.mix(theme-color('slate', 600), theme-color('stone', 800), 60%);
     }
   }
 
@@ -107,7 +107,7 @@ $light: '(prefers-color-scheme: light)';
     padding: 5px 8px;
 
     @media #{$dark} {
-      background-color: mix(theme-color('slate', 800), theme-color('gray', 900), 40%);
+      background-color: color.mix(theme-color('slate', 800), theme-color('gray', 900), 40%);
     }
   }
 
@@ -122,7 +122,7 @@ $light: '(prefers-color-scheme: light)';
     }
 
     @media #{$dark} {
-      color: mix(theme-color('blue', 500), theme-color('gray', 300), 90%);
+      color: color.mix(theme-color('blue', 500), theme-color('gray', 300), 90%);
       text-decoration: none;
       &:visited {
         color: theme-color('purple', 500);

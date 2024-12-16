@@ -6,6 +6,7 @@ import PostDate from '@components/PostDate.astro'
 import Reactions from '@components/Reactions.astro'
 import Markdown from '@components/markdown/Markdown.astro'
 import { BlogPost } from '@data/types'
+import '../styles/post.scss'
 
 export interface Props {
   post: BlogPost
@@ -132,7 +133,3 @@ const oldPostThreshold = 3 * 365 * 24 * 3600 * 1000
     </div>
   </div>
 </main>
-
-<style lang="scss" is:global>
-  @import '../styles/post.scss';
-</style>
