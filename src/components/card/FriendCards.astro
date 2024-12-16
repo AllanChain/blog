@@ -1,0 +1,51 @@
+---
+import { Friend } from '@data/types'
+
+export interface Props {
+  friends: Friend[]
+}
+
+const { friends } = Astro.props as Props
+---
+
+<div class="friends">
+  {
+    friends.map((friend) => (
+      <a
+        class="m-1 shadow-md decoration-none rounded-lg"
+        bg="white dark:gray-800"
+        dark:border="2 solid rounded-lg gray-800"
+        hover="shadow-lg dark:border-gray-700"
+        href={friend.blog}
+      >
+        <div px-4 flex gap-1>
+          <img
+            src={friend.avatar}
+            alt="Avatar"
+            height="80"
+            width="80"
+            my-4
+            rounded-full
+          />
+          <div class="mx-4 grow-1 text-gray-800 dark:text-gray-200">
+            <h3 my-2 py-1>
+              {friend.name}
+            </h3>
+            <div class="text-sm">{friend.moto}</div>
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .friends {
+    display: grid;
+    grid-gap: 1rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    justify-content: space-evenly;
+    max-width: 70rem;
+    margin: auto;
+  }
+</style>

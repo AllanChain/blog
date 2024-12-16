@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { prefixLink } from '@/utils'
-import FriendCard from '@components/card/FriendCard.astro'
+import FriendCards from '@components/card/FriendCards.astro'
 import PostCards from '@components/card/PostCards.astro'
 import dataPromise from '@data'
 
@@ -102,9 +102,5 @@ const { posts, extraData } = await dataPromise
     <div dash-divider></div>
   </div>
 
-  <div class="flex flex-wrap items-center justify-evenly max-w-7xl mx-auto">
-    {extraData.friends.map((friend) => <FriendCard friend={friend} />)}
-    <!-- Dummy elements to take space -->
-    {[0, 1, 2].map(() => <div class="w-xs m-1 grow-0.3" />)}
-  </div>
+  <FriendCards friends={extraData.friends} />
 </BaseLayout>
