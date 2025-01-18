@@ -45,7 +45,7 @@
     "highlight.js": "^11.11.1",
     "husky": "^9.1.7",
     "js-yaml": "^4.1.0",
-    "katex": "^0.16.20",
+    "katex": "^0.16.21",
     "lint-staged": "^15.3.0",
     "lowlight": "^3.3.0",
     "mime": "^4.0.6",
