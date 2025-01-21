@@ -68,7 +68,7 @@
     "svelte": "^5.17.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
-    "undici": "^7.2.1",
+    "undici": "^7.2.3",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "unocss": "^65.4.0",
