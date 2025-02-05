@@ -41,8 +41,9 @@ jobs:
           node-version: 22
       - name: Install pnpm
         run: corepack enable
-      - name: Setup image cache
-        uses: actions/cache@v4
+      - name: Restore image cache
+        id: image-restore
+        uses: actions/cache/restore@v4
         with:
           path: public/img/
           key: image
@@ -60,6 +61,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+      - name: Always save cache
+        if: always() && steps.image-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: public/img/
+          key: image
 
   deploy:
     name: Deploy the Pages
