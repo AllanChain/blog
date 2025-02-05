@@ -56,6 +56,8 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Build App
         run: |
+          # See https://github.com/nodejs/corepack/issues/612#issuecomment-2629911771
+          export COREPACK_INTEGRITY_KEYS="$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')"
           pnpm install
           pnpm build
           mkdir -p dist/img
