@@ -41,20 +41,12 @@ jobs:
           node-version: 22
       - name: Install pnpm
         run: corepack enable
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
+      - name: Setup image cache
+        uses: actions/cache@v4
         with:
-          path: |
-            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-            public/img/
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Build App
+          path: public/img/
+          key: image
+      - name: Build pages
         run: |
           # See https://github.com/nodejs/corepack/issues/612#issuecomment-2629911771
           export COREPACK_INTEGRITY_KEYS="$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')"
