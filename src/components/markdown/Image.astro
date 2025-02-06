@@ -67,7 +67,11 @@ const imageBrightness = async (imageFile: string) => {
 }
 
 const downloadImage = async (hash: string): Promise<FileInfo> => {
-  const task = retry(async () => {
+  console.log(`    Downloading ${hash} (${src})`)
+  const task = retry(async (bail, i) => {
+    if (i > 1) {
+      console.log(`      Retry ${i}: ${hash} (${src})`)
+    }
     const response = await axios({
       method: 'GET',
       url: src,
@@ -113,7 +117,6 @@ const getImageInfo = async () => {
       console.log(`    File corrupted ${hash} (${src}): ${err}`)
     }
   }
-  console.log(`    Downloading ${hash} (${src})`)
 
   try {
     const fileInfo = await (downloadTasks.get(hash) || downloadImage(hash))
