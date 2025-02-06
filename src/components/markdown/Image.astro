@@ -5,6 +5,7 @@ import { createHash } from 'crypto'
 import { readdirSync, existsSync } from 'fs'
 import { resolve as resolvePath, join } from 'path'
 import sharp from 'sharp'
+import retry from 'async-retry'
 
 export interface Props {
   src: string
@@ -66,23 +67,27 @@ const imageBrightness = async (imageFile: string) => {
 }
 
 const downloadImage = async (hash: string): Promise<FileInfo> => {
-  const response = await axios({
-    method: 'GET',
-    url: src,
-    responseType: 'stream',
+  const task = retry(async () => {
+    const response = await axios({
+      method: 'GET',
+      url: src,
+      responseType: 'stream',
+    })
+    const ext = mime.getExtension(response.headers['content-type'])
+    const pipeline = sharp()
+    response.data.pipe(pipeline)
+    const { width, height } = await pipeline.metadata()
+    const file = `${hash}_${width}x${height}.${ext}`
+    await pipeline.toFile(resolveDest(file))
+    const lazyfile = `${hash}_${width}x${height}.low-res.png`
+    await sharp(resolveDest(file))
+      .resize(12)
+      .png({ quality: 10, compressionLevel: 9 })
+      .toFile(resolveDest(lazyfile))
+    return { file, lazyfile, height, width }
   })
-  const ext = mime.getExtension(response.headers['content-type'])
-  const pipeline = sharp()
-  response.data.pipe(pipeline)
-  const { width, height } = await pipeline.metadata()
-  const file = `${hash}_${width}x${height}.${ext}`
-  await pipeline.toFile(resolveDest(file))
-  const lazyfile = `${hash}_${width}x${height}.low-res.png`
-  await sharp(resolveDest(file))
-    .resize(12)
-    .png({ quality: 10, compressionLevel: 9 })
-    .toFile(resolveDest(lazyfile))
-  return { file, lazyfile, height, width }
+  downloadTasks.set(hash, task)
+  return await task
 }
 
 const getImageInfo = async () => {
@@ -96,13 +101,17 @@ const getImageInfo = async () => {
   const fileInfo = getFileInfo(hash)
 
   if (fileInfo) {
-    if (!existsSync(resolveDest(fileInfo.lazyfile))) {
-      await sharp(resolveDest(fileInfo.file))
-        .resize(12)
-        .png({ quality: 10, compressionLevel: 9 })
-        .toFile(resolveDest(fileInfo.lazyfile))
+    try {
+      if (!existsSync(resolveDest(fileInfo.lazyfile))) {
+        await sharp(resolveDest(fileInfo.file))
+          .resize(12)
+          .png({ quality: 10, compressionLevel: 9 })
+          .toFile(resolveDest(fileInfo.lazyfile))
+      }
+      return { ...fileInfo, brightness: await imageBrightness(fileInfo.file) }
+    } catch (err) {
+      console.log(`    File corrupted ${hash} (${src}): ${err}`)
     }
-    return { ...fileInfo, brightness: await imageBrightness(fileInfo.file) }
   }
   console.log(`    Downloading ${hash} (${src})`)
 
