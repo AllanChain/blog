@@ -27,6 +27,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.23",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/async-retry": "^1.4.9",
     "@types/katex": "^0.16.7",
     "@types/mdast": "^4.0.4",
     "@types/node": "^22.13.1",
