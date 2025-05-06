@@ -39,11 +39,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install packages
-        run: |
-          # See https://github.com/nodejs/corepack/issues/612#issuecomment-2629911771
-          export COREPACK_INTEGRITY_KEYS="$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')"
-          corepack pnpm install
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: true
       - name: Restore image cache
         uses: actions/cache@v4
         with:
@@ -53,8 +51,8 @@ jobs:
             image
       - name: Build pages
         run: |
-          corepack pnpm gql-codegen
-          corepack pnpm build
+          pnpm gql-codegen
+          pnpm build
           mkdir -p dist/img
           cp public/img/* dist/img
         env:
