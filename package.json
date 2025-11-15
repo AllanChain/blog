@@ -44,7 +44,7 @@
     "hastscript": "^9.0.1",
     "highlight.js": "^11.11.1",
     "husky": "^9.1.7",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "katex": "^0.16.23",
     "lint-staged": "^16.2.3",
     "lowlight": "^3.3.0",
