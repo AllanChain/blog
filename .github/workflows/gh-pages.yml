@@ -45,7 +45,7 @@ jobs:
         with:
           run_install: true
       - name: Get latest issue number
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         id: latest-issue
         with:
           result-encoding: string
