@@ -41,7 +41,7 @@ jobs:
           node-version: 24
           # See https://github.com/actions/setup-node/issues/1357
           package-manager-cache: false
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
         with:
           run_install: true
       - name: Get latest issue number
