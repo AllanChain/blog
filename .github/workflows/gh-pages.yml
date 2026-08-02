@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           # See https://github.com/actions/setup-node/issues/1357
